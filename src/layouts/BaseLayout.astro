@@ -18,6 +18,14 @@ const { title, description = 'あなたの街の"もらえるお金"、30秒で�
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Google Analytics (GA4) - TODO: G-M90YY0H2ENを実際のIDに差し替え -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M90YY0H2EN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M90YY0H2EN');
+  </script>
   <!-- OGP -->
   <meta property="og:title" content={`${title} | ホジョタウン`} />
   <meta property="og:description" content={description} />
