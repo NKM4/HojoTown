@@ -6,11 +6,15 @@ import { CATEGORY_LABELS } from '../../data/types';
 import type { Category, Subsidy } from '../../data/types';
 
 import saitamaData from '../../data/subsidies/saitama.json';
+import tokorozawaData from '../../data/subsidies/tokorozawa.json';
+import kawaguchiData from '../../data/subsidies/kawaguchi.json';
 
 // 全市のデータを統合
 const allSubsidies: Subsidy[] = [
   ...kawagoeData as Subsidy[],
   ...saitamaData as Subsidy[],
+  ...tokorozawaData as Subsidy[],
+  ...kawaguchiData as Subsidy[],
 ];
 
 // 比較用の集計データを事前計算

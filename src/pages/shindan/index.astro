@@ -6,10 +6,14 @@ import cities from '../../data/cities.json';
 // 全市の補助金データを統合
 import kawagoeData from '../../data/subsidies/kawagoe.json';
 import saitamaData from '../../data/subsidies/saitama.json';
+import tokorozawaData from '../../data/subsidies/tokorozawa.json';
+import kawaguchiData from '../../data/subsidies/kawaguchi.json';
 
 const allSubsidies = [
   ...kawagoeData,
   ...saitamaData,
+  ...tokorozawaData,
+  ...kawaguchiData,
 ];
 ---
 <BaseLayout
