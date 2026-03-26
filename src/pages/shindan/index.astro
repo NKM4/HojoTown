@@ -1,0 +1,819 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShindanForm from '../../components/ShindanForm';
+import cities from '../../data/cities.json';
+
+// 全市の補助金データを統合
+import kawagoeData from '../../data/subsidies/kawagoe.json';
+import saitamaData from '../../data/subsidies/saitama.json';
+
+const allSubsidies = [
+  ...kawagoeData,
+  ...saitamaData,
+];
+---
+<BaseLayout
+  title="かんたん診断 - あなたがもらえる補助金を30秒で診断"
+  description="お住まいの市区町村と家族構成を選ぶだけ。あなたがもらえる補助金・助成金と合計金額がわかります。"
+>
+  <section class="shindan-hero">
+    <div class="container">
+      <h1>かんたん補助金診断</h1>
+      <p>5ステップの質問に答えるだけ。あなたがもらえる補助金と合計金額がわかります。</p>
+    </div>
+  </section>
+
+  <section class="shindan-section">
+    <div class="container">
+      <ShindanForm client:load allSubsidies={allSubsidies} cities={cities} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .shindan-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 36px 0;
+    text-align: center;
+  }
+  .shindan-hero h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .shindan-hero p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .shindan-section {
+    padding: 32px 0 64px;
+    background: var(--warm-white);
+  }
+</style>
+
+<style is:global>
+  /* 診断フォーム */
+  .shindan-form, .shindan-result {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* プログレスバー */
+  .progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 1;
+    flex: 1;
+  }
+  .progress-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+  .progress-step.active .progress-dot {
+    background: var(--green-mid);
+    color: white;
+  }
+  .progress-step.current .progress-dot {
+    background: var(--green-deep);
+    color: white;
+    box-shadow: 0 0 0 4px rgba(46, 139, 90, 0.2);
+  }
+  .progress-label {
+    font-size: 0.7rem;
+    color: var(--text-soft);
+    text-align: center;
+  }
+  .progress-step.active .progress-label {
+    color: var(--green-deep);
+    font-weight: 600;
+  }
+
+  /* ステップコンテンツ */
+  .step-content {
+    min-height: 320px;
+  }
+  .step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+  }
+  .step-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-top: -12px;
+    margin-bottom: 20px;
+  }
+
+  /* 市区町村選択 */
+  .city-select-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .select-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 12px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .select-btn:hover {
+    border-color: var(--green-light);
+    background: var(--green-pale);
+  }
+  .select-btn.selected {
+    border-color: var(--green-mid);
+    background: var(--green-pale);
+    box-shadow: 0 0 0 3px rgba(46, 139, 90, 0.15);
+  }
+  .select-btn-main {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-deep);
+  }
+  .select-btn-sub {
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+
+  /* チェックボックスグループ */
+  .check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .check-item:hover {
+    border-color: var(--green-light);
+  }
+  .check-item:has(input:checked) {
+    border-color: var(--green-mid);
+    background: var(--green-pale);
+  }
+  .check-item.sub {
+    margin-left: 28px;
+    border-style: dashed;
+  }
+  .check-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--green-mid);
+    cursor: pointer;
+  }
+  .check-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  /* ラジオグループ */
+  .sub-select {
+    margin-left: 28px;
+    padding: 12px 16px;
+    background: #f8f8f5;
+    border-radius: 8px;
+  }
+  .sub-select-label {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 8px;
+  }
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .radio-item {
+    padding: 8px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: white;
+  }
+  .radio-item:hover { border-color: var(--green-light); }
+  .radio-item.selected {
+    border-color: var(--green-mid);
+    background: var(--green-pale);
+    font-weight: 700;
+    color: var(--green-deep);
+  }
+  .radio-item input { display: none; }
+
+  /* ナビゲーション */
+  .step-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .shindan-btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  .shindan-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .shindan-btn-primary {
+    background: var(--gold);
+    color: white;
+  }
+  .shindan-btn-secondary {
+    background: white;
+    color: var(--text-mid);
+    border: 1.5px solid var(--border);
+  }
+  .shindan-btn:hover:not(:disabled) { opacity: 0.85; }
+
+  /* 結果ページ */
+  .result-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .result-city {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+  }
+  .result-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+  }
+  .result-summary {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .result-count, .result-amount {
+    font-size: 1rem;
+    color: var(--text-mid);
+  }
+  .result-number {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin: 0 4px;
+  }
+  .result-amount .result-number {
+    color: var(--gold);
+  }
+
+  /* 結果カード */
+  .result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .result-card {
+    background: white;
+    border-left: 4px solid var(--green-mid);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 16px 20px;
+  }
+  .result-tag {
+    display: inline-block;
+    background: var(--green-pale);
+    color: var(--green-deep);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .result-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .result-card-amount {
+    color: var(--green-deep);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .result-card-summary {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+  }
+  .result-link {
+    font-size: 0.8rem;
+    color: var(--green-mid);
+    font-weight: 600;
+  }
+
+  .result-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-soft);
+  }
+
+  .result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 32px 0 16px;
+  }
+
+  .shindan-disclaimer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    margin-top: 16px;
+  }
+
+  /* 郵便番号入力 */
+  .postal-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .postal-prefix {
+    font-size: 1.2rem;
+    color: var(--text-soft);
+    font-weight: 700;
+  }
+  .postal-input {
+    font-size: 1.4rem;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .postal-input:focus {
+    border-color: var(--green-mid);
+  }
+  .postal-count {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-weight: 600;
+    min-width: 32px;
+  }
+  .postal-result {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--green-pale);
+    border-radius: 8px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+  }
+  .postal-check {
+    color: var(--green-mid);
+    font-size: 1.2rem;
+  }
+  .postal-error {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-top: 8px;
+  }
+  .city-fallback-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  /* 子ども入力 */
+  .child-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .child-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-mid);
+    min-width: 48px;
+  }
+  .child-select {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: white;
+    cursor: pointer;
+  }
+  .child-select:focus {
+    border-color: var(--green-mid);
+    outline: none;
+  }
+  .child-remove {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: white;
+    color: var(--text-soft);
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .child-remove:hover {
+    border-color: #e74c3c;
+    color: #e74c3c;
+  }
+  .add-child-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--green-mid);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .add-child-btn:hover {
+    border-color: var(--green-mid);
+    background: var(--green-pale);
+  }
+
+  /* 障害詳細 */
+  .check-item-sm {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  .check-item-sm input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--green-mid);
+    cursor: pointer;
+  }
+  .grade-select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px 12px 8px 40px;
+  }
+  .grade-label {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+  .radio-item-sm {
+    padding: 6px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: white;
+  }
+  .radio-item-sm:hover { border-color: var(--green-light); }
+  .radio-item-sm.selected {
+    border-color: var(--green-mid);
+    background: var(--green-pale);
+    font-weight: 700;
+    color: var(--green-deep);
+  }
+  .radio-item-sm input { display: none; }
+
+  /* おかえり表示 */
+  .welcome-back {
+    background: linear-gradient(135deg, #e8f7ef 0%, #d4f0e0 100%);
+    border: 2px solid #a8dbb8;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .welcome-back-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+  }
+  .welcome-back-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .welcome-back-dismiss {
+    padding: 8px 20px;
+    background: var(--green-mid);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .welcome-back-reset {
+    padding: 8px 20px;
+    background: white;
+    color: var(--text-mid);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+
+  /* 条件編集 */
+  .edit-conditions {
+    margin: 28px 0 20px;
+    padding: 20px;
+    background: #f8f8f5;
+    border-radius: 10px;
+  }
+  .edit-conditions-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-mid);
+    margin-bottom: 10px;
+  }
+  .edit-conditions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .edit-step-btn {
+    padding: 8px 16px;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .edit-step-btn:hover {
+    border-color: var(--green-mid);
+    background: var(--green-pale);
+  }
+
+  /* 保存通知 */
+  .saved-notice {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    margin: 16px 0;
+    padding: 10px;
+    background: #f8f8f5;
+    border-radius: 8px;
+  }
+
+  /* アフィリエイト広告 */
+  .affiliate-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .affiliate-card {
+    display: block;
+    background: linear-gradient(135deg, #fffbf0 0%, #fff7e6 100%);
+    border: 1.5px solid #f0d98a;
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .affiliate-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(200, 168, 75, 0.15);
+    text-decoration: none;
+  }
+  .affiliate-label {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 0.65rem;
+    color: var(--text-soft);
+    background: rgba(255,255,255,0.8);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .affiliate-content {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .affiliate-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .affiliate-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+  .affiliate-desc {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .affiliate-cta {
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    background: var(--gold);
+    color: white;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  /* 受付終了セクション */
+  .ended-section {
+    margin: 24px 0;
+  }
+  .ended-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 16px;
+    background: #f5f5f0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-mid);
+  }
+  .ended-toggle:hover { background: #eeeeea; }
+  .ended-count {
+    background: var(--border);
+    color: var(--text-soft);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .ended-arrow { margin-left: auto; font-size: 0.7rem; }
+  .ended-list {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ended-note {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+    padding: 0 4px;
+  }
+  .ended-card {
+    border-left-color: var(--border) !important;
+  }
+  .ended-card .result-link {
+    color: var(--green-mid);
+    opacity: 1;
+  }
+  .ended-tag {
+    background: #f0f0ea !important;
+    color: var(--text-soft) !important;
+  }
+
+  /* LINE保存カード */
+  .line-save-card {
+    background: white;
+    border: 2px solid #06c755;
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+    margin: 28px 0;
+  }
+  .line-save-icon { font-size: 2rem; margin-bottom: 8px; }
+  .line-save-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .line-save-card p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .line-save-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #06c755;
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+  .line-save-btn:hover { opacity: 0.9; text-decoration: none; }
+  .line-save-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: var(--text-soft);
+  }
+
+  .result-note {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .city-select-grid, .city-fallback-grid { grid-template-columns: repeat(2, 1fr); }
+    .result-summary { flex-direction: column; gap: 16px; }
+    .step-nav { flex-direction: column; }
+    .shindan-btn { width: 100%; }
+    .progress-label { font-size: 0.55rem; }
+    .check-item.sub { margin-left: 12px; }
+    .sub-select { margin-left: 12px; }
+    .grade-select { padding-left: 12px; }
+    .postal-input { width: 160px; }
+  }
+</style>

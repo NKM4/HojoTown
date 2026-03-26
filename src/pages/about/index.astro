@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="運営者情報">
+  <section class="section">
+    <div class="container legal-page">
+      <h1>運営者情報</h1>
+
+      <div class="about-card">
+        <table class="about-table">
+          <tbody>
+            <tr>
+              <th>サイト名</th>
+              <td>ホジョタウン</td>
+            </tr>
+            <tr>
+              <th>サイトURL</th>
+              <td><a href="https://hojotown.jp">https://hojotown.jp</a></td>
+            </tr>
+            <tr>
+              <th>運営者</th>
+              <td>運営者（個人運営）</td>
+            </tr>
+            <tr>
+              <th>お問い合わせ</th>
+              <td><a href="#">お問い合わせフォーム（Googleフォーム）</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>当サイトについて</h2>
+      <p>ホジョタウンは、<strong>個人が使える公的な補助金・助成金をもっと見つけやすくする</strong>ことを目的とした情報サイトです。</p>
+      <p>出産・子育て、医療、住宅リフォーム、引越し、結婚など、ライフイベントに応じた補助金・助成金の情報を全国の自治体ごとに横断的に検索・比較できます。</p>
+      <p>「自分の住んでいる街にはどんな支援制度があるの？」「隣の市と比べてどっちが手厚い？」といった疑問に、わかりやすくお答えすることを目指しています。</p>
+
+      <h2>運営方針</h2>
+      <ul>
+        <li>各自治体の公式情報をもとに、正確な情報の掲載に努めます。</li>
+        <li>掲載情報は定期的に更新し、できる限り最新の状態を保つよう努めます。</li>
+        <li>制度の詳細や最新情報については、各自治体の公式ホームページへの確認を推奨しております。</li>
+      </ul>
+
+      <h2>広告掲載について</h2>
+      <p>当サイトでは、運営費用を賄うために、Google AdSenseおよびアフィリエイト広告を掲載しております。広告コンテンツには「PR」または「広告」と明記しております。</p>
+      <p>広告の掲載が、当サイトの情報の中立性や正確性に影響を与えることはありません。</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+  .legal-page h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .legal-page h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: #1e293b;
+  }
+  .legal-page p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #334155;
+  }
+  .legal-page ul {
+    margin: 0.5rem 0 1rem 1.5rem;
+    color: #334155;
+  }
+  .legal-page ul li {
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+  }
+  .legal-page a {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+  .legal-page a:hover {
+    color: #1d4ed8;
+  }
+  .about-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .about-table th,
+  .about-table td {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    line-height: 1.6;
+  }
+  .about-table tr:last-child th,
+  .about-table tr:last-child td {
+    border-bottom: none;
+  }
+  .about-table th {
+    width: 140px;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .about-table td {
+    color: #1e293b;
+  }
+</style>

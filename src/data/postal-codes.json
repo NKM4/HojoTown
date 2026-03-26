@@ -1,0 +1,10 @@
+{
+  "350": { "code": "11201", "name": "川越市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "kawagoe" },
+  "330": { "code": "11100", "name": "さいたま市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "saitama" },
+  "331": { "code": "11100", "name": "さいたま市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "saitama" },
+  "332": { "code": "11203", "name": "川口市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "kawaguchi" },
+  "333": { "code": "11203", "name": "川口市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "kawaguchi" },
+  "334": { "code": "11203", "name": "川口市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "kawaguchi" },
+  "359": { "code": "11208", "name": "所沢市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "tokorozawa" },
+  "356": { "code": "11222", "name": "ふじみ野市", "prefecture": "埼玉県", "prefectureSlug": "saitama", "slug": "fujimino" }
+}
