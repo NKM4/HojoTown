@@ -359,16 +359,22 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
           return (
             <div className="affiliate-section">
               {ads.map(ad => (
-                <a key={ad.id} href={ad.url} target="_blank" rel="noopener noreferrer sponsored" className="affiliate-card">
+                <a key={ad.id} href={ad.url} target="_blank" rel="noopener noreferrer sponsored" className="affiliate-card"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                      (window as any).gtag('event', 'affiliate_click', { ad_id: ad.id, ad_title: ad.title });
+                    }
+                  }}>
                   <span className="affiliate-label">{ad.label}</span>
                   <div className="affiliate-content">
                     <span className="affiliate-icon">{ad.icon}</span>
                     <div>
                       <h4 className="affiliate-title">{ad.title}</h4>
                       <p className="affiliate-desc">{ad.description}</p>
+                      <span className="affiliate-badge">無料で相談可能</span>
                     </div>
                   </div>
-                  <span className="affiliate-cta">{ad.ctaText}</span>
+                  <span className="affiliate-cta">{ad.ctaText} →</span>
                 </a>
               ))}
             </div>

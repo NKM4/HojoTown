@@ -695,62 +695,91 @@ for (const file of fs.readdirSync(subsidiesDir).filter(f => f.endsWith('.json'))
   }
   .affiliate-card {
     display: block;
-    background: linear-gradient(135deg, #fffbf0 0%, #fff7e6 100%);
-    border: 1.5px solid #f0d98a;
-    border-radius: 12px;
-    padding: 18px 20px;
+    background: linear-gradient(135deg, #fffdf5 0%, #fff8e8 100%);
+    border: 2px solid #e8c84a;
+    border-radius: 14px;
+    padding: 22px 24px;
     text-decoration: none;
     color: var(--text-dark);
-    transition: transform 0.15s, box-shadow 0.15s;
+    transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
+    overflow: hidden;
+  }
+  .affiliate-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c8a84b, #e8c84a, #c8a84b);
   }
   .affiliate-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(200, 168, 75, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(200, 168, 75, 0.2);
     text-decoration: none;
+    border-color: #c8a84b;
   }
   .affiliate-label {
     position: absolute;
-    top: 8px;
-    right: 12px;
-    font-size: 0.65rem;
-    color: var(--text-soft);
-    background: rgba(255,255,255,0.8);
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-weight: 600;
+    top: 12px;
+    right: 14px;
+    font-size: 0.6rem;
+    color: #b8960a;
+    background: rgba(232,200,74,0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
   }
   .affiliate-content {
     display: flex;
-    gap: 14px;
+    gap: 16px;
     align-items: flex-start;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   .affiliate-icon {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     flex-shrink: 0;
     margin-top: 2px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
   }
   .affiliate-title {
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 800;
     color: var(--text-dark);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    line-height: 1.4;
   }
   .affiliate-desc {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--text-mid);
-    line-height: 1.6;
+    line-height: 1.7;
   }
   .affiliate-cta {
     display: block;
     text-align: center;
-    padding: 10px 20px;
-    background: var(--gold);
+    padding: 13px 24px;
+    background: linear-gradient(135deg, #c8a84b, #b8960a);
     color: white;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    box-shadow: 0 3px 8px rgba(200,168,75,0.3);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .affiliate-card:hover .affiliate-cta {
+    box-shadow: 0 4px 14px rgba(200,168,75,0.4);
+    transform: translateY(-1px);
+  }
+  .affiliate-badge {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 10px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.7rem;
     font-weight: 700;
-    font-size: 0.9rem;
+    border-radius: 10px;
   }
 
   /* 受付終了セクション */
