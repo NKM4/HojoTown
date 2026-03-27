@@ -55,9 +55,10 @@ for (const city of availableCities) {
 
   <section class="cmp-selector">
     <div class="container">
-      <div class="cmp-selects">
+      <div id="cmp-selects" class="cmp-selects">
         <div class="cmp-select-group">
           <label>市区町村①</label>
+          <input type="text" class="cmp-search" placeholder="市名で検索..." data-for="city1" autocomplete="off">
           <select id="city1" class="cmp-select">
             <option value="">選択してください</option>
             {availableCities.map(c => (
@@ -68,6 +69,7 @@ for (const city of availableCities) {
         <div class="cmp-vs">VS</div>
         <div class="cmp-select-group">
           <label>市区町村②</label>
+          <input type="text" class="cmp-search" placeholder="市名で検索..." data-for="city2" autocomplete="off">
           <select id="city2" class="cmp-select">
             <option value="">選択してください</option>
             {availableCities.map(c => (
@@ -75,17 +77,8 @@ for (const city of availableCities) {
             ))}
           </select>
         </div>
-        <div class="cmp-vs">VS</div>
-        <div class="cmp-select-group">
-          <label>市区町村③（任意）</label>
-          <select id="city3" class="cmp-select">
-            <option value="">なし</option>
-            {availableCities.map(c => (
-              <option value={c.code}>{c.name}（{c.prefecture}）</option>
-            ))}
-          </select>
-        </div>
       </div>
+      <button id="add-city-btn" class="cmp-add-btn" type="button">＋ 市区町村を追加</button>
     </div>
   </section>
 
@@ -109,9 +102,61 @@ for (const city of availableCities) {
   </section>
 </BaseLayout>
 
-<script define:vars={{ cityDataMap, compareCategories }}>
+<script define:vars={{ cityDataMap, compareCategories, availableCities }}>
+let cityCount = 2;
+
+// 検索フィルタ
+document.addEventListener('input', function(e) {
+  if (!e.target.classList.contains('cmp-search')) return;
+  const selectId = e.target.getAttribute('data-for');
+  const select = document.getElementById(selectId);
+  const q = e.target.value.toLowerCase();
+  for (const opt of select.options) {
+    if (!opt.value) continue;
+    opt.style.display = opt.textContent.toLowerCase().includes(q) ? '' : 'none';
+  }
+});
+
+// 市区町村追加ボタン
+document.getElementById('add-city-btn').addEventListener('click', function() {
+  if (cityCount >= 10) return;
+  cityCount++;
+  const container = document.getElementById('cmp-selects');
+  const vs = document.createElement('div');
+  vs.className = 'cmp-vs';
+  vs.textContent = 'VS';
+  container.appendChild(vs);
+
+  const group = document.createElement('div');
+  group.className = 'cmp-select-group';
+  const label = document.createElement('label');
+  label.textContent = '市区町村' + '①②③④⑤⑥⑦⑧⑨⑩'[cityCount-1];
+  const search = document.createElement('input');
+  search.type = 'text';
+  search.className = 'cmp-search';
+  search.placeholder = '市名で検索...';
+  search.setAttribute('data-for', 'city' + cityCount);
+  search.autocomplete = 'off';
+  const select = document.createElement('select');
+  select.id = 'city' + cityCount;
+  select.className = 'cmp-select';
+  select.innerHTML = '<option value="">選択してください</option>' +
+    availableCities.map(c => '<option value="' + c.code + '">' + c.name + '（' + c.prefecture + '）</option>').join('');
+  select.addEventListener('change', render);
+  group.appendChild(label);
+  group.appendChild(search);
+  group.appendChild(select);
+  container.appendChild(group);
+
+  if (cityCount >= 10) this.style.display = 'none';
+});
+
 function render() {
-  const codes = ['city1','city2','city3'].map(id => document.getElementById(id).value).filter(Boolean);
+  const codes = [];
+  for (let i = 1; i <= cityCount; i++) {
+    const el = document.getElementById('city' + i);
+    if (el && el.value) codes.push(el.value);
+  }
   const wrap = document.getElementById('cmp-table-wrap');
 
   if (codes.length < 2) {
@@ -178,8 +223,7 @@ function render() {
 
 document.getElementById('city1').addEventListener('change', render);
 document.getElementById('city2').addEventListener('change', render);
-document.getElementById('city3').addEventListener('change', render);
-render();
+
 </script>
 
 <style>
@@ -232,6 +276,30 @@ render();
     border-color: var(--green-mid);
     outline: none;
   }
+  .cmp-search {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+  }
+  .cmp-search:focus { border-color: var(--green-mid); outline: none; }
+  .cmp-add-btn {
+    display: block;
+    margin: 12px auto 0;
+    padding: 8px 20px;
+    background: white;
+    border: 2px dashed var(--border);
+    border-radius: 6px;
+    color: var(--text-mid);
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .cmp-add-btn:hover { border-color: var(--green-mid); color: var(--green-deep); }
   .cmp-vs {
     font-weight: 700;
     color: var(--gold);
