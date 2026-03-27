@@ -260,6 +260,17 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
           timestamp: new Date().toISOString(),
         });
         localStorage.setItem('shindan_log', JSON.stringify(log));
+        // GA4カスタムイベント: 診断完了
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'shindan_completed', {
+            city_code: profile.cityCode,
+            result_count: matchedSubsidies.length,
+            has_children: profile.children.length > 0,
+            is_pregnant: profile.isPregnant,
+            owns_home: profile.ownsHome,
+            planning_move: profile.planningMove,
+          });
+        }
       } catch {}
     }
   };
