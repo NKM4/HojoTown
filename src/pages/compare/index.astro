@@ -215,12 +215,16 @@ function render() {
   for (const c of selected) html += `<td>${(c.population/10000).toFixed(1)}万人</td>`;
   html += '</tr>';
 
-  // 制度数
+  // 制度数（最多をハイライト）
   html += '<tr><td>掲載制度数</td>';
-  for (const c of selected) html += `<td class="highlight">${c.subsidyCount}件</td>`;
+  const maxCount = Math.max(...selected.map(c => c.subsidyCount));
+  for (const c of selected) {
+    const best = c.subsidyCount === maxCount && selected.filter(s => s.subsidyCount === maxCount).length < selected.length;
+    html += `<td class="${best ? 'highlight best' : 'highlight'}">${c.subsidyCount}件</td>`;
+  }
   html += '</tr>';
 
-  // カテゴリ別
+  // カテゴリ別（制度数が多い方をハイライト）
   for (const cat of compareCategories) {
     const catData = selected.map(c => {
       const subs = c.subsidies.filter(s => s.category === cat.key);
@@ -228,10 +232,12 @@ function render() {
     });
     if (catData.every(d => d.count === 0)) continue;
 
+    const maxCat = Math.max(...catData.map(d => d.count));
     html += `<tr><td>${esc(cat.label)}</td>`;
     for (const d of catData) {
+      const isBest = d.count === maxCat && d.count > 0 && catData.filter(x => x.count === maxCat).length < catData.length;
       if (d.count > 0) {
-        html += '<td>';
+        html += `<td class="${isBest ? 'best' : ''}">`;
         for (const s of d.subs) {
           html += `<div class="compare-subsidy"><span class="compare-subsidy-name">${esc(s.name)}</span><span class="compare-subsidy-amount">${esc(s.amount)}</span></div>`;
         }
@@ -329,6 +335,8 @@ render();
   .compare-subsidy-name { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dark); }
   .compare-subsidy-amount { display: block; font-size: 0.75rem; color: var(--green-deep); font-weight: 700; }
   .compare-none { color: var(--text-soft); font-size: 0.85rem; }
+  .best { background: rgba(26, 92, 58, 0.08); border-left: 3px solid var(--green-mid); }
+  .best.highlight { color: var(--green-deep); font-weight: 800; }
 
   @media (max-width: 768px) {
     .cmp-selects { flex-direction: column; align-items: stretch; }
