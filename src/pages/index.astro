@@ -209,9 +209,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ページ読み込み時に自動で位置情報を要求
   navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const {city, distance} = findNearest(pos.coords.latitude, pos.coords.longitude);
-        if (city && distance < 50) {
+      async (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        let city = null;
+        let distance = 0;
+
+        // 1. 逆ジオコーディングで正確な市区町村名を取得
+        try {
+          const res = await fetch(`https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=${lat}&lon=${lng}`);
+          const data = await res.json();
+          if (data.results && data.results.mupiName) {
+            const muniName = data.results.mupiName; // 例: "川越市"
+            city = CITIES.find(c => muniName.includes(c.name.replace(/市$|区$|町$|村$/, '')));
+          }
+        } catch {}
+
+        // 2. 逆ジオコーディング失敗時はfallbackで最寄り判定
+        if (!city) {
+          const nearest = findNearest(lat, lng);
+          city = nearest.city;
+          distance = nearest.distance;
+          if (distance >= 50) city = null;
+        } else {
+          distance = dist(lat, lng, city.lat, city.lng);
+        }
+
+        if (city) {
           result.style.display = 'block';
           const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
           const n = esc(city.name);
