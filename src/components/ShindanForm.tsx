@@ -408,7 +408,7 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
           <h3>この診断結果をLINEに保存する</h3>
           <p>LINE公式アカウントに友だち追加すると、診断結果が保存され、<strong>あなたの条件に合った新着補助金</strong>が自動で届きます。</p>
           <a href="https://lin.ee/oHiY2Pp" className="line-save-btn" target="_blank" rel="noopener">LINEで保存＆通知を受け取る</a>
-          <span className="line-save-note">無料・いつでもブロック可</span>
+          <span className="line-save-note">無料で友だち追加</span>
         </div>
 
         {/* 条件編集ボタン */}
