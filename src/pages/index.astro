@@ -24,6 +24,9 @@ const totalSubsidies = Array.from(dataSlugs).reduce((sum, slug) => {
   } catch { return sum; }
 }, 0);
 
+// クライアント用都市データ（位置情報判定用）
+const clientCities = activeCities.map(c => ({ code: c.code, name: c.name, slug: c.slug, pref: c.prefectureSlug }));
+
 // 地域ごとにグループ（データがある市のみ）
 const regions = [
   { name: '北海道・東北', cities: activeCities.filter(c => ['hokkaido','miyagi','aomori','iwate','akita','yamagata','fukushima'].includes(c.prefectureSlug)) },
@@ -130,7 +133,7 @@ const regions = [
 
 </BaseLayout>
 
-<script>
+<script define:vars={{ clientCities }}>
 function requestCity(name) {
   if (typeof gtag === 'function') {
     gtag('event', 'city_request', { city_name: name, source: 'geo' });
@@ -231,13 +234,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let city = null;
         let distance = 0;
 
-        // 1. 逆ジオコーディングで正確な市区町村名を取得
+        // 1. 逆ジオコーディングで正確な市区町村コードを取得
+        let detectedCode = '';
         try {
           const res = await fetch(`https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=${lat}&lon=${lng}`);
           const data = await res.json();
-          if (data.results && data.results.mupiName) {
-            const muniName = data.results.mupiName; // 例: "川越市"
-            city = CITIES.find(c => muniName.includes(c.name.replace(/市$|区$|町$|村$/, '')));
+          if (data.results && data.results.muniCd) {
+            detectedCode = data.results.muniCd;
+            city = clientCities.find(c => c.code === detectedCode);
+            if (city) {
+              // CITIESリストにlat/lngがないのでダミーで距離0にする
+              city = { ...city, lat: lat, lng: lng };
+            }
           }
         } catch {}
 
@@ -267,14 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const nearest = findNearest(lat, lng);
           result.style.display = 'block';
           const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-          // 逆ジオコーディングで市区町村名を取得
-          let detectedMuni = '';
-          try {
-            const res2 = await fetch(`https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=${lat}&lon=${lng}`);
-            const data2 = await res2.json();
-            if (data2.results && data2.results.mupiName) detectedMuni = data2.results.mupiName;
-          } catch {}
-          const muniDisplay = detectedMuni ? esc(detectedMuni) : 'お住まいの地域';
+          const muniDisplay = 'お住まいの地域';
 
           result.innerHTML = `
             <p class="hp-geo-detected">📍 ${muniDisplay}にお住まいですね</p>
