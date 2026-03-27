@@ -172,6 +172,48 @@ for (const file of fs.readdirSync(subsidiesDir).filter(f => f.endsWith('.json'))
     color: var(--text-soft);
     margin-top: 2px;
   }
+  .city-search-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+  }
+  .city-search-input:focus {
+    border-color: var(--green-mid);
+    outline: none;
+  }
+  .city-region-tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .city-region-tab {
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: white;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .city-region-tab:hover, .city-region-tab.active {
+    background: var(--green-pale);
+    border-color: var(--green-mid);
+    color: var(--green-deep);
+    font-weight: 600;
+  }
+  .city-fallback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
 
   /* チェックボックスグループ */
   .check-group {

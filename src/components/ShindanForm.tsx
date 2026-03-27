@@ -487,6 +487,49 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
               <div className="postal-error">
                 <p>この地域（〒{profile.postalCode}）はまだ対応していません。</p>
                 <p style={{marginTop: '8px'}}>対応エリアから選んでください：</p>
+                <input
+                  type="text"
+                  placeholder="市区町村名で検索"
+                  className="city-search-input"
+                  onChange={(e) => {
+                    const el = e.target.closest('.postal-error')?.querySelector('.city-fallback-grid') as HTMLElement;
+                    if (!el) return;
+                    const q = e.target.value.toLowerCase();
+                    Array.from(el.children).forEach((btn: any) => {
+                      const name = btn.textContent?.toLowerCase() || '';
+                      btn.style.display = name.includes(q) ? '' : 'none';
+                    });
+                  }}
+                />
+                <div className="city-region-tabs">
+                  {['全て','北海道・東北','関東','中部','近畿','中国・四国','九州・沖縄'].map(region => (
+                    <button
+                      key={region}
+                      type="button"
+                      className="city-region-tab"
+                      onClick={(e) => {
+                        const regionMap: Record<string, string[]> = {
+                          '全て': [],
+                          '北海道・東北': ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県'],
+                          '関東': ['茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県'],
+                          '中部': ['新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県'],
+                          '近畿': ['滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県'],
+                          '中国・四国': ['鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県'],
+                          '九州・沖縄': ['福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'],
+                        };
+                        const prefs = regionMap[region];
+                        const grid = e.target.closest('.postal-error')?.querySelector('.city-fallback-grid') as HTMLElement;
+                        if (!grid) return;
+                        Array.from(grid.children).forEach((btn: any) => {
+                          const pref = btn.querySelector('.select-btn-sub')?.textContent || '';
+                          btn.style.display = prefs.length === 0 || prefs.includes(pref) ? '' : 'none';
+                        });
+                        e.target.closest('.city-region-tabs')?.querySelectorAll('.city-region-tab').forEach((t: any) => t.classList.remove('active'));
+                        (e.target as HTMLElement).classList.add('active');
+                      }}
+                    >{region}</button>
+                  ))}
+                </div>
                 <div className="city-fallback-grid">
                   {cities.map(city => (
                     <button
