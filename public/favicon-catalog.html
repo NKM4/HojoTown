@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ファビコン候補 100種</title>
+<style>
+body { background: #1a1a1a; color: #fff; font-family: sans-serif; padding: 20px; }
+h1 { text-align: center; margin-bottom: 30px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; }
+.item { text-align: center; background: #2a2a2a; border-radius: 12px; padding: 16px 8px; cursor: pointer; transition: transform 0.1s; }
+.item:hover { transform: scale(1.1); background: #3a3a3a; }
+.item svg { width: 64px; height: 64px; }
+.item p { font-size: 11px; color: #aaa; margin-top: 8px; }
+h2 { margin-top: 40px; margin-bottom: 16px; color: #c8a84b; border-bottom: 1px solid #333; padding-bottom: 8px; }
+.preview { position: fixed; top: 20px; right: 20px; background: #333; padding: 20px; border-radius: 16px; display: none; z-index: 100; }
+.preview svg { width: 128px; height: 128px; }
+.preview .sizes { display: flex; gap: 12px; align-items: end; margin-top: 12px; }
+.preview .sizes svg { width: 16px; height: 16px; }
+.preview .sizes svg:nth-child(2) { width: 32px; height: 32px; }
+.preview .sizes svg:nth-child(3) { width: 48px; height: 48px; }
+</style>
+</head>
+<body>
+<h1>ホジョタウン ファビコン候補</h1>
+<p style="text-align:center;color:#888;">クリックで拡大プレビュー。気に入った番号を教えて。</p>
+
+<div id="preview" class="preview">
+  <div id="preview-svg"></div>
+  <div class="sizes" id="preview-sizes"></div>
+  <p id="preview-num" style="text-align:center;margin-top:8px;"></p>
+</div>
+
+<div id="catalog"></div>
+
+<script>
+const G = '#1a5c3a';
+const L = '#2d8a5e';
+const D = '#0d3320';
+const W = '#fff';
+const A = '#c8a84b';
+const P = '#f0f5ef';
+
+const favicons = [
+// === カテゴリ1: 家モチーフ（1-25）===
+// 1: シンプル家
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 6L5 15h4v11h14V15h4z" fill="${W}"/>`,
+// 2: 家+ドア
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 6L5 15h4v11h14V15h4z" fill="${W}"/><rect x="13" y="20" width="6" height="6" rx="1" fill="${G}"/>`,
+// 3: 家+窓2つ
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 6L5 15h4v11h14V15h4z" fill="${W}"/><rect x="10" y="17" width="4" height="4" rx="1" fill="${G}"/><rect x="18" y="17" width="4" height="4" rx="1" fill="${G}"/>`,
+// 4: 家+ゴールド屋根
+`<rect width="32" height="32" rx="6" fill="${D}"/><path d="M16 6L5 15h4v11h14V15h4z" fill="${W}"/><path d="M16 6L5 15h22z" fill="${A}"/>`,
+// 5: 丸い家
+`<circle cx="16" cy="16" r="15" fill="${G}"/><path d="M16 7L6 15h3v10h14V15h3z" fill="${W}"/>`,
+// 6: 家アウトライン
+`<rect width="32" height="32" rx="6" fill="${W}"/><path d="M16 7L6 15h3v10h14V15h3z" fill="none" stroke="${G}" stroke-width="2"/>`,
+// 7: ゴールド背景+緑の家
+`<rect width="32" height="32" rx="6" fill="${A}"/><path d="M16 7L6 15h3v10h14V15h3z" fill="${G}"/>`,
+// 8: 家+コイン
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 4L5 13h4v11h14V13h4z" fill="${W}"/><circle cx="16" cy="27" r="4" fill="${A}"/>`,
+// 9: 家+チェックマーク
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 6L6 14h3v11h14V14h3z" fill="${W}"/><path d="M11 18l4 4 6-8" fill="none" stroke="${A}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+// 10: 角丸家+影
+`<rect width="32" height="32" rx="8" fill="${G}"/><path d="M16 8L7 15h3v9h12V15h3z" fill="${W}" opacity="0.9"/><path d="M16 8L7 15h3v9h12V15h3z" fill="${W}"/>`,
+// 11: 家+ハート
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 7L6 15h3v10h14V15h3z" fill="${W}"/><path d="M16 22c-4-4-7-2-7 1s3 4 7 7c4-3 7-4 7-7s-3-5-7-1z" fill="#e74c3c" transform="translate(0,-5) scale(0.5)" transform-origin="16 20"/>`,
+// 12: ミニマル家
+`<rect width="32" height="32" rx="6" fill="${G}"/><polygon points="16,8 8,16 24,16" fill="${W}"/><rect x="10" y="16" width="12" height="10" fill="${W}"/>`,
+// 13: 二重家
+`<rect width="32" height="32" rx="6" fill="${D}"/><path d="M16 4L3 15h26z" fill="${A}"/><path d="M16 8L6 16h20z" fill="${W}"/><rect x="9" y="16" width="14" height="10" fill="${W}"/>`,
+// 14: 家+矢印UP
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 6L6 14h4v12h12V14h4z" fill="${W}"/><path d="M16 10l-4 5h3v4h2v-4h3z" fill="${A}"/>`,
+// 15: 家シルエット（白背景）
+`<rect width="32" height="32" rx="6" fill="${W}"/><path d="M16 6L5 15h4v11h14V15h4z" fill="${G}"/>`,
+// 16: グラデーション背景+家
+`<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${D}"/><stop offset="1" stop-color="${L}"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="url(#g1)"/><path d="M16 7L6 15h3v10h14V15h3z" fill="${W}"/>`,
+// 17: 家+プラス記号
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 7L7 14h3v10h12V14h3z" fill="${W}"/><rect x="22" y="4" width="8" height="8" rx="4" fill="${A}"/><path d="M26 6v4M24 8h4" stroke="${W}" stroke-width="1.5"/>`,
+// 18: 家+星
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 8L7 15h3v10h12V15h3z" fill="${W}"/><path d="M16 3l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5L11 6.5l3.5-.5z" fill="${A}" transform="translate(6,-1) scale(0.6)"/>`,
+// 19: 丸+家アイコン
+`<circle cx="16" cy="16" r="14" fill="${G}" stroke="${A}" stroke-width="2"/><path d="M16 8L8 14h3v9h10V14h3z" fill="${W}"/>`,
+// 20: 六角形+家
+`<polygon points="16,1 29,8.5 29,23.5 16,31 3,23.5 3,8.5" fill="${G}"/><path d="M16 9L9 15h3v8h8V15h3z" fill="${W}"/>`,
+// 21: 家の中に¥（リデザイン）
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 6L5 15h4v11h14V15h4z" fill="${W}"/><text x="16" y="24" text-anchor="middle" font-size="10" font-weight="900" fill="${G}" font-family="Arial">¥</text>`,
+// 22: 立体風家
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 6L5 15h4v11h14V15h4z" fill="${W}"/><path d="M16 6L27 15h-4v11h-2V14z" fill="${P}" opacity="0.5"/>`,
+// 23: ピクセル家
+`<rect width="32" height="32" rx="2" fill="${G}"/><rect x="14" y="6" width="4" height="4" fill="${W}"/><rect x="10" y="10" width="12" height="4" fill="${W}"/><rect x="6" y="14" width="20" height="2" fill="${W}"/><rect x="8" y="16" width="16" height="10" fill="${W}"/><rect x="14" y="20" width="4" height="6" fill="${G}"/>`,
+// 24: 家+盾
+`<rect width="32" height="32" rx="6" fill="${D}"/><path d="M16 4c-8 4-8 14-0 22 8-8 8-18 0-22z" fill="${G}" stroke="${A}" stroke-width="1"/><path d="M16 10L11 14h2v6h6V14h2z" fill="${W}"/>`,
+// 25: ドット家
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="10" r="2" fill="${W}"/><circle cx="12" cy="14" r="2" fill="${W}"/><circle cx="20" cy="14" r="2" fill="${W}"/><circle cx="10" cy="18" r="2" fill="${W}"/><circle cx="14" cy="18" r="2" fill="${W}"/><circle cx="18" cy="18" r="2" fill="${W}"/><circle cx="22" cy="18" r="2" fill="${W}"/><circle cx="10" cy="22" r="2" fill="${W}"/><circle cx="14" cy="22" r="2" fill="${W}"/><circle cx="18" cy="22" r="2" fill="${W}"/><circle cx="22" cy="22" r="2" fill="${W}"/>`,
+
+// === カテゴリ2: 文字モチーフ（26-50）===
+// 26: Hの文字
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 27: ホ
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="700" fill="${W}" font-family="sans-serif">ホ</text>`,
+// 28: 補
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">補</text>`,
+// 29: HT
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="22" text-anchor="middle" font-size="15" font-weight="900" fill="${W}" font-family="Arial">HT</text>`,
+// 30: H白背景
+`<rect width="32" height="32" rx="6" fill="${W}" stroke="${G}" stroke-width="2"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${G}" font-family="Arial">H</text>`,
+// 31: Hゴールド
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${A}" font-family="Arial">H</text>`,
+// 32: 丸H
+`<circle cx="16" cy="16" r="14" fill="${G}"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 33: H+アンダーライン
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="21" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text><rect x="8" y="24" width="16" height="3" rx="1.5" fill="${A}"/>`,
+// 34: ホジョ縦
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="${W}" font-family="sans-serif">ホジョ</text><text x="16" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="${A}" font-family="sans-serif">タウン</text>`,
+// 35: H斜め
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="24" text-anchor="middle" font-size="24" font-weight="900" fill="${W}" font-family="Arial" transform="rotate(-10,16,16)">H</text>`,
+// 36: グラデH
+`<defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${D}"/><stop offset="1" stop-color="${L}"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="url(#g2)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 37: 丸ホ
+`<circle cx="16" cy="16" r="14" fill="${G}"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">ホ</text>`,
+// 38: 補+丸
+`<circle cx="16" cy="16" r="14" fill="${A}"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${G}" font-family="sans-serif">補</text>`,
+// 39: H+家の屋根
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 4L6 12h20z" fill="${A}"/><text x="16" y="26" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 40: セリフH
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Georgia,serif">H</text>`,
+// 41: H影付き
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="17" y="25" text-anchor="middle" font-size="22" font-weight="900" fill="${D}" font-family="Arial">H</text><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 42: 四角H枠
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="5" y="5" width="22" height="22" rx="3" fill="none" stroke="${W}" stroke-width="2"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 43: H+ドット
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="22" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text><circle cx="16" cy="27" r="2" fill="${A}"/>`,
+// 44: ¥大きく
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="25" text-anchor="middle" font-size="24" font-weight="900" fill="${A}" font-family="Arial">¥</text>`,
+// 45: 円マーク+丸
+`<circle cx="16" cy="16" r="14" fill="${G}" stroke="${A}" stroke-width="2"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">¥</text>`,
+// 46: 町
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="700" fill="${W}" font-family="sans-serif">町</text>`,
+// 47: 助
+`<rect width="32" height="32" rx="6" fill="${A}"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="700" fill="${G}" font-family="sans-serif">助</text>`,
+// 48: H+下線ゴールド太め
+`<rect width="32" height="32" rx="6" fill="${D}"/><text x="16" y="22" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text><rect x="6" y="25" width="20" height="4" rx="2" fill="${A}"/>`,
+// 49: HJ
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial" letter-spacing="-1">HJ</text>`,
+// 50: ホジョ横一行
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="16" y="21" text-anchor="middle" font-size="9" font-weight="900" fill="${W}" font-family="sans-serif" letter-spacing="1">ホジョタウン</text>`,
+
+// === カテゴリ3: お金モチーフ（51-65）===
+// 51: コイン
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="16" r="10" fill="${A}"/><circle cx="16" cy="16" r="7" fill="${A}" stroke="${G}" stroke-width="1"/>`,
+// 52: コイン+¥
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="16" r="10" fill="${A}"/><text x="16" y="21" text-anchor="middle" font-size="14" font-weight="900" fill="${G}" font-family="Arial">¥</text>`,
+// 53: 紙幣風
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="4" y="9" width="24" height="14" rx="2" fill="${A}"/><text x="16" y="20" text-anchor="middle" font-size="12" font-weight="900" fill="${G}" font-family="Arial">¥</text>`,
+// 54: 財布
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="6" y="10" width="20" height="16" rx="3" fill="${A}"/><rect x="18" y="14" width="10" height="8" rx="2" fill="${W}"/><circle cx="22" cy="18" r="2" fill="${A}"/>`,
+// 55: 貯金箱
+`<rect width="32" height="32" rx="6" fill="${G}"/><ellipse cx="16" cy="18" rx="10" ry="8" fill="${A}"/><rect x="13" y="8" width="6" height="4" rx="1" fill="${W}"/><circle cx="20" cy="16" r="1.5" fill="${G}"/>`,
+// 56: 手+コイン
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M10 24c0-4 3-6 6-6s6 2 6 6" fill="none" stroke="${W}" stroke-width="2"/><circle cx="16" cy="12" r="5" fill="${A}"/>`,
+// 57: 上昇グラフ+¥
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M6 26L12 20 18 22 26 10" fill="none" stroke="${A}" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="10" r="3" fill="${A}"/>`,
+// 58: ギフトボックス
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="7" y="14" width="18" height="12" rx="2" fill="${A}"/><rect x="7" y="11" width="18" height="5" rx="2" fill="${W}"/><rect x="14.5" y="11" width="3" height="15" fill="${G}"/>`,
+// 59: ダイヤモンド
+`<rect width="32" height="32" rx="6" fill="${G}"/><polygon points="16,6 24,14 16,26 8,14" fill="${A}"/><polygon points="16,6 20,14 16,26" fill="${W}" opacity="0.3"/>`,
+// 60: 盾+¥
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 4C8 4 6 10 6 16s4 10 10 14c6-4 10-8 10-14s-2-12-10-12z" fill="${A}"/><text x="16" y="22" text-anchor="middle" font-size="14" font-weight="900" fill="${G}" font-family="Arial">¥</text>`,
+// 61: 手のひら+ハート
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 26c-6-4-10-8-10-12a5 5 0 0110-1 5 5 0 0110 1c0 4-4 8-10 12z" fill="${A}"/>`,
+// 62: 虹コイン
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="16" r="11" fill="none" stroke="${A}" stroke-width="3"/><circle cx="16" cy="16" r="7" fill="${A}"/><text x="16" y="20" text-anchor="middle" font-size="10" font-weight="900" fill="${G}" font-family="Arial">H</text>`,
+// 63: ¥+上矢印
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="12" y="24" font-size="18" font-weight="900" fill="${A}" font-family="Arial">¥</text><path d="M24 8l-4 6h3v8h2v-8h3z" fill="${W}"/>`,
+// 64: 二重丸コイン
+`<rect width="32" height="32" rx="6" fill="${D}"/><circle cx="16" cy="16" r="12" fill="${G}" stroke="${A}" stroke-width="2"/><circle cx="16" cy="16" r="8" fill="${G}" stroke="${A}" stroke-width="1"/><text x="16" y="21" text-anchor="middle" font-size="12" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 65: 宝箱
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="6" y="14" width="20" height="12" rx="2" fill="${A}"/><path d="M6 14h20v-4a3 3 0 00-3-3H9a3 3 0 00-3 3z" fill="#8B6914"/><circle cx="16" cy="18" r="2" fill="${G}"/>`,
+
+// === カテゴリ4: 抽象・幾何学（66-85）===
+// 66: 四角重なり
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="6" y="6" width="12" height="12" rx="2" fill="${A}" opacity="0.8"/><rect x="14" y="14" width="12" height="12" rx="2" fill="${W}" opacity="0.8"/>`,
+// 67: 三角+丸
+`<rect width="32" height="32" rx="6" fill="${G}"/><polygon points="16,5 27,25 5,25" fill="none" stroke="${W}" stroke-width="2"/><circle cx="16" cy="18" r="4" fill="${A}"/>`,
+// 68: 同心円
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="16" r="12" fill="none" stroke="${W}" stroke-width="1.5"/><circle cx="16" cy="16" r="8" fill="none" stroke="${A}" stroke-width="1.5"/><circle cx="16" cy="16" r="4" fill="${W}"/>`,
+// 69: 四つ葉
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="12" cy="12" r="5" fill="${W}" opacity="0.8"/><circle cx="20" cy="12" r="5" fill="${W}" opacity="0.8"/><circle cx="12" cy="20" r="5" fill="${W}" opacity="0.8"/><circle cx="20" cy="20" r="5" fill="${A}" opacity="0.8"/>`,
+// 70: 波線
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M4 16c4-8 8 8 12 0s8-8 12 0" fill="none" stroke="${W}" stroke-width="3" stroke-linecap="round"/>`,
+// 71: 矢印サークル
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 4A12 12 0 0128 16" fill="none" stroke="${W}" stroke-width="2.5"/><path d="M28 16A12 12 0 0116 28" fill="none" stroke="${A}" stroke-width="2.5"/><path d="M16 28A12 12 0 014 16" fill="none" stroke="${W}" stroke-width="2.5"/><path d="M4 16A12 12 0 0116 4" fill="none" stroke="${A}" stroke-width="2.5"/>`,
+// 72: ダイヤ4つ
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="12" y="4" width="8" height="8" rx="1" transform="rotate(45,16,8)" fill="${W}"/><rect x="12" y="20" width="8" height="8" rx="1" transform="rotate(45,16,24)" fill="${A}"/><rect x="4" y="12" width="8" height="8" rx="1" transform="rotate(45,8,16)" fill="${W}" opacity="0.7"/><rect x="20" y="12" width="8" height="8" rx="1" transform="rotate(45,24,16)" fill="${W}" opacity="0.7"/>`,
+// 73: クロス
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="13" y="4" width="6" height="24" rx="3" fill="${W}"/><rect x="4" y="13" width="24" height="6" rx="3" fill="${A}"/>`,
+// 74: 半分割
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M0 0h16v32H0z" fill="${G}"/><path d="M16 0h16v32H16z" fill="${A}"/><rect width="32" height="32" rx="6" fill="none" stroke="${D}" stroke-width="0"/><text x="8" y="22" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text><text x="24" y="22" text-anchor="middle" font-size="16" font-weight="900" fill="${G}" font-family="Arial">T</text>`,
+// 75: スパイラル
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 8a8 8 0 018 8 6 6 0 01-6 6 4 4 0 01-4-4 2 2 0 012-2" fill="none" stroke="${W}" stroke-width="2"/>`,
+// 76: 木
+`<rect width="32" height="32" rx="6" fill="${G}"/><polygon points="16,4 22,14 20,14 24,22 8,22 12,14 10,14" fill="${W}"/><rect x="14" y="22" width="4" height="6" fill="${A}"/>`,
+// 77: 太陽
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="16" r="6" fill="${A}"/><g stroke="${A}" stroke-width="2"><line x1="16" y1="4" x2="16" y2="8"/><line x1="16" y1="24" x2="16" y2="28"/><line x1="4" y1="16" x2="8" y2="16"/><line x1="24" y1="16" x2="28" y2="16"/></g>`,
+// 78: 山
+`<rect width="32" height="32" rx="6" fill="${G}"/><polygon points="4,26 14,8 24,26" fill="${W}"/><polygon points="18,26 24,14 30,26" fill="${A}" opacity="0.8"/>`,
+// 79: 葉っぱ
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M8 24C8 10 24 6 24 6s2 14-8 20" fill="${W}"/><path d="M12 22C14 16 20 10 24 6" fill="none" stroke="${A}" stroke-width="1.5"/>`,
+// 80: 星
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 4l3.5 7.5 8 1-6 5.5 1.5 8L16 22l-7 4 1.5-8-6-5.5 8-1z" fill="${A}"/>`,
+// 81: ヘキサゴン
+`<rect width="32" height="32" rx="6" fill="${G}"/><polygon points="16,4 27,10 27,22 16,28 5,22 5,10" fill="none" stroke="${W}" stroke-width="2"/><polygon points="16,10 22,13.5 22,20.5 16,24 10,20.5 10,13.5" fill="${A}"/>`,
+// 82: リング
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="16" r="10" fill="none" stroke="${W}" stroke-width="4"/><circle cx="16" cy="6" r="3" fill="${A}"/>`,
+// 83: 稲妻
+`<rect width="32" height="32" rx="6" fill="${G}"/><polygon points="18,4 10,18 16,18 14,28 22,14 16,14" fill="${A}"/>`,
+// 84: インフィニティ
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M10 16c0-4 3-6 6-2s6 2 6-2-3-6-6-2-6-2-6 2 3 6 6 2 6 2 6-2" fill="none" stroke="${W}" stroke-width="2.5"/>`,
+// 85: 地図ピン
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 28C16 28 8 18 8 13a8 8 0 0116 0c0 5-8 15-8 15z" fill="${A}"/><circle cx="16" cy="13" r="3" fill="${G}"/>`,
+
+// === カテゴリ5: 組み合わせ・ユニーク（86-100）===
+// 86: 地図ピン+家
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 28C16 28 7 18 7 12a9 9 0 0118 0c0 6-9 16-9 16z" fill="${W}"/><path d="M16 8l-5 5h2v5h6V13h2z" fill="${G}"/>`,
+// 87: 吹き出し+H
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M6 6h20a2 2 0 012 2v12a2 2 0 01-2 2H14l-4 4v-4H6a2 2 0 01-2-2V8a2 2 0 012-2z" fill="${W}"/><text x="16" y="18" text-anchor="middle" font-size="14" font-weight="900" fill="${G}" font-family="Arial">H</text>`,
+// 88: 検索アイコン+H
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="14" cy="14" r="8" fill="none" stroke="${W}" stroke-width="2.5"/><line x1="20" y1="20" x2="27" y2="27" stroke="${W}" stroke-width="2.5" stroke-linecap="round"/><text x="14" y="18" text-anchor="middle" font-size="10" font-weight="900" fill="${A}" font-family="Arial">H</text>`,
+// 89: チェックバッジ
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="16" r="11" fill="${A}"/><path d="M10 16l4 4 8-8" fill="none" stroke="${W}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`,
+// 90: 二重屋根
+`<rect width="32" height="32" rx="6" fill="${D}"/><path d="M16 4L2 16h28z" fill="${G}"/><path d="M16 10L6 18h20z" fill="${A}"/><rect x="10" y="18" width="12" height="8" fill="${W}"/>`,
+// 91: 街並み
+`<rect width="32" height="32" rx="6" fill="${G}"/><rect x="4" y="14" width="6" height="14" fill="${W}"/><rect x="13" y="8" width="6" height="20" fill="${A}"/><rect x="22" y="12" width="6" height="16" fill="${W}"/>`,
+// 92: ハート+家
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 28c-8-6-12-10-12-15a6 6 0 0112-1 6 6 0 0112 1c0 5-4 9-12 15z" fill="${A}" opacity="0.3"/><path d="M16 10L10 15h2v7h8V15h2z" fill="${W}"/>`,
+// 93: 本+¥
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M6 6h10v20H6z" fill="${W}"/><path d="M26 6H16v20h10z" fill="${A}"/><text x="16" y="20" text-anchor="middle" font-size="10" font-weight="900" fill="${G}" font-family="Arial">¥</text>`,
+// 94: 窓4つの家
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M16 4L4 14h24z" fill="${A}"/><rect x="7" y="14" width="18" height="14" fill="${W}"/><rect x="10" y="16" width="4" height="4" fill="${G}"/><rect x="18" y="16" width="4" height="4" fill="${G}"/><rect x="10" y="22" width="4" height="4" fill="${G}"/><rect x="18" y="22" width="4" height="4" fill="${G}"/>`,
+// 95: 家+虹
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M4 20a12 12 0 0124 0" fill="none" stroke="${A}" stroke-width="2"/><path d="M16 12L10 17h2v7h8V17h2z" fill="${W}"/>`,
+// 96: 鍵穴
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="13" r="6" fill="${W}"/><rect x="13" y="17" width="6" height="10" rx="1" fill="${W}"/><circle cx="16" cy="13" r="2.5" fill="${G}"/><rect x="14.5" y="15" width="3" height="5" fill="${G}"/>`,
+// 97: 日の丸風
+`<circle cx="16" cy="16" r="15" fill="${G}"/><circle cx="16" cy="16" r="8" fill="${A}"/>`,
+// 98: モノグラム HT
+`<rect width="32" height="32" rx="6" fill="${G}"/><text x="10" y="24" font-size="20" font-weight="900" fill="${W}" font-family="Arial" opacity="0.8">H</text><text x="18" y="24" font-size="20" font-weight="900" fill="${A}" font-family="Arial" opacity="0.8">T</text>`,
+// 99: 斜めストライプ+H
+`<rect width="32" height="32" rx="6" fill="${G}"/><path d="M0 32L32 0v8L8 32z" fill="${A}" opacity="0.3"/><path d="M0 24L24 0v8L0 32z" fill="${A}" opacity="0.2"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 100: ミニマル丸+ライン
+`<rect width="32" height="32" rx="6" fill="${G}"/><circle cx="16" cy="14" r="6" fill="none" stroke="${W}" stroke-width="2"/><rect x="6" y="24" width="20" height="2" rx="1" fill="${A}"/><circle cx="16" cy="14" r="2" fill="${A}"/>`,
+];
+
+const categories = [
+  { name: '🏠 家モチーフ (1-25)', start: 0, end: 25 },
+  { name: '🔤 文字モチーフ (26-50)', start: 25, end: 50 },
+  { name: '💰 お金モチーフ (51-65)', start: 50, end: 65 },
+  { name: '🔷 抽象・幾何学 (66-85)', start: 65, end: 85 },
+  { name: '✨ 組み合わせ (86-100)', start: 85, end: 100 },
+];
+
+const catalog = document.getElementById('catalog');
+categories.forEach(cat => {
+  const h = document.createElement('h2');
+  h.textContent = cat.name;
+  catalog.appendChild(h);
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+  for (let i = cat.start; i < cat.end && i < favicons.length; i++) {
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.innerHTML = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">${favicons[i]}</svg><p>#${i+1}</p>`;
+    item.onclick = () => {
+      const p = document.getElementById('preview');
+      p.style.display = 'block';
+      document.getElementById('preview-svg').innerHTML = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:128px;height:128px">${favicons[i]}</svg>`;
+      document.getElementById('preview-sizes').innerHTML =
+        `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px">${favicons[i]}</svg>` +
+        `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px">${favicons[i]}</svg>` +
+        `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px">${favicons[i]}</svg>`;
+      document.getElementById('preview-num').textContent = `#${i+1}`;
+    };
+    grid.appendChild(item);
+  }
+  catalog.appendChild(grid);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ファビコン候補 第2弾 - 文字モチーフ+グラデーション 100種</title>
+<style>
+body { background: #1a1a1a; color: #fff; font-family: sans-serif; padding: 20px; }
+h1 { text-align: center; margin-bottom: 10px; }
+p.sub { text-align: center; color: #888; margin-bottom: 30px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; }
+.item { text-align: center; background: #2a2a2a; border-radius: 12px; padding: 14px 6px; cursor: pointer; transition: transform 0.1s; }
+.item:hover { transform: scale(1.1); background: #3a3a3a; }
+.item svg { width: 64px; height: 64px; }
+.item p { font-size: 11px; color: #aaa; margin-top: 6px; }
+h2 { margin-top: 36px; margin-bottom: 14px; color: #c8a84b; border-bottom: 1px solid #333; padding-bottom: 8px; }
+.preview { position: fixed; top: 20px; right: 20px; background: #333; padding: 20px; border-radius: 16px; display: none; z-index: 100; }
+.preview svg { width: 128px; height: 128px; }
+.preview .sizes { display: flex; gap: 12px; align-items: end; margin-top: 12px; }
+.preview .tab { margin-top: 12px; background: #555; border-radius: 8px 8px 0 0; padding: 6px 12px; display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.preview .tab svg { width: 16px; height: 16px; }
+</style>
+</head>
+<body>
+<h1>文字モチーフ+グラデーション 100種</h1>
+<p class="sub">クリックで拡大+タブ風プレビュー。番号を教えて。</p>
+
+<div id="preview" class="preview">
+  <div id="preview-svg"></div>
+  <div class="sizes" id="preview-sizes"></div>
+  <div class="tab" id="preview-tab"></div>
+  <p id="preview-num" style="text-align:center;margin-top:8px;"></p>
+</div>
+
+<div id="catalog"></div>
+
+<script>
+const favicons = [];
+
+// グラデーション定義
+const grads = {
+  g1: `<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d3320"/><stop offset="1" stop-color="#2d8a5e"/></linearGradient>`,
+  g2: `<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a5c3a"/><stop offset="1" stop-color="#0d3320"/></linearGradient>`,
+  g3: `<linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1a5c3a"/><stop offset="1" stop-color="#3da86e"/></linearGradient>`,
+  g4: `<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a5c3a"/><stop offset="1" stop-color="#c8a84b" stop-opacity="0.4"/></linearGradient>`,
+  g5: `<linearGradient id="bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0d3320"/><stop offset="1" stop-color="#1a7a4a"/></linearGradient>`,
+  g6: `<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d8a5e"/><stop offset="1" stop-color="#1a5c3a"/></linearGradient>`,
+  g7: `<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#143d28"/><stop offset="1" stop-color="#267a50"/></linearGradient>`,
+  g8: `<linearGradient id="bg" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#1a5c3a"/><stop offset="0.5" stop-color="#0d3320"/><stop offset="1" stop-color="#1a5c3a"/></linearGradient>`,
+};
+
+function g(id) { return `<defs>${grads[id]}</defs>`; }
+const W='#fff', A='#c8a84b', G='#1a5c3a', D='#0d3320', L='#2d8a5e';
+
+// カテゴリ1: H バリエーション (1-25)
+const cat1 = [
+// 1-5: Hの太さ・フォント変化
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g2')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="24" font-weight="700" fill="${W}" font-family="Georgia,serif">H</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="'Trebuchet MS',sans-serif">H</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="25" text-anchor="middle" font-size="26" font-weight="300" fill="${W}" font-family="Arial">H</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Impact,sans-serif" letter-spacing="-1">H</text>`,
+// 6-10: H+アクセント
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text><rect x="7" y="26" width="18" height="2" rx="1" fill="${A}"/>`,
+`${g('g2')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="22" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text><rect x="8" y="25" width="16" height="3" rx="1.5" fill="${A}"/>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="7" y="4" width="18" height="3" rx="1.5" fill="${A}"/><text x="16" y="25" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${A}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="17" y="25" text-anchor="middle" font-size="22" font-weight="900" fill="${D}" font-family="Arial" opacity="0.5">H</text><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 11-15: H+枠・形状
+`${g('g1')}<rect width="32" height="32" rx="8" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g3')}<rect width="32" height="32" rx="12" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="16" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="4" y="4" width="24" height="24" rx="4" fill="none" stroke="${W}" stroke-width="1.5" opacity="0.4"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="4" y="4" width="24" height="24" rx="12" fill="none" stroke="${A}" stroke-width="1.5" opacity="0.5"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 16-20: H+装飾
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><circle cx="16" cy="16" r="12" fill="${W}" opacity="0.1"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g2')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text><circle cx="25" cy="7" r="4" fill="${A}" opacity="0.6"/>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text><circle cx="25" cy="7" r="3" fill="${A}"/><circle cx="7" cy="25" r="2" fill="${A}" opacity="0.5"/>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M0 32L32 0" stroke="${W}" stroke-width="0.5" opacity="0.2"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="0" y="28" width="32" height="4" fill="${A}" opacity="0.4" rx="0 0 6 6"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+// 21-25: H色違い
+`${g('g4')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g6')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g8')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial" opacity="0.9">H</text><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${A}" font-family="Arial" opacity="0.3">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="none" stroke="${W}" stroke-width="1.5" font-family="Arial">H</text>`,
+];
+
+// カテゴリ2: ホ・補・漢字 (26-45)
+const cat2 = [
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="700" fill="${W}" font-family="sans-serif">ホ</text>`,
+`${g('g2')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="sans-serif">ホ</text>`,
+`${g('g5')}<rect width="32" height="32" rx="8" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="700" fill="${A}" font-family="sans-serif">ホ</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="22" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">ホ</text><rect x="8" y="25" width="16" height="2" rx="1" fill="${A}"/>`,
+`${g('g1')}<rect width="32" height="32" rx="16" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">ホ</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">補</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">補</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${A}" font-family="sans-serif">補</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">町</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">助</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">得</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="${W}" font-family="sans-serif">金</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${A}" font-family="sans-serif">金</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="${W}" font-family="sans-serif">ホジョ</text><text x="16" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="${A}" font-family="sans-serif">タウン</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="16" text-anchor="middle" font-size="11" font-weight="900" fill="${W}" font-family="sans-serif">ホジョ</text><text x="16" y="27" text-anchor="middle" font-size="11" font-weight="900" fill="${A}" font-family="sans-serif">タウン</text>`,
+`${g('g7')}<rect width="32" height="32" rx="8" fill="url(#bg)"/><text x="16" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="${A}" font-family="sans-serif">ホジョ</text><text x="16" y="27" text-anchor="middle" font-size="10" font-weight="700" fill="${W}" font-family="sans-serif">タウン</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="21" text-anchor="middle" font-size="8" font-weight="900" fill="${W}" font-family="sans-serif" letter-spacing="1">ホジョタウン</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="15" text-anchor="middle" font-size="14" font-weight="700" fill="${W}" font-family="sans-serif">ホ</text><text x="16" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="${A}" font-family="sans-serif">町</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="15" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="sans-serif">補</text><text x="16" y="28" text-anchor="middle" font-size="14" font-weight="900" fill="${A}" font-family="sans-serif">町</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="700" fill="none" stroke="${W}" stroke-width="1" font-family="sans-serif">ホ</text>`,
+];
+
+// カテゴリ3: HT・HJ 組み合わせ (46-65)
+const cat3 = [
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial" letter-spacing="-1">HT</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial" letter-spacing="0">HT</text>`,
+`${g('g7')}<rect width="32" height="32" rx="8" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">HT</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="11" y="24" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text><text x="22" y="24" text-anchor="middle" font-size="18" font-weight="900" fill="${A}" font-family="Arial">T</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="11" y="24" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text><text x="22" y="24" text-anchor="middle" font-size="18" font-weight="900" fill="${A}" font-family="Arial">T</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="10" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial" opacity="0.9">H</text><text x="22" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial" opacity="0.5">T</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="22" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">HT</text><rect x="8" y="25" width="16" height="2" rx="1" fill="${A}"/>`,
+`${g('g1')}<rect width="32" height="32" rx="16" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">HT</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${A}" font-family="Arial">HT</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Georgia,serif">HT</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="22" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">HJ</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="22" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">HJ</text><rect x="8" y="25" width="16" height="2" rx="1" fill="${A}"/>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="11" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text><text x="21" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${A}" font-family="Arial">J</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="14" text-anchor="middle" font-size="12" font-weight="900" fill="${W}" font-family="Arial">H</text><text x="16" y="26" text-anchor="middle" font-size="12" font-weight="900" fill="${A}" font-family="Arial">T</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="4" y="14" width="11" height="11" rx="2" fill="${W}" opacity="0.15"/><rect x="17" y="14" width="11" height="11" rx="2" fill="${A}" opacity="0.15"/><text x="10" y="23" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">H</text><text x="22" y="23" text-anchor="middle" font-size="14" font-weight="900" fill="${A}" font-family="Arial">T</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 0v32" stroke="${W}" stroke-width="0.5" opacity="0.2"/><text x="9" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text><text x="23" y="23" text-anchor="middle" font-size="16" font-weight="900" fill="${A}" font-family="Arial">T</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="14" font-weight="900" fill="none" stroke="${W}" stroke-width="1" font-family="Arial">HT</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="20" text-anchor="middle" font-size="10" font-weight="900" fill="${W}" font-family="Arial" letter-spacing="2">HOJO</text><rect x="8" y="23" width="16" height="1.5" rx="0.75" fill="${A}"/>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="20" text-anchor="middle" font-size="9" font-weight="900" fill="${W}" font-family="Arial" letter-spacing="1">HOJO</text><text x="16" y="28" text-anchor="middle" font-size="7" font-weight="700" fill="${A}" font-family="Arial" letter-spacing="1">TOWN</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="19" text-anchor="middle" font-size="8" font-weight="900" fill="${W}" font-family="Arial" letter-spacing="2">HOJO</text><text x="16" y="27" text-anchor="middle" font-size="8" font-weight="900" fill="${A}" font-family="Arial" letter-spacing="2">TOWN</text>`,
+];
+
+// カテゴリ4: H+屋根・家要素ミックス (66-80)
+const cat4 = [
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 4L8 10h16z" fill="${A}" opacity="0.6"/><text x="16" y="25" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 3L6 11h20z" fill="${A}" opacity="0.5"/><text x="16" y="26" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 5L8 11h16z" fill="${W}" opacity="0.3"/><text x="16" y="25" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 2L4 12h24z" fill="${A}"/><text x="16" y="26" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 6L9 12h14z" fill="${A}" opacity="0.4"/><text x="16" y="26" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">HT</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 4L6 12h20z" fill="${A}" opacity="0.5"/><text x="16" y="25" text-anchor="middle" font-size="16" font-weight="700" fill="${W}" font-family="sans-serif">ホ</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M4 14L16 4 28 14" fill="none" stroke="${A}" stroke-width="2" stroke-linecap="round"/><text x="16" y="26" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M6 14L16 6 26 14" fill="none" stroke="${W}" stroke-width="1.5" opacity="0.4"/><path d="M6 18L16 10 26 18" fill="none" stroke="${A}" stroke-width="1.5" opacity="0.3"/><text x="16" y="28" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 2L4 12h6v14h12V12h6z" fill="${W}" opacity="0.12"/><text x="16" y="24" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 6L8 12h16z" fill="${A}" opacity="0.4"/><rect x="10" y="12" width="12" height="14" fill="${W}" opacity="0.08"/><text x="16" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">HT</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><circle cx="16" cy="16" r="13" fill="${W}" opacity="0.06"/><path d="M16 4L6 12h20z" fill="${A}" opacity="0.3"/><text x="16" y="26" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="4" y="26" width="24" height="3" rx="1.5" fill="${A}" opacity="0.4"/><path d="M16 4L6 12h20z" fill="${W}" opacity="0.2"/><text x="16" y="24" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 2L2 14" stroke="${A}" stroke-width="1.5" opacity="0.4"/><path d="M16 2L30 14" stroke="${A}" stroke-width="1.5" opacity="0.4"/><text x="16" y="26" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 6L8 12h3v12h10V12h3z" fill="none" stroke="${W}" stroke-width="1" opacity="0.25"/><text x="16" y="23" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">HT</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M16 4L4 14h24z" fill="${A}" opacity="0.25"/><path d="M16 8L8 14h16z" fill="${W}" opacity="0.1"/><text x="16" y="26" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+];
+
+// カテゴリ5: ユニーク・特殊 (81-100)
+const cat5 = [
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial" transform="rotate(-5,16,16)">H</text><rect x="6" y="26" width="20" height="2" rx="1" fill="${A}" transform="rotate(-5,16,27)"/>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="24" font-weight="900" fill="${W}" font-family="Arial" opacity="0.15">H</text><text x="16" y="24" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="8" y="28" font-size="28" font-weight="900" fill="${W}" font-family="Arial" opacity="0.08">H</text><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="4" y="4" width="24" height="24" rx="4" fill="${D}" opacity="0.3"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="0" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><line x1="4" y1="28" x2="28" y2="28" stroke="${A}" stroke-width="3" stroke-linecap="round"/><text x="16" y="22" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><line x1="4" y1="4" x2="4" y2="28" stroke="${A}" stroke-width="3" stroke-linecap="round"/><text x="18" y="24" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="${A}" stroke-width="1" opacity="0.3"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text><circle cx="26" cy="6" r="3" fill="${A}"/>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="12" text-anchor="middle" font-size="8" font-weight="700" fill="${A}" font-family="Arial">HOJO</text><text x="16" y="25" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text><path d="M4 28q12-6 24 0" fill="none" stroke="${A}" stroke-width="1.5"/>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><circle cx="16" cy="16" r="13" fill="none" stroke="${W}" stroke-width="1" opacity="0.15"/><circle cx="16" cy="16" r="9" fill="none" stroke="${A}" stroke-width="1" opacity="0.2"/><text x="16" y="22" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="3" y="14" width="26" height="12" rx="6" fill="${W}" opacity="0.1"/><text x="16" y="24" text-anchor="middle" font-size="16" font-weight="900" fill="${W}" font-family="Arial">HT</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="19" text-anchor="middle" font-size="24" font-weight="900" fill="${W}" font-family="Arial" opacity="0.06">H</text><text x="16" y="24" text-anchor="middle" font-size="14" font-weight="900" fill="${W}" font-family="Arial">HT</text><rect x="8" y="26" width="16" height="1.5" rx="0.75" fill="${A}" opacity="0.6"/>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="14" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial" opacity="0.2">H</text><text x="16" y="28" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="6" y="6" width="20" height="20" rx="10" fill="${W}" opacity="0.08"/><text x="16" y="23" text-anchor="middle" font-size="18" font-weight="900" fill="${W}" font-family="Arial">H</text><rect x="10" y="26" width="12" height="2" rx="1" fill="${A}"/>`,
+`${g('g7')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial" letter-spacing="-2">H</text><circle cx="24" cy="8" r="2.5" fill="${A}"/><circle cx="8" cy="24" r="1.5" fill="${A}" opacity="0.5"/>`,
+`${g('g3')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M0 0h32v16H0z" fill="${D}" opacity="0.2"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><path d="M28 4L4 28" stroke="${A}" stroke-width="8" opacity="0.08"/><text x="16" y="24" text-anchor="middle" font-size="22" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g5')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><rect x="0" y="0" width="32" height="32" rx="6" fill="none" stroke="${A}" stroke-width="2" opacity="0.3"/><text x="16" y="24" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text>`,
+`${g('g1')}<rect width="32" height="32" rx="6" fill="url(#bg)"/><circle cx="16" cy="16" r="14" fill="${W}" opacity="0.05"/><text x="16" y="23" text-anchor="middle" font-size="20" font-weight="900" fill="${W}" font-family="Arial">H</text><rect x="6" y="26" width="20" height="2.5" rx="1.25" fill="${A}" opacity="0.7"/>`,
+];
+
+const all = [...cat1, ...cat2, ...cat3, ...cat4, ...cat5];
+
+const categories = [
+  { name: '🔤 H バリエーション (1-25)', start: 0, end: 25 },
+  { name: '🇯🇵 ホ・補・漢字 (26-45)', start: 25, end: 45 },
+  { name: '🔠 HT・HJ 組み合わせ (46-65)', start: 45, end: 65 },
+  { name: '🏠 H+屋根ミックス (66-80)', start: 65, end: 80 },
+  { name: '✨ ユニーク・特殊 (81-100)', start: 80, end: 100 },
+];
+
+const catalog = document.getElementById('catalog');
+categories.forEach(cat => {
+  const h = document.createElement('h2');
+  h.textContent = cat.name;
+  catalog.appendChild(h);
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+  for (let i = cat.start; i < cat.end && i < all.length; i++) {
+    const item = document.createElement('div');
+    item.className = 'item';
+    // Each SVG needs unique gradient IDs
+    const svg = all[i].replace(/id="bg"/g, `id="bg${i}"`).replace(/url\(#bg\)/g, `url(#bg${i})`);
+    item.innerHTML = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">${svg}</svg><p>#${i+1}</p>`;
+    item.onclick = () => {
+      const p = document.getElementById('preview');
+      p.style.display = 'block';
+      const s = all[i].replace(/id="bg"/g, `id="bgP"`).replace(/url\(#bg\)/g, `url(#bgP)`);
+      document.getElementById('preview-svg').innerHTML = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:128px;height:128px">${s}</svg>`;
+      const s16 = all[i].replace(/id="bg"/g, `id="bg16"`).replace(/url\(#bg\)/g, `url(#bg16)`);
+      const s32 = all[i].replace(/id="bg"/g, `id="bg32"`).replace(/url\(#bg\)/g, `url(#bg32)`);
+      const s48 = all[i].replace(/id="bg"/g, `id="bg48"`).replace(/url\(#bg\)/g, `url(#bg48)`);
+      document.getElementById('preview-sizes').innerHTML =
+        `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px">${s16}</svg>` +
+        `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px">${s32}</svg>` +
+        `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px">${s48}</svg>`;
+      const sTab = all[i].replace(/id="bg"/g, `id="bgTab"`).replace(/url\(#bg\)/g, `url(#bgTab)`);
+      document.getElementById('preview-tab').innerHTML = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px">${sTab}</svg> ホジョタウン`;
+      document.getElementById('preview-num').textContent = `#${i+1}`;
+    };
+    grid.appendChild(item);
+  }
+  catalog.appendChild(grid);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>#25 バリエーション比較</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap" rel="stylesheet">
+<style>
+body{background:#111;color:#fff;font-family:sans-serif;padding:20px}
+h1{text-align:center;margin-bottom:8px}
+p.sub{text-align:center;color:#888;margin-bottom:24px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:18px}
+.item{text-align:center;background:#222;border-radius:12px;padding:18px 8px;cursor:pointer;transition:transform .12s}
+.item:hover{transform:scale(1.08);background:#333}
+.item canvas{border-radius:8px}
+.item p{font-size:11px;color:#ccc;margin-top:8px}
+.item .desc{font-size:9px;color:#666;margin-top:2px}
+h2{margin-top:32px;margin-bottom:12px;color:#c8a84b;border-bottom:1px solid #333;padding-bottom:6px;font-size:14px}
+#pv{position:fixed;top:16px;right:16px;background:#222;padding:20px;border-radius:16px;display:none;z-index:100;min-width:240px;border:1px solid #333}
+#pv canvas{border-radius:10px}
+.row{display:flex;gap:14px;align-items:end;margin-top:14px;justify-content:center}
+.row canvas{border-radius:3px}
+.tab{margin-top:10px;background:#444;border-radius:6px 6px 0 0;padding:5px 10px;display:flex;align-items:center;gap:6px;font-size:12px}
+.tab canvas{border-radius:3px}
+.wtab{background:#f0f0f0;border-radius:0 0 6px 6px;padding:5px 10px;display:flex;align-items:center;gap:6px;font-size:12px;color:#333}
+.wtab canvas{border-radius:3px}
+</style>
+</head>
+<body>
+<h1>#25ベース 描画方式比較</h1>
+<p class="sub">Outfit 800 / HT / 屋根+バー — 描画・太さ・色を変えて比較</p>
+<div id="pv">
+  <div id="pvB"></div>
+  <div class="row" id="pvS"></div>
+  <div class="tab" id="pvT"></div>
+  <div class="wtab" id="pvW"></div>
+  <p id="pvN" style="text-align:center;color:#888;margin-top:6px;font-size:11px"></p>
+</div>
+<div id="app"></div>
+
+<script>
+const A='#c8a84b', W='#fff';
+const font='Outfit', w=800, letter='HT';
+
+const variants = [
+// === 描画方式の違い ===
+{id:1, label:'現状: stroke屋根 + fill バー', desc:'stroke vs fill の差が出る',
+ draw(c,sz){
+  const t=sz*0.065;
+  // stroke屋根
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  // fill バー
+  c.fillStyle=A; c.beginPath(); c.roundRect(sz*.24,sz*.8,sz*.52,t,t/2); c.fill();
+}},
+{id:2, label:'両方fill: 屋根もパス塗り', desc:'屋根=太い三角パス、バー=矩形。統一感◎',
+ draw(c,sz){
+  const t=sz*0.065;
+  // fill屋根（台形パスで描く）
+  c.fillStyle=A;
+  c.beginPath();
+  c.moveTo(sz*.12, sz*.36+t/2);
+  c.lineTo(sz*.5-t*.4, sz*.1+t/2);
+  c.lineTo(sz*.5, sz*.1-t/2);
+  c.lineTo(sz*.5+t*.4, sz*.1+t/2);
+  c.lineTo(sz*.88, sz*.36+t/2);
+  c.lineTo(sz*.88, sz*.36-t/2);
+  c.lineTo(sz*.5+t*.2, sz*.1-t/2);
+  c.lineTo(sz*.5-t*.2, sz*.1-t/2);
+  c.lineTo(sz*.12, sz*.36-t/2);
+  c.closePath(); c.fill();
+  // fill バー
+  c.beginPath(); c.roundRect(sz*.24,sz*.8,sz*.52,t,t/2); c.fill();
+}},
+{id:3, label:'両方stroke', desc:'屋根もバーもstrokeで統一',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  // stroke屋根
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  // stroke バー
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+
+// === 太さの違い ===
+{id:4, label:'細め 0.045', desc:'繊細な印象',
+ draw(c,sz){
+  const t=sz*0.045;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:5, label:'やや細め 0.055', desc:'現状より少し細い',
+ draw(c,sz){
+  const t=sz*0.055;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:6, label:'現状の太さ 0.065', desc:'今のサイズ',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:7, label:'やや太め 0.075', desc:'少し存在感UP',
+ draw(c,sz){
+  const t=sz*0.075;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:8, label:'太め 0.09', desc:'しっかり太い',
+ draw(c,sz){
+  const t=sz*0.09;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+
+// === ゴールドの色味 ===
+{id:9, label:'現状ゴールド #c8a84b', desc:'今の色',
+ color:'#c8a84b',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle='#c8a84b'; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:10, label:'明るめゴールド #d4b85c', desc:'少し明るい',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle='#d4b85c'; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:11, label:'暗めゴールド #b8943c', desc:'渋めのゴールド',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle='#b8943c'; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:12, label:'白ゴールド #dcc67a', desc:'プラチナゴールド寄り',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle='#dcc67a'; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:13, label:'ローズゴールド #c4956a', desc:'温かみのある金',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle='#c4956a'; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:14, label:'白 #ffffff', desc:'金じゃなくて白',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle='#ffffff'; c.lineWidth=t; c.lineCap='round'; c.globalAlpha=0.6;
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+  c.globalAlpha=1;
+}},
+
+// === 屋根の角度・位置 ===
+{id:15, label:'浅い屋根', desc:'屋根がなだらか',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.12,sz*.32); c.lineTo(sz*.5,sz*.16); c.lineTo(sz*.88,sz*.32); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:16, label:'急な屋根', desc:'屋根が急角度',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.18,sz*.4); c.lineTo(sz*.5,sz*.06); c.lineTo(sz*.82,sz*.4); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:17, label:'屋根高め', desc:'屋根の位置が上',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.3); c.lineTo(sz*.5,sz*.06); c.lineTo(sz*.85,sz*.3); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+{id:18, label:'屋根低め', desc:'屋根を文字に近づける',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.42); c.lineTo(sz*.5,sz*.18); c.lineTo(sz*.85,sz*.42); c.stroke();
+  c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+}},
+
+// === バーの長さ ===
+{id:19, label:'バー短め', desc:'文字幅くらい',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.3,sz*.83); c.lineTo(sz*.7,sz*.83); c.stroke();
+}},
+{id:20, label:'バー長め', desc:'屋根幅と同じ',
+ draw(c,sz){
+  const t=sz*0.065;
+  c.strokeStyle=A; c.lineWidth=t; c.lineCap='round';
+  c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+  c.beginPath(); c.moveTo(sz*.15,sz*.83); c.lineTo(sz*.85,sz*.83); c.stroke();
+}},
+
+// === グラデーション方向 ===
+{id:21, label:'左上→右下グラデ', desc:'現状',
+ grad(c,sz){ const g=c.createLinearGradient(0,0,sz,sz); g.addColorStop(0,'#0d3320'); g.addColorStop(1,'#2d8a5e'); return g; }},
+{id:22, label:'上→下グラデ', desc:'縦方向',
+ grad(c,sz){ const g=c.createLinearGradient(0,0,0,sz); g.addColorStop(0,'#1a5c3a'); g.addColorStop(1,'#0d3320'); return g; }},
+{id:23, label:'下→上グラデ', desc:'逆縦',
+ grad(c,sz){ const g=c.createLinearGradient(0,sz,0,0); g.addColorStop(0,'#0d3320'); g.addColorStop(1,'#2d8a5e'); return g; }},
+{id:24, label:'左→右グラデ', desc:'横方向',
+ grad(c,sz){ const g=c.createLinearGradient(0,0,sz,0); g.addColorStop(0,'#1a5c3a'); g.addColorStop(1,'#3da86e'); return g; }},
+{id:25, label:'中央から放射グラデ', desc:'中心が暗い',
+ grad(c,sz){ const g=c.createRadialGradient(sz/2,sz/2,0,sz/2,sz/2,sz*.7); g.addColorStop(0,'#0d3320'); g.addColorStop(1,'#2d8a5e'); return g; }},
+{id:26, label:'右下→左上', desc:'逆対角',
+ grad(c,sz){ const g=c.createLinearGradient(sz,sz,0,0); g.addColorStop(0,'#0d3320'); g.addColorStop(1,'#2d8a5e'); return g; }},
+
+// === 角丸 ===
+{id:27, label:'角丸 小 (rx=4)', desc:'シャープ寄り',
+ rx: 0.12},
+{id:28, label:'角丸 中 (rx=6)', desc:'今の角丸',
+ rx: 0.19},
+{id:29, label:'角丸 大 (rx=8)', desc:'丸め',
+ rx: 0.25},
+{id:30, label:'角丸 特大 (rx=12)', desc:'かなり丸い',
+ rx: 0.38},
+];
+
+function render(v, sz) {
+  const cv = document.createElement('canvas');
+  cv.width = sz; cv.height = sz;
+  const c = cv.getContext('2d');
+  const rx = v.rx ? sz * v.rx : sz * 0.19;
+
+  // 背景
+  let bg;
+  if (v.grad) {
+    bg = v.grad(c, sz);
+  } else {
+    bg = c.createLinearGradient(0, 0, sz, sz);
+    bg.addColorStop(0, '#0d3320');
+    bg.addColorStop(1, '#2d8a5e');
+  }
+  c.beginPath();
+  c.roundRect(0, 0, sz, sz, rx);
+  c.fillStyle = bg;
+  c.fill();
+
+  // 屋根+バー
+  if (v.draw) {
+    v.draw(c, sz);
+  } else {
+    // デフォルト描画（グラデ・角丸テスト用）
+    const t = sz * 0.065;
+    c.strokeStyle = A; c.lineWidth = t; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(sz*.15,sz*.36); c.lineTo(sz*.5,sz*.1); c.lineTo(sz*.85,sz*.36); c.stroke();
+    c.beginPath(); c.moveTo(sz*.24,sz*.83); c.lineTo(sz*.76,sz*.83); c.stroke();
+  }
+
+  // 文字
+  c.fillStyle = W;
+  c.textAlign = 'center';
+  c.textBaseline = 'middle';
+  const fs = sz * 0.32;
+  c.font = `${w} ${fs}px '${font}', sans-serif`;
+  c.fillText(letter, sz * 0.5, sz * 0.58);
+
+  return cv;
+}
+
+const sections = [
+  {name: '🎨 描画方式（stroke vs fill）', s:0, e:3},
+  {name: '📏 線の太さ', s:3, e:8},
+  {name: '🌟 ゴールドの色味', s:8, e:14},
+  {name: '⛰️ 屋根の角度・位置', s:14, e:18},
+  {name: '━ バーの長さ', s:18, e:20},
+  {name: '🌈 グラデーション方向', s:20, e:26},
+  {name: '⬜ 角丸サイズ', s:26, e:30},
+];
+
+document.fonts.ready.then(() => {
+  const app = document.getElementById('app');
+  sections.forEach(sec => {
+    const h = document.createElement('h2');
+    h.textContent = sec.name;
+    app.appendChild(h);
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    for (let i = sec.s; i < sec.e && i < variants.length; i++) {
+      const v = variants[i];
+      const item = document.createElement('div');
+      item.className = 'item';
+      item.appendChild(render(v, 72));
+      const p = document.createElement('p');
+      p.textContent = `#${v.id} ${v.label}`;
+      item.appendChild(p);
+      const d = document.createElement('span');
+      d.className = 'desc';
+      d.textContent = v.desc;
+      d.style.cssText = 'font-size:9px;color:#555;display:block';
+      item.appendChild(d);
+
+      item.onclick = () => {
+        const pv = document.getElementById('pv');
+        pv.style.display = 'block';
+        document.getElementById('pvB').innerHTML = '';
+        document.getElementById('pvB').appendChild(render(v, 128));
+        const ps = document.getElementById('pvS');
+        ps.innerHTML = '';
+        [16,24,32,48].forEach(s => ps.appendChild(render(v,s)));
+        const pt = document.getElementById('pvT');
+        pt.innerHTML = '';
+        pt.appendChild(render(v,16));
+        pt.appendChild(document.createTextNode(' ホジョタウン'));
+        const pw = document.getElementById('pvW');
+        pw.innerHTML = '';
+        pw.appendChild(render(v,16));
+        const sp = document.createElement('span');
+        sp.textContent = ' ホジョタウン';
+        pw.appendChild(sp);
+        document.getElementById('pvN').textContent = `#${v.id} ${v.label}`;
+      };
+      grid.appendChild(item);
+    }
+    app.appendChild(grid);
+  });
+});
+</script>
+</body>
+</html>
