@@ -1,0 +1,8 @@
+name = "hojotown-api"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hojotown-contacts"
+database_id = "e8621142-85d2-4c21-83f5-139c2392a3f9"

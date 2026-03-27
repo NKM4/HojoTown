@@ -135,6 +135,11 @@ function requestCity(name) {
   if (typeof gtag === 'function') {
     gtag('event', 'city_request', { city_name: name, source: 'geo' });
   }
+  fetch('https://hojotown-api.taitatu4barisuta.workers.dev/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'city_request', city: name, message: name + 'のデータをリクエスト' })
+  }).catch(() => {});
   const btn = event.target;
   btn.textContent = '✓ リクエスト済み';
   btn.disabled = true;
