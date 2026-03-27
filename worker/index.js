@@ -38,25 +38,11 @@ export default {
       }
     }
 
-    // GET /contacts - 一覧取得（Google認証必須）
+    // GET /contacts - 一覧取得（パスワード認証）
     if (request.method === 'GET' && url.pathname === '/contacts') {
-      const token = request.headers.get('Authorization')?.replace('Bearer ', '');
-      if (!token) {
+      const token = url.searchParams.get('token');
+      if (token !== env.ADMIN_TOKEN) {
         return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-          status: 401, headers: { 'Content-Type': 'application/json', ...corsHeaders }
-        });
-      }
-      // GoogleのIDトークンを検証
-      try {
-        const res = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${token}`);
-        const info = await res.json();
-        if (info.email !== 'hojotown2026@gmail.com' && info.email !== 'taitatu4barisuta@gmail.com') {
-          return new Response(JSON.stringify({ error: 'Forbidden' }), {
-            status: 403, headers: { 'Content-Type': 'application/json', ...corsHeaders }
-          });
-        }
-      } catch {
-        return new Response(JSON.stringify({ error: 'Invalid token' }), {
           status: 401, headers: { 'Content-Type': 'application/json', ...corsHeaders }
         });
       }

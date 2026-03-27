@@ -4,74 +4,86 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 <BaseLayout title="管理ページ">
   <section style="padding: 32px 0; min-height: 80vh;">
     <div class="container" style="max-width: 900px;">
-      <h1 style="font-size: 1.5rem; margin-bottom: 24px;">お問い合わせ・リクエスト一覧</h1>
+      <h1 style="font-size: 1.5rem; margin-bottom: 24px;">管理ページ</h1>
       <div id="auth-area" style="text-align:center;padding:40px;">
-        <div id="g_id_onload"
-          data-client_id="1072944905499-vm2v2i5dvn0a0d2o4ca36i1vge8cvbn0.apps.googleusercontent.com"
-          data-callback="onGoogleLogin"
-          data-auto_prompt="false">
-        </div>
-        <div class="g_id_signin" data-type="standard" data-size="large" data-text="signin_with" data-shape="rectangular"></div>
-        <p style="margin-top:12px;font-size:0.85rem;color:var(--text-soft);">管理者のGoogleアカウントでログインしてください</p>
+        <input type="password" id="admin-pw" placeholder="管理パスワード" style="padding:10px 14px;border:2px solid var(--border);border-radius:6px;font-size:0.9rem;width:250px;">
+        <button id="login-btn" style="padding:10px 20px;background:var(--green-mid);color:white;border:none;border-radius:6px;font-weight:700;cursor:pointer;margin-left:8px;">ログイン</button>
       </div>
       <div id="loading" style="display:none;text-align:center;padding:40px;color:var(--text-mid);">読み込み中...</div>
       <div id="contacts-list"></div>
     </div>
   </section>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </BaseLayout>
 
 <script is:inline>
-function onGoogleLogin(response) {
-  document.getElementById('auth-area').style.display = 'none';
-  document.getElementById('loading').style.display = 'block';
-  loadContacts(response.credential);
-}
+(function() {
+  var saved = localStorage.getItem('hojotown_admin_token');
+  if (saved) {
+    document.getElementById('auth-area').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    loadContacts(saved);
+  }
 
-async function loadContacts(token) {
-  try {
-    var res = await fetch('https://hojotown-api.taitatu4barisuta.workers.dev/contacts', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-    if (res.status === 403) {
+  document.getElementById('login-btn').addEventListener('click', function() {
+    var pw = document.getElementById('admin-pw').value;
+    if (!pw) return;
+    document.getElementById('auth-area').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    loadContacts(pw);
+  });
+
+  document.getElementById('admin-pw').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('login-btn').click();
+  });
+})();
+
+function loadContacts(token) {
+  fetch('https://hojotown-api.taitatu4barisuta.workers.dev/contacts?token=' + encodeURIComponent(token))
+    .then(function(res) {
+      if (res.status === 401) {
+        localStorage.removeItem('hojotown_admin_token');
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('auth-area').style.display = 'block';
+        alert('パスワードが正しくありません');
+        return null;
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      if (!data) return;
+      localStorage.setItem('hojotown_admin_token', token);
+      document.getElementById('loading').style.display = 'none';
+      var list = document.getElementById('contacts-list');
+
+      if (data.length === 0) {
+        list.innerHTML = '<p style="text-align:center;color:var(--text-soft);padding:40px;">まだデータがありません</p>';
+        return;
+      }
+
+      function esc(s) { return String(s).replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+      var html = '<p style="margin-bottom:16px;font-size:0.9rem;color:var(--text-mid);">' + data.length + '件</p>';
+      html += '<div style="display:flex;flex-direction:column;gap:12px;">';
+      for (var i = 0; i < data.length; i++) {
+        var c = data[i];
+        var date = new Date(c.created_at).toLocaleString('ja-JP');
+        var typeLabel = c.type === 'city_request' ? '🏙️ 市リクエスト' : '✉️ お問い合わせ';
+        html += '<div style="background:white;border:1px solid var(--border);border-radius:8px;padding:16px;">';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
+        html += '<span style="font-size:0.8rem;font-weight:600;color:var(--green-deep);">' + typeLabel + '</span>';
+        html += '<span style="font-size:0.75rem;color:var(--text-soft);">' + date + '</span></div>';
+        if (c.name) html += '<div style="font-weight:600;">' + esc(c.name) + '</div>';
+        if (c.email) html += '<div style="font-size:0.85rem;color:var(--text-mid);">' + esc(c.email) + '</div>';
+        if (c.city) html += '<div style="font-size:0.85rem;color:var(--green-deep);font-weight:600;">📍 ' + esc(c.city) + '</div>';
+        if (c.message) html += '<div style="margin-top:8px;font-size:0.9rem;white-space:pre-wrap;">' + esc(c.message) + '</div>';
+        html += '</div>';
+      }
+      html += '</div>';
+      list.innerHTML = html;
+    })
+    .catch(function() {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('auth-area').style.display = 'block';
-      alert('このアカウントには管理権限がありません');
-      return;
-    }
-    if (!res.ok) throw new Error('Unauthorized');
-    var data = await res.json();
-    document.getElementById('loading').style.display = 'none';
-    var list = document.getElementById('contacts-list');
-
-    if (data.length === 0) {
-      list.innerHTML = '<p style="text-align:center;color:var(--text-soft);padding:40px;">まだデータがありません</p>';
-      return;
-    }
-
-    var esc = function(s) { return String(s).replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
-    var html = '<p style="margin-bottom:16px;font-size:0.9rem;color:var(--text-mid);">' + data.length + '件</p>';
-    html += '<div style="display:flex;flex-direction:column;gap:12px;">';
-    for (var i = 0; i < data.length; i++) {
-      var c = data[i];
-      var date = new Date(c.created_at).toLocaleString('ja-JP');
-      var typeLabel = c.type === 'city_request' ? '🏙️ 市リクエスト' : '✉️ お問い合わせ';
-      html += '<div style="background:white;border:1px solid var(--border);border-radius:8px;padding:16px;">';
-      html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
-      html += '<span style="font-size:0.8rem;font-weight:600;color:var(--green-deep);">' + typeLabel + '</span>';
-      html += '<span style="font-size:0.75rem;color:var(--text-soft);">' + date + '</span></div>';
-      if (c.name) html += '<div style="font-weight:600;">' + esc(c.name) + '</div>';
-      if (c.email) html += '<div style="font-size:0.85rem;color:var(--text-mid);">' + esc(c.email) + '</div>';
-      if (c.city) html += '<div style="font-size:0.85rem;color:var(--green-deep);font-weight:600;">📍 ' + esc(c.city) + '</div>';
-      if (c.message) html += '<div style="margin-top:8px;font-size:0.9rem;white-space:pre-wrap;">' + esc(c.message) + '</div>';
-      html += '</div>';
-    }
-    html += '</div>';
-    list.innerHTML = html;
-  } catch (e) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('auth-area').style.display = 'block';
-    alert('認証に失敗しました');
-  }
+      alert('読み込みに失敗しました');
+    });
 }
 </script>
