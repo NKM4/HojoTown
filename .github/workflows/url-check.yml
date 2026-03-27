@@ -1,0 +1,50 @@
+name: Weekly URL Check
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # 毎週月曜 18:00 JST
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  check-urls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check all officialUrls
+        id: check
+        run: |
+          node scripts/check-urls.js > url-report.txt 2>&1
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          cat url-report.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create issue if broken URLs found
+        if: contains(steps.check.outputs.report, 'BROKEN')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const report = `${{ steps.check.outputs.report }}`;
+            const brokenLines = report.split('\n').filter(l => l.includes('BROKEN'));
+            if (brokenLines.length === 0) return;
+
+            const body = `## URL整合性チェック結果\n\n` +
+              `**${brokenLines.length}件のリンク切れを検出**\n\n` +
+              `| 市 | URL | ステータス |\n|---|---|---|\n` +
+              brokenLines.map(l => {
+                const [status, city, url] = l.split(' | ');
+                return `| ${city} | ${url} | ${status} |`;
+              }).join('\n') +
+              `\n\n自動検出 by GitHub Actions`;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[自動] ${brokenLines.length}件のofficialUrlリンク切れ検出`,
+              body: body,
+              labels: ['bug', 'automated']
+            });

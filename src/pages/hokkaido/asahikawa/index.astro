@@ -29,7 +29,8 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
       <a href="/hokkaido/">{prefecture}</a> &gt;
       <span>{cityName}</span>
     </nav>
-  </div>
+  <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
 
   <!-- ヘッダー -->
   <section class="hero" style="padding: 32px 0;">
@@ -37,7 +38,8 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
       <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 4px;">{prefecture}</p>
       <h1 style="font-size: 1.8rem;">{cityName}の補助金・助成金一覧</h1>
       <p style="margin-bottom: 0;">個人が使える制度を <strong>{totalCount}件</strong> 掲載</p>
-    </div>
+    <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
   </section>
 
   <!-- カテゴリナビ -->
@@ -48,7 +50,8 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
           {CATEGORY_LABELS[cat]}（{byCategory[cat].length}）
         </a>
       ))}
-    </div>
+    <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
   </section>
 
   <!-- 補助金一覧 -->
@@ -66,27 +69,36 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
                   <div>
                     <span class="category-tag">{CATEGORY_LABELS[s.category as Category]}</span>
                     <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 6px;">{s.name}</h3>
-                  </div>
-                  <div class="amount">{s.amount}</div>
-                </div>
+                  <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
+                  <div class="amount">{s.amount}<br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
+                <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
                 <p style="margin-top: 8px; font-size: 0.9rem; color: var(--text-mid);">{s.summary}</p>
                 <div style="margin-top: 10px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.85rem;">
                   <span style="color: var(--text-soft);">対象: {s.target}</span>
                   <span class="deadline">期限: {s.deadline}</span>
-                </div>
+                <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
                 <a href={s.officialUrl} target="_blank" rel="noopener noreferrer" class="official-link">
                   公式サイトで詳細を確認 →
                 </a>
-              </div>
+              <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
             ))}
-          </div>
-        </div>
+          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
+        <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
       ))}
 
       <!-- 免責 -->
       <div class="disclaimer">
         掲載情報は{cityName}の公式サイトを参考に作成しています（最終更新: 2026年3月27日）。最新の情報は必ず<a href="https://www.city.asahikawa.hokkaido.jp/" target="_blank" rel="noopener noreferrer">{cityName}公式ホームページ</a>をご確認ください。
+      <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
       </div>
-    </div>
+    <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
   </section>
 </BaseLayout>
