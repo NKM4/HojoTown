@@ -22,3 +22,13 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# temp screenshots/files
+*.png
+!public/*.png
+*.bak
+captcha-page.png
+gmail-cookies.json
+factcheck_result.md
+all_cities_top5.json
+nagoya_subsidies.json
