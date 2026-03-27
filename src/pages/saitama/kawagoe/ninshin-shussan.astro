@@ -2,70 +2,265 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="川越市で妊娠・出産したらもらえるお金一覧 最大10万円の支援給付" description="川越市の妊娠・出産に関する支援制度を解説。妊婦のための支援給付(妊娠届出時5万円+出生届出後5万円)、出産育児一時金、不妊検査費助成の金額と申請方法。">
-  <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <nav style="font-size: 0.8rem; color: var(--text-soft); margin-bottom: 16px;">
+  <!-- ヒーロー -->
+  <section class="article-hero">
+    <div class="container" style="max-width:760px;">
+      <nav class="article-breadcrumb">
         <a href="/">ホジョタウン</a> &gt; <a href="/saitama/kawagoe/">川越市</a> &gt; <span>妊娠・出産の支援</span>
       </nav>
-      <article>
-        <h1 style="font-size: 1.6rem; margin-bottom: 8px;">川越市で妊娠・出産したらもらえるお金一覧 最大10万円の支援給付</h1>
-        <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 24px;">最終更新: 2026年3月26日</p>
+      <span class="article-category">妊娠・出産</span>
+      <h1 class="article-title">川越市で妊娠・出産したらもらえるお金一覧<br><span class="article-title-sub">最大10万円の支援給付</span></h1>
+      <p class="article-meta">最終更新: 2026年3月26日</p>
+    </div>
+  </section>
 
-        <p>妊娠・出産には何かとお金がかかります。川越市では、国の制度に加えて妊娠届出時と出生届出後にそれぞれ給付金を受け取れる仕組みがあります。この記事では、川越市で妊娠・出産した際に利用できる主な経済的支援をまとめました。</p>
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <article class="article-body">
+        <!-- 目次 -->
+        <div class="article-toc">
+          <p class="article-toc-title">この記事の内容</p>
+          <ol>
+            <li><a href="#ninshin">妊婦のための支援給付 ― 妊娠届出で5万円</a></li>
+            <li><a href="#kosodate">子育てのための支援給付 ― 出生届出後に5万円</a></li>
+            <li><a href="#ichijikin">出産育児一時金 ― 1児につき50万円</a></li>
+            <li><a href="#funin">不妊検査費助成</a></li>
+            <li><a href="#kensin">妊婦健康診査の公費負担</a></li>
+            <li><a href="#matome">まとめ</a></li>
+          </ol>
+        </div>
 
-        <h2>妊婦のための支援給付(出産応援給付金) ― 妊娠届出で5万円</h2>
+        <p class="article-lead">妊娠・出産には何かとお金がかかります。川越市では、国の制度に加えて妊娠届出時と出生届出後にそれぞれ給付金を受け取れる仕組みがあります。この記事では、川越市で妊娠・出産した際に利用できる主な経済的支援をまとめました。</p>
+
+        <!-- 1. 妊婦のための支援給付 -->
+        <h2 id="ninshin">妊婦のための支援給付(出産応援給付金) ― 妊娠届出で5万円</h2>
         <p>妊娠届出書を提出して母子健康手帳の交付を受ける際に、妊婦1人あたり5万円の給付金を受け取れます。2023年から始まった国の「出産・子育て応援交付金」事業を川越市が実施しているものです。</p>
-        <h3>受給の流れ</h3>
-        <ol>
-          <li>妊娠届出書を市役所(または保健センター)に提出</li>
-          <li>保健師等による面談を受ける(妊娠届出時の面談)</li>
-          <li>申請書を記入・提出</li>
-          <li>後日、指定口座に5万円が振り込まれる</li>
-        </ol>
-        <p>面談は母子健康手帳の交付と同時に行われるのが一般的です。面談を受けることが給付の条件となっているため、代理での届出のみでは給付を受けられない場合があります。</p>
 
-        <h2>子育てのための支援給付(子育て応援給付金) ― 出生届出後に5万円</h2>
+        <div class="article-amount-card">
+          <p class="article-amount-label">受給の流れ</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">STEP 1</span>
+              <span class="article-amount-value">妊娠届出</span>
+              <span class="article-amount-note">市役所または保健センター</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">STEP 2</span>
+              <span class="article-amount-value">面談</span>
+              <span class="article-amount-note">保健師等による面談</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">STEP 3</span>
+              <span class="article-amount-value">5万円</span>
+              <span class="article-amount-note">指定口座に振込</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-note">
+          <p><strong>注意：</strong>面談を受けることが給付の条件となっているため、代理での届出のみでは給付を受けられない場合があります。</p>
+        </div>
+
+        <!-- 2. 子育てのための支援給付 -->
+        <h2 id="kosodate">子育てのための支援給付(子育て応援給付金) ― 出生届出後に5万円</h2>
         <p>出産後、赤ちゃん1人につき5万円の給付金が支給されます。双子の場合は10万円です。</p>
-        <h3>受給の流れ</h3>
-        <ol>
-          <li>出生届を提出</li>
-          <li>赤ちゃん訪問(こんにちは赤ちゃん事業)等で保健師・助産師の面談を受ける</li>
-          <li>申請書を記入・提出</li>
-          <li>後日、指定口座に5万円(胎児1人につき)が振り込まれる</li>
-        </ol>
-        <p>こちらも面談が給付条件です。赤ちゃん訪問は生後4か月頃までに実施されるのが一般的で、この訪問時に申請書を受け取ることが多いです。</p>
 
-        <h3>合計で最大10万円</h3>
-        <p>妊娠届出時の5万円と出生届出後の5万円を合わせると、1人の出産につき合計10万円の支援給付を受けられます。所得制限はなく、すべての妊産婦が対象です。</p>
+        <div class="article-amount-card">
+          <p class="article-amount-label">受給の流れ</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">STEP 1</span>
+              <span class="article-amount-value">出生届</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">STEP 2</span>
+              <span class="article-amount-value">赤ちゃん訪問</span>
+              <span class="article-amount-note">保健師・助産師の面談</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">STEP 3</span>
+              <span class="article-amount-value">5万円</span>
+              <span class="article-amount-note">胎児1人につき</span>
+            </div>
+          </div>
+        </div>
 
-        <h2>出産育児一時金 ― 1児につき50万円</h2>
+        <div class="article-tip">
+          <strong>合計で最大10万円</strong>
+          <p>妊娠届出時の5万円と出生届出後の5万円を合わせると、1人の出産につき合計10万円の支援給付を受けられます。所得制限はなく、すべての妊産婦が対象です。</p>
+        </div>
+
+        <!-- 3. 出産育児一時金 -->
+        <h2 id="ichijikin">出産育児一時金 ― 1児につき50万円</h2>
         <p>健康保険から支給される出産育児一時金は、2023年4月以降、1児につき50万円に引き上げられました。これは川越市の制度ではなく健康保険の制度ですが、非常に重要な支援です。</p>
-        <h3>直接支払制度</h3>
-        <p>ほとんどの医療機関では「直接支払制度」を利用でき、出産費用から一時金の50万円を差し引いた金額のみを窓口で支払います。出産費用が50万円未満だった場合は、差額を健康保険に請求できます。</p>
-        <h3>国民健康保険の場合</h3>
+
+        <div class="article-amount-card">
+          <p class="article-amount-label">出産育児一時金</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">支給額</span>
+              <span class="article-amount-value">50万円</span>
+              <span class="article-amount-note">1児につき</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-tip">
+          <strong>直接支払制度</strong>
+          <p>ほとんどの医療機関では「直接支払制度」を利用でき、出産費用から一時金の50万円を差し引いた金額のみを窓口で支払います。出産費用が50万円未満だった場合は、差額を健康保険に請求できます。</p>
+        </div>
+
         <p>川越市の国民健康保険に加入している方は、市役所の国民健康保険課が窓口です。直接支払制度を利用しない場合は、出産後に申請して一時金を受け取ります。</p>
 
-        <h2>不妊検査費助成</h2>
+        <!-- 4. 不妊検査費助成 -->
+        <h2 id="funin">不妊検査費助成</h2>
         <p>川越市では、不妊検査にかかる費用の一部を助成する制度を設けています。</p>
-        <h3>助成内容</h3>
-        <ul>
-          <li><strong>対象:</strong> 夫婦(事実婚含む)で不妊検査を受けた方</li>
-          <li><strong>助成額:</strong> 検査費用の自己負担分(上限2万円)</li>
-          <li><strong>回数:</strong> 夫婦1組につき1回</li>
-          <li><strong>条件:</strong> 検査開始日に妻の年齢が43歳未満であること</li>
-        </ul>
+
+        <div class="article-amount-card">
+          <p class="article-amount-label">助成内容</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">助成額</span>
+              <span class="article-amount-value">上限2万円</span>
+              <span class="article-amount-note">検査費用の自己負担分</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">回数</span>
+              <span class="article-amount-value">1回限り</span>
+              <span class="article-amount-note">夫婦1組につき</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">年齢条件</span>
+              <span class="article-amount-value">妻43歳未満</span>
+              <span class="article-amount-note">検査開始日時点</span>
+            </div>
+          </div>
+        </div>
+
         <p>なお、特定不妊治療(体外受精・顕微授精)については、2022年4月から保険適用となったため、以前あった自治体の助成制度は多くが終了しています。保険適用の治療で3割負担となりますが、高額療養費制度も利用可能です。</p>
 
-        <h2>妊婦健康診査の公費負担</h2>
+        <!-- 5. 妊婦健康診査 -->
+        <h2 id="kensin">妊婦健康診査の公費負担</h2>
         <p>母子健康手帳と一緒に交付される「妊婦健康診査助成券」を使うことで、妊婦健診の費用が公費で助成されます。川越市では14回分の助成券が交付され、県内の医療機関で利用できます。助成上限額を超えた分は自己負担となりますが、一般的な健診であればほぼカバーされます。</p>
 
-        <h2>まとめ:面談を忘れずに受けることが大切</h2>
+        <!-- まとめ -->
+        <h2 id="matome">まとめ：面談を忘れずに受けることが大切</h2>
         <p>川越市では妊娠届出時と出産後に合計10万円の支援給付を受けられます。どちらも保健師等の面談が給付条件になっているため、面談の案内が届いたら早めに対応しましょう。出産育児一時金(50万円)は直接支払制度を使えば手出しが少なく済みます。不妊検査の助成も1回限りですが用意されています。</p>
 
-        <div class="disclaimer" style="margin-top: 32px;">
+        <!-- CTA -->
+        <div class="article-cta">
+          <p class="article-cta-title">あなたに合った補助金を診断</p>
+          <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
+          <div class="article-cta-buttons">
+            <a href="/shindan/" class="btn btn-primary">診断してみる</a>
+            <a href="/saitama/kawagoe/" class="article-cta-link">川越市の全補助金を見る →</a>
+          </div>
+        </div>
+
+        <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.city.kawagoe.saitama.jp/kosodate/ninshinshussan/index.html" target="_blank" rel="noopener noreferrer">川越市公式サイト(妊娠・出産)</a>でご確認ください。
+          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
         </div>
       </article>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .article-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 32px 0 40px;
+  }
+  .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 16px; }
+  .article-breadcrumb a { color: white; }
+  .article-category {
+    display: inline-block;
+    background: rgba(200,168,75,0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .article-title { font-size: 1.6rem; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .article-title-sub { font-size: 1.1rem; font-weight: 400; opacity: 0.85; }
+  .article-meta { font-size: 0.8rem; opacity: 0.6; }
+
+  .article-body { line-height: 1.9; color: var(--text-dark); }
+  .article-body h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+    color: var(--green-deep);
+  }
+  .article-body p { margin-bottom: 16px; }
+  .article-lead { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 24px; }
+
+  .article-toc {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .article-toc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--green-deep); }
+  .article-toc ol { margin: 0; padding-left: 20px; }
+  .article-toc li { margin-bottom: 4px; font-size: 0.9rem; }
+  .article-toc a { color: var(--green-deep); text-decoration: none; }
+  .article-toc a:hover { text-decoration: underline; }
+
+  .article-amount-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .article-amount-label { font-weight: 700; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 12px; }
+  .article-amount-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .article-amount-item {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .article-amount-age { display: block; font-size: 0.75rem; color: var(--text-mid); margin-bottom: 4px; }
+  .article-amount-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--green-deep); }
+  .article-amount-note { display: block; font-size: 0.7rem; color: var(--text-soft); margin-top: 2px; }
+
+  .article-tip {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .article-tip strong { display: block; font-size: 0.85rem; color: var(--green-deep); margin-bottom: 4px; }
+  .article-tip p { margin: 0; font-size: 0.9rem; }
+
+  .article-note {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .article-note p { margin: 0; }
+
+  .article-cta {
+    text-align: center;
+    background: var(--green-pale);
+    padding: 32px;
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .article-cta-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .article-cta-body { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 16px; }
+  .article-cta-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .article-cta-link { font-size: 0.9rem; color: var(--green-deep); font-weight: 600; }
+</style>

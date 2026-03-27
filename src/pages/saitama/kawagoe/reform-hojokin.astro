@@ -2,85 +2,261 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="川越市の住宅リフォーム補助金 申請方法から注意点まで完全ガイド" description="川越市の住宅改修補助金制度(工事費の5%・上限5万円)と耐震改修補助制度を詳しく解説。申請時期、抽選の仕組み、対象工事、市内施工業者限定の注意点まで網羅。">
-  <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <nav style="font-size: 0.8rem; color: var(--text-soft); margin-bottom: 16px;">
+  <!-- ヒーロー -->
+  <section class="article-hero">
+    <div class="container" style="max-width:760px;">
+      <nav class="article-breadcrumb">
         <a href="/">ホジョタウン</a> &gt; <a href="/saitama/kawagoe/">川越市</a> &gt; <span>住宅リフォーム補助金</span>
       </nav>
-      <article>
-        <h1 style="font-size: 1.6rem; margin-bottom: 8px;">川越市の住宅リフォーム補助金 申請方法から注意点まで完全ガイド</h1>
-        <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 24px;">最終更新: 2026年3月26日</p>
+      <span class="article-category">住宅</span>
+      <h1 class="article-title">川越市の住宅リフォーム補助金<br><span class="article-title-sub">申請方法から注意点まで完全ガイド</span></h1>
+      <p class="article-meta">最終更新: 2026年3月26日</p>
+    </div>
+  </section>
 
-        <p>自宅のリフォームを考えている川越市民の方へ。川越市には住宅改修工事の費用を一部補助する制度があります。上限額は大きくありませんが、条件を満たせば確実にお得です。この記事では、住宅改修補助金と耐震改修補助の2つの制度について、申請の流れや注意点を詳しくまとめました。</p>
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <article class="article-body">
+        <!-- 目次 -->
+        <div class="article-toc">
+          <p class="article-toc-title">この記事の内容</p>
+          <ol>
+            <li><a href="#gaiyo">住宅改修補助金制度の概要</a></li>
+            <li><a href="#jiki">申請時期と抽選の仕組み</a></li>
+            <li><a href="#gyosha">最も重要な注意点：市内施工業者限定</a></li>
+            <li><a href="#taishin">耐震改修補助制度</a></li>
+            <li><a href="#matome">まとめ</a></li>
+          </ol>
+        </div>
 
-        <h2>住宅改修補助金制度の概要</h2>
+        <p class="article-lead">自宅のリフォームを考えている川越市民の方へ。川越市には住宅改修工事の費用を一部補助する制度があります。上限額は大きくありませんが、条件を満たせば確実にお得です。この記事では、住宅改修補助金と耐震改修補助の2つの制度について、申請の流れや注意点を詳しくまとめました。</p>
+
+        <!-- 1. 概要 -->
+        <h2 id="gaiyo">住宅改修補助金制度の概要</h2>
         <p>川越市が実施している住宅改修補助金は、市民が自ら居住する住宅の改修工事に対して補助金を交付する制度です。</p>
-        <h3>補助金額</h3>
-        <ul>
-          <li><strong>補助率:</strong> 対象工事費の5%</li>
-          <li><strong>上限:</strong> 50,000円</li>
-          <li><strong>対象工事費:</strong> 20万円以上(税抜)の工事が対象</li>
-        </ul>
-        <h3>対象となる方</h3>
-        <ul>
-          <li>川越市内に住所があり、自ら居住する住宅の改修工事であること</li>
-          <li>市税を滞納していないこと</li>
-          <li>過去にこの補助金を受けていないこと(1回限り)</li>
-        </ul>
-        <h3>対象となる工事の例</h3>
-        <ul>
-          <li>屋根・外壁の塗装や修繕</li>
-          <li>キッチン・浴室・トイレの改修</li>
-          <li>床・壁・天井の張替え</li>
-          <li>バリアフリー改修(手すり設置、段差解消など)</li>
-          <li>窓の断熱改修(内窓設置など)</li>
-        </ul>
-        <p><strong>対象外:</strong> 新築、増築、外構工事、家電設置のみの工事、店舗部分の工事などは対象外です。</p>
 
-        <h2>申請時期と抽選の仕組み</h2>
+        <div class="article-amount-card">
+          <p class="article-amount-label">補助金額</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">補助率</span>
+              <span class="article-amount-value">工事費の5%</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">上限</span>
+              <span class="article-amount-value">50,000円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">対象工事費</span>
+              <span class="article-amount-value">20万円以上</span>
+              <span class="article-amount-note">税抜</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-tip">
+          <strong>対象となる方</strong>
+          <p>川越市内に住所があり、自ら居住する住宅の改修工事であること。市税を滞納していないこと。過去にこの補助金を受けていないこと(1回限り)。</p>
+        </div>
+
+        <div class="article-tip">
+          <strong>対象となる工事の例</strong>
+          <p>屋根・外壁の塗装や修繕、キッチン・浴室・トイレの改修、床・壁・天井の張替え、バリアフリー改修(手すり設置、段差解消など)、窓の断熱改修(内窓設置など)。</p>
+        </div>
+
+        <div class="article-note">
+          <p><strong>対象外：</strong>新築、増築、外構工事、家電設置のみの工事、店舗部分の工事などは対象外です。</p>
+        </div>
+
+        <!-- 2. 申請時期と抽選 -->
+        <h2 id="jiki">申請時期と抽選の仕組み</h2>
         <p>この補助金は年3回の受付期間が設けられており、応募多数の場合は<strong>抽選</strong>になります。先着順ではありません。</p>
-        <h3>受付期間(例年の目安)</h3>
-        <ul>
-          <li><strong>前期:</strong> 4月中旬〜下旬(約2週間)</li>
-          <li><strong>中期:</strong> 7月上旬〜中旬(約2週間)</li>
-          <li><strong>後期:</strong> 11月上旬〜中旬(約2週間)</li>
-        </ul>
+
+        <div class="article-amount-card">
+          <p class="article-amount-label">受付期間（例年の目安）</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">前期</span>
+              <span class="article-amount-value">4月</span>
+              <span class="article-amount-note">中旬〜下旬（約2週間）</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">中期</span>
+              <span class="article-amount-value">7月</span>
+              <span class="article-amount-note">上旬〜中旬（約2週間）</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">後期</span>
+              <span class="article-amount-value">11月</span>
+              <span class="article-amount-note">上旬〜中旬（約2週間）</span>
+            </div>
+          </div>
+        </div>
+
         <p>各期の正確な日程は年度初めに市の広報・ホームページで公表されます。受付期間外の申請は一切受け付けられないため、スケジュールの確認が必須です。</p>
 
-        <h3>申請から交付までの流れ</h3>
-        <ol>
-          <li>受付期間中に申請書類を提出(市役所窓口または郵送)</li>
-          <li>応募多数の場合は抽選(結果は郵送で通知)</li>
-          <li>交付決定通知を受けてから工事に着手</li>
-          <li>工事完了後、実績報告書と領収書を提出</li>
-          <li>審査後、補助金が振り込まれる</li>
-        </ol>
+        <div class="article-tip">
+          <strong>申請から交付までの流れ</strong>
+          <p>1. 受付期間中に申請書類を提出（市役所窓口または郵送）<br>
+          2. 応募多数の場合は抽選（結果は郵送で通知）<br>
+          3. 交付決定通知を受けてから工事に着手<br>
+          4. 工事完了後、実績報告書と領収書を提出<br>
+          5. 審査後、補助金が振り込まれる</p>
+        </div>
 
-        <h2>最も重要な注意点:市内施工業者限定</h2>
-        <p>この補助金を利用するには、<strong>川越市内に事業所を有する施工業者</strong>に工事を依頼する必要があります。市外の業者に依頼した工事は補助対象になりません。見積もりを取る段階で、業者の事業所所在地を確認しておきましょう。</p>
-        <p>また、<strong>交付決定前に着手した工事は対象外</strong>です。先に工事を始めてしまうと補助金がもらえなくなるため、必ず交付決定通知を受け取ってから工事契約・着手してください。</p>
+        <!-- 3. 市内業者限定 -->
+        <h2 id="gyosha">最も重要な注意点：市内施工業者限定</h2>
+        <div class="article-note">
+          <p><strong>重要：</strong>この補助金を利用するには、<strong>川越市内に事業所を有する施工業者</strong>に工事を依頼する必要があります。市外の業者に依頼した工事は補助対象になりません。見積もりを取る段階で、業者の事業所所在地を確認しておきましょう。</p>
+        </div>
 
-        <h2>耐震改修補助制度</h2>
+        <div class="article-note">
+          <p><strong>重要：</strong><strong>交付決定前に着手した工事は対象外</strong>です。先に工事を始めてしまうと補助金がもらえなくなるため、必ず交付決定通知を受け取ってから工事契約・着手してください。</p>
+        </div>
+
+        <!-- 4. 耐震改修補助 -->
+        <h2 id="taishin">耐震改修補助制度</h2>
         <p>リフォームとは別に、川越市では昭和56年5月31日以前に着工された木造住宅(旧耐震基準)の耐震診断・耐震改修に対する補助制度もあります。</p>
-        <h3>耐震診断</h3>
-        <ul>
-          <li>無料の簡易耐震診断を市が実施(木造住宅対象)</li>
-          <li>精密診断の費用補助もあり</li>
-        </ul>
-        <h3>耐震改修工事</h3>
-        <ul>
-          <li><strong>補助額:</strong> 耐震改修工事費の23%(上限30万円)</li>
-          <li>耐震診断の結果、耐震性が不足していると判定された住宅が対象</li>
-        </ul>
-        <p>旧耐震基準の住宅にお住まいの方は、リフォームのタイミングで耐震改修も合わせて検討すると効率的です。</p>
 
-        <h2>まとめ:リフォーム前に必ず確認を</h2>
+        <div class="article-amount-card">
+          <p class="article-amount-label">耐震関連の補助</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">耐震診断</span>
+              <span class="article-amount-value">無料</span>
+              <span class="article-amount-note">簡易耐震診断を市が実施</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">耐震改修工事</span>
+              <span class="article-amount-value">上限30万円</span>
+              <span class="article-amount-note">工事費の23%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-tip">
+          <strong>ポイント</strong>
+          <p>旧耐震基準の住宅にお住まいの方は、リフォームのタイミングで耐震改修も合わせて検討すると効率的です。</p>
+        </div>
+
+        <!-- まとめ -->
+        <h2 id="matome">まとめ：リフォーム前に必ず確認を</h2>
         <p>川越市の住宅改修補助金は上限5万円と少額ですが、申請の手間もそこまで大きくありません。ただし、受付期間が年3回と限られていること、市内業者限定であること、交付決定前の着工はNGであることの3点は必ず押さえておきましょう。リフォームの計画段階で市のホームページを確認し、受付時期に合わせてスケジュールを組むのがおすすめです。</p>
 
-        <div class="disclaimer" style="margin-top: 32px;">
+        <!-- CTA -->
+        <div class="article-cta">
+          <p class="article-cta-title">あなたに合った補助金を診断</p>
+          <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
+          <div class="article-cta-buttons">
+            <a href="/shindan/" class="btn btn-primary">診断してみる</a>
+            <a href="/saitama/kawagoe/" class="article-cta-link">川越市の全補助金を見る →</a>
+          </div>
+        </div>
+
+        <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.city.kawagoe.saitama.jp/kurashi/sumai/jutakukaishu/index.html" target="_blank" rel="noopener noreferrer">川越市公式サイト(住宅改修)</a>でご確認ください。
+          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
         </div>
       </article>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .article-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 32px 0 40px;
+  }
+  .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 16px; }
+  .article-breadcrumb a { color: white; }
+  .article-category {
+    display: inline-block;
+    background: rgba(200,168,75,0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .article-title { font-size: 1.6rem; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .article-title-sub { font-size: 1.1rem; font-weight: 400; opacity: 0.85; }
+  .article-meta { font-size: 0.8rem; opacity: 0.6; }
+
+  .article-body { line-height: 1.9; color: var(--text-dark); }
+  .article-body h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+    color: var(--green-deep);
+  }
+  .article-body p { margin-bottom: 16px; }
+  .article-lead { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 24px; }
+
+  .article-toc {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .article-toc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--green-deep); }
+  .article-toc ol { margin: 0; padding-left: 20px; }
+  .article-toc li { margin-bottom: 4px; font-size: 0.9rem; }
+  .article-toc a { color: var(--green-deep); text-decoration: none; }
+  .article-toc a:hover { text-decoration: underline; }
+
+  .article-amount-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .article-amount-label { font-weight: 700; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 12px; }
+  .article-amount-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .article-amount-item {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .article-amount-age { display: block; font-size: 0.75rem; color: var(--text-mid); margin-bottom: 4px; }
+  .article-amount-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--green-deep); }
+  .article-amount-note { display: block; font-size: 0.7rem; color: var(--text-soft); margin-top: 2px; }
+
+  .article-tip {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .article-tip strong { display: block; font-size: 0.85rem; color: var(--green-deep); margin-bottom: 4px; }
+  .article-tip p { margin: 0; font-size: 0.9rem; }
+
+  .article-note {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .article-note p { margin: 0; }
+
+  .article-cta {
+    text-align: center;
+    background: var(--green-pale);
+    padding: 32px;
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .article-cta-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .article-cta-body { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 16px; }
+  .article-cta-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .article-cta-link { font-size: 0.9rem; color: var(--green-deep); font-weight: 600; }
+</style>

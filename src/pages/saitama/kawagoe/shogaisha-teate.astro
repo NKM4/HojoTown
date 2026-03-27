@@ -2,106 +2,240 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="川越市の障害者手当・医療費助成 市独自制度の金額と対象者" description="川越市の在宅心身障害者手当(月3,000〜9,500円)と重度心身障害者医療費支給制度を詳しく解説。障害等級ごとの金額表、所得制限、申請方法をまとめました。">
-  <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <nav style="font-size: 0.8rem; color: var(--text-soft); margin-bottom: 16px;">
+  <!-- ヒーロー -->
+  <section class="article-hero">
+    <div class="container" style="max-width:760px;">
+      <nav class="article-breadcrumb">
         <a href="/">ホジョタウン</a> &gt; <a href="/saitama/kawagoe/">川越市</a> &gt; <span>障害者手当・医療費助成</span>
       </nav>
-      <article>
-        <h1 style="font-size: 1.6rem; margin-bottom: 8px;">川越市の障害者手当・医療費助成 市独自制度の金額と対象者</h1>
-        <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 24px;">最終更新: 2026年3月26日</p>
+      <span class="article-category">障害者支援</span>
+      <h1 class="article-title">川越市の障害者手当・医療費助成<br><span class="article-title-sub">市独自制度の金額と対象者</span></h1>
+      <p class="article-meta">最終更新: 2026年3月26日</p>
+    </div>
+  </section>
 
-        <p>障害のある方やそのご家族が利用できる経済的支援は、国・県・市のそれぞれのレベルで用意されています。この記事では、川越市が独自に実施している在宅心身障害者手当と、埼玉県の制度として川越市が窓口になっている重度心身障害者医療費支給制度について解説します。</p>
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <article class="article-body">
+        <!-- 目次 -->
+        <div class="article-toc">
+          <p class="article-toc-title">この記事の内容</p>
+          <ol>
+            <li><a href="#zaitaku">在宅心身障害者手当（川越市独自）</a></li>
+            <li><a href="#judo">重度心身障害者医療費支給制度</a></li>
+            <li><a href="#heiyo">国・県の制度との併用</a></li>
+            <li><a href="#matome">まとめ</a></li>
+          </ol>
+        </div>
 
-        <h2>在宅心身障害者手当(川越市独自制度)</h2>
+        <p class="article-lead">障害のある方やそのご家族が利用できる経済的支援は、国・県・市のそれぞれのレベルで用意されています。この記事では、川越市が独自に実施している在宅心身障害者手当と、埼玉県の制度として川越市が窓口になっている重度心身障害者医療費支給制度について解説します。</p>
+
+        <!-- 1. 在宅心身障害者手当 -->
+        <h2 id="zaitaku">在宅心身障害者手当（川越市独自制度）</h2>
         <p>川越市では、在宅で生活している心身障害者の方に対して、月額3,000円〜9,500円の手当を支給しています。国の特別障害者手当や県の在宅重度心身障害者手当とは別の、市独自の制度です。</p>
 
-        <h3>障害等級ごとの支給額(月額)</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
-          <thead>
-            <tr style="background: var(--bg-soft, #f5f5f5);">
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">障害の区分</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">月額</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">身体障害者手帳1級・2級</td>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">9,500円</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">身体障害者手帳3級</td>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">6,000円</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">身体障害者手帳4級〜6級</td>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">3,000円</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">療育手帳 マルA・A</td>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">9,500円</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">療育手帳 B・C</td>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">6,000円</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">精神障害者保健福祉手帳1級</td>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">6,000円</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #ddd; padding: 8px;">精神障害者保健福祉手帳2級・3級</td>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">3,000円</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="article-amount-card">
+          <p class="article-amount-label">障害等級ごとの支給額（月額）</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">身体1級・2級</span>
+              <span class="article-amount-value">9,500円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">身体3級</span>
+              <span class="article-amount-value">6,000円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">身体4級〜6級</span>
+              <span class="article-amount-value">3,000円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">療育 マルA・A</span>
+              <span class="article-amount-value">9,500円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">療育 B・C</span>
+              <span class="article-amount-value">6,000円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">精神1級</span>
+              <span class="article-amount-value">6,000円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">精神2級・3級</span>
+              <span class="article-amount-value">3,000円</span>
+            </div>
+          </div>
+        </div>
 
-        <h3>対象者の条件</h3>
-        <ul>
-          <li>川越市内に住所があること</li>
-          <li>在宅で生活していること(施設に入所している方は対象外)</li>
-          <li><strong>本人の市民税が非課税であること</strong></li>
-          <li>対象となる障害者手帳を所持していること</li>
-        </ul>
-        <p>特に注意が必要なのは<strong>市民税非課税条件</strong>です。障害年金は非課税所得ですが、給与収入や事業収入がある場合は市民税が課税され、手当の対象外となることがあります。前年の所得状況によって受給資格が変わるため、毎年の確認が必要です。</p>
+        <div class="article-tip">
+          <strong>対象者の条件</strong>
+          <p>川越市内に住所があること。在宅で生活していること（施設に入所している方は対象外）。<strong>本人の市民税が非課税であること。</strong>対象となる障害者手帳を所持していること。</p>
+        </div>
 
-        <h3>申請方法</h3>
-        <p>障害者福祉課(市役所本庁舎)の窓口で申請します。必要書類は以下の通りです。</p>
-        <ul>
-          <li>申請書(窓口で入手)</li>
-          <li>障害者手帳</li>
-          <li>振込先の口座情報</li>
-          <li>マイナンバーが確認できる書類</li>
-        </ul>
-        <p>支給は年3回(4月・8月・12月)で、各4か月分がまとめて振り込まれます。</p>
+        <div class="article-note">
+          <p><strong>注意：</strong>特に注意が必要なのは<strong>市民税非課税条件</strong>です。障害年金は非課税所得ですが、給与収入や事業収入がある場合は市民税が課税され、手当の対象外となることがあります。前年の所得状況によって受給資格が変わるため、毎年の確認が必要です。</p>
+        </div>
 
-        <h2>重度心身障害者医療費支給制度</h2>
+        <div class="article-tip">
+          <strong>申請方法</strong>
+          <p>障害者福祉課（市役所本庁舎）の窓口で申請します。必要書類は申請書（窓口で入手）、障害者手帳、振込先の口座情報、マイナンバーが確認できる書類です。支給は年3回（4月・8月・12月）で、各4か月分がまとめて振り込まれます。</p>
+        </div>
+
+        <!-- 2. 重度心身障害者医療費 -->
+        <h2 id="judo">重度心身障害者医療費支給制度</h2>
         <p>重度の障害がある方の医療費自己負担分を助成する制度です。埼玉県と川越市が共同で実施しており、申請窓口は市役所です。</p>
 
-        <h3>対象者</h3>
-        <ul>
-          <li>身体障害者手帳1級〜3級の方</li>
-          <li>療育手帳 マルA・Aの方</li>
-          <li>精神障害者保健福祉手帳1級の方(通院のみ対象)</li>
-          <li>後期高齢者医療の障害認定を受けている方</li>
-        </ul>
+        <div class="article-amount-card">
+          <p class="article-amount-label">対象者</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">身体障害者手帳</span>
+              <span class="article-amount-value">1級〜3級</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">療育手帳</span>
+              <span class="article-amount-value">マルA・A</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">精神障害者手帳</span>
+              <span class="article-amount-value">1級</span>
+              <span class="article-amount-note">通院のみ対象</span>
+            </div>
+          </div>
+        </div>
 
-        <h3>所得制限</h3>
-        <p>本人の所得が一定額を超える場合は対象外となります。扶養親族の人数によって限度額が異なりますが、目安として扶養親族なしの場合は所得360万4千円が上限です。</p>
+        <div class="article-note">
+          <p><strong>所得制限：</strong>本人の所得が一定額を超える場合は対象外となります。扶養親族の人数によって限度額が異なりますが、目安として扶養親族なしの場合は所得360万4千円が上限です。</p>
+        </div>
 
-        <h3>助成の仕組み</h3>
-        <p>県内の医療機関では、受給資格証と保険証を窓口で提示することで自己負担なしで受診できます(現物給付)。県外の医療機関を受診した場合は、後日申請して払い戻しを受けます。入院時の食事代や保険適用外の費用は対象外です。</p>
+        <div class="article-tip">
+          <strong>助成の仕組み</strong>
+          <p>県内の医療機関では、受給資格証と保険証を窓口で提示することで自己負担なしで受診できます（現物給付）。県外の医療機関を受診した場合は、後日申請して払い戻しを受けます。入院時の食事代や保険適用外の費用は対象外です。</p>
+        </div>
 
-        <h2>国・県の制度との併用について</h2>
-        <p>川越市の在宅心身障害者手当は、国の特別障害者手当(月額28,840円)や障害児福祉手当(月額15,690円)と併給できます。ただし、それぞれ所得制限や施設入所の有無など、受給要件が異なります。該当する可能性がある方は、障害者福祉課の窓口でまとめて確認するのが効率的です。</p>
+        <!-- 3. 併用 -->
+        <h2 id="heiyo">国・県の制度との併用について</h2>
+        <p>川越市の在宅心身障害者手当は、国の特別障害者手当（月額28,840円）や障害児福祉手当（月額15,690円）と併給できます。ただし、それぞれ所得制限や施設入所の有無など、受給要件が異なります。該当する可能性がある方は、障害者福祉課の窓口でまとめて確認するのが効率的です。</p>
 
-        <h2>まとめ</h2>
+        <!-- まとめ -->
+        <h2 id="matome">まとめ</h2>
         <p>川越市独自の在宅心身障害者手当は、市民税非課税という条件はありますが、手帳の等級に応じて月3,000円〜9,500円が支給されます。申請しないと受給できないため、手帳を取得したタイミングや転入したタイミングで忘れずに手続きしましょう。</p>
 
-        <div class="disclaimer" style="margin-top: 32px;">
+        <!-- CTA -->
+        <div class="article-cta">
+          <p class="article-cta-title">あなたに合った補助金を診断</p>
+          <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
+          <div class="article-cta-buttons">
+            <a href="/shindan/" class="btn btn-primary">診断してみる</a>
+            <a href="/saitama/kawagoe/" class="article-cta-link">川越市の全補助金を見る →</a>
+          </div>
+        </div>
+
+        <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.city.kawagoe.saitama.jp/kenkofukushi/shogaishafukushi/teate/index.html" target="_blank" rel="noopener noreferrer">川越市公式サイト(障害者福祉・手当)</a>でご確認ください。
+          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
         </div>
       </article>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .article-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 32px 0 40px;
+  }
+  .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 16px; }
+  .article-breadcrumb a { color: white; }
+  .article-category {
+    display: inline-block;
+    background: rgba(200,168,75,0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .article-title { font-size: 1.6rem; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .article-title-sub { font-size: 1.1rem; font-weight: 400; opacity: 0.85; }
+  .article-meta { font-size: 0.8rem; opacity: 0.6; }
+
+  .article-body { line-height: 1.9; color: var(--text-dark); }
+  .article-body h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+    color: var(--green-deep);
+  }
+  .article-body p { margin-bottom: 16px; }
+  .article-lead { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 24px; }
+
+  .article-toc {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .article-toc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--green-deep); }
+  .article-toc ol { margin: 0; padding-left: 20px; }
+  .article-toc li { margin-bottom: 4px; font-size: 0.9rem; }
+  .article-toc a { color: var(--green-deep); text-decoration: none; }
+  .article-toc a:hover { text-decoration: underline; }
+
+  .article-amount-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .article-amount-label { font-weight: 700; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 12px; }
+  .article-amount-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .article-amount-item {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .article-amount-age { display: block; font-size: 0.75rem; color: var(--text-mid); margin-bottom: 4px; }
+  .article-amount-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--green-deep); }
+  .article-amount-note { display: block; font-size: 0.7rem; color: var(--text-soft); margin-top: 2px; }
+
+  .article-tip {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .article-tip strong { display: block; font-size: 0.85rem; color: var(--green-deep); margin-bottom: 4px; }
+  .article-tip p { margin: 0; font-size: 0.9rem; }
+
+  .article-note {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .article-note p { margin: 0; }
+
+  .article-cta {
+    text-align: center;
+    background: var(--green-pale);
+    padding: 32px;
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .article-cta-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .article-cta-body { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 16px; }
+  .article-cta-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .article-cta-link { font-size: 0.9rem; color: var(--green-deep); font-weight: 600; }
+</style>

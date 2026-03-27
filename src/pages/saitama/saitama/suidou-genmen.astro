@@ -2,112 +2,253 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="さいたま市の水道料金減免制度 物価高騰対策で全世帯4ヶ月無料" description="さいたま市の水道料金減免制度を解説。生活保護・児童扶養手当世帯向けの福祉減免と、物価高騰対策として実施された全世帯の基本料金4ヶ月無料措置の詳細をまとめました。">
-  <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <nav style="font-size: 0.8rem; color: var(--text-soft); margin-bottom: 16px;">
+  <!-- ヒーロー -->
+  <section class="article-hero">
+    <div class="container" style="max-width:760px;">
+      <nav class="article-breadcrumb">
         <a href="/">ホジョタウン</a> &gt; <a href="/saitama/saitama/">さいたま市</a> &gt; <span>水道料金減免制度</span>
       </nav>
-      <article>
-        <h1 style="font-size: 1.6rem; margin-bottom: 8px;">さいたま市の水道料金減免制度 物価高騰対策で全世帯4ヶ月無料</h1>
-        <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 24px;">最終更新: 2026年3月26日</p>
+      <span class="article-category">生活支援</span>
+      <h1 class="article-title">さいたま市の水道料金減免制度<br><span class="article-title-sub">物価高騰対策で全世帯4ヶ月無料</span></h1>
+      <p class="article-meta">最終更新: 2026年3月26日</p>
+    </div>
+  </section>
 
-        <p>水道料金は毎月の固定支出として家計に影響します。さいたま市では、もともとの福祉減免制度に加え、物価高騰対策として全世帯を対象にした基本料金の無料化措置が実施されました。</p>
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <article class="article-body">
+        <!-- 目次 -->
+        <div class="article-toc">
+          <p class="article-toc-title">この記事の内容</p>
+          <ol>
+            <li><a href="#fukushi">福祉減免制度（通年）</a></li>
+            <li><a href="#bukka">物価高騰対策：全世帯4ヶ月無料</a></li>
+            <li><a href="#chigai">福祉減免と物価高騰対策の違い</a></li>
+            <li><a href="#rosui">漏水減免制度</a></li>
+          </ol>
+        </div>
 
-        <h2>福祉減免制度（通年）</h2>
+        <p class="article-lead">水道料金は毎月の固定支出として家計に影響します。さいたま市では、もともとの福祉減免制度に加え、物価高騰対策として全世帯を対象にした基本料金の無料化措置が実施されました。</p>
+
+        <!-- 1. 福祉減免 -->
+        <h2 id="fukushi">福祉減免制度（通年）</h2>
         <p>さいたま市では、一定の条件を満たす世帯に対して水道料金の基本料金と下水道使用料の基本料金を<strong>全額免除</strong>する制度があります。</p>
 
-        <h3>対象となる世帯</h3>
-        <ul>
-          <li><strong>生活保護受給世帯</strong></li>
-          <li><strong>児童扶養手当受給世帯</strong></li>
-          <li><strong>特別児童扶養手当受給世帯</strong></li>
-          <li><strong>遺族基礎年金受給世帯</strong>（所得制限あり）</li>
-          <li><strong>障害基礎年金受給者</strong>がいる世帯（所得制限あり）</li>
-        </ul>
+        <div class="article-tip">
+          <strong>対象となる世帯</strong>
+          <p><strong>生活保護受給世帯</strong><br>
+          <strong>児童扶養手当受給世帯</strong><br>
+          <strong>特別児童扶養手当受給世帯</strong><br>
+          <strong>遺族基礎年金受給世帯</strong>（所得制限あり）<br>
+          <strong>障害基礎年金受給者</strong>がいる世帯（所得制限あり）</p>
+        </div>
 
-        <h3>減免される金額</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
-          <thead>
-            <tr style="background: var(--bg-soft, #f5f5f5);">
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: left;">項目</th>
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: left;">減免内容</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">水道料金の基本料金</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>全額免除</strong></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">下水道使用料の基本料金</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>全額免除</strong></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">従量料金（使った分）</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">通常通り請求</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="article-amount-card">
+          <p class="article-amount-label">減免される金額</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">水道基本料金</span>
+              <span class="article-amount-value">全額免除</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">下水道基本料金</span>
+              <span class="article-amount-value">全額免除</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">従量料金</span>
+              <span class="article-amount-value">通常通り</span>
+              <span class="article-amount-note">使った分は請求</span>
+            </div>
+          </div>
+        </div>
 
-        <h3>申請方法</h3>
-        <p>福祉減免を受けるには、さいたま市水道局への申請が必要です。対象となる手当や年金の受給証明書を持って、水道局の各営業所または区役所で手続きできます。</p>
-        <ul>
-          <li>申請した翌月分から適用される</li>
-          <li>年度ごとの更新手続きは不要（資格喪失時に届出が必要）</li>
-          <li>転入の場合は改めて申請が必要</li>
-        </ul>
+        <div class="article-tip">
+          <strong>申請方法</strong>
+          <p>福祉減免を受けるには、さいたま市水道局への申請が必要です。対象となる手当や年金の受給証明書を持って、水道局の各営業所または区役所で手続きできます。申請した翌月分から適用され、年度ごとの更新手続きは不要です（資格喪失時に届出が必要）。転入の場合は改めて申請が必要です。</p>
+        </div>
 
-        <h2>物価高騰対策：全世帯の基本料金4ヶ月無料</h2>
+        <!-- 2. 物価高騰対策 -->
+        <h2 id="bukka">物価高騰対策：全世帯の基本料金4ヶ月無料</h2>
         <p>物価高騰の影響を緩和するため、さいたま市では水道料金の基本料金を<strong>全世帯・全事業者を対象に4ヶ月間無料</strong>にする措置を実施しました。</p>
 
-        <h3>措置の概要</h3>
-        <ul>
-          <li><strong>対象</strong>：さいたま市水道局から給水を受けている全契約者（家庭・事業者ともに）</li>
-          <li><strong>減免内容</strong>：水道料金の基本料金を4ヶ月分無料</li>
-          <li><strong>申請</strong>：<strong>不要</strong>（自動的に請求額から減額）</li>
-        </ul>
+        <div class="article-amount-card">
+          <p class="article-amount-label">措置の概要</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">対象</span>
+              <span class="article-amount-value">全契約者</span>
+              <span class="article-amount-note">家庭・事業者とも</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">減免内容</span>
+              <span class="article-amount-value">基本料金無料</span>
+              <span class="article-amount-note">4ヶ月分</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">申請</span>
+              <span class="article-amount-value">不要</span>
+              <span class="article-amount-note">自動的に減額</span>
+            </div>
+          </div>
+        </div>
 
-        <h3>どのくらいお得になる？</h3>
-        <p>さいたま市の水道料金の基本料金（口径13mm）は2ヶ月あたり約1,100円です。4ヶ月分（2回分の検針期間）が無料になるため、一般家庭で<strong>約2,200円</strong>の負担軽減になります。</p>
-        <p>口径が大きい契約（事業所等）ではさらに大きな金額が減免されます。</p>
+        <div class="article-tip">
+          <strong>どのくらいお得になる？</strong>
+          <p>さいたま市の水道料金の基本料金（口径13mm）は2ヶ月あたり約1,100円です。4ヶ月分（2回分の検針期間）が無料になるため、一般家庭で<strong>約2,200円</strong>の負担軽減になります。口径が大きい契約（事業所等）ではさらに大きな金額が減免されます。</p>
+        </div>
 
-        <h2>福祉減免と物価高騰対策の違い</h2>
-        <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
-          <thead>
-            <tr style="background: var(--bg-soft, #f5f5f5);">
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: left;">項目</th>
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: left;">福祉減免</th>
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: left;">物価高騰対策</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">対象</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">特定の世帯のみ</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">全世帯</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">期間</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">通年（資格がある間）</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">4ヶ月間の限定措置</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">申請</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">必要</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">不要（自動適用）</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- 3. 違いの比較 -->
+        <h2 id="chigai">福祉減免と物価高騰対策の違い</h2>
+
+        <div class="article-amount-card">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <thead>
+              <tr style="background: var(--green-pale);">
+                <th style="padding: 8px 12px; border: 1px solid var(--border); text-align: left;">項目</th>
+                <th style="padding: 8px 12px; border: 1px solid var(--border); text-align: left;">福祉減免</th>
+                <th style="padding: 8px 12px; border: 1px solid var(--border); text-align: left;">物価高騰対策</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">対象</td>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">特定の世帯のみ</td>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">全世帯</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">期間</td>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">通年（資格がある間）</td>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">4ヶ月間の限定措置</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">申請</td>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">必要</td>
+                <td style="padding: 8px 12px; border: 1px solid var(--border);">不要（自動適用）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <p>福祉減免の対象世帯は、物価高騰対策の期間中も福祉減免が継続されるため、基本料金が二重に免除されることはありませんが、すでに無料になっている状態が維持されます。</p>
 
-        <h2>漏水減免制度もある</h2>
+        <!-- 4. 漏水減免 -->
+        <h2 id="rosui">漏水減免制度もある</h2>
         <p>意外と知られていませんが、さいたま市では漏水による水道料金の増額分を減免する制度もあります。地中の給水管からの漏水など、通常の使用では発見が困難な漏水の場合、修理後に申請することで超過分の一部が減額されます。</p>
 
-        <div class="disclaimer" style="margin-top: 32px;">
+        <!-- CTA -->
+        <div class="article-cta">
+          <p class="article-cta-title">あなたに合った補助金を診断</p>
+          <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
+          <div class="article-cta-buttons">
+            <a href="/shindan/" class="btn btn-primary">診断してみる</a>
+            <a href="/saitama/saitama/" class="article-cta-link">さいたま市の全補助金を見る →</a>
+          </div>
+        </div>
+
+        <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.water-saitama.lg.jp/" target="_blank" rel="noopener noreferrer">さいたま市水道局公式サイト</a>でご確認ください。
+          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
         </div>
       </article>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .article-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 32px 0 40px;
+  }
+  .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 16px; }
+  .article-breadcrumb a { color: white; }
+  .article-category {
+    display: inline-block;
+    background: rgba(200,168,75,0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .article-title { font-size: 1.6rem; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .article-title-sub { font-size: 1.1rem; font-weight: 400; opacity: 0.85; }
+  .article-meta { font-size: 0.8rem; opacity: 0.6; }
+
+  .article-body { line-height: 1.9; color: var(--text-dark); }
+  .article-body h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+    color: var(--green-deep);
+  }
+  .article-body p { margin-bottom: 16px; }
+  .article-lead { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 24px; }
+
+  .article-toc {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .article-toc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--green-deep); }
+  .article-toc ol { margin: 0; padding-left: 20px; }
+  .article-toc li { margin-bottom: 4px; font-size: 0.9rem; }
+  .article-toc a { color: var(--green-deep); text-decoration: none; }
+  .article-toc a:hover { text-decoration: underline; }
+
+  .article-amount-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .article-amount-label { font-weight: 700; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 12px; }
+  .article-amount-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .article-amount-item {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .article-amount-age { display: block; font-size: 0.75rem; color: var(--text-mid); margin-bottom: 4px; }
+  .article-amount-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--green-deep); }
+  .article-amount-note { display: block; font-size: 0.7rem; color: var(--text-soft); margin-top: 2px; }
+
+  .article-tip {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .article-tip strong { display: block; font-size: 0.85rem; color: var(--green-deep); margin-bottom: 4px; }
+  .article-tip p { margin: 0; font-size: 0.9rem; }
+
+  .article-note {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .article-note p { margin: 0; }
+
+  .article-cta {
+    text-align: center;
+    background: var(--green-pale);
+    padding: 32px;
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .article-cta-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .article-cta-body { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 16px; }
+  .article-cta-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .article-cta-link { font-size: 0.9rem; color: var(--green-deep); font-weight: 600; }
+</style>

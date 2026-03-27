@@ -2,99 +2,229 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="さいたま市の省エネ補助金 ZEH60万円の衝撃 令和7年度は即終了" description="さいたま市の省エネ・断熱住宅普及促進補助金を解説。ZEH新築で最大60万円、川越市の4倍という破格の補助額。太陽光共同購入事業やEV補助金も紹介。令和7年度は早期終了の可能性大。">
-  <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <nav style="font-size: 0.8rem; color: var(--text-soft); margin-bottom: 16px;">
+  <!-- ヒーロー -->
+  <section class="article-hero">
+    <div class="container" style="max-width:760px;">
+      <nav class="article-breadcrumb">
         <a href="/">ホジョタウン</a> &gt; <a href="/saitama/saitama/">さいたま市</a> &gt; <span>省エネ補助金</span>
       </nav>
-      <article>
-        <h1 style="font-size: 1.6rem; margin-bottom: 8px;">さいたま市の省エネ補助金 ZEH60万円の衝撃 令和7年度は即終了</h1>
-        <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 24px;">最終更新: 2026年3月26日</p>
+      <span class="article-category">省エネ・環境</span>
+      <h1 class="article-title">さいたま市の省エネ補助金<br><span class="article-title-sub">ZEH60万円の衝撃 令和7年度は即終了</span></h1>
+      <p class="article-meta">最終更新: 2026年3月26日</p>
+    </div>
+  </section>
 
-        <p>さいたま市は「ゼロカーボンシティ」を宣言しており、住宅の省エネ化に対する補助金が非常に手厚いことで知られています。特にZEH（ネット・ゼロ・エネルギー・ハウス）への補助は近隣自治体と比べても突出しています。</p>
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <article class="article-body">
+        <!-- 目次 -->
+        <div class="article-toc">
+          <p class="article-toc-title">この記事の内容</p>
+          <ol>
+            <li><a href="#shoene">省エネ・断熱住宅普及促進補助金</a></li>
+            <li><a href="#hikaku">川越市との比較：ZEH補助額は4倍の差</a></li>
+            <li><a href="#soki">令和7年度は早期終了の可能性</a></li>
+            <li><a href="#taiyoko">太陽光発電の共同購入事業</a></li>
+            <li><a href="#chui">申請時の注意点</a></li>
+          </ol>
+        </div>
 
-        <h2>省エネ・断熱住宅普及促進補助金</h2>
+        <p class="article-lead">さいたま市は「ゼロカーボンシティ」を宣言しており、住宅の省エネ化に対する補助金が非常に手厚いことで知られています。特にZEH（ネット・ゼロ・エネルギー・ハウス）への補助は近隣自治体と比べても突出しています。</p>
+
+        <!-- 1. 補助金 -->
+        <h2 id="shoene">省エネ・断熱住宅普及促進補助金</h2>
         <p>さいたま市が実施する住宅の省エネ化を促進するための補助金制度です。新築・既存住宅のリフォームの両方が対象で、性能レベルに応じて補助額が変わります。</p>
 
-        <h3>新築住宅の補助額</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
-          <thead>
-            <tr style="background: var(--bg-soft, #f5f5f5);">
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: left;">性能レベル</th>
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;">補助額</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>ZEH</strong>（Nearly ZEH含む）</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;"><strong>60万円</strong></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">ZEH Oriented</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;">40万円</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">断熱等級6以上</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;">20万円</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="article-amount-card">
+          <p class="article-amount-label">新築住宅の補助額</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">ZEH</span>
+              <span class="article-amount-value">60万円</span>
+              <span class="article-amount-note">Nearly ZEH含む</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">ZEH Oriented</span>
+              <span class="article-amount-value">40万円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">断熱等級6以上</span>
+              <span class="article-amount-value">20万円</span>
+            </div>
+          </div>
+        </div>
 
-        <h3>既存住宅（リフォーム）の補助額</h3>
-        <ul>
-          <li><strong>窓の断熱改修</strong>：工事費の1/3（上限20万円）</li>
-          <li><strong>外壁・屋根の断熱改修</strong>：工事費の1/3（上限30万円）</li>
-          <li><strong>高効率給湯器の設置</strong>：機器費の1/3（上限10万円）</li>
-        </ul>
+        <div class="article-tip">
+          <strong>既存住宅（リフォーム）の補助額</strong>
+          <p><strong>窓の断熱改修：</strong>工事費の1/3（上限20万円）<br>
+          <strong>外壁・屋根の断熱改修：</strong>工事費の1/3（上限30万円）<br>
+          <strong>高効率給湯器の設置：</strong>機器費の1/3（上限10万円）</p>
+        </div>
 
-        <h2>川越市との比較：ZEH補助額は4倍の差</h2>
+        <!-- 2. 川越市との比較 -->
+        <h2 id="hikaku">川越市との比較：ZEH補助額は4倍の差</h2>
         <p>近隣の川越市でもZEH住宅への補助制度がありますが、その補助額は<strong>15万円</strong>です。さいたま市の60万円と比べると<strong>実に4倍の差</strong>があります。</p>
-        <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
-          <thead>
-            <tr style="background: var(--bg-soft, #f5f5f5);">
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: left;">項目</th>
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;">さいたま市</th>
-              <th style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;">川越市</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">ZEH新築補助</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;"><strong>60万円</strong></td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;">15万円</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd;">差額</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: right;" colspan="2"><strong>+45万円</strong></td>
-            </tr>
-          </tbody>
-        </table>
+
+        <div class="article-amount-card">
+          <p class="article-amount-label">ZEH新築補助の比較</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">さいたま市</span>
+              <span class="article-amount-value">60万円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">川越市</span>
+              <span class="article-amount-value">15万円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">差額</span>
+              <span class="article-amount-value">+45万円</span>
+              <span class="article-amount-note">さいたま市が有利</span>
+            </div>
+          </div>
+        </div>
+
         <p>ZEH住宅の建築を検討しているなら、この補助額の差は住む場所の選択にも影響する大きな金額です。</p>
 
-        <h2>令和7年度は早期終了の可能性</h2>
-        <p>この補助金は<strong>先着順</strong>で、予算がなくなり次第終了します。過去の実績を見ると、令和6年度は募集開始から数ヶ月で予算上限に達して受付終了となりました。</p>
-        <p>令和7年度も同様の傾向が予想されるため、新築やリフォームを計画している方は、<strong>募集開始と同時に申請する</strong>くらいの準備が必要です。例年、4月〜5月頃に募集が始まります。</p>
+        <!-- 3. 早期終了 -->
+        <h2 id="soki">令和7年度は早期終了の可能性</h2>
+        <div class="article-note">
+          <p><strong>重要：</strong>この補助金は<strong>先着順</strong>で、予算がなくなり次第終了します。過去の実績を見ると、令和6年度は募集開始から数ヶ月で予算上限に達して受付終了となりました。令和7年度も同様の傾向が予想されるため、新築やリフォームを計画している方は、<strong>募集開始と同時に申請する</strong>くらいの準備が必要です。例年、4月〜5月頃に募集が始まります。</p>
+        </div>
 
-        <h2>太陽光発電の共同購入事業</h2>
+        <!-- 4. 太陽光共同購入 -->
+        <h2 id="taiyoko">太陽光発電の共同購入事業</h2>
         <p>さいたま市では、太陽光パネルと蓄電池の「共同購入事業」も実施しています。これは市が事業者を公募し、スケールメリットを活かして市場価格より安く太陽光発電システムを導入できる仕組みです。</p>
-        <ul>
-          <li>市場価格より<strong>約20〜30%安く</strong>設置できるケースが多い</li>
-          <li>参加登録は無料で、見積もりを見てから契約を判断できる</li>
-          <li>省エネ補助金との併用が可能な場合がある</li>
-        </ul>
 
-        <h2>申請時の注意点</h2>
-        <ul>
-          <li><strong>着工前に申請が必要</strong>：工事を始めてからの申請は不可</li>
-          <li><strong>市内業者による施工</strong>が条件になる場合がある</li>
-          <li>国の補助金（こどもエコすまい支援事業等）との<strong>併用が可能</strong>な場合がある</li>
-          <li>申請書類の不備で受理されないケースが多いため、事前相談を推奨</li>
-        </ul>
+        <div class="article-tip">
+          <strong>共同購入のメリット</strong>
+          <p>市場価格より<strong>約20〜30%安く</strong>設置できるケースが多い。参加登録は無料で、見積もりを見てから契約を判断できます。省エネ補助金との併用が可能な場合もあります。</p>
+        </div>
 
-        <div class="disclaimer" style="margin-top: 32px;">
+        <!-- 5. 注意点 -->
+        <h2 id="chui">申請時の注意点</h2>
+        <div class="article-note">
+          <p><strong>注意：</strong><br>
+          ・<strong>着工前に申請が必要</strong>：工事を始めてからの申請は不可<br>
+          ・<strong>市内業者による施工</strong>が条件になる場合がある<br>
+          ・国の補助金（こどもエコすまい支援事業等）との<strong>併用が可能</strong>な場合がある<br>
+          ・申請書類の不備で受理されないケースが多いため、事前相談を推奨</p>
+        </div>
+
+        <!-- CTA -->
+        <div class="article-cta">
+          <p class="article-cta-title">あなたに合った補助金を診断</p>
+          <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
+          <div class="article-cta-buttons">
+            <a href="/shindan/" class="btn btn-primary">診断してみる</a>
+            <a href="/saitama/saitama/" class="article-cta-link">さいたま市の全補助金を見る →</a>
+          </div>
+        </div>
+
+        <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.city.saitama.lg.jp/001/009/017/index.html" target="_blank" rel="noopener noreferrer">さいたま市公式サイト（環境・エネルギー）</a>でご確認ください。
+          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
         </div>
       </article>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .article-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 32px 0 40px;
+  }
+  .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 16px; }
+  .article-breadcrumb a { color: white; }
+  .article-category {
+    display: inline-block;
+    background: rgba(200,168,75,0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .article-title { font-size: 1.6rem; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .article-title-sub { font-size: 1.1rem; font-weight: 400; opacity: 0.85; }
+  .article-meta { font-size: 0.8rem; opacity: 0.6; }
+
+  .article-body { line-height: 1.9; color: var(--text-dark); }
+  .article-body h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+    color: var(--green-deep);
+  }
+  .article-body p { margin-bottom: 16px; }
+  .article-lead { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 24px; }
+
+  .article-toc {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .article-toc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--green-deep); }
+  .article-toc ol { margin: 0; padding-left: 20px; }
+  .article-toc li { margin-bottom: 4px; font-size: 0.9rem; }
+  .article-toc a { color: var(--green-deep); text-decoration: none; }
+  .article-toc a:hover { text-decoration: underline; }
+
+  .article-amount-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .article-amount-label { font-weight: 700; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 12px; }
+  .article-amount-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .article-amount-item {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .article-amount-age { display: block; font-size: 0.75rem; color: var(--text-mid); margin-bottom: 4px; }
+  .article-amount-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--green-deep); }
+  .article-amount-note { display: block; font-size: 0.7rem; color: var(--text-soft); margin-top: 2px; }
+
+  .article-tip {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .article-tip strong { display: block; font-size: 0.85rem; color: var(--green-deep); margin-bottom: 4px; }
+  .article-tip p { margin: 0; font-size: 0.9rem; }
+
+  .article-note {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .article-note p { margin: 0; }
+
+  .article-cta {
+    text-align: center;
+    background: var(--green-pale);
+    padding: 32px;
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .article-cta-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .article-cta-body { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 16px; }
+  .article-cta-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .article-cta-link { font-size: 0.9rem; color: var(--green-deep); font-weight: 600; }
+</style>

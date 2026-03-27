@@ -2,76 +2,281 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="横浜市の子育て補助金・助成金まとめ 児童手当から小児医療費まで全解説" description="横浜市で受けられる子育て補助金・助成金を網羅的に解説。児童手当・小児医療費助成・出産費用助成・ひとり親家庭への支援など、金額・対象者・申請方法をわかりやすくまとめました。">
-  <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <nav style="font-size: 0.8rem; color: var(--text-soft); margin-bottom: 16px;">
+  <!-- ヒーロー -->
+  <section class="article-hero">
+    <div class="container" style="max-width:760px;">
+      <nav class="article-breadcrumb">
         <a href="/">ホジョタウン</a> &gt; <a href="/kanagawa/yokohama/">横浜市</a> &gt; <span>子育て補助金まとめ</span>
       </nav>
-      <article>
-        <h1 style="font-size: 1.6rem; margin-bottom: 8px;">横浜市の子育て補助金・助成金まとめ 児童手当から小児医療費まで全解説</h1>
-        <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 24px;">最終更新: 2026年3月26日</p>
+      <span class="article-category">子育て</span>
+      <h1 class="article-title">横浜市の子育て補助金・助成金まとめ<br><span class="article-title-sub">児童手当から小児医療費まで全解説</span></h1>
+      <p class="article-meta">最終更新: 2026年3月26日</p>
+    </div>
+  </section>
 
-        <p>横浜市は人口約377万人を擁する日本最大の政令指定都市です。子育て世帯向けの経済的支援も充実しており、国の制度に加えて市独自の助成制度が複数あります。この記事では、横浜市で子育て中の家庭が利用できる主な補助金・助成金を整理しました。「横浜市 補助金」「横浜市 子育て 助成金」で調べている方は、まずここで全体像を把握してください。</p>
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <article class="article-body">
+        <!-- 目次 -->
+        <div class="article-toc">
+          <p class="article-toc-title">この記事の内容</p>
+          <ol>
+            <li><a href="#jidou">児童手当 ― 月1万〜3万円</a></li>
+            <li><a href="#iryo">小児医療費助成 ― 中学3年生まで</a></li>
+            <li><a href="#shussan">出産費用の助成</a></li>
+            <li><a href="#fuyo">児童扶養手当 ― ひとり親支援</a></li>
+            <li><a href="#dokuji">横浜市独自の子育て支援制度</a></li>
+            <li><a href="#matome">まとめ</a></li>
+          </ol>
+        </div>
 
-        <h2>児童手当 ― 高校卒業まで月1万~3万円</h2>
+        <p class="article-lead">横浜市は人口約377万人を擁する日本最大の政令指定都市です。子育て世帯向けの経済的支援も充実しており、国の制度に加えて市独自の助成制度が複数あります。この記事では、横浜市で子育て中の家庭が利用できる主な補助金・助成金を整理しました。「横浜市 補助金」「横浜市 子育て 助成金」で調べている方は、まずここで全体像を把握してください。</p>
+
+        <!-- 1. 児童手当 -->
+        <h2 id="jidou">児童手当 ― 高校卒業まで月1万〜3万円</h2>
         <p>児童手当は、18歳に達する日以後の最初の3月31日までの児童を養育している方に支給される国の制度です。2024年10月の制度改正で所得制限が撤廃され、すべての対象世帯が受給できるようになりました。</p>
-        <h3>支給額(月額)</h3>
-        <ul>
-          <li><strong>3歳未満:</strong> 15,000円(第3子以降は30,000円)</li>
-          <li><strong>3歳~小学校修了:</strong> 10,000円(第3子以降は30,000円)</li>
-          <li><strong>中学生・高校生世代:</strong> 10,000円(第3子以降は30,000円)</li>
-        </ul>
-        <h3>申請のポイント</h3>
-        <p>出生届と同時に区役所こども家庭支援課で申請できます。転入の場合は転入届と合わせて手続きしましょう。<strong>出生日・転入日の翌日から15日以内</strong>に申請することが重要です。支給は年6回(偶数月)に2か月分ずつ振り込まれます。</p>
 
-        <h2>小児医療費助成 ― 中学3年生まで通院・入院を助成</h2>
+        <div class="article-amount-card">
+          <p class="article-amount-label">支給額（月額）</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">3歳未満</span>
+              <span class="article-amount-value">15,000円</span>
+              <span class="article-amount-note">第3子以降 30,000円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">3歳〜小学校</span>
+              <span class="article-amount-value">10,000円</span>
+              <span class="article-amount-note">第3子以降 30,000円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">中高生</span>
+              <span class="article-amount-value">10,000円</span>
+              <span class="article-amount-note">第3子以降 30,000円</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-tip">
+          <strong>申請のポイント</strong>
+          <p>出生届と同時に区役所こども家庭支援課で申請できます。転入の場合は転入届と合わせて手続きしましょう。<strong>出生日・転入日の翌日から15日以内</strong>に申請することが重要です。支給は年6回(偶数月)に2か月分ずつ振り込まれます。</p>
+        </div>
+
+        <!-- 2. 小児医療費助成 -->
+        <h2 id="iryo">小児医療費助成 ― 中学3年生まで通院・入院を助成</h2>
         <p>横浜市では、0歳から中学3年生までの子どもの医療費(保険診療の自己負担分)を助成しています。通院・入院ともに対象で、所得制限はありません。</p>
-        <h3>自己負担額</h3>
-        <ul>
-          <li><strong>0歳:</strong> 自己負担なし</li>
-          <li><strong>1歳~中学3年生(通院):</strong> 1回500円まで(院外薬局は無料)</li>
-          <li><strong>1歳~中学3年生(入院):</strong> 自己負担なし</li>
-        </ul>
-        <h3>利用方法</h3>
-        <p>事前に「小児医療証」を区役所で交付してもらい、県内の医療機関で保険証と一緒に提示します。県外受診の場合は、後日区役所に申請して払い戻しを受けます。</p>
 
-        <h2>出産費用の助成 ― 出産育児一時金50万円+横浜市の上乗せ</h2>
+        <div class="article-amount-card">
+          <p class="article-amount-label">自己負担額</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">0歳</span>
+              <span class="article-amount-value">自己負担なし</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">1歳〜中3(通院)</span>
+              <span class="article-amount-value">1回500円まで</span>
+              <span class="article-amount-note">院外薬局は無料</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">1歳〜中3(入院)</span>
+              <span class="article-amount-value">自己負担なし</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-tip">
+          <strong>利用方法</strong>
+          <p>事前に「小児医療証」を区役所で交付してもらい、県内の医療機関で保険証と一緒に提示します。県外受診の場合は、後日区役所に申請して払い戻しを受けます。</p>
+        </div>
+
+        <!-- 3. 出産費用の助成 -->
+        <h2 id="shussan">出産費用の助成 ― 出産育児一時金50万円+横浜市の上乗せ</h2>
         <p>出産時には健康保険から出産育児一時金として50万円が支給されます。横浜市では、これに加えて出産費用の負担軽減策を実施しています。</p>
-        <h3>主な制度</h3>
-        <ul>
-          <li><strong>出産育児一時金:</strong> 50万円(健康保険から支給、直接支払制度あり)</li>
-          <li><strong>妊婦健康診査費用補助:</strong> 14回分の健診費用を助成(補助券を交付)</li>
-          <li><strong>産後母子ケア事業:</strong> 産後の宿泊型・デイサービス型ケアの利用料を助成</li>
-        </ul>
+
+        <div class="article-amount-card">
+          <p class="article-amount-label">主な制度</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">出産育児一時金</span>
+              <span class="article-amount-value">50万円</span>
+              <span class="article-amount-note">健康保険から支給</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">妊婦健診補助</span>
+              <span class="article-amount-value">14回分</span>
+              <span class="article-amount-note">超音波検査含む</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">産後母子ケア</span>
+              <span class="article-amount-value">利用料助成</span>
+              <span class="article-amount-note">宿泊型・デイサービス型</span>
+            </div>
+          </div>
+        </div>
+
         <p>横浜市の妊婦健診補助は全国的にも充実しており、超音波検査の補助も含まれています。</p>
 
-        <h2>児童扶養手当 ― ひとり親家庭への月最大4万5,500円</h2>
+        <!-- 4. 児童扶養手当 -->
+        <h2 id="fuyo">児童扶養手当 ― ひとり親家庭への月最大4万5,500円</h2>
         <p>ひとり親家庭を対象とした国の制度で、横浜市では区役所こども家庭支援課で申請を受け付けています。</p>
-        <h3>支給額(月額・2025年4月~)</h3>
-        <ul>
-          <li><strong>全部支給:</strong> 45,500円</li>
-          <li><strong>一部支給:</strong> 所得に応じて45,490円~10,740円</li>
-          <li><strong>第2子加算:</strong> 全部支給10,750円</li>
-          <li><strong>第3子以降加算:</strong> 全部支給6,450円</li>
-        </ul>
-        <p>所得制限があり、毎年8月に現況届の提出が必要です。</p>
 
-        <h2>横浜市独自の子育て支援制度</h2>
+        <div class="article-amount-card">
+          <p class="article-amount-label">支給額（月額・2025年4月〜）</p>
+          <div class="article-amount-grid">
+            <div class="article-amount-item">
+              <span class="article-amount-age">全部支給</span>
+              <span class="article-amount-value">45,500円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">一部支給</span>
+              <span class="article-amount-value">10,740〜45,490円</span>
+              <span class="article-amount-note">所得に応じて変動</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">第2子加算</span>
+              <span class="article-amount-value">最大10,750円</span>
+            </div>
+            <div class="article-amount-item">
+              <span class="article-amount-age">第3子以降加算</span>
+              <span class="article-amount-value">最大6,450円</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-note">
+          <p><strong>注意：</strong>所得制限があり、毎年8月に現況届の提出が必要です。</p>
+        </div>
+
+        <!-- 5. 横浜市独自制度 -->
+        <h2 id="dokuji">横浜市独自の子育て支援制度</h2>
         <p>横浜市では国の制度に加えて、以下のような市独自の支援策があります。</p>
-        <ul>
-          <li><strong>横浜市子育て応援アプリ「パマトコ」:</strong> 子育て関連の手続き案内や施設検索が可能</li>
-          <li><strong>病児・病後児保育:</strong> 病気中の子どもを一時的に預けられる施設を市内に複数設置</li>
-          <li><strong>一時預かり保育:</strong> リフレッシュ目的でも利用可能な保育サービス</li>
-          <li><strong>よこはま子育て応援団:</strong> 協賛店での割引サービス</li>
-        </ul>
+        <div class="article-tip">
+          <strong>市独自の支援メニュー</strong>
+          <p><strong>横浜市子育て応援アプリ「パマトコ」：</strong>子育て関連の手続き案内や施設検索が可能<br>
+          <strong>病児・病後児保育：</strong>病気中の子どもを一時的に預けられる施設を市内に複数設置<br>
+          <strong>一時預かり保育：</strong>リフレッシュ目的でも利用可能な保育サービス<br>
+          <strong>よこはま子育て応援団：</strong>協賛店での割引サービス</p>
+        </div>
 
-        <h2>まとめ:横浜市の子育て支援は申請が鍵</h2>
+        <!-- まとめ -->
+        <h2 id="matome">まとめ：横浜市の子育て支援は申請が鍵</h2>
         <p>横浜市の子育て支援制度は種類が多い反面、すべて申請主義です。出生届の提出時に児童手当と小児医療証の申請をまとめて行うのが効率的です。区役所のこども家庭支援課が窓口になるため、転入時や出産時にはまず区役所を訪れましょう。横浜市で受けられる補助金をもれなく活用するために、この記事をチェックリスト代わりに使ってください。</p>
 
-        <div class="disclaimer" style="margin-top: 32px;">
+        <!-- CTA -->
+        <div class="article-cta">
+          <p class="article-cta-title">あなたに合った補助金を診断</p>
+          <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
+          <div class="article-cta-buttons">
+            <a href="/shindan/" class="btn btn-primary">診断してみる</a>
+            <a href="/kanagawa/yokohama/" class="article-cta-link">横浜市の全補助金を見る →</a>
+          </div>
+        </div>
+
+        <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.city.yokohama.lg.jp/kosodate/" target="_blank" rel="noopener noreferrer">横浜市公式サイト(子育て)</a>でご確認ください。
+          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
         </div>
       </article>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .article-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 32px 0 40px;
+  }
+  .article-breadcrumb { font-size: 0.8rem; opacity: 0.7; margin-bottom: 16px; }
+  .article-breadcrumb a { color: white; }
+  .article-category {
+    display: inline-block;
+    background: rgba(200,168,75,0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .article-title { font-size: 1.6rem; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .article-title-sub { font-size: 1.1rem; font-weight: 400; opacity: 0.85; }
+  .article-meta { font-size: 0.8rem; opacity: 0.6; }
+
+  .article-body { line-height: 1.9; color: var(--text-dark); }
+  .article-body h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+    color: var(--green-deep);
+  }
+  .article-body p { margin-bottom: 16px; }
+  .article-lead { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 24px; }
+
+  .article-toc {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .article-toc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--green-deep); }
+  .article-toc ol { margin: 0; padding-left: 20px; }
+  .article-toc li { margin-bottom: 4px; font-size: 0.9rem; }
+  .article-toc a { color: var(--green-deep); text-decoration: none; }
+  .article-toc a:hover { text-decoration: underline; }
+
+  .article-amount-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .article-amount-label { font-weight: 700; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 12px; }
+  .article-amount-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .article-amount-item {
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .article-amount-age { display: block; font-size: 0.75rem; color: var(--text-mid); margin-bottom: 4px; }
+  .article-amount-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--green-deep); }
+  .article-amount-note { display: block; font-size: 0.7rem; color: var(--text-soft); margin-top: 2px; }
+
+  .article-tip {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .article-tip strong { display: block; font-size: 0.85rem; color: var(--green-deep); margin-bottom: 4px; }
+  .article-tip p { margin: 0; font-size: 0.9rem; }
+
+  .article-note {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .article-note p { margin: 0; }
+
+  .article-cta {
+    text-align: center;
+    background: var(--green-pale);
+    padding: 32px;
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .article-cta-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .article-cta-body { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 16px; }
+  .article-cta-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .article-cta-link { font-size: 0.9rem; color: var(--green-deep); font-weight: 600; }
+</style>
