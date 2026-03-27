@@ -2,113 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ShindanForm from '../../components/ShindanForm';
 import cities from '../../data/cities.json';
+import fs from 'node:fs';
+import path from 'node:path';
 
-// 全市の補助金データを統合
-import kawagoeData from '../../data/subsidies/kawagoe.json';
-import saitamaData from '../../data/subsidies/saitama.json';
-import tokorozawaData from '../../data/subsidies/tokorozawa.json';
-import kawaguchiData from '../../data/subsidies/kawaguchi.json';
-import yokohamaData from '../../data/subsidies/yokohama.json';
-import nagoyaData from '../../data/subsidies/nagoya.json';
-import sendaiData from '../../data/subsidies/sendai.json';
-import osakaData from '../../data/subsidies/osaka.json';
-import kobeData from '../../data/subsidies/kobe.json';
-import kyotoData from '../../data/subsidies/kyoto.json';
-import fukuokaData from '../../data/subsidies/fukuoka.json';
-import kawasakiData from '../../data/subsidies/kawasaki.json';
-import chibaData from '../../data/subsidies/chiba.json';
-import hiroshimaData from '../../data/subsidies/hiroshima.json';
-import kumamotoData from '../../data/subsidies/kumamoto.json';
-import kagoshimaData from '../../data/subsidies/kagoshima.json';
-import nahaData from '../../data/subsidies/naha.json';
-import sagamiharaData from '../../data/subsidies/sagamihara.json';
-import hamamatsuData from '../../data/subsidies/hamamatsu.json';
-import shizuokaData from '../../data/subsidies/shizuoka.json';
-import niigataData from '../../data/subsidies/niigata.json';
-import sakaiData from '../../data/subsidies/sakai.json';
-import okayamaData from '../../data/subsidies/okayama.json';
-import sapporoData from '../../data/subsidies/sapporo.json';
-import kitakyushuData from '../../data/subsidies/kitakyushu.json';
-import matsuyamaData from '../../data/subsidies/matsuyama.json';
-import takamatsuData from '../../data/subsidies/takamatsu.json';
-import fujiminoData from '../../data/subsidies/fujimino.json';
-import asahikawaData from '../../data/subsidies/asahikawa.json';
-import hakodateData from '../../data/subsidies/hakodate.json';
-import tomakomaiData from '../../data/subsidies/tomakomai.json';
-import obihiroData from '../../data/subsidies/obihiro.json';
-import kushiroData from '../../data/subsidies/kushiro.json';
-import aomoriData from '../../data/subsidies/aomori.json';
-import hachinoheData from '../../data/subsidies/hachinohe.json';
-import hirosakiData from '../../data/subsidies/hirosaki.json';
-import moriokaData from '../../data/subsidies/morioka.json';
-import akitaData from '../../data/subsidies/akita.json';
-import yamagataData from '../../data/subsidies/yamagata.json';
-import fukushimaData from '../../data/subsidies/fukushima.json';
-import hachiojiData from '../../data/subsidies/hachioji.json';
-import iwakiData from '../../data/subsidies/iwaki.json';
-import koriyamaData from '../../data/subsidies/koriyama.json';
-import machidaData from '../../data/subsidies/machida.json';
-import maebashiData from '../../data/subsidies/maebashi.json';
-import mitoData from '../../data/subsidies/mito.json';
-import nerimaData from '../../data/subsidies/nerima.json';
-import setagayaData from '../../data/subsidies/setagaya.json';
-import takasakiData from '../../data/subsidies/takasaki.json';
-import tsukubaData from '../../data/subsidies/tsukuba.json';
-import utsunomiyaData from '../../data/subsidies/utsunomiya.json';
-
-const allSubsidies = [
-  ...kawagoeData,
-  ...saitamaData,
-  ...tokorozawaData,
-  ...kawaguchiData,
-  ...yokohamaData,
-  ...nagoyaData,
-  ...sendaiData,
-  ...osakaData,
-  ...kobeData,
-  ...kyotoData,
-  ...fukuokaData,
-  ...kawasakiData,
-  ...chibaData,
-  ...hiroshimaData,
-  ...kumamotoData,
-  ...kagoshimaData,
-  ...nahaData,
-  ...sagamiharaData,
-  ...hamamatsuData,
-  ...shizuokaData,
-  ...niigataData,
-  ...sakaiData,
-  ...okayamaData,
-  ...sapporoData,
-  ...kitakyushuData,
-  ...matsuyamaData,
-  ...takamatsuData,
-  ...fujiminoData,
-  ...asahikawaData,
-  ...hakodateData,
-  ...tomakomaiData,
-  ...obihiroData,
-  ...kushiroData,
-  ...aomoriData,
-  ...hachinoheData,
-  ...hirosakiData,
-  ...moriokaData,
-  ...akitaData,
-  ...yamagataData,
-  ...fukushimaData,
-  ...hachiojiData,
-  ...iwakiData,
-  ...koriyamaData,
-  ...machidaData,
-  ...maebashiData,
-  ...mitoData,
-  ...nerimaData,
-  ...setagayaData,
-  ...takasakiData,
-  ...tsukubaData,
-  ...utsunomiyaData,
-];
+// 全市の補助金データを動的に統合
+const subsidiesDir = path.join(process.cwd(), 'src/data/subsidies');
+const allSubsidies: any[] = [];
+for (const file of fs.readdirSync(subsidiesDir).filter(f => f.endsWith('.json'))) {
+  try {
+    const data = JSON.parse(fs.readFileSync(path.join(subsidiesDir, file), 'utf8'));
+    if (Array.isArray(data)) allSubsidies.push(...data);
+  } catch {}
+}
 ---
 <BaseLayout
   title="かんたん診断 - あなたがもらえる補助金を30秒で診断"
