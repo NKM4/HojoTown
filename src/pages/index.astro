@@ -247,12 +247,29 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           `;
         } else {
+          // 未対応地域 → 最寄りの対応都市を提案
+          const nearest = findNearest(lat, lng);
           result.style.display = 'block';
-          result.textContent = '';
-          const p = document.createElement('p');
-          p.className = 'hp-geo-detected';
-          p.textContent = 'お近くの対応都市が見つかりませんでした';
-          result.appendChild(p);
+          const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+          if (nearest.city && nearest.distance < 100) {
+            const nn = esc(nearest.city.name);
+            result.innerHTML = `
+              <p class="hp-geo-detected">お住まいの地域はまだ準備中です</p>
+              <p style="font-size:0.9rem;color:var(--text-mid);margin-top:4px;">近隣の${nn}のデータを参考にできます</p>
+              <div class="hp-geo-actions">
+                <a href="/${nearest.city.pref}/${nearest.city.slug}/" class="hp-geo-link">${nn}の補助金を見る →</a>
+                <a href="/shindan/" class="hp-geo-link">診断してみる →</a>
+              </div>
+            `;
+          } else {
+            result.innerHTML = `
+              <p class="hp-geo-detected">お住まいの地域はまだ準備中です</p>
+              <div class="hp-geo-actions">
+                <a href="/shindan/" class="hp-geo-link">対応都市から診断する →</a>
+                <a href="/compare/" class="hp-geo-link">自治体を比較する →</a>
+              </div>
+            `;
+          }
         }
         // GA4カスタムイベント: 位置情報
         if (typeof gtag === 'function') {
