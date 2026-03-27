@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="お問い合わせ">
+  <section class="section">
+    <div class="container legal-page">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="/">ホジョタウン</a></li>
+          <li aria-current="page">お問い合わせ</li>
+        </ol>
+      </nav>
+
+      <h1>お問い合わせ</h1>
+      <p>ホジョタウンへのご意見・ご要望・掲載情報の誤りなど、お気軽にお問い合わせください。</p>
+
+      <form id="contact-form" class="contact-form">
+        <div class="form-group">
+          <label for="name">お名前 <span class="required">*</span></label>
+          <input type="text" id="name" name="name" required placeholder="山田 太郎" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">メールアドレス <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="example@mail.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+          <textarea id="message" name="message" rows="8" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">送信する</button>
+      </form>
+
+      <div class="privacy-notice">
+        <p>ご入力いただいた個人情報は、お問い合わせへの対応以外の目的には使用いたしません。</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = (document.getElementById('name') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+
+    const subject = encodeURIComponent(`【ホジョタウン】お問い合わせ: ${name}`);
+    const body = encodeURIComponent(
+      `お名前: ${name}\nメールアドレス: ${email}\n\n${message}`
+    );
+
+    window.location.href = `mailto:hojotown2026@gmail.com?subject=${subject}&body=${body}`;
+  });
+</script>
+
+<style>
+  .breadcrumb ol {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+  .breadcrumb li + li::before {
+    content: '>';
+    margin: 0 0.5rem;
+    color: #94a3b8;
+  }
+  .breadcrumb a {
+    color: #16a34a;
+    text-decoration: none;
+  }
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .legal-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+  .legal-page h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .legal-page > p {
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #334155;
+  }
+
+  .contact-form {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .required {
+    color: #dc2626;
+    font-size: 0.85rem;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+    color: #1e293b;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 0.875rem;
+    background: #16a34a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover {
+    background: #15803d;
+  }
+
+  .privacy-notice {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+  }
+  .privacy-notice p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #166534;
+    line-height: 1.6;
+  }
+</style>

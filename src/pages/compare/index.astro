@@ -1,37 +1,101 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import cities from '../../data/cities.json';
-import kawagoeData from '../../data/subsidies/kawagoe.json';
 import { CATEGORY_LABELS } from '../../data/types';
 import type { Category, Subsidy } from '../../data/types';
 
+// 全補助金データを動的に読み込み
+import kawagoeData from '../../data/subsidies/kawagoe.json';
 import saitamaData from '../../data/subsidies/saitama.json';
 import tokorozawaData from '../../data/subsidies/tokorozawa.json';
 import kawaguchiData from '../../data/subsidies/kawaguchi.json';
+import yokohamaData from '../../data/subsidies/yokohama.json';
+import nagoyaData from '../../data/subsidies/nagoya.json';
+import sendaiData from '../../data/subsidies/sendai.json';
+import osakaData from '../../data/subsidies/osaka.json';
+import kobeData from '../../data/subsidies/kobe.json';
+import kyotoData from '../../data/subsidies/kyoto.json';
+import fukuokaData from '../../data/subsidies/fukuoka.json';
+import kawasakiData from '../../data/subsidies/kawasaki.json';
+import chibaData from '../../data/subsidies/chiba.json';
+import hiroshimaData from '../../data/subsidies/hiroshima.json';
+import kumamotoData from '../../data/subsidies/kumamoto.json';
+import kagoshimaData from '../../data/subsidies/kagoshima.json';
+import nahaData from '../../data/subsidies/naha.json';
+import sagamiharaData from '../../data/subsidies/sagamihara.json';
+import hamamatsuData from '../../data/subsidies/hamamatsu.json';
+import shizuokaData from '../../data/subsidies/shizuoka.json';
+import niigataData from '../../data/subsidies/niigata.json';
+import sakaiData from '../../data/subsidies/sakai.json';
+import okayamaData from '../../data/subsidies/okayama.json';
+import sapporoData from '../../data/subsidies/sapporo.json';
+import kitakyushuData from '../../data/subsidies/kitakyushu.json';
+import matsuyamaData from '../../data/subsidies/matsuyama.json';
+import takamatsuData from '../../data/subsidies/takamatsu.json';
+import fujiminoData from '../../data/subsidies/fujimino.json';
+import asahikawaData from '../../data/subsidies/asahikawa.json';
+import hakodateData from '../../data/subsidies/hakodate.json';
+import tomakomaiData from '../../data/subsidies/tomakomai.json';
+import obihiroData from '../../data/subsidies/obihiro.json';
+import kushiroData from '../../data/subsidies/kushiro.json';
+import aomoriData from '../../data/subsidies/aomori.json';
+import hachinoheData from '../../data/subsidies/hachinohe.json';
+import hirosakiData from '../../data/subsidies/hirosaki.json';
+import moriokaData from '../../data/subsidies/morioka.json';
+import akitaData from '../../data/subsidies/akita.json';
+import yamagataData from '../../data/subsidies/yamagata.json';
+import fukushimaData from '../../data/subsidies/fukushima.json';
+import hachiojiData from '../../data/subsidies/hachioji.json';
+import iwakiData from '../../data/subsidies/iwaki.json';
+import koriyamaData from '../../data/subsidies/koriyama.json';
+import machidaData from '../../data/subsidies/machida.json';
+import maebashiData from '../../data/subsidies/maebashi.json';
+import mitoData from '../../data/subsidies/mito.json';
+import nerimaData from '../../data/subsidies/nerima.json';
+import setagayaData from '../../data/subsidies/setagaya.json';
+import takasakiData from '../../data/subsidies/takasaki.json';
+import tsukubaData from '../../data/subsidies/tsukuba.json';
+import utsunomiyaData from '../../data/subsidies/utsunomiya.json';
 
-// 全市のデータを統合
 const allSubsidies: Subsidy[] = [
-  ...kawagoeData as Subsidy[],
-  ...saitamaData as Subsidy[],
-  ...tokorozawaData as Subsidy[],
-  ...kawaguchiData as Subsidy[],
+  ...kawagoeData as Subsidy[], ...saitamaData as Subsidy[], ...tokorozawaData as Subsidy[],
+  ...kawaguchiData as Subsidy[], ...yokohamaData as Subsidy[], ...nagoyaData as Subsidy[],
+  ...sendaiData as Subsidy[], ...osakaData as Subsidy[], ...kobeData as Subsidy[],
+  ...kyotoData as Subsidy[], ...fukuokaData as Subsidy[], ...kawasakiData as Subsidy[],
+  ...chibaData as Subsidy[], ...hiroshimaData as Subsidy[], ...kumamotoData as Subsidy[],
+  ...kagoshimaData as Subsidy[], ...nahaData as Subsidy[], ...sagamiharaData as Subsidy[],
+  ...hamamatsuData as Subsidy[], ...shizuokaData as Subsidy[], ...niigataData as Subsidy[],
+  ...sakaiData as Subsidy[], ...okayamaData as Subsidy[], ...sapporoData as Subsidy[],
+  ...kitakyushuData as Subsidy[], ...matsuyamaData as Subsidy[], ...takamatsuData as Subsidy[],
+  ...fujiminoData as Subsidy[],
+  ...asahikawaData as Subsidy[],
+  ...hakodateData as Subsidy[],
+  ...tomakomaiData as Subsidy[],
+  ...obihiroData as Subsidy[],
+  ...kushiroData as Subsidy[],
+  ...aomoriData as Subsidy[],
+  ...hachinoheData as Subsidy[],
+  ...hirosakiData as Subsidy[],
+  ...moriokaData as Subsidy[],
+  ...akitaData as Subsidy[],
+  ...yamagataData as Subsidy[],
+  ...fukushimaData as Subsidy[],
+  ...hachiojiData as Subsidy[],
+  ...iwakiData as Subsidy[],
+  ...koriyamaData as Subsidy[],
+  ...machidaData as Subsidy[],
+  ...maebashiData as Subsidy[],
+  ...mitoData as Subsidy[],
+  ...nerimaData as Subsidy[],
+  ...setagayaData as Subsidy[],
+  ...takasakiData as Subsidy[],
+  ...tsukubaData as Subsidy[],
+  ...utsunomiyaData as Subsidy[],
 ];
 
-// 比較用の集計データを事前計算
-const cityStats = cities.map(city => {
-  const subs = allSubsidies.filter(s => s.cityCode === city.code && s.status === 'active');
-  const categories = [...new Set(subs.map(s => s.category))];
-  const totalMax = subs.reduce((sum, s) => sum + s.maxAmount, 0);
-  return {
-    ...city,
-    subsidyCount: subs.length,
-    categories,
-    totalMaxAmount: totalMax,
-    subsidies: subs,
-  };
-});
+const citiesWithData = new Set(allSubsidies.map(s => s.cityCode));
+const availableCities = cities.filter(city => citiesWithData.has(city.code));
 
-// 比較用カテゴリ（主要なもの）
 const compareCategories: { key: Category; label: string }[] = [
   { key: 'childcare', label: '子育て' },
   { key: 'birth', label: '出産支援' },
@@ -40,97 +104,79 @@ const compareCategories: { key: Category; label: string }[] = [
   { key: 'disability', label: '障害者支援' },
   { key: 'elderly', label: '高齢者支援' },
   { key: 'solar', label: '太陽光・省エネ' },
-  { key: 'school_meal', label: '学校給食' },
   { key: 'fertility', label: '不妊治療' },
   { key: 'vaccine', label: '予防接種' },
 ];
+
+// 全データをJSONとしてクライアントに渡す
+const cityDataMap: Record<string, any> = {};
+for (const city of availableCities) {
+  const subs = allSubsidies.filter(s => s.cityCode === city.code && s.status === 'active');
+  cityDataMap[city.code] = {
+    ...city,
+    subsidyCount: subs.length,
+    subsidies: subs,
+  };
+}
 ---
 <BaseLayout
   title="自治体の補助金を比較 - どの市が手厚い？"
   description="近隣の市区町村の補助金・助成金を横並びで比較。子育て支援、医療費助成、住宅補助など、どの自治体が手厚いかが一目でわかります。"
 >
-  <section class="hero" style="padding: 32px 0;">
+  <section class="cmp-hero">
     <div class="container">
-      <h1 style="font-size: 1.8rem;">自治体の補助金を比較する</h1>
-      <p>近隣の市を横並びで比較。どの市が手厚いかが一目でわかります。</p>
+      <h1>自治体の補助金を比較する</h1>
+      <p>2〜3の市を選んで、補助金を横並びで比較できます。</p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="cmp-selector">
     <div class="container">
-      {/* 概要比較 */}
-      <h2 class="section-title">対応市区町村の比較</h2>
-      <div class="compare-scroll">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>項目</th>
-              {cityStats.map(city => (
-                <th>
-                  <a href={`/${city.prefectureSlug}/${city.slug}/`} style="color: white; text-decoration: underline;">
-                    {city.name}
-                  </a>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>人口</td>
-              {cityStats.map(city => (
-                <td>{(city.population / 10000).toFixed(1)}万人</td>
-              ))}
-            </tr>
-            <tr>
-              <td>掲載制度数</td>
-              {cityStats.map(city => (
-                <td class={city.subsidyCount > 0 ? 'highlight' : ''}>
-                  {city.subsidyCount > 0 ? `${city.subsidyCount}件` : '準備中'}
-                </td>
-              ))}
-            </tr>
-            {compareCategories.map(cat => {
-              // 各市のこのカテゴリの制度をまとめる
-              const cityData = cityStats.map(city => {
-                const subs = city.subsidies.filter(s => s.category === cat.key);
-                return { city, subs, count: subs.length };
-              });
+      <div class="cmp-selects">
+        <div class="cmp-select-group">
+          <label>市区町村①</label>
+          <select id="city1" class="cmp-select">
+            <option value="">選択してください</option>
+            {availableCities.map(c => (
+              <option value={c.code} selected={c.slug === 'kawagoe'}>{c.name}（{c.prefecture}）</option>
+            ))}
+          </select>
+        </div>
+        <div class="cmp-vs">VS</div>
+        <div class="cmp-select-group">
+          <label>市区町村②</label>
+          <select id="city2" class="cmp-select">
+            <option value="">選択してください</option>
+            {availableCities.map(c => (
+              <option value={c.code} selected={c.slug === 'tokorozawa'}>{c.name}（{c.prefecture}）</option>
+            ))}
+          </select>
+        </div>
+        <div class="cmp-vs">VS</div>
+        <div class="cmp-select-group">
+          <label>市区町村③（任意）</label>
+          <select id="city3" class="cmp-select">
+            <option value="">なし</option>
+            {availableCities.map(c => (
+              <option value={c.code}>{c.name}（{c.prefecture}）</option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
 
-              // 全市で0件のカテゴリはスキップ
-              if (cityData.every(d => d.count === 0)) return null;
-
-              return (
-                <tr>
-                  <td>{cat.label}</td>
-                  {cityData.map(d => (
-                    <td>
-                      {d.count > 0 ? (
-                        <div>
-                          {d.subs.map(s => (
-                            <div class="compare-subsidy">
-                              <span class="compare-subsidy-name">{s.name}</span>
-                              <span class="compare-subsidy-amount">{s.amount}</span>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <span class="compare-none">—</span>
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+  <section class="cmp-result">
+    <div class="container">
+      <div class="cmp-table-wrap" id="cmp-table-wrap">
+        <p class="cmp-empty">上のセレクタから市区町村を選んでください。</p>
       </div>
 
       <div class="disclaimer" style="margin-top: 24px;">
-        掲載情報は各自治体の公式サイトを参考に作成しています。最新の情報は必ず各自治体の公式ホームページをご確認ください。データのない市は順次追加していきます。
+        掲載情報は各自治体の公式サイトを参考に作成しています。最新の情報は必ず各自治体の公式ホームページをご確認ください。
       </div>
 
-      {/* CTA */}
-      <div class="card" style="text-align: center; background: var(--green-pale); margin-top: 32px; padding: 28px;">
+      <div style="text-align: center; background: var(--green-pale); margin-top: 32px; padding: 28px; border-radius: 8px;">
         <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 12px;">あなたに合った補助金を診断してみませんか？</p>
         <p style="font-size: 0.9rem; color: var(--text-mid); margin-bottom: 16px;">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
         <a href="/shindan/" class="btn btn-primary">診断してみる</a>
@@ -139,38 +185,154 @@ const compareCategories: { key: Category; label: string }[] = [
   </section>
 </BaseLayout>
 
+<script define:vars={{ cityDataMap, compareCategories }}>
+function render() {
+  const codes = ['city1','city2','city3'].map(id => document.getElementById(id).value).filter(Boolean);
+  const wrap = document.getElementById('cmp-table-wrap');
+
+  if (codes.length < 2) {
+    wrap.innerHTML = '<p class="cmp-empty">2つ以上の市区町村を選んでください。</p>';
+    return;
+  }
+
+  const selected = codes.map(code => cityDataMap[code]).filter(Boolean);
+  if (selected.length < 2) {
+    wrap.innerHTML = '<p class="cmp-empty">データがありません。</p>';
+    return;
+  }
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  let html = '<table class="compare-table"><thead><tr><th>項目</th>';
+  for (const c of selected) {
+    html += `<th><a href="/${esc(c.prefectureSlug)}/${esc(c.slug)}/" style="color:white;text-decoration:underline">${esc(c.name)}</a></th>`;
+  }
+  html += '</tr></thead><tbody>';
+
+  // 人口
+  html += '<tr><td>人口</td>';
+  for (const c of selected) html += `<td>${(c.population/10000).toFixed(1)}万人</td>`;
+  html += '</tr>';
+
+  // 制度数
+  html += '<tr><td>掲載制度数</td>';
+  for (const c of selected) html += `<td class="highlight">${c.subsidyCount}件</td>`;
+  html += '</tr>';
+
+  // カテゴリ別
+  for (const cat of compareCategories) {
+    const catData = selected.map(c => {
+      const subs = c.subsidies.filter(s => s.category === cat.key);
+      return { subs, count: subs.length };
+    });
+    if (catData.every(d => d.count === 0)) continue;
+
+    html += `<tr><td>${esc(cat.label)}</td>`;
+    for (const d of catData) {
+      if (d.count > 0) {
+        html += '<td>';
+        for (const s of d.subs) {
+          html += `<div class="compare-subsidy"><span class="compare-subsidy-name">${esc(s.name)}</span><span class="compare-subsidy-amount">${esc(s.amount)}</span></div>`;
+        }
+        html += '</td>';
+      } else {
+        html += '<td><span class="compare-none">—</span></td>';
+      }
+    }
+    html += '</tr>';
+  }
+
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+}
+
+document.getElementById('city1').addEventListener('change', render);
+document.getElementById('city2').addEventListener('change', render);
+document.getElementById('city3').addEventListener('change', render);
+render();
+</script>
+
 <style>
-  .compare-scroll {
+  .cmp-hero {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+  .cmp-hero h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+  .cmp-hero p { opacity: 0.85; font-size: 1rem; }
+
+  .cmp-selector {
+    background: white;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 44px;
+    z-index: 50;
+  }
+  .cmp-selects {
+    display: flex;
+    align-items: end;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cmp-select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cmp-select-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-mid);
+  }
+  .cmp-select {
+    padding: 10px 16px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    min-width: 200px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .cmp-select:focus {
+    border-color: var(--green-mid);
+    outline: none;
+  }
+  .cmp-vs {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 1.1rem;
+    padding-bottom: 10px;
+  }
+
+  .cmp-result {
+    padding: 32px 0 48px;
+  }
+  .cmp-table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .compare-table {
-    min-width: 700px;
-  }
-  .compare-table td {
-    vertical-align: top;
-  }
-  .compare-subsidy {
-    padding: 4px 0;
-    border-bottom: 1px solid #f0f0ea;
-  }
-  .compare-subsidy:last-child {
-    border-bottom: none;
-  }
-  .compare-subsidy-name {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-dark);
-  }
-  .compare-subsidy-amount {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--green-deep);
-    font-weight: 700;
-  }
-  .compare-none {
+  .cmp-empty {
+    text-align: center;
     color: var(--text-soft);
-    font-size: 0.85rem;
+    padding: 48px 0;
+    font-size: 0.95rem;
+  }
+
+  .compare-subsidy { padding: 4px 0; border-bottom: 1px solid #f0f0ea; }
+  .compare-subsidy:last-child { border-bottom: none; }
+  .compare-subsidy-name { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dark); }
+  .compare-subsidy-amount { display: block; font-size: 0.75rem; color: var(--green-deep); font-weight: 700; }
+  .compare-none { color: var(--text-soft); font-size: 0.85rem; }
+
+  @media (max-width: 768px) {
+    .cmp-selects { flex-direction: column; align-items: stretch; }
+    .cmp-select { min-width: 100%; }
+    .cmp-vs { text-align: center; padding: 4px 0; }
+    .cmp-hero h1 { font-size: 1.4rem; }
   }
 </style>
