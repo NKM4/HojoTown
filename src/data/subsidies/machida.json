@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.machida.tokyo.jp/kodomo/teate/jidoteate.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/shisei/shiyakusyo/gyomu/seikatsu/seikatsu01.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.machida.tokyo.jp/kodomo/ninshin/shussan-ouen.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/lifecycle/ninshin.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "10万円相当のポイント",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/akachanfirst.html",
+    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussankosodateouen",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "保険診療自己負担分を助成（通院200円/回の自己負担あり）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.machida.tokyo.jp/kodomo/teate/iryohi.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/iryo/hokenjo/josei/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/iryo/josei/018support.html",
+    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/kosodate/018",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.machida.tokyo.jp/kodomo/teate/jidofuyo.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/shisei/shiyakusyo/gyomu/seikatsu/kokasen.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.machida.tokyo.jp/iryo/fukushi/shogai/iryo.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/iryo/syougai_hukushi/iryohijosei/marusyou.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "工事費の10%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.machida.tokyo.jp/kurashi/sumai/reform.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/kurashi/sumai/house/josei.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "太陽光：上限10万円、蓄電池：上限10万円（都補助と併用可）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.machida.tokyo.jp/kurashi/kankyo/taiyoko.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/kurashi/kankyo/kankyo/setudenshoene/kunitokyoto.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "自己負担2,500円",
     "maxAmount": 2500,
     "deadline": "10月〜1月",
-    "officialUrl": "https://www.city.machida.tokyo.jp/iryo/kenko/yobosesshu/influenza.html",
+    "officialUrl": "https://www.city.machida.tokyo.jp/iryo/iryo/yobousessyu/koureishainnfuruennza.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

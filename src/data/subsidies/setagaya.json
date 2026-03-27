@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/kodomo/001/001/d00004371.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/02413/18187.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/kodomo/001/shussan-ouen.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/02244/1178.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "10万円相当のポイント",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/akachanfirst.html",
+    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussankosodateouen",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "2万円分の利用券",
     "maxAmount": 20000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/kodomo/001/d00186300.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/02244/1188.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療自己負担分を助成（通院200円/回の自己負担あり）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/kodomo/001/001/d00004372.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/02413/1305.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/iryo/josei/018support.html",
+    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/kosodate/018",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/kodomo/001/001/d00004373.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/kyoutsu/kodomo/1327.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/fukushi/001/002/d00004400.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/02083/2696.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "太陽光：上限20万円、蓄電池：上限20万円（都補助と併用可）",
     "maxAmount": 400000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/sumai/011/d00186500.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/02240/4777.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "上限20万円（介護保険と併用可）",
     "maxAmount": 200000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.setagaya.lg.jp/mokuji/fukushi/003/005/d00004500.html",
+    "officialUrl": "https://www.city.setagaya.lg.jp/02082/2405.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

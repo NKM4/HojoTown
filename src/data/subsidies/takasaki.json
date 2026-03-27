@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011500735/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/4101.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2023011000011/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/4288.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011500736/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/6012.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011500737/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/4103.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011500800/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/4285.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "工事費の30%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011500900/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/3352.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "太陽光：1kWあたり2万円（上限8万円）、蓄電池：上限10万円",
     "maxAmount": 180000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011501000/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/6849.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "1回あたり上限10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011500750/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/site/notice/60666.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "自己負担1,500円",
     "maxAmount": 3000,
     "deadline": "10月〜12月",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2014011500850/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/3562.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "給食費全額無償",
     "maxAmount": 0,
     "deadline": "通年（在学中）",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/docs/2023040000020/",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/page/45373.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

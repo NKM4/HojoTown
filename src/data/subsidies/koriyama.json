@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/37/4273.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/site/kosodate/1373.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/37/shussan-kosodate.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/site/kosodate/66034.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/37/kodomo-iryo.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/site/kosodate/36404.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/37/jidofuyo.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/site/kosodate/1385.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/28/jyudo-iryo.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/65/5428.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/52/reform.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/133/2315.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "太陽光：上限5万円、蓄電池：上限10万円",
     "maxAmount": 150000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/19/saiene.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/54/2443.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "1回あたり上限5万円",
     "maxAmount": 50000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/37/funin.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/site/kosodate/77559.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "自己負担1,200円（残額を市が助成）",
     "maxAmount": 3000,
     "deadline": "10月〜1月",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/15/influenza.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/site/kokokara-koriyama/60526.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "第3子以降は全額無償、その他は一部補助",
     "maxAmount": 0,
     "deadline": "通年（在学中）",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/75/kyushoku-hojo.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/197/108076.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

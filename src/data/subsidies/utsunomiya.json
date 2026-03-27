@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kosodate/teate/1004052.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kosodate/kosodate/shien/1004097.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kosodate/ninshin/1030000.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kenko/kenshin/boshi/1030630.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kosodate/teate/1004053.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kenko/iryo/1034540/1004379.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kosodate/teate/1004054.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kosodate/kosodate/shien/hitorioya/1004082.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/shogai/iryo/1004100.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kenko/shogai/teate/1004206.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "工事費の10%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/sumai/jutaku/1004200.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/machi/jutaku/1035607.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "太陽光：上限5万円、蓄電池：上限10万円",
     "maxAmount": 150000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kankyo/ondanka/1004300.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kankyo/1034538/ondanka/1040207.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "1回あたり上限10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kosodate/ninshin/1004055.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kenko/iryo/1034540/1029613.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "自己負担1,600円",
     "maxAmount": 3000,
     "deadline": "10月〜12月",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/kenko/yobosesshu/1004400.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kenko/kenshin/koureisha/1004430.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "単身60万円、世帯100万円（子ども加算あり）",
     "maxAmount": 1000000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.utsunomiya.lg.jp/shisei/machizukuri/iju/1025000.html",
+    "officialUrl": "https://www.city.utsunomiya.lg.jp/kurashi/teijyu/1013748/1025583.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

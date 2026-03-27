@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-teate/kosodate/teate/jidouteate.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-portal/mokuteki/seido_teate/ninshinsyussanzyosei/4515.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生届出後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-teate/kosodate/shussan-kosodate-ouen.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-portal/mokuteki/ninshin_syussan/financial_support/5596.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-teate/kosodate/iryouhi.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/soshiki/9/1041/3/489.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-teate/kosodate/jidoufuyouteate.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-portal/mokuteki/seido_teate/hitorioyazyosei/950.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "月額28,840円",
     "maxAmount": 28840,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/shougai-fukushi/teate.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/soshiki/9/1043/3/1727.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "自己負担2,500円（残額を市が助成）",
     "maxAmount": 5000,
     "deadline": "年度内",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/kenko-yobou/yobousesshu/haienkyukin.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/soshiki/9/1050/2/594.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/toshi-jyuutaku/reform.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/soshiki/12/1064/1/4736.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "1kWあたり2万円（上限8万円）、蓄電池は上限10万円加算",
     "maxAmount": 180000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/kankyou-seisaku/taiyoukou.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/soshiki/8/1034/1/12521.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "1回の治療につき上限5万円",
     "maxAmount": 50000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/kenko-boshi/funin.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/kosodate-portal/mokuteki/kodomogahoshii/funinchiryou/2373.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "給食費全額無償",
     "maxAmount": 0,
     "deadline": "通年（在学中）",
-    "officialUrl": "https://www.city.fukushima.fukushima.jp/gakkou-kyushoku/mushouka.html",
+    "officialUrl": "https://www.city.fukushima.fukushima.jp/soshiki/19/1076/2/1271.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

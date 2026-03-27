@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/003/001/p002006.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/002/001/p001078.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/003/shussan-ouen.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/001/001/p031701.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "10万円相当のポイント",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/akachanfirst.html",
+    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussankosodateouen",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "保険診療自己負担分を助成（通院は200円/回の自己負担あり）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/003/001/p002008.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/002/002/p001079.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/iryo/josei/018support.html",
+    "officialUrl": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/kosodate/018",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/003/001/p002007.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kosodate/002/001/p000929.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/welfare/002/p002050.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/welfare/005/004/p004178.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "工事費の10%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/sumai/jutaku/reform.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/life/003/001/004/p006694.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "太陽光：上限10万円、蓄電池：上限15万円（都の補助と併用可）",
     "maxAmount": 250000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kankyo/taiyoko.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/life/004/a546973/a871645/p007132.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "全額助成（自己負担なし）",
     "maxAmount": 5000,
     "deadline": "10月〜1月",
-    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/kenko/007/influenza.html",
+    "officialUrl": "https://www.city.hachioji.tokyo.jp/kurashi/hoken/007/yobosesshu/koureiyobo/p035761.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

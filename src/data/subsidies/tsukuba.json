@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入から15日以内に申請",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kosodate/teate/jidoteate.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/kodomobukodomoseisakuka/gyomuannai/4/1/1001110.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kosodate/ninshin/shussan-ouen.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/kodomobukodomomiraicenter/gyomuannai/2/boshihoken/12195.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "保険診療自己負担分を助成（外来は自己負担あり）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kosodate/teate/marufuku.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/hokembuiryonenkinka/gyomuannai/3/1001305.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kosodate/teate/jidofuyo.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/kodomobukodomoseisakuka/gyomuannai/4/1/1001111.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/fukushi/shogai/iryo.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/hokembuiryonenkinka/gyomuannai/3/1001305.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kurashi/sumai/reform.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/kensetsubujuuakuseisakuka/gyomuannai/2/3/1011856.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "太陽光：上限10万円、蓄電池：上限15万円",
     "maxAmount": 250000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kurashi/kankyo/saiene.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/seikatsukankyobukankyoseisakuka/gyomuannai/1/1/evm-Subsidy/19522.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "1回あたり上限10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kosodate/ninshin/funin.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/kosodatenavi/1005676/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "自己負担1,000円",
     "maxAmount": 3500,
     "deadline": "10月〜1月",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kenko/yobo/influenza.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/hokembukenkozoshinka/gyomuannai/3/6/1001313.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "第2子以降の給食費全額無償",
     "maxAmount": 0,
     "deadline": "通年（在学中）",
-    "officialUrl": "https://www.city.tsukuba.lg.jp/kosodate/gakko/kyushoku.html",
+    "officialUrl": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/kyoikukyokukenkokyoikuka/gyomuannai/1/1/1014380.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
