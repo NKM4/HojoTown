@@ -27,7 +27,7 @@ const totalSubsidies = Array.from(dataSlugs).reduce((sum, slug) => {
 // 地域ごとにグループ（データがある市のみ）
 const regions = [
   { name: '北海道・東北', cities: activeCities.filter(c => ['hokkaido','miyagi','aomori','iwate','akita','yamagata','fukushima'].includes(c.prefectureSlug)) },
-  { name: '関東', cities: activeCities.filter(c => ['saitama','chiba','kanagawa','tokyo'].includes(c.prefectureSlug)) },
+  { name: '関東', cities: activeCities.filter(c => ['saitama','chiba','kanagawa','tokyo','ibaraki','tochigi','gunma'].includes(c.prefectureSlug)) },
   { name: '中部', cities: activeCities.filter(c => ['niigata','shizuoka','aichi','nagano','toyama','ishikawa','fukui','yamanashi','gifu'].includes(c.prefectureSlug)) },
   { name: '近畿', cities: activeCities.filter(c => ['kyoto','osaka','hyogo','nara','shiga','wakayama','mie'].includes(c.prefectureSlug)) },
   { name: '中国・四国', cities: activeCities.filter(c => ['okayama','hiroshima','kagawa','ehime','tottori','shimane','yamaguchi','tokushima','kochi'].includes(c.prefectureSlug)) },
