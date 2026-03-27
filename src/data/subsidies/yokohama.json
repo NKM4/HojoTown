@@ -418,7 +418,7 @@
   {
     "id": "yokohama-tax-001",
     "name": "定額減税の補足給付（不足額給付）",
-    "category": "tax",
+    "category": "education",
     "cityCode": "14100",
     "cityName": "横浜市",
     "prefecture": "神奈川県",
@@ -434,7 +434,7 @@
   {
     "id": "yokohama-tax-002",
     "name": "定額減税の補足給付（調整給付）",
-    "category": "tax",
+    "category": "education",
     "cityCode": "14100",
     "cityName": "横浜市",
     "prefecture": "神奈川県",

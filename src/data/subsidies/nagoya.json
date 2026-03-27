@@ -578,7 +578,7 @@
   {
     "id": "nagoya-tax-037",
     "name": "名古屋市民税5%減税",
-    "category": "tax",
+    "category": "education",
     "cityCode": "23100",
     "cityName": "名古屋市",
     "prefecture": "愛知県",
@@ -594,7 +594,7 @@
   {
     "id": "nagoya-tax-038",
     "name": "市民税・県民税の減免及び森林環境税の免除",
-    "category": "tax",
+    "category": "education",
     "cityCode": "23100",
     "cityName": "名古屋市",
     "prefecture": "愛知県",
@@ -610,7 +610,7 @@
   {
     "id": "nagoya-tax-039",
     "name": "固定資産税・都市計画税の減免",
-    "category": "tax",
+    "category": "education",
     "cityCode": "23100",
     "cityName": "名古屋市",
     "prefecture": "愛知県",
@@ -626,7 +626,7 @@
   {
     "id": "nagoya-tax-040",
     "name": "市民税・県民税の非課税",
-    "category": "tax",
+    "category": "education",
     "cityCode": "23100",
     "cityName": "名古屋市",
     "prefecture": "愛知県",

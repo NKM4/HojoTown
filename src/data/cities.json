@@ -272,7 +272,7 @@
     "population": 270000
   },
   {
-    "code": "02202",
+    "code": "02203",
     "name": "八戸市",
     "prefecture": "青森県",
     "prefectureSlug": "aomori",
@@ -280,7 +280,7 @@
     "population": 220000
   },
   {
-    "code": "02203",
+    "code": "02202",
     "name": "弘前市",
     "prefecture": "青森県",
     "prefectureSlug": "aomori",
@@ -604,7 +604,7 @@
     "name": "太田市",
     "prefecture": "群馬県",
     "prefectureSlug": "gunma",
-    "slug": "ota",
+    "slug": "ota-gunma",
     "population": 220000
   },
   {
