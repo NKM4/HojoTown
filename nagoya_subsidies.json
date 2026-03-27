@@ -1,0 +1,425 @@
+{
+  "cityCode": "23100",
+  "cityName": "名古屋市",
+  "prefecture": "愛知県",
+  "lastUpdated": "2026-03-26",
+  "categories": [
+    {
+      "category": "子育て",
+      "subsidies": [
+        {
+          "name": "児童手当",
+          "summary": "高校生年代（18歳年度末）までの子どもを養育する保護者に支給。令和6年10月分から所得制限撤廃。",
+          "amount": "0〜3歳未満: 第1・2子 月15,000円、第3子以降 月30,000円／3歳〜高校生年代: 第1・2子 月10,000円、第3子以降 月30,000円",
+          "target": "名古屋市に住所を有し、高校生年代までの子どもを養育する方",
+          "url": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "物価高対応子育て応援手当",
+          "summary": "令和7年9月分の児童手当受給対象児童、または令和7年10月1日〜令和8年3月31日に出生した児童の保護者に1回限り支給。公務員以外は申請不要。",
+          "amount": "対象児童1人あたり20,000円（1回限り）",
+          "target": "児童手当受給対象児童を養育する保護者",
+          "url": "https://www.city.nagoya.jp/kodomo/kosodate/1009307/1044084.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "子どもあんしん住まいる補助金",
+          "summary": "12歳以下の子どもがいる世帯や妊娠中の方がいる世帯を対象に、チャイルドゲート・補助錠・転落防止手すり等の安全対策費用を補助。",
+          "amount": "対象商品購入費・改修工事費の1/2（上限200,000円/戸）",
+          "target": "名古屋市内に居住する12歳以下の子どもがいる世帯または妊娠中の方がいる世帯",
+          "applicationPeriod": "令和7年4月15日〜令和8年2月28日",
+          "url": "https://www.city.nagoya.jp/jutakutoshi/page/0000173316.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "子どものインフルエンザ予防接種費用助成",
+          "summary": "対象年齢の子どものインフルエンザ予防接種費用を全額助成（無償化）。令和7年度事業は終了。令和8年度の実施は未定。",
+          "amount": "全額助成（無償化）",
+          "target": "令和7年度中に12歳・15歳・18歳に達する名古屋市住民",
+          "note": "令和7年度事業は終了。令和8年度の実施予定は未発表。",
+          "url": "https://www.city.nagoya.jp/kodomo/kosodate/1009307/1035123/1037482.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "就学援助（未来まなび応援金）",
+          "summary": "低所得世帯の児童生徒に学用品費・学校給食費・入学準備金等を支給。",
+          "amount": "入学準備金: 小1 57,060円、中1 63,000円／学校給食費: 実費／学用品費等: 学期ごとに支給（小1最大13,230円〜中3最大27,310円）／オンライン学習通信費: 年間15,000円",
+          "target": "世帯全員の所得合算額が所得基準額以下の世帯、児童扶養手当受給世帯、生活保護世帯",
+          "url": "https://www.city.nagoya.jp/kyoiku/page/0000051014.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "出産",
+      "subsidies": [
+        {
+          "name": "名古屋市妊婦・子育て家庭応援金",
+          "summary": "妊娠届出後に妊婦応援金、出生届出後に子育て家庭応援金を支給。伴走型相談支援と一体的に実施。",
+          "amount": "妊婦応援金: 妊婦1人あたり50,000円／子育て家庭応援金: 胎児1人あたり50,000円（双子なら100,000円）",
+          "target": "令和5年3月1日以降に妊娠届出・出産し、申請時点で名古屋市に住民票がある方",
+          "url": "https://www.city.nagoya.jp/kodomo/ninshin/1008958/1008960.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "出産育児一時金（国民健康保険）",
+          "summary": "国民健康保険加入者の出産時に支給。直接支払制度あり。",
+          "amount": "488,000円（産科医療保障制度加入の分娩機関での出産の場合は500,000円）",
+          "target": "名古屋市国民健康保険加入者",
+          "url": "https://www.city.nagoya.jp/kurashi/hoken/1011736/1011758/1011763/1011768.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "住宅リフォーム",
+      "subsidies": [
+        {
+          "name": "木造住宅耐震改修助成",
+          "summary": "昭和56年5月31日以前着工の木造住宅の耐震改修工事費用を助成。",
+          "amount": "一般世帯: 耐震改修工事費の4/5以内（上限1,150,000円、長屋・共同住宅は1,000,000円）／非課税世帯: 上限1,650,000円",
+          "target": "昭和56年5月31日以前に着工された2階建て以下の木造住宅の所有者で、無料耐震診断の判定値が1.0未満の方",
+          "applicationPeriod": "4月〜翌年1月末",
+          "url": "https://www.city.nagoya.jp/kurashi/juutaku/1014710/1014649/1034739/1014652/1034014.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "介護保険住宅改修費の支給",
+          "summary": "要介護・要支援認定者の住宅にバリアフリー改修（手すり設置、床材変更等）を行った際の費用を支給。",
+          "amount": "改修費用の7〜9割を支給（利用限度額200,000円）。1割負担者: 最大180,000円、2割負担者: 最大160,000円、3割負担者: 最大140,000円",
+          "target": "要介護または要支援の認定を受けた在宅の方",
+          "note": "改修工事着工前の事前申請が必須",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/koureisha/1016500/1011160/1034412.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "バリアフリー改修工事に対する固定資産税の減額",
+          "summary": "バリアフリー改修工事が行われた住宅に対する固定資産税の減額措置。",
+          "amount": "固定資産税の減額（詳細は要確認）",
+          "target": "バリアフリー改修工事を行った住宅の所有者",
+          "url": "https://www.city.nagoya.jp/zaisei/page/0000074932.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "省エネルギー改修工事に対する固定資産税の減額",
+          "summary": "省エネルギー改修工事が行われた住宅に対する固定資産税の減額措置。",
+          "amount": "固定資産税の減額（詳細は要確認）",
+          "target": "省エネルギー改修工事を行った住宅の所有者",
+          "url": "https://www.city.nagoya.jp/zaisei/page/0000074938.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "医療費助成",
+      "subsidies": [
+        {
+          "name": "子ども医療費助成制度",
+          "summary": "18歳年度末までの子どもの医療費（保険診療分）の自己負担額を助成し無料に。所得制限なし。",
+          "amount": "医療費（保険診療分）の自己負担額を全額助成（無料）",
+          "target": "名古屋市に住所があり、18歳年度末までの子どもで健康保険に加入している方",
+          "url": "https://www.city.nagoya.jp/kodomo/kosodate/1009307/1035123/1037482.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "障害者医療費助成制度",
+          "summary": "障害者の医療費（保険診療分）の自己負担額を助成。所得制限あり。",
+          "amount": "医療費（保険診療分）の自己負担額を助成（無料）",
+          "target": "身体障害者手帳1〜3級（腎臓機能障害は1〜4級）、精神障害者保健福祉手帳1〜2級、知能指数50以下と判定された方、自閉症状群、指定難病の特定医療費受給者証所持者。所得制限あり（扶養親族0人で3,604,000円）",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/page/0000008709.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "ひとり親家庭等医療費助成制度",
+          "summary": "ひとり親家庭等の医療費（保険診療分）の自己負担額を助成。",
+          "amount": "医療費（保険診療分）の自己負担額を助成（無料）",
+          "target": "ひとり親家庭等医療費助成制度の要件を満たす方",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/iryou/1034391/1011182/1033725.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "福祉給付金支給制度",
+          "summary": "後期高齢者医療制度の被保険者または70歳以上で一定要件を満たす方に医療費の自己負担額を助成。",
+          "amount": "医療費（保険診療分）の自己負担額を助成",
+          "target": "後期高齢者医療制度の被保険者または70歳以上の健康保険加入者で、障害者医療費助成要件・ひとり親家庭等要件・寝たきり・重度認知症等に該当する方",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/koureisha/1016448/1016483.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "障害者手当",
+      "subsidies": [
+        {
+          "name": "特別障害者手当（国）",
+          "summary": "著しい重度の障害のため日常生活において常時特別の介護を必要とする20歳以上の方に支給。",
+          "amount": "月額29,590円（2月・5月・8月・11月に支給）",
+          "target": "20歳以上で政令に定める程度の著しい重度の障害状態にあり、常時特別の介護を必要とする方。施設入所者・3か月超入院者・所得制限超過者は対象外",
+          "url": "https://www.kaigo-wel.city.nagoya.jp/view/wel/shiori/teate/tokubetuteate.html",
+          "source": "kaigo-wel.city.nagoya.jp"
+        },
+        {
+          "name": "特別障害者手当（名古屋市・愛知県）",
+          "summary": "国の特別障害者手当受給者のうち、障害の種別・程度に応じて市・県の手当を上乗せ支給。",
+          "amount": "1種（身体1・2級かつ愛護手帳1・2度）: 月額11,850円／2種（身体1・2級または愛護手帳1・2度）: 月額6,050円／3種: 月額5,000円",
+          "target": "国の特別障害者手当受給者のうち、障害種別・程度に応じた要件を満たす方",
+          "url": "https://www.kaigo-wel.city.nagoya.jp/view/wel/shiori/teate/tokubetuteate.html",
+          "source": "kaigo-wel.city.nagoya.jp"
+        },
+        {
+          "name": "障害児福祉手当（国）",
+          "summary": "重度の障害のため常時介護を必要とする20歳未満の障害児に支給。",
+          "amount": "月額（詳細は要確認）",
+          "target": "20歳未満で重度の障害により常時介護を必要とする方",
+          "url": "https://www.kaigo-wel.city.nagoya.jp/view/wel/shiori/teate/ziteate.html",
+          "source": "kaigo-wel.city.nagoya.jp"
+        },
+        {
+          "name": "愛知県在宅重度障害者手当",
+          "summary": "在宅の重度障害者に対する愛知県独自の手当。",
+          "amount": "月額（詳細は要確認）",
+          "target": "在宅の重度障害者で愛知県の要件を満たす方",
+          "url": "https://www.kaigo-wel.city.nagoya.jp/view/wel/shiori/teate/kenteate.html",
+          "source": "kaigo-wel.city.nagoya.jp"
+        },
+        {
+          "name": "重度障害者（児）給付金（名古屋市）",
+          "summary": "身体障害者手帳1・2級、愛護手帳1・2度等の在宅重度障害者に年1回支給。",
+          "amount": "年額20,000円（12月支給）",
+          "target": "11月1日現在で身体障害者手帳1・2級、愛護手帳1・2度、または身体障害者手帳3級かつ愛護手帳3度の方で、愛知県在宅重度障害者手当等の11月分を受給している方",
+          "url": "https://www.kaigo-wel.city.nagoya.jp/view/wel/shiori/teate/siteate.html",
+          "source": "kaigo-wel.city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "高齢者支援",
+      "subsidies": [
+        {
+          "name": "在宅高齢者エアコン設置等助成事業",
+          "summary": "経済的理由によりエアコンを設置できない高齢者の熱中症対策として、エアコン購入・設置・修理費用を助成。令和7年度のみの事業。",
+          "amount": "上限92,000円（税込）",
+          "target": "令和8年3月31日時点で満65歳以上、名古屋市在住、市民税非課税世帯・生活保護受給世帯等で、稼働するエアコンが1台もない世帯",
+          "note": "令和7年度事業。受付は令和7年9月30日で終了。",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/page/0000183804.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "高齢者肺炎球菌予防接種費用助成",
+          "summary": "66歳以上で過去にニューモバックス（23価）を接種したことがない方の予防接種費用を助成。",
+          "amount": "自己負担4,000円（通常全額自費の場合より大幅に軽減）。生活保護世帯・市民税非課税世帯等は自己負担金免除。",
+          "target": "名古屋市に住民登録があり、接種日時点で満66歳以上、過去にニューモバックス（23価）を接種したことがない方",
+          "note": "令和8年4月1日以降ワクチンがプレベナー20（20価）に変更予定",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/kenkoinfo/1009500/1009501/1009535/1009540.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "不妊治療",
+      "subsidies": [
+        {
+          "name": "不育症検査費用助成事業",
+          "summary": "保険適用外の不育症検査のうち先進医療として実施されるものの費用の一部を助成。",
+          "amount": "1回の検査費用の7割（千円未満切り捨て、上限60,000円）",
+          "target": "名古屋市在住で、既往流死産回数が2回以上ある方",
+          "url": "https://www.city.nagoya.jp/kodomo/ninshin/1008962/1008967.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "がん患者等妊よう性温存治療費助成事業",
+          "summary": "がん治療等により妊孕性が低下するおそれのある方の妊孕性温存治療費を助成。愛知県助成との上乗せ。",
+          "amount": "未受精卵子凍結: 上限100,000円／精子凍結: 上限25,000円／意思決定支援カウンセリング: 費用の1/2（上限7,150円）。いずれも愛知県助成を差し引いた額。",
+          "target": "名古屋市在住で愛知県の妊孕性温存治療費助成を受けた方（カウンセリングは43歳未満でがん治療中・治療後の方）",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/page/0000134614.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "予防接種",
+      "subsidies": [
+        {
+          "name": "帯状疱疹予防接種費用助成",
+          "summary": "50歳以上の方を対象に帯状疱疹ワクチンの接種費用を助成。生涯1度のみ。",
+          "amount": "シングリックス（不活化ワクチン）: 自己負担10,800円/回（2回接種、通常20,000〜30,000円/回）／ビケン（生ワクチン）: 自己負担4,200円/回（1回接種、通常7,000〜10,000円）。生活保護世帯・市民税非課税世帯等は自己負担金免除。",
+          "target": "名古屋市に住民登録がある50歳以上の方で、定期接種対象外の方",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/kenkoinfo/1009500/1009501/1009535/1009536.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "予防接種自己負担金の免除制度",
+          "summary": "低所得者等の各種定期予防接種の自己負担金を免除。",
+          "amount": "自己負担金の全額免除",
+          "target": "生活保護世帯、市民税非課税世帯、中国残留邦人等支援給付受給者",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/page/0000087310.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "学校給食費",
+      "subsidies": [
+        {
+          "name": "就学援助による学校給食費の実費支給",
+          "summary": "就学援助（未来まなび応援金）認定世帯に対し、学校給食費を実費で支給。名古屋市単独の給食費無償化制度は現時点で確認されていない。",
+          "amount": "学校給食費の実費（小学校4,400円/月程度、中学校320円/食程度）",
+          "target": "就学援助（未来まなび応援金）の認定を受けた世帯の児童生徒",
+          "url": "https://www.city.nagoya.jp/kyoiku/page/0000051014.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "太陽光・省エネ",
+      "subsidies": [
+        {
+          "name": "住宅等の脱炭素化促進補助（太陽光発電設備等の一体的導入）",
+          "summary": "太陽光発電設備・HEMS・蓄電システム・V2H充放電設備の一体的導入に対する補助。",
+          "amount": "太陽光発電: 1kWあたり10,000〜25,000円（築年数・住宅種別により異なる、上限9.99kW）／HEMS: 10,000円/件／蓄電システム: 15,000円/kWh／V2H充放電設備: 50,000円/件",
+          "target": "名古屋市内の住宅に太陽光発電設備等を一体的に導入する方",
+          "applicationPeriod": "〜令和9年3月13日",
+          "url": "https://www.city.nagoya.jp/kankyo/page/0000138396.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "住宅等の脱炭素化促進補助（ZEH）",
+          "summary": "ZEH（ネット・ゼロ・エネルギー・ハウス）の新築・購入に対する補助。",
+          "amount": "ZEH: 100,000円/戸／ZEH+・LCCM住宅: 200,000円/戸／蓄電システム: 15,000円/kWh",
+          "target": "国のZEH支援事業の対象となる戸建住宅を新築・購入する方",
+          "url": "https://www.city.nagoya.jp/kankyo/page/0000138396.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "住宅等の脱炭素化促進補助（V2H充放電設備単独）",
+          "summary": "既存太陽光発電設備との連系によるV2H充放電設備の設置に対する補助。",
+          "amount": "50,000円/件",
+          "target": "既に太陽光発電設備が設置されている住宅にV2H充放電設備を設置する方",
+          "url": "https://www.city.nagoya.jp/kankyo/page/0000138396.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "住宅等の脱炭素化促進補助（既設太陽光発電に接続する蓄電システム）",
+          "summary": "既存太陽光発電設備に接続する蓄電システムの設置に対する補助。",
+          "amount": "15,000円/kWh",
+          "target": "既に太陽光発電設備が設置されている既存住宅に蓄電システムを設置する方",
+          "url": "https://www.city.nagoya.jp/kankyo/page/0000138396.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "住宅等の脱炭素化促進補助（断熱窓改修）",
+          "summary": "既存住宅の窓を断熱改修する費用の一部を補助。",
+          "amount": "補助対象経費の1/3（上限200,000円）",
+          "target": "名古屋市内の既存住宅で断熱窓改修を行う方（U値2.3W/m²K以下）",
+          "url": "https://www.city.nagoya.jp/kankyo/page/0000138396.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "住宅等の脱炭素化促進補助（家庭用燃料電池システム・エネファーム）",
+          "summary": "停電時自立運転機能付きの家庭用燃料電池システム（エネファーム）の設置に対する補助。",
+          "amount": "30,000円/件",
+          "target": "停電時自立運転機能付きエネファームを設置する方",
+          "url": "https://www.city.nagoya.jp/kankyo/page/0000138396.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "引越し・移住",
+      "subsidies": [
+        {
+          "name": "名古屋市移住支援補助金",
+          "summary": "東京圏（埼玉・千葉・東京・神奈川）から名古屋市に移住し就業・起業した方に補助金を交付。テレワーク移住は対象外。",
+          "amount": "詳細は申請の手引きに記載（令和7年度受付終了、令和8年度の実施は未定）",
+          "target": "東京圏から名古屋市に移住し、あいちUIJターン支援センター掲載法人に就業等した方",
+          "note": "令和7年度受付終了。令和8年度の実施は未定。",
+          "url": "https://www.city.nagoya.jp/kurashi/shigoto/1034836/1016730/1016731.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "住居確保給付金（家賃補助）",
+          "summary": "離職・廃業・収入減少により家賃の支払いが困難な方に家賃相当額を支給。求職活動が必須。",
+          "amount": "単身世帯: 月額上限37,000円／2人世帯: 月額上限44,000円／3人以上世帯: 月額上限48,000円（原則3か月、最長9か月）",
+          "target": "離職・廃業から2年以内または同程度の収入減少があり、収入基準・資産基準以下の方",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/fukushi/1016735/1016738.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "住居確保給付金（転居費用補助）",
+          "summary": "収入減少等により家計改善のための転居が必要と認められた方の転居費用を補助。",
+          "amount": "単身世帯: 上限240,000円／2人世帯: 上限260,000円／3人世帯: 上限280,000円／4人世帯: 上限295,000円",
+          "target": "収入が著しく減少した月から2年以内で、家計改善支援を受け転居による家計改善が認められた方",
+          "url": "https://www.city.nagoya.jp/kenkofukushi/fukushi/1016735/1036283.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "税金の減免",
+      "subsidies": [
+        {
+          "name": "名古屋市民税5%減税",
+          "summary": "名古屋市独自の市民税減税措置。個人市民税の所得割を一律5%減税。",
+          "amount": "市民税所得割の5%減税（令和7年度の推定減税総額: 約102億円、対象約123.5万人）",
+          "target": "名古屋市の個人市民税納税義務者（分離課税に係る所得割は対象外）",
+          "url": "https://www.city.nagoya.jp/kurashi/zeikin/1037356/1011880/1012157/1033970.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "市民税・県民税の減免及び森林環境税の免除",
+          "summary": "災害被害、生活扶助受給、大幅な所得減少等の特別な事情がある方の市民税等を減免。",
+          "amount": "減免額は個別事情により異なる",
+          "target": "災害により被害を受けた方、生活扶助を受けている方、前年に比べ大幅な所得減少が見込まれる方等",
+          "url": "https://www.city.nagoya.jp/kurashi/zeikin/1037356/1011880/1011896.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "固定資産税・都市計画税の減免",
+          "summary": "災害による一定以上の被害を受けた固定資産や、生活保護受給者が所有する固定資産の税を減免。",
+          "amount": "減免額は個別事情により異なる",
+          "target": "災害により一定以上の被害を受けた固定資産の所有者、生活保護法による生活扶助を受けている方等",
+          "url": "https://www.city.nagoya.jp/zaisei/page/0000077429.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "市民税・県民税の非課税",
+          "summary": "一定の条件に該当する方は市民税・県民税・森林環境税が課税されない。",
+          "amount": "全額非課税",
+          "target": "生活保護法による生活扶助受給者／障害者・未成年者・寡婦・ひとり親で前年合計所得135万円以下の方／扶養親族なしで前年合計所得45万円以下の方",
+          "url": "https://www.city.nagoya.jp/kurashi/zeikin/1037356/1011880/1011882.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    },
+    {
+      "category": "ひとり親家庭",
+      "subsidies": [
+        {
+          "name": "児童扶養手当",
+          "summary": "ひとり親家庭等の生活の安定と自立を助けるための手当。",
+          "amount": "全部支給: 1人目 月額46,690円、2人目以降 1人につき月額11,030円／一部支給: 1人目 月額46,680〜11,010円、2人目以降 月額11,020〜5,520円（所得に応じて変動）",
+          "target": "ひとり親家庭または両親のいない家庭で18歳までの児童（障害児は20歳まで）を養育する方。所得制限あり。",
+          "url": "https://www.city.nagoya.jp/kodomo/hitorioya/1009385/1009387.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "ひとり親家庭手当（名古屋市）",
+          "summary": "ひとり親家庭の児童1人あたりに3年間支給される名古屋市独自の手当。",
+          "amount": "全部支給: 1年目 月9,000円、2年目 月4,500円、3年目 月3,000円／一部支給: 1年目 月4,500円、2年目 月3,000円、3年目 月3,000円",
+          "target": "18歳年度末までの児童を養育するひとり親家庭の方",
+          "url": "https://www.city.nagoya.jp/kodomo/hitorioya/1009385/1009386.html",
+          "source": "city.nagoya.jp"
+        },
+        {
+          "name": "愛知県遺児手当",
+          "summary": "ひとり親家庭の児童に5年間支給される愛知県の手当。",
+          "amount": "1〜3年目: 月額4,350円／4〜5年目: 月額2,175円",
+          "target": "18歳年度末までの児童を養育するひとり親家庭の方",
+          "url": "https://www.city.nagoya.jp/kodomo/hitorioya/1009385/1009386.html",
+          "source": "city.nagoya.jp"
+        }
+      ]
+    }
+  ]
+}

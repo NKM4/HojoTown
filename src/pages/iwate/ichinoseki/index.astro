@@ -18,8 +18,8 @@ const totalCount = subsidies.length;
 const categoriesUsed = Object.keys(byCategory) as Category[];
 ---
 <BaseLayout
-  title={}
-  description={}
+  title={`${cityName}の補助金・助成金一覧`}
+  description={`${prefecture}${cityName}で個人が使える補助金・助成金を${totalCount}件掲載。子育て・住宅・医療・障害者支援など。`}
 >
   <div class="container" style="padding-top: 16px;">
     <nav style="font-size: 0.8rem; color: var(--text-soft);">
