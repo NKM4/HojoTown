@@ -155,7 +155,7 @@
     "amount": "先進医療分の自己負担額（上限5万円）",
     "maxAmount": 50000,
     "deadline": "治療終了日から60日以内",
-    "officialUrl": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/kenkozukurisuishinka/ninshin_shussan/4149.html",
+    "officialUrl": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/oyakokenko/kenko_kenshin/23627.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -171,7 +171,7 @@
     "amount": "1世帯あたり10,000円",
     "maxAmount": 10000,
     "deadline": "冬季（12月〜3月頃）",
-    "officialUrl": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/fukushiseisakuka/21302.html",
+    "officialUrl": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/fukushiseisakuka/fukushi_kaigo/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
