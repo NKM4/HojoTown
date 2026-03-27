@@ -120,18 +120,10 @@ document.getElementById('add-city-btn').addEventListener('click', function() {
 
   const group = document.createElement('div');
   group.className = 'cmp-select-group';
-  const label = document.createElement('label');
-  label.textContent = '市区町村' + '①②③④⑤⑥⑦⑧⑨⑩'[cityCount-1];
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.id = 'city' + cityCount;
-  input.className = 'cmp-input';
-  input.placeholder = '市名を入力...';
-  input.setAttribute('list', 'cities-list');
-  input.autocomplete = 'off';
-  input.addEventListener('change', render);
-  group.appendChild(label);
-  group.appendChild(input);
+  group.innerHTML = '<label>市区町村' + '①②③④⑤⑥⑦⑧⑨⑩'[cityCount-1] + '</label>' +
+    '<input type="text" list="cities-list" id="city' + cityCount + '" class="cmp-input" placeholder="市名を入力..." autocomplete="off">';
+  group.querySelector('input').addEventListener('change', render);
+  group.querySelector('input').addEventListener('input', render);
   container.appendChild(group);
 
   if (cityCount >= 10) this.style.display = 'none';
