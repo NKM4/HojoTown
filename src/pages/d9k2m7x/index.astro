@@ -58,7 +58,8 @@ function loadContacts(token) {
     for (var i = 0; i < data.length; i++) {
       var c = data[i];
       var date = new Date(c.created_at).toLocaleString('ja-JP');
-      var typeLabel = c.type === 'city_request' ? '🏙️ 市リクエスト' : '✉️ お問い合わせ';
+      var typeLabels = {city_request:'🏙️ 市リクエスト',info_error:'⚠️ 情報修正',feature_request:'💡 機能要望',bug:'🐛 不具合',other:'📩 その他',contact:'✉️ お問い合わせ'};
+      var typeLabel = typeLabels[c.type] || '✉️ ' + c.type;
       html += '<div style="background:white;border:1px solid var(--border);border-radius:8px;padding:16px;">';
       html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
       html += '<span style="font-size:0.8rem;font-weight:600;color:var(--green-deep);">' + typeLabel + '</span>';
