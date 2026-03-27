@@ -38,8 +38,15 @@ export default {
       }
     }
 
-    // GET /contacts - 一覧取得（管理用）
+    // GET /contacts - 一覧取得（管理用・トークン必須）
     if (request.method === 'GET' && url.pathname === '/contacts') {
+      const token = url.searchParams.get('token') || request.headers.get('Authorization')?.replace('Bearer ', '');
+      if (token !== env.ADMIN_TOKEN) {
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+          status: 401,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+      }
       const results = await env.DB.prepare('SELECT * FROM contacts ORDER BY created_at DESC LIMIT 100').all();
       return new Response(JSON.stringify(results.results), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders }

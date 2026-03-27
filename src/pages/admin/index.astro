@@ -5,16 +5,28 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <section style="padding: 32px 0; min-height: 80vh;">
     <div class="container" style="max-width: 900px;">
       <h1 style="font-size: 1.5rem; margin-bottom: 24px;">お問い合わせ・リクエスト一覧</h1>
-      <div id="loading" style="text-align:center;padding:40px;color:var(--text-mid);">読み込み中...</div>
+      <div id="auth-form" style="text-align:center;padding:40px;">
+        <input type="password" id="admin-token" placeholder="管理トークン" style="padding:10px 14px;border:2px solid var(--border);border-radius:6px;font-size:0.9rem;width:250px;">
+        <button onclick="doLogin()" style="padding:10px 20px;background:var(--green-mid);color:white;border:none;border-radius:6px;font-weight:700;cursor:pointer;margin-left:8px;">表示</button>
+      </div>
+      <div id="loading" style="display:none;text-align:center;padding:40px;color:var(--text-mid);">読み込み中...</div>
       <div id="contacts-list"></div>
     </div>
   </section>
 </BaseLayout>
 
 <script>
-async function load() {
+function doLogin() {
+  const token = (document.getElementById('admin-token') as HTMLInputElement).value;
+  if (!token) return;
+  document.getElementById('auth-form')!.style.display = 'none';
+  document.getElementById('loading')!.style.display = 'block';
+  load(token);
+}
+
+async function load(token: string) {
   try {
-    const res = await fetch('https://hojotown-api.taitatu4barisuta.workers.dev/contacts');
+    const res = await fetch(`https://hojotown-api.taitatu4barisuta.workers.dev/contacts?token=${encodeURIComponent(token)}`);
     const data = await res.json();
     document.getElementById('loading')!.style.display = 'none';
     const list = document.getElementById('contacts-list')!;
@@ -45,8 +57,9 @@ async function load() {
     html += '</div>';
     list.innerHTML = html;
   } catch {
-    document.getElementById('loading')!.textContent = '読み込みに失敗しました';
+    document.getElementById('loading')!.style.display = 'none';
+    document.getElementById('auth-form')!.style.display = 'block';
+    alert('トークンが正しくありません');
   }
 }
-load();
 </script>
