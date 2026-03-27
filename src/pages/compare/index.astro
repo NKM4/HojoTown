@@ -61,7 +61,7 @@ for (const city of availableCities) {
           <select id="city1" class="cmp-select">
             <option value="">選択してください</option>
             {availableCities.map(c => (
-              <option value={c.code} selected={c.slug === 'kawagoe'}>{c.name}（{c.prefecture}）</option>
+              <option value={c.code}>{c.name}（{c.prefecture}）</option>
             ))}
           </select>
         </div>
@@ -71,7 +71,7 @@ for (const city of availableCities) {
           <select id="city2" class="cmp-select">
             <option value="">選択してください</option>
             {availableCities.map(c => (
-              <option value={c.code} selected={c.slug === 'tokorozawa'}>{c.name}（{c.prefecture}）</option>
+              <option value={c.code}>{c.name}（{c.prefecture}）</option>
             ))}
           </select>
         </div>
