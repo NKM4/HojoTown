@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import cities from '../data/cities.json';
+import { CATEGORY_LABELS } from '../data/types';
+
+const popularCategories = [
+  { key: 'childcare' as const, icon: '👶' },
+  { key: 'birth' as const, icon: '🤰' },
+  { key: 'reform' as const, icon: '🏠' },
+  { key: 'medical' as const, icon: '🏥' },
+  { key: 'disability' as const, icon: '♿' },
+  { key: 'elderly' as const, icon: '👴' },
+  { key: 'moving' as const, icon: '📦' },
+  { key: 'solar' as const, icon: '☀️' },
+  { key: 'education' as const, icon: '📚' },
+  { key: 'marriage' as const, icon: '💍' },
+  { key: 'fertility' as const, icon: '🍀' },
+  { key: 'vaccine' as const, icon: '💉' },
+];
+---
+<BaseLayout title="個人向け補助金・助成金 横断検索＆比較">
+  <!-- ヒーロー（大型） -->
+  <section class="hero-large">
+    <div class="container">
+      <p class="hero-sub">個人向け補助金・助成金の横断検索サイト</p>
+      <h1 class="hero-title">あなたの街の<br />"もらえるお金"、<br class="sp-only" />30秒で全部わかる</h1>
+      <p class="hero-desc">住んでいる市区町村と家庭の状況を選ぶだけ。<br class="pc-only" />使える補助金・助成金が一覧で出ます。</p>
+    </div>
+  </section>
+
+  <!-- 2大アクション -->
+  <section class="actions-section">
+    <div class="container">
+      <div class="actions-grid">
+        <a href="/shindan/" class="action-card action-shindan">
+          <div class="action-icon">💡</div>
+          <h2 class="action-title">かんたん診断</h2>
+          <p class="action-desc">3つの質問に答えるだけで、<br />あなたがもらえる補助金と<br /><strong>合計金額</strong>がわかります。</p>
+          <span class="action-btn">診断してみる</span>
+        </a>
+        <a href="/compare/" class="action-card action-compare">
+          <div class="action-icon">⚖️</div>
+          <h2 class="action-title">自治体を比較する</h2>
+          <p class="action-desc">近隣の市を横並びで比較。<br />引越し先選びや住む街選びに<br /><strong>どっちが手厚い？</strong>が一目でわかる。</p>
+          <span class="action-btn action-btn-alt">比較ページへ</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ホジョタウンの特徴 -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="features-heading">ホジョタウンでできること</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-number">01</div>
+          <h3>横断検索</h3>
+          <p>バラバラの自治体サイトを<br />まとめて検索。<br />あなたの街の補助金が全部見える。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-number">02</div>
+          <h3>自治体比較</h3>
+          <p>「川越と所沢、<br />子育て支援どっちが手厚い？」<br />横並びで比較できます。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-number">03</div>
+          <h3>合計金額表示</h3>
+          <p>あなたの条件でもらえる<br />補助金の合計金額を表示。<br />知らないと損する制度も発見。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数字で見る -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">対応カテゴリ</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">対応市区町村</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">0<span class="stat-unit">円</span></div>
+          <div class="stat-label">利用料金</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 市区町村から探す -->
+  <section class="browse-section">
+    <div class="container">
+      <h2 class="browse-heading">市区町村から探す</h2>
+      <div class="city-grid">
+        {cities.map((city) => (
+          <a href={`/${city.prefectureSlug}/${city.slug}/`} class="city-card">
+            <span class="city-name">{city.name}</span>
+            <span class="city-pref">{city.prefecture}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- カテゴリから探す -->
+  <section class="browse-section" style="background: var(--green-pale);">
+    <div class="container">
+      <h2 class="browse-heading">カテゴリから探す</h2>
+      <div class="category-grid">
+        {popularCategories.map(({ key, icon }) => (
+          <a href={`/category/${key}/`} class="category-card">
+            <span class="category-icon">{icon}</span>
+            <span class="category-name">{CATEGORY_LABELS[key]}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LINE誘導 -->
+  <section class="line-section">
+    <div class="container">
+      <div class="line-card">
+        <div class="line-icon">🔔</div>
+        <h2>新しい補助金が出たら通知を受け取る</h2>
+        <p>LINE公式アカウントで、あなたの街の新着補助金情報をお届けします。</p>
+        <a href="https://lin.ee/oHiY2Pp" class="btn btn-line" target="_blank" rel="noopener">LINEで友だち追加する</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 免責 -->
+  <section class="section" style="padding: 0 0 48px;">
+    <div class="container">
+      <div class="disclaimer">
+        掲載情報は各自治体の公式サイトを参考に作成していますが、最新の情報とは異なる場合があります。申請前に必ず各自治体の公式ホームページをご確認ください。
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ヒーロー（大型） */
+  .hero-large {
+    background: linear-gradient(135deg, #0d3320 0%, var(--green-deep) 40%, var(--green-mid) 100%);
+    color: white;
+    padding: 72px 0 64px;
+    text-align: center;
+  }
+  .hero-sub {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
+  }
+  .hero-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    line-height: 1.8;
+  }
+
+  /* 2大アクション */
+  .actions-section {
+    padding: 48px 0;
+    background: var(--warm-white);
+  }
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 28px;
+    border-radius: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: var(--text-dark);
+  }
+  .action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+  }
+  .action-shindan {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
+    border: 2px solid var(--gold-light);
+  }
+  .action-compare {
+    background: linear-gradient(135deg, var(--green-pale) 0%, #d4f0e0 100%);
+    border: 2px solid #a8dbb8;
+  }
+  .action-icon { font-size: 3rem; margin-bottom: 16px; }
+  .action-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
+  .action-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 20px; }
+  .action-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: var(--gold);
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .action-btn-alt { background: var(--green-deep); }
+
+  /* 特徴セクション */
+  .features-section { padding: 64px 0; background: white; }
+  .features-heading {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--text-dark);
+  }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .feature-item { text-align: center; padding: 32px 20px; }
+  .feature-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1;
+    background: linear-gradient(180deg, var(--green-light) 0%, var(--green-mid) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .feature-item h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: var(--green-deep); }
+  .feature-item p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* 数字セクション */
+  .stats-section { padding: 48px 0; background: var(--green-deep); color: white; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center; }
+  .stat-number { font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+  .stat-unit { font-size: 1.5rem; }
+  .stat-label { font-size: 0.9rem; opacity: 0.8; }
+
+  /* 市区町村・カテゴリ検索 */
+  .browse-section { padding: 48px 0; }
+  .browse-heading {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+  }
+  .city-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .city-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 8px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .city-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+  }
+  .city-name { font-weight: 700; font-size: 0.95rem; color: var(--green-deep); }
+  .city-pref { font-size: 0.75rem; color: var(--text-soft); margin-top: 2px; }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .category-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.15s;
+  }
+  .category-card:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+  .category-icon { font-size: 1.2rem; }
+  .category-name { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+
+  /* LINE誘導 */
+  .line-section { padding: 48px 0; background: var(--warm-white); }
+  .line-card {
+    background: white;
+    border: 2px solid #06c755;
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .line-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .line-card h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
+  .line-card p { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 20px; line-height: 1.7; }
+  .btn-line {
+    background: #06c755;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-block;
+  }
+  .btn-line:hover { opacity: 0.9; text-decoration: none; }
+
+  /* レスポンシブ */
+  .sp-only { display: none; }
+  .pc-only { display: inline; }
+  @media (max-width: 768px) {
+    .sp-only { display: inline; }
+    .pc-only { display: none; }
+    .hero-large { padding: 48px 0 40px; }
+    .hero-title { font-size: 1.7rem; }
+    .actions-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; gap: 32px; }
+    .city-grid { grid-template-columns: repeat(3, 1fr); }
+    .category-grid { grid-template-columns: repeat(2, 1fr); }
+    .action-card { padding: 28px 20px; }
+    .line-card { padding: 28px 20px; }
+  }
+</style>
