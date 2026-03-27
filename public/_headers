@@ -1,5 +1,23 @@
-/*
-  X-Content-Type-Options: nosniff
+/about/*
+  Content-Type: text/html; charset=utf-8
 
-/*.html
+/privacy/*
+  Content-Type: text/html; charset=utf-8
+
+/terms/*
+  Content-Type: text/html; charset=utf-8
+
+/contact/*
+  Content-Type: text/html; charset=utf-8
+
+/shindan/*
+  Content-Type: text/html; charset=utf-8
+
+/compare/*
+  Content-Type: text/html; charset=utf-8
+
+/*/
+  Content-Type: text/html; charset=utf-8
+
+/*/*/
   Content-Type: text/html; charset=utf-8
