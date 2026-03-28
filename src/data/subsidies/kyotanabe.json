@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（第3子以降30,000円）",
     "maxAmount": 30000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.kyotanabe.jp/kosodate/teate/jidouteate.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "通院・入院の医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.kyotanabe.jp/kosodate/iryou/kodomo.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "上限100万円",
     "maxAmount": 1000000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.kyotanabe.jp/kurashi/sumai/taishin.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額最大45,500円",
     "maxAmount": 45500,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.kyotanabe.jp/kosodate/teate/jidoufuyou.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.kyotanabe.jp/fukushi/shogai/iryou.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "1kWあたり2万円（上限8万円）",
     "maxAmount": 80000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.kyotanabe.jp/kurashi/kankyo/taiyoukou.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "上限10万円/回",
     "maxAmount": 100000,
     "deadline": "年度内申請",
-    "officialUrl": "https://www.kyotanabe.jp/kenko/funin.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "自己負担1,000円（残額を市が助成）",
     "maxAmount": 0,
     "deadline": "接種期間内",
-    "officialUrl": "https://www.kyotanabe.jp/kenko/yobou/influenza.html",
+    "officialUrl": "https://www.kyotanabe.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

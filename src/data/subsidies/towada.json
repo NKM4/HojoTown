@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/kosodate/teate/jidouteate.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "月額10,120〜44,140円（所得による）",
     "maxAmount": 44140,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/kosodate/teate/jidoufuyouteate.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/kosodate/shussan/kosodateouen.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "おむつ12パック（1人につき）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/kosodate/shien/kosodategift.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/kosodate/iryou/kodomoisyohi.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "上限30〜60万円（29歳以下60万円、30〜39歳30万円）",
     "maxAmount": 600000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/kurashi/sumai/kekkonshinseikatsu.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "新築上限100万円、中古上限50万円（若年・子育て世帯は+50万円）",
     "maxAmount": 1500000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/kurashi/sumai/ijuteijujutaku.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "対象経費の4/10または上限30万円",
     "maxAmount": 300000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/kurashi/sumai/shouenekaishu.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "上限10万円（若年世帯2/3、その他1/2補助）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/kurashi/sumai/hikkoshi.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "1級月額53,700円、2級月額35,760円",
     "maxAmount": 53700,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/shougai/teate/tokubetsujidou.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

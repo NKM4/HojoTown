@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/kosodate/teate/jidouteate.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000039/000216/000646/p002091.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "月額10,120〜44,140円（所得による）",
     "maxAmount": 44140,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/kosodate/teate/jidoufuyou.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000040/000219/p002089.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/kosodate/ninshin/kosodateouen.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000035/000202/000640/p003886.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "1児につき50万円",
     "maxAmount": 500000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/kurashi/kokuho/kyufu/shussan.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000039/000218/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/kosodate/iryou/kodomo.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000039/000215/p002090.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "月額上限1万円",
     "maxAmount": 10000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/kurashi/ijuteiju/tsuukin.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/living/000025/001064/001070/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "1級月額53,700円、2級月額35,760円",
     "maxAmount": 53700,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/fukushi/shougai/teate.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000054/000284/000679/p001939.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "月額15,220円",
     "maxAmount": 15220,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/fukushi/shougai/teate.html",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000054/000284/000679/p001939.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

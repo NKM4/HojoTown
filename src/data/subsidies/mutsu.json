@@ -43,7 +43,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.mutsu.lg.jp/kurashi/shussan/kyufu/syussankosodateouen.html",
+    "officialUrl": "https://www.city.mutsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "1児につき50万円",
     "maxAmount": 500000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.mutsu.lg.jp/kurashi/kokuho/kyufu/shussan.html",
+    "officialUrl": "https://www.city.mutsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.mutsu.lg.jp/kurashi/kosodate/iryou/kodomoisyohi.html",
+    "officialUrl": "https://www.city.mutsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.mutsu.lg.jp/kurashi/kosodate/iryou/hitorioya.html",
+    "officialUrl": "https://www.city.mutsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "上限30万円",
     "maxAmount": 300000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.mutsu.lg.jp/kurashi/sumai/akiya/akiyahojokin.html",
+    "officialUrl": "https://www.city.mutsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

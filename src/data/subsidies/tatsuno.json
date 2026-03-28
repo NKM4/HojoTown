@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kosodate/jidouteate.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担金を助成（通院・入院）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kosodate/iryouhi.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kosodate/jidoufuyou.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "妊娠届出時5万円＋出生届出後5万円（計10万円相当）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kosodate/shussan-ouen.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費の10%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kurashi/reform-hojo.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "太陽光：上限5万円、蓄電池：上限10万円",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kurashi/solar-hojo.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/fukushi/jyuudo-iryou.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "耐震診断：無料〜一部負担、耐震改修：上限130万円",
     "maxAmount": 1300000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kurashi/taishin.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "緊急通報装置の設置費用を助成（自己負担あり）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/fukushi/koureisha-nichijou.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -152,7 +152,7 @@
     "amount": "改修費の1/2（上限100万円）",
     "maxAmount": 1000000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tatsuno.lg.jp/kurashi/akiya-reform.html",
+    "officialUrl": "https://www.city.tatsuno.lg.jp/",
     "cityCode": "28213",
     "cityName": "たつの市",
     "prefecture": "兵庫県",

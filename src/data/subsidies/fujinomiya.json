@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/kosodate/teate/jidouteate.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/kosodate/teate/kodomoi.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "妊娠届出時50,000円＋出生届出後50,000円",
     "maxAmount": 100000,
     "deadline": "妊娠届出時・出生届出後",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/kosodate/shussan-ouen.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/kosodate/teate/jidoufuyou.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費の10%、上限100,000円",
     "maxAmount": 100000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/kurashi/sumai/reform.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "太陽光: 上限50,000円 / 蓄電池: 上限100,000円",
     "maxAmount": 100000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/kurashi/kankyo/solar.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "月額3,000〜8,000円",
     "maxAmount": 8000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/fukushi/shogai/teate.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "単身60万円 / 世帯100万円（子1人につき100万円加算）",
     "maxAmount": 1000000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.fujinomiya.lg.jp/citizen/kurashi/iju/shienkin.html",
+    "officialUrl": "https://www.city.fujinomiya.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

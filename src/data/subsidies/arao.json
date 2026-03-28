@@ -43,7 +43,7 @@
     "amount": "上限50万円",
     "maxAmount": 500000,
     "deadline": "令和8年1月9日まで",
-    "officialUrl": "https://www.city.arao.lg.jp/kurashi/kankyo/zerocarbon/",
+    "officialUrl": "https://www.city.arao.lg.jp/shisei/shisaku/kankyo-seisaku/5101.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "単身60万円、世帯100万円（子ども加算あり）",
     "maxAmount": 1000000,
     "deadline": "令和8年3月31日まで",
-    "officialUrl": "https://www.city.arao.lg.jp/kurashi/iju/index.html",
+    "officialUrl": "https://www.city.arao.lg.jp/oshirase/boshu/page15979.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "耐震改修工事費の一部（上限60万円）",
     "maxAmount": 600000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.arao.lg.jp/kurashi/sumai/taishin/",
+    "officialUrl": "https://www.city.arao.lg.jp/oshirase/kurashi/sumai/page15739.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "上限50万円",
     "maxAmount": 500000,
     "deadline": "令和8年3月31日まで",
-    "officialUrl": "https://www.city.arao.lg.jp/shigoto/sangyo/sougyou/",
+    "officialUrl": "https://www.city.arao.lg.jp/sangyo/shokougyo/6630.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

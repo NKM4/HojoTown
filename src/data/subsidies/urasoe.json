@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の順番により異なる）",
     "maxAmount": 30000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.urasoe.lg.jp/category/bunya/kosodate/teate/",
+    "officialUrl": "https://www.city.urasoe.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "通院・入院の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.urasoe.lg.jp/category/bunya/kosodate/iryo/",
+    "officialUrl": "https://www.city.urasoe.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "全部支給：月額45,500円、一部支給：月額10,740〜45,490円",
     "maxAmount": 45500,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.urasoe.lg.jp/category/bunya/kosodate/teate/",
+    "officialUrl": "https://www.city.urasoe.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "1級：月額55,350円、2級：月額36,860円",
     "maxAmount": 55350,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.urasoe.lg.jp/category/bunya/kosodate/teate/",
+    "officialUrl": "https://www.city.urasoe.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "耐震改修工事費の一部（上限60万円）",
     "maxAmount": 600000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.urasoe.lg.jp/category/bunya/sumai/taishin/",
+    "officialUrl": "https://www.city.urasoe.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "改修費用の一部（上限20万円）",
     "maxAmount": 200000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.urasoe.lg.jp/category/bunya/koureisha/kaigo/",
+    "officialUrl": "https://www.city.urasoe.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
