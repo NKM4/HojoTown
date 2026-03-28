@@ -45,6 +45,16 @@ jobs:
               body, labels: ['bug', 'automated']
             });
 
+      - name: Discord notify broken URLs
+        if: contains(steps.urlcheck.outputs.report, 'BROKEN')
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_BROKEN_URL }}
+          URL_REPORT: ${{ steps.urlcheck.outputs.report }}
+        run: |
+          COUNT=$(echo "$URL_REPORT" | grep -c BROKEN || true)
+          curl -s -X POST "$WEBHOOK" -H "Content-Type: application/json" \
+            -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"GitHub Issueを確認してください\",\"color\":15158332}]}"
+
   check-content:
     runs-on: ubuntu-latest
     steps:
@@ -97,3 +107,13 @@ jobs:
               title: `[自動] ${changedLines.length}件の公式ページ内容変更を検知`,
               body, labels: ['review', 'automated']
             });
+
+      - name: Discord notify content changes
+        if: contains(steps.contentcheck.outputs.report, 'CHANGED')
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONTENT_CHANGE }}
+          CONTENT_REPORT: ${{ steps.contentcheck.outputs.report }}
+        run: |
+          COUNT=$(echo "$CONTENT_REPORT" | grep -c CHANGED || true)
+          curl -s -X POST "$WEBHOOK" -H "Content-Type: application/json" \
+            -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"

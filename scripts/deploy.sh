@@ -89,3 +89,10 @@ fi
 
 echo ""
 echo "🎉 デプロイ完了。全ページ正常。"
+
+# Discord通知
+DEPLOY_WEBHOOK="REDACTED_DISCORD_DEPLOY_WEBHOOK"
+PAGES=$(find dist -name "index.html" | wc -l)
+curl -s -X POST "$DEPLOY_WEBHOOK" \
+  -H "Content-Type: application/json" \
+  -d "{\"embeds\":[{\"title\":\"デプロイ完了\",\"description\":\"${PAGES}ページ正常にデプロイされました\",\"color\":3066993,\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}]}" > /dev/null 2>&1
