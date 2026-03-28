@@ -71,7 +71,7 @@ export default {
           if (data.email) embed.fields.push({name:'メール',value:data.email,inline:true});
           if (data.city) embed.fields.push({name:'市区町村',value:data.city,inline:true});
           if (data.message) embed.fields.push({name:'内容',value:data.message.substring(0,1000)});
-          fetch(webhookUrl, {
+          await fetch(webhookUrl, {
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({embeds:[embed]})
