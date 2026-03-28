@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ayase.kanagawa.jp/",
+    "officialUrl": "https://www.city.ayase.kanagawa.jp/soshiki/jidoseisyonensienka/kosodateshiensite/1/2/894.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "妊娠届出時50,000円＋出生届出後50,000円",
     "maxAmount": 100000,
     "deadline": "妊娠届出時・出生届出後",
-    "officialUrl": "https://www.city.ayase.kanagawa.jp/",
+    "officialUrl": "https://www.city.ayase.kanagawa.jp/soshiki/kenkozukurisuishinka/kosodateshiensite/3/3/14408.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費の10%、上限100,000円",
     "maxAmount": 100000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.ayase.kanagawa.jp/",
+    "officialUrl": "https://www.city.ayase.kanagawa.jp/soshiki/toshikeikakuka/zumai/2/2/4818.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "太陽光: 上限50,000円 / 蓄電池: 上限100,000円",
     "maxAmount": 100000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.ayase.kanagawa.jp/",
+    "officialUrl": "https://www.city.ayase.kanagawa.jp/soshiki/kankyohozenka/zumai/1/929.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "月額5,000〜10,000円",
     "maxAmount": 10000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ayase.kanagawa.jp/",
+    "officialUrl": "https://www.city.ayase.kanagawa.jp/soshiki/shogaifukushika/shogaishafukushi/1/415.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "上限20,000円",
     "maxAmount": 20000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ayase.kanagawa.jp/",
+    "officialUrl": "https://www.city.ayase.kanagawa.jp/soshiki/shogaifukushika/shogaishafukushi/4/525.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
