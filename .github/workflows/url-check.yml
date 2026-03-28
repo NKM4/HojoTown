@@ -15,46 +15,18 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Check all officialUrls
-        id: urlcheck
-        continue-on-error: true
+      - name: Check URLs and notify
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_BROKEN_URL }}
         run: |
           node scripts/check-urls.cjs > url-report.txt 2>&1 || true
-          echo "report<<EOF" >> $GITHUB_OUTPUT
-          cat url-report.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Create issue if broken URLs found
-        if: contains(steps.urlcheck.outputs.report, 'BROKEN')
-        uses: actions/github-script@v7
-        env:
-          URL_REPORT: ${{ steps.urlcheck.outputs.report }}
-        with:
-          script: |
-            const report = process.env.URL_REPORT;
-            const brokenLines = report.split('\n').filter(l => l.includes('BROKEN'));
-            if (brokenLines.length === 0) return;
-            const body = `## URL整合性チェック\n\n**${brokenLines.length}件のリンク切れ**\n\n` +
-              `| 市 | URL | ステータス |\n|---|---|---|\n` +
-              brokenLines.map(l => {
-                const parts = l.split(' | ');
-                return `| ${parts[1]} | ${parts[2]} | ${parts[0]} |`;
-              }).join('\n') + `\n\n自動検出 by GitHub Actions`;
-            await github.rest.issues.create({
-              owner: context.repo.owner, repo: context.repo.repo,
-              title: `[自動] ${brokenLines.length}件のURLリンク切れ`,
-              body, labels: ['bug', 'automated']
-            });
-
-      - name: Discord notify broken URLs
-        if: contains(steps.urlcheck.outputs.report, 'BROKEN')
-        env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_BROKEN_URL }}
-          URL_REPORT: ${{ steps.urlcheck.outputs.report }}
-        run: |
-          COUNT=$(echo "$URL_REPORT" | grep -c BROKEN || true)
-          curl -s -X POST "$WEBHOOK" -H "Content-Type: application/json" \
-            -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"GitHub Issueを確認してください\",\"color\":15158332}]}"
+          COUNT=$(grep -c "BROKEN" url-report.txt || true)
+          echo "Broken URLs: $COUNT"
+          if [ "$COUNT" -gt 0 ] && [ -n "$DISCORD_WEBHOOK" ]; then
+            curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+              -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"GitHub Actionsのログを確認してください\",\"color\":15158332}]}"
+            echo "Discord通知送信完了"
+          fi
 
   check-content:
     runs-on: ubuntu-latest
@@ -72,53 +44,24 @@ jobs:
           key: content-hashes-${{ github.run_id }}
           restore-keys: content-hashes-
 
-      - name: Check content changes
-        id: contentcheck
-        continue-on-error: true
+      - name: Check content and notify
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONTENT_CHANGE }}
         run: |
           node scripts/check-content.cjs > content-report.txt 2>&1 || true
-          echo "report<<EOF" >> $GITHUB_OUTPUT
-          cat content-report.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          COUNT=$(grep -c "CHANGED" content-report.txt || true)
+          echo "Changed pages: $COUNT"
+          if [ "$COUNT" -gt 0 ] && [ -n "$DISCORD_WEBHOOK" ]; then
+            curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+              -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"
+            echo "Discord通知送信完了"
+          fi
 
       - name: Save content hashes
         uses: actions/cache/save@v4
         with:
           path: content-hashes.json
           key: content-hashes-${{ github.run_id }}
-
-      - name: Create issue if content changed
-        if: contains(steps.contentcheck.outputs.report, 'CHANGED')
-        uses: actions/github-script@v7
-        env:
-          CONTENT_REPORT: ${{ steps.contentcheck.outputs.report }}
-        with:
-          script: |
-            const report = process.env.CONTENT_REPORT;
-            const changedLines = report.split('\n').filter(l => l.includes('CHANGED'));
-            if (changedLines.length === 0) return;
-            const body = `## コンテンツ変更検知\n\n**${changedLines.length}件のページ内容が変更**\n\n` +
-              `これらの公式ページの内容が前回チェック時から変わっています。補助金の金額・条件が変更された可能性があります。\n\n` +
-              `| 市 | URL |\n|---|---|\n` +
-              changedLines.map(l => {
-                const parts = l.split(' | ');
-                return `| ${parts[1]} | ${parts[2]} |`;
-              }).join('\n') + `\n\n自動検出 by GitHub Actions`;
-            await github.rest.issues.create({
-              owner: context.repo.owner, repo: context.repo.repo,
-              title: `[自動] ${changedLines.length}件の公式ページ内容変更を検知`,
-              body, labels: ['review', 'automated']
-            });
-
-      - name: Discord notify content changes
-        if: contains(steps.contentcheck.outputs.report, 'CHANGED')
-        env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONTENT_CHANGE }}
-          CONTENT_REPORT: ${{ steps.contentcheck.outputs.report }}
-        run: |
-          COUNT=$(echo "$CONTENT_REPORT" | grep -c CHANGED || true)
-          curl -s -X POST "$WEBHOOK" -H "Content-Type: application/json" \
-            -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"
 
   weekly-report:
     runs-on: ubuntu-latest
