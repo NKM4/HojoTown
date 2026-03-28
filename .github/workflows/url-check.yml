@@ -17,8 +17,9 @@ jobs:
 
       - name: Check all officialUrls
         id: urlcheck
+        continue-on-error: true
         run: |
-          node scripts/check-urls.cjs > url-report.txt 2>&1
+          node scripts/check-urls.cjs > url-report.txt 2>&1 || true
           echo "report<<EOF" >> $GITHUB_OUTPUT
           cat url-report.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -73,8 +74,9 @@ jobs:
 
       - name: Check content changes
         id: contentcheck
+        continue-on-error: true
         run: |
-          node scripts/check-content.cjs > content-report.txt 2>&1
+          node scripts/check-content.cjs > content-report.txt 2>&1 || true
           echo "report<<EOF" >> $GITHUB_OUTPUT
           cat content-report.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
