@@ -544,6 +544,86 @@
     "population": 434000
   },
   {
+    "code": "13101",
+    "name": "千代田区",
+    "slug": "chiyoda",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 67000
+  },
+  {
+    "code": "13102",
+    "name": "中央区",
+    "slug": "chuo",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 187000
+  },
+  {
+    "code": "13103",
+    "name": "港区",
+    "slug": "minato",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 260000
+  },
+  {
+    "code": "13104",
+    "name": "新宿区",
+    "slug": "shinjuku",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 347000
+  },
+  {
+    "code": "13105",
+    "name": "文京区",
+    "slug": "bunkyo",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 240000
+  },
+  {
+    "code": "13106",
+    "name": "台東区",
+    "slug": "taito",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 214000
+  },
+  {
+    "code": "13107",
+    "name": "墨田区",
+    "slug": "sumida",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 276000
+  },
+  {
+    "code": "13108",
+    "name": "江東区",
+    "slug": "koto",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 528000
+  },
+  {
+    "code": "13109",
+    "name": "品川区",
+    "slug": "shinagawa",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 422000
+  },
+  {
+    "code": "13110",
+    "name": "目黒区",
+    "slug": "meguro",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 283000
+  },
+  {
     "code": "13111",
     "name": "大田区",
     "prefecture": "東京都",
@@ -560,6 +640,62 @@
     "population": 940000
   },
   {
+    "code": "13113",
+    "name": "渋谷区",
+    "slug": "shibuya",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 243000
+  },
+  {
+    "code": "13114",
+    "name": "中野区",
+    "slug": "nakano",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 344000
+  },
+  {
+    "code": "13115",
+    "name": "杉並区",
+    "slug": "suginami",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 589000
+  },
+  {
+    "code": "13116",
+    "name": "豊島区",
+    "slug": "toshima",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 302000
+  },
+  {
+    "code": "13117",
+    "name": "北区",
+    "slug": "kita",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 356000
+  },
+  {
+    "code": "13118",
+    "name": "荒川区",
+    "slug": "arakawa",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 218000
+  },
+  {
+    "code": "13119",
+    "name": "板橋区",
+    "slug": "itabashi",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 584000
+  },
+  {
     "code": "13120",
     "name": "練馬区",
     "prefecture": "東京都",
@@ -574,6 +710,14 @@
     "prefectureSlug": "tokyo",
     "slug": "adachi",
     "population": 683000
+  },
+  {
+    "code": "13122",
+    "name": "葛飾区",
+    "slug": "katsushika",
+    "prefecture": "東京都",
+    "prefectureSlug": "tokyo",
+    "population": 442000
   },
   {
     "code": "13123",
