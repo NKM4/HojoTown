@@ -79,7 +79,7 @@ function countAffiliatePrograms() {
   if (!fs.existsSync(affiliatePath)) return 0;
   const content = fs.readFileSync(affiliatePath, 'utf-8');
   // programId の出現数をカウント
-  const matches = content.match(/programId/g);
+  const matches = content.match(/a8mat=/g);
   return matches ? matches.length : 0;
 }
 
