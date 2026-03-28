@@ -23,21 +23,19 @@ const distDir = path.join(__dirname, '..', 'dist');
 const dataDir = path.join(__dirname, '..', 'src', 'data');
 const subsidiesDir = path.join(dataDir, 'subsidies');
 
-// 1. dist内の全HTMLページ数
+// 1. src/pages内の全.astroファイル数
 function countPages() {
+  const pagesDir = path.join(__dirname, '..', 'src', 'pages');
   let count = 0;
   function walk(dir) {
     if (!fs.existsSync(dir)) return;
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        walk(full);
-      } else if (entry.name === 'index.html') {
-        count++;
-      }
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith('.astro')) count++;
     }
   }
-  walk(distDir);
+  walk(pagesDir);
   return count;
 }
 
@@ -64,22 +62,14 @@ function countSubsidies() {
   return total;
 }
 
-// 4. 最終更新日（dist内の最新ファイル更新日）
+// 4. 最終更新日（subsidiesディレクトリの最新ファイル）
 function getLastModified() {
+  if (!fs.existsSync(subsidiesDir)) return '不明';
   let latest = 0;
-  function walk(dir) {
-    if (!fs.existsSync(dir)) return;
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory() && entry.name !== '_astro') {
-        walk(full);
-      } else if (entry.name === 'index.html') {
-        const stat = fs.statSync(full);
-        if (stat.mtimeMs > latest) latest = stat.mtimeMs;
-      }
-    }
+  for (const f of fs.readdirSync(subsidiesDir)) {
+    const stat = fs.statSync(path.join(subsidiesDir, f));
+    if (stat.mtimeMs > latest) latest = stat.mtimeMs;
   }
-  walk(distDir);
   return latest ? new Date(latest).toISOString().split('T')[0] : '不明';
 }
 
