@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import subsidies from '../../../data/subsidies/ritto.json';
+import { CATEGORY_LABELS } from '../../../data/types';
+import type { Category } from '../../../data/types';
+
+const cityName = '栗東市';
+const prefecture = '滋賀県';
+const byCategory = subsidies.reduce((acc, s) => {
+  const cat = s.category as Category;
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(s);
+  return acc;
+}, {} as Record<Category, typeof subsidies>);
+const totalCount = subsidies.length;
+const categoriesUsed = Object.keys(byCategory) as Category[];
+---
+<BaseLayout
+  title={}
+  description={}
+>
+  <div class="container" style="padding-top: 16px;">
+    <nav style="font-size: 0.8rem; color: var(--text-soft);">
+      <a href="/">ホジョタウン</a> &gt; <span>{cityName}</span>
+    </nav>
+  </div>
+  <section class="hero" style="padding: 32px 0;">
+    <div class="container">
+      <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 4px;">{prefecture}</p>
+      <h1 style="font-size: 1.8rem;">{cityName}の補助金・助成金一覧</h1>
+      <p style="margin-bottom: 0;">個人が使える制度を <strong>{totalCount}件</strong> 掲載</p>
+    </div>
+  </section>
+  <section style="background: white; border-bottom: 1px solid var(--border); padding: 12px 0; position: sticky; top: 52px; z-index: 50;">
+    <div class="container" style="display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap;">
+      {categoriesUsed.map((cat) => (
+        <a href={} style="white-space: nowrap; padding: 6px 14px; background: var(--green-pale); color: var(--green-deep); border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+          {CATEGORY_LABELS[cat]}（{byCategory[cat].length}）
+        </a>
+      ))}
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      {categoriesUsed.map((cat) => (
+        <div id={cat} style="margin-bottom: 36px;">
+          <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green-mid); color: var(--green-deep);">
+            {CATEGORY_LABELS[cat]}
+          </h2>
+          <div class="subsidy-list">
+            {byCategory[cat].map((s) => (
+              <div class="card subsidy-card">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px;">
+                  <div>
+                    <span class="category-tag">{CATEGORY_LABELS[s.category as Category]}</span>
+                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 6px;">{s.name}</h3>
+                  </div>
+                  <div class="amount">{s.amount}</div>
+                </div>
+                <p style="margin-top: 8px; font-size: 0.9rem; color: var(--text-mid);">{s.summary || s.target}</p>
+                <div style="margin-top: 10px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.85rem;">
+                  <span style="color: var(--text-soft);">対象: {s.target}</span>
+                </div>
+                <a href={s.officialUrl} target="_blank" rel="noopener noreferrer" class="official-link">公式サイトで詳細を確認 →</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+      <div style="text-align: center; background: var(--green-pale); margin-top: 32px; padding: 28px; border-radius: 8px;">
+        <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 12px;">あなたに合った補助金を診断してみませんか？</p>
+        <a href="/shindan/" class="btn btn-primary">診断してみる</a>
+      </div>
+      <div class="disclaimer" style="margin-top: 24px;">
+        掲載情報は各自治体の公式サイトを参考に作成しています。最新の情報は必ず各自治体の公式ホームページをご確認ください。
+        <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
