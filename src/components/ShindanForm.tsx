@@ -134,7 +134,7 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
         const geo = JSON.parse(detected);
         const city = cities.find((c: any) => c.code === geo.code);
         if (city) {
-          geoProfile = { ...initialProfile, cityCode: geo.code, cityName: `${city.prefecture} ${city.name}`, postalCode: '0000000' };
+          geoProfile = { ...initialProfile, cityCode: geo.code, cityName: `${city.prefecture} ${city.name}`, postalCode: '' };
           geoSkipStep0 = true;
         }
       }
@@ -237,7 +237,7 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
   const [showEnded, setShowEnded] = useState(false);
 
   const canProceed = (): boolean => {
-    if (step === 0) return profile.postalCode.length === 7 && !!profile.cityCode;
+    if (step === 0) return (profile.postalCode.length === 7 || geoSkipStep0) && !!profile.cityCode;
     return true;
   };
 
