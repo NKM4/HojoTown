@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円",
     "maxAmount": 30000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/shimin/jidou_teate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/hoken/other_healthcare_system.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "出産応援給付金5万円＋子育て応援給付金5万円",
     "maxAmount": 100000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/shimin/kosodate_ouen_teate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "給付金を支給",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/kosodatesuishin/zaitakuikujishien.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "児童1人：月額最大45,500円",
     "maxAmount": 45500,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/shimin/syomu_jjidou_fuyou.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/hoken/other_healthcare_system.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "耐震改修工事費の一部を補助",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/kurashi/1000026/1003989.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "移住支援金を交付",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tanabe.lg.jp/",
+    "officialUrl": "https://www.city.tanabe.lg.jp/shimin/jidou_teate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

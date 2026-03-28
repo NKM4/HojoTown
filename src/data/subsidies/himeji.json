@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円",
     "maxAmount": 30000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/waku2child/0000013458.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/kurashi/0000007975.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "住居費・リフォーム費・引越費等を補助",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/kurashi/0000016350.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "移住支援金最大50万円＋子育て支援金最大150万円",
     "maxAmount": 1500000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/shisei/0000024502.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "月額最大2万円",
     "maxAmount": 20000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/shisei/0000024502.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "児童1人：月額最大45,500円",
     "maxAmount": 45500,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/waku2child/0000013478.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/kurashi/0000007924.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "耐震改修工事費の一部を補助",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.himeji.lg.jp/",
+    "officialUrl": "https://www.city.himeji.lg.jp/sangyo/0000002709.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

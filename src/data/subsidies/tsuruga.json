@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kosodate/kosodate/shien_teate/teate_josei/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kosodate/kosodate/shien_teate/teate_josei/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "上限350,000円",
     "maxAmount": 350000,
     "deadline": "2025年10月31日まで",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kosodate/kosodate/shien_teate/teate_josei/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "空き家購入1/3（上限60万円）等",
     "maxAmount": 600000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kosodate/kosodate/shien_teate/teate_josei/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "住宅取得費用の一部",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kosodate/kosodate/shien_teate/teate_josei/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kosodate/kosodate/shien_teate/teate_josei/jidofuyoteate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "妊娠届出時5万円＋出生届出時5万円（計10万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kosodate/kosodate/shien_teate/2025bukkadakateate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "月額28,840円",
     "maxAmount": 28840,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuruga.lg.jp/",
+    "officialUrl": "https://www.city.tsuruga.lg.jp/kenko_fukushi/shogai/shogai_shien_josei/syougaiteate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

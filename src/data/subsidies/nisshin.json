@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（第3子以降30,000円）",
     "maxAmount": 30000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/kodomo/kosodate/4/2/2/shien/2382.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "通院・入院の医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/fukushi/hoken/5/5/3/2381.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "上限100万円",
     "maxAmount": 1000000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/sougou/jouhou/hozyo_ichiran/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額最大45,500円",
     "maxAmount": 45500,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/kenko/kosodate/4/2/hitorioyakatei_shien/2379.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/sougou/jouhou/hozyo_ichiran/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "1kWあたり2万円（上限8万円）",
     "maxAmount": 80000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/sougou/jouhou/hozyo_ichiran/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "自己負担1,000円（残額を市が助成）",
     "maxAmount": 0,
     "deadline": "接種期間内",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/sougou/jouhou/hozyo_ichiran/zyoseikin/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "購入費の半額（上限2,000円）",
     "maxAmount": 2000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.nisshin.lg.jp/",
+    "officialUrl": "https://www.city.nisshin.lg.jp/department/sougou/jouhou/hozyo_ichiran/zyoseikin/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

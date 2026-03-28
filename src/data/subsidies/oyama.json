@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/mokuteki/josei-soudan/page004647.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "月額10,120〜44,140円（所得による）",
     "maxAmount": 44140,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/mokuteki/josei-soudan/page004035.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/mokuteki/josei-soudan/page004647.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/mokuteki/josei-soudan/page008722.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "基本30万円＋加算最大20万円",
     "maxAmount": 500000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "基本10万円＋リフォーム上限50万円＋加算",
     "maxAmount": 500000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "月額1万円（最大36か月）",
     "maxAmount": 10000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "1級月額53,700円、2級月額35,760円",
     "maxAmount": 53700,
     "deadline": "通年",
-    "officialUrl": "https://www.city.oyama.tochigi.jp/",
+    "officialUrl": "https://www.city.oyama.tochigi.jp/kosodate-kyouiku/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

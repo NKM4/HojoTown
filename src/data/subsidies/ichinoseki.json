@@ -91,7 +91,7 @@
     "amount": "40歳未満50万円、40歳以上25万円＋市内業者利用20万円＋子ども1人10万円加算",
     "maxAmount": 500000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ichinoseki.iwate.jp/",
+    "officialUrl": "https://www.city.ichinoseki.iwate.jp/index.cfm/8,39537,81,html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "40歳未満上限25万円、40歳以上上限12.5万円＋子ども加算",
     "maxAmount": 250000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ichinoseki.iwate.jp/",
+    "officialUrl": "https://www.city.ichinoseki.iwate.jp/index.cfm/8,39537,81,html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

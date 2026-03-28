@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/site/kosodate/1616.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "月額10,120〜44,140円（所得による）",
     "maxAmount": 44140,
     "deadline": "通年",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/site/kosodate/1621.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/life/3/3/16/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/site/kosodate/1616.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/site/kosodate/1619.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "1級月額53,700円、2級月額35,760円",
     "maxAmount": 53700,
     "deadline": "通年",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/life/3/3/16/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "月額15,220円",
     "maxAmount": 15220,
     "deadline": "通年",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/life/3/3/16/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "太陽光発電1kWあたり2万円（上限8万円）、蓄電池上限10万円",
     "maxAmount": 100000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/life/3/3/16/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "単身60万円、世帯100万円（子ども1人あたり100万円加算）",
     "maxAmount": 1000000,
     "deadline": "令和7年3月31日",
-    "officialUrl": "https://www.city.kimitsu.lg.jp/",
+    "officialUrl": "https://www.city.kimitsu.lg.jp/site/kosodate/1616.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

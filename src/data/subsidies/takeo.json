@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の順番により異なる）",
     "maxAmount": 30000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.takeo.lg.jp/",
+    "officialUrl": "https://www.city.takeo.lg.jp/benri/kosodate/000120.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "通院・入院の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.takeo.lg.jp/",
+    "officialUrl": "https://www.city.takeo.lg.jp/benri/kosodate/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "全部支給：月額45,500円、一部支給：月額10,740〜45,490円",
     "maxAmount": 45500,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.takeo.lg.jp/",
+    "officialUrl": "https://www.city.takeo.lg.jp/benri/kosodate/singleparent/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "1級：月額55,350円、2級：月額36,860円",
     "maxAmount": 55350,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.takeo.lg.jp/",
+    "officialUrl": "https://www.city.takeo.lg.jp/benri/kenko/fukushi/013419.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

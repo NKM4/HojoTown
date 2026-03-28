@@ -91,7 +91,7 @@
     "amount": "1級月額53,700円、2級月額35,760円",
     "maxAmount": 53700,
     "deadline": "通年",
-    "officialUrl": "https://www.city.shiki.lg.jp/",
+    "officialUrl": "https://www.city.shiki.lg.jp/site/fukushi-syougai/1341.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "月額15,220円",
     "maxAmount": 15220,
     "deadline": "通年",
-    "officialUrl": "https://www.city.shiki.lg.jp/",
+    "officialUrl": "https://www.city.shiki.lg.jp/site/fukushi-syougai/1341.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "工事費の5%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.shiki.lg.jp/",
+    "officialUrl": "https://www.city.shiki.lg.jp/site/kaigo-hoken/19151.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "設置費用・月額利用料の助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.shiki.lg.jp/",
+    "officialUrl": "https://www.city.shiki.lg.jp/site/kourei-zaitaku/2831.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
