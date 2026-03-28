@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="hp-geo-detected">📍 ${muniDisplay}にお住まいですね</p>
             <p style="font-size:0.9rem;color:var(--text-mid);margin-top:4px;">この市のデータは現在準備中です</p>
             <div class="hp-geo-actions">
-              <button onclick="requestCity('${detectedMuni || 'unknown'}')" class="hp-geo-link" style="border:2px solid var(--green-mid);background:var(--green-mid);color:white;cursor:pointer;font-weight:700;">この市のデータをリクエスト</button>
+              <button onclick="requestCity('${esc(detectedCode || 'unknown')}')" class="hp-geo-link" style="border:2px solid var(--green-mid);background:var(--green-mid);color:white;cursor:pointer;font-weight:700;">この市のデータをリクエスト</button>
               <a href="/shindan/" class="hp-geo-link">他の市で診断する →</a>
             </div>
           `;
