@@ -319,6 +319,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (city) {
+          // 診断ページで郵便番号入力を省略するためにlocalStorageに保存
+          localStorage.setItem('hojotown_detected_city', JSON.stringify({ code: city.code, name: city.name, pref: city.pref }));
           result.style.display = 'block';
           const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
           const n = esc(city.name);

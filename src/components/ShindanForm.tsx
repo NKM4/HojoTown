@@ -123,8 +123,26 @@ function clearSavedProfile() {
 
 export default function ShindanForm({ allSubsidies, cities }: Props) {
   const saved = loadSavedProfile();
-  const [step, setStep] = useState(0);
-  const [profile, setProfile] = useState<UserProfile>(saved || initialProfile);
+
+  // 位置情報で検出された市を自動適用（郵便番号入力をスキップ）
+  let geoProfile: UserProfile | null = null;
+  let geoSkipStep0 = false;
+  if (!saved) {
+    try {
+      const detected = localStorage.getItem('hojotown_detected_city');
+      if (detected) {
+        const geo = JSON.parse(detected);
+        const city = cities.find((c: any) => c.code === geo.code);
+        if (city) {
+          geoProfile = { ...initialProfile, cityCode: geo.code, cityName: `${city.prefecture} ${city.name}`, postalCode: '0000000' };
+          geoSkipStep0 = true;
+        }
+      }
+    } catch {}
+  }
+
+  const [step, setStep] = useState(geoSkipStep0 ? 1 : 0);
+  const [profile, setProfile] = useState<UserProfile>(saved || geoProfile || initialProfile);
   const [showResult, setShowResult] = useState(!!saved);
   const [showWelcomeBack, setShowWelcomeBack] = useState(!!saved);
 
