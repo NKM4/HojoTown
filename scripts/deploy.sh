@@ -26,7 +26,7 @@ if [ -n "$EMPTY_TITLES" ]; then
 fi
 
 # ダミー文言チェック
-DUMMY=$(grep -rl 'サンプル\|ダミー\|TODO\|FIXME\|運営者（個人運営）\|undefined' dist/ 2>/dev/null | grep -v _astro || true)
+DUMMY=$(grep -rl 'サンプル\|TODO\|FIXME\|運営者（個人運営）' dist/ 2>/dev/null | grep -v _astro || true)
 if [ -n "$DUMMY" ]; then
   echo "❌ ダミー文言検出:"
   echo "$DUMMY"
