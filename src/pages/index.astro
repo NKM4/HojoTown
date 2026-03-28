@@ -116,6 +116,48 @@ const regions = [
     </div>
   </section>
 
+  <!-- 解説記事 -->
+  <section class="hp-support">
+    <div class="container">
+      <h2 class="hp-section-title">補助金の解説記事</h2>
+      <p class="hp-section-sub">制度の詳細や申請のポイントをわかりやすく解説</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:20px;">
+        <a href="/hokkaido/sapporo/kosodate-hojokin/" class="hp-article-card">
+          <span class="hp-article-cat">子育て</span>
+          <span class="hp-article-title">札幌市の子育て支援まとめ</span>
+        </a>
+        <a href="/aichi/nagoya/taiyoko-hojokin/" class="hp-article-card">
+          <span class="hp-article-cat">太陽光</span>
+          <span class="hp-article-title">名古屋市の太陽光・省エネ補助金</span>
+        </a>
+        <a href="/kanagawa/yokohama/reform-hojokin/" class="hp-article-card">
+          <span class="hp-article-cat">リフォーム</span>
+          <span class="hp-article-title">横浜市の住宅リフォーム補助金</span>
+        </a>
+        <a href="/tokyo/setagaya/shogaisha-shien/" class="hp-article-card">
+          <span class="hp-article-cat">障害者支援</span>
+          <span class="hp-article-title">世田谷区の障害者支援制度</span>
+        </a>
+        <a href="/osaka/osaka/koureisha-shien/" class="hp-article-card">
+          <span class="hp-article-cat">高齢者</span>
+          <span class="hp-article-title">大阪市の高齢者支援制度</span>
+        </a>
+        <a href="/hokkaido/sapporo/funin-chiryo/" class="hp-article-card">
+          <span class="hp-article-cat">不妊治療</span>
+          <span class="hp-article-title">札幌市の不妊治療費助成</span>
+        </a>
+        <a href="/niigata/niigata/kekkon-shien/" class="hp-article-card">
+          <span class="hp-article-cat">結婚</span>
+          <span class="hp-article-title">新潟市の結婚新生活支援</span>
+        </a>
+        <a href="/kumamoto/kumamoto/iju-shien/" class="hp-article-card">
+          <span class="hp-article-cat">移住</span>
+          <span class="hp-article-title">熊本市の移住支援</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="hp-final">
     <div class="container">
@@ -595,6 +637,35 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ============================
      DISCLAIMER
      ============================ */
+  .hp-article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 20px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .hp-article-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  .hp-article-cat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    background: var(--green-pale);
+    padding: 2px 8px;
+    border-radius: 10px;
+    align-self: flex-start;
+  }
+  .hp-article-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
   .hp-disclaimer {
     padding: 32px 0;
     background: #fafaf7;
