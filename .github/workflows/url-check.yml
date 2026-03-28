@@ -117,3 +117,24 @@ jobs:
           COUNT=$(echo "$CONTENT_REPORT" | grep -c CHANGED || true)
           curl -s -X POST "$WEBHOOK" -H "Content-Type: application/json" \
             -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"
+
+  weekly-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Send weekly report
+        env:
+          WEBHOOK_ACCESS: ${{ secrets.DISCORD_WEBHOOK_ACCESS }}
+          WEBHOOK_CLICKS: ${{ secrets.DISCORD_WEBHOOK_CLICKS }}
+        run: node scripts/weekly-report.cjs
