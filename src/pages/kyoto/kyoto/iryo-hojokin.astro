@@ -1,4 +1,5 @@
 ---
+import ArticleAds from '../../../components/ArticleAds.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="京都市の医療費助成まとめ｜子ども・ひとり親・重度障害者の制度を解説" description="京都市で受けられる医療費助成制度を解説。子ども医療費・ひとり親家庭医療費・重度心身障害者医療費の対象者と申請方法をまとめました。">
@@ -80,6 +81,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <h2 id="matome">まとめ：窓口で医療証を提示するだけ</h2>
         <p>京都市内の医療機関であれば、医療証と保険証を窓口で提示するだけで助成が適用されます。申請はお住まいの区役所・支所の<strong>保健福祉センター</strong>で手続きできます。</p>
 
+        <ArticleAds categories={["childcare","medical"]} />
         <div class="article-cta">
           <p class="article-cta-title">あなたに合った補助金を診断</p>
           <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>

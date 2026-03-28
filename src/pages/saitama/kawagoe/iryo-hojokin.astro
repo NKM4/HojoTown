@@ -1,4 +1,5 @@
 ---
+import ArticleAds from '../../../components/ArticleAds.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="川越市の医療費助成まとめ｜こども・ひとり親・重度障害者まで全部解説" description="川越市で受けられる医療費助成制度を網羅的に解説。こども医療費・ひとり親家庭等医療費・重度心身障害者医療費の対象者、助成内容、申請方法をわかりやすくまとめました。">
@@ -147,6 +148,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <p>川越市の医療費助成制度は<strong>申請主義</strong>です。対象になっていても、申請しなければ助成は受けられません。特にこども医療費は出生届と同時に手続きするのがおすすめです。複数の制度に該当する場合は、最も有利な制度が優先適用されます。</p>
 
         <!-- CTA -->
+        <ArticleAds categories={["childcare","medical"]} />
         <div class="article-cta">
           <p class="article-cta-title">あなたに合った補助金を診断</p>
           <p class="article-cta-body">5つの質問に答えるだけで、もらえる補助金と合計金額がわかります。</p>
