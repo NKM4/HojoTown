@@ -24,6 +24,27 @@ const totalSubsidies = Array.from(dataSlugs).reduce((sum, slug) => {
   } catch { return sum; }
 }, 0);
 
+// トップ比較表用データ（3大都市）
+const compareSlugs = ['setagaya', 'osaka', 'nagoya'];
+const compareData = compareSlugs.map(slug => {
+  const city = cities.find(c => c.slug === slug);
+  try {
+    const subs = JSON.parse(fs.readFileSync(path.join(subsidiesDir, slug + '.json'), 'utf8'));
+    const active = subs.filter((s: any) => s.status === 'active');
+    const findByCategory = (cat: string) => active.filter((s: any) => s.category === cat);
+    const medical = findByCategory('medical')[0];
+    const childcare = findByCategory('childcare')[0];
+    const reform = findByCategory('reform')[0];
+    return {
+      name: city?.name || slug,
+      medical: medical?.amount || '—',
+      childcare: childcare?.amount || '—',
+      reform: reform?.amount || '—',
+      count: active.length,
+    };
+  } catch { return { name: slug, medical: '—', childcare: '—', reform: '—', count: 0 }; }
+});
+
 // クライアント用都市データ（位置情報判定用）
 const clientCities = activeCities.map(c => ({ code: c.code, name: c.name, slug: c.slug, pref: c.prefectureSlug }));
 
@@ -43,7 +64,7 @@ const regions = [
   <section class="hp-hero">
     <div class="hp-hero-inner">
       <p class="hp-hero-brand">ホジョタウン</p>
-      <h1 class="hp-hero-headline">あなたの街の"もらえるお金"<br/>30秒で全部わかる</h1>
+      <h1 class="hp-hero-headline">あなたの街の<br/>"もらえるお金"<br/>30秒で全部わかる</h1>
       <p class="hp-hero-body">{activeCities.length}市・{totalSubsidies}件の補助金を横断検索。<br class="hp-pc"/>住んでいる街と家庭の状況を選ぶだけ。</p>
       <!-- 位置情報結果（自動判定） -->
       <div id="geo-result" class="hp-geo-result" style="display:none;"></div>
@@ -65,29 +86,25 @@ const regions = [
           <thead>
             <tr>
               <th>制度</th>
-              <th>川越市</th>
-              <th>さいたま市</th>
-              <th>所沢市</th>
+              {compareData.map(c => <th>{c.name}</th>)}
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>掲載制度数</td>
+              {compareData.map(c => <td><strong>{c.count}件</strong></td>)}
+            </tr>
+            <tr>
               <td>子ども医療費</td>
-              <td>18歳まで無料</td>
-              <td>15歳まで無料</td>
-              <td>18歳まで無料</td>
+              {compareData.map(c => <td>{c.medical}</td>)}
             </tr>
             <tr>
               <td>児童手当</td>
-              <td>月10,000〜30,000円</td>
-              <td>月10,000〜30,000円</td>
-              <td>月10,000〜30,000円</td>
+              {compareData.map(c => <td>{c.childcare}</td>)}
             </tr>
             <tr>
               <td>住宅リフォーム</td>
-              <td>上限5万円</td>
-              <td>—</td>
-              <td>上限10万円</td>
+              {compareData.map(c => <td>{c.reform}</td>)}
             </tr>
           </tbody>
         </table>
@@ -161,7 +178,7 @@ const regions = [
   <!-- FINAL CTA -->
   <section class="hp-final">
     <div class="container">
-      <h2 class="hp-final-headline">新しい補助金が出たら、通知する</h2>
+      <h2 class="hp-final-headline">新しい補助金が出たら、<br/>通知する</h2>
       <p class="hp-final-body">LINE公式アカウントで新着の補助金情報をお届けします。</p>
       <a href="https://lin.ee/oHiY2Pp" class="hp-btn-line">LINEで友だち追加</a>
     </div>
@@ -426,17 +443,23 @@ document.addEventListener('DOMContentLoaded', () => {
     flex-wrap: wrap;
   }
   .hp-geo-link {
-    color: #c8a84b;
-    font-weight: 600;
+    color: white;
+    font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none;
-    border-bottom: 1px solid rgba(200,168,75,0.4);
-    padding-bottom: 2px;
-    transition: border-color 0.2s;
+    background: rgba(255,255,255,0.15);
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background 0.2s;
   }
   .hp-geo-link:hover {
-    border-color: #c8a84b;
+    background: rgba(255,255,255,0.25);
     text-decoration: none;
+  }
+  .hp-best {
+    background: rgba(26, 92, 58, 0.1);
+    color: var(--green-deep);
+    font-weight: 700;
   }
 
   /* ============================
