@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/fukushi/kosodate/josei/2013080700232.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療自己負担分を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/fukushi/syogaisya-hukusi/iryouhijosei/2013080600310.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/fukushi/kosodate/josei/jidoufuyouteate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "妊娠届出時50,000円＋出生後50,000円（計100,000円）",
     "maxAmount": 100000,
     "deadline": "妊娠届出時・出生届出後",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/fukushi/kosodate/oshirase/syussannkosodate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費の10%、上限100,000円",
     "maxAmount": 100000,
     "deadline": "予算額に達し次第終了",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/kurashi/emigration/residence/info-subsidies.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "保険診療自己負担分を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/fukushi/syogaisya-hukusi/iryouhijosei/2013080600310.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "年間最大24,000円分のタクシー利用券",
     "maxAmount": 24000,
     "deadline": "通年（年度ごと申請）",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/kurashi/seikatsu/kokyokotsu/ryutaku/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "1kWあたり20,000円、上限80,000円",
     "maxAmount": 80000,
     "deadline": "予算額に達し次第終了",
-    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/",
+    "officialUrl": "https://www.city.ryugasaki.ibaraki.jp/kurashi/kankyo/kankyo/eco-syouene/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
