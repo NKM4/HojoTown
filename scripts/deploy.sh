@@ -1,11 +1,20 @@
 #!/bin/bash
 set -e
 
-echo "=== [1/4] ビルド ==="
+echo "=== [0/5] 記事整合性チェック ==="
+node scripts/check-articles.cjs
+if [ $? -ne 0 ]; then
+  echo "❌ 記事チェック失敗。デプロイ中止。"
+  exit 1
+fi
+echo "✅ 記事チェック通過"
+
+echo ""
+echo "=== [1/5] ビルド ==="
 npm run build
 
 echo ""
-echo "=== [2/4] コンテンツチェック ==="
+echo "=== [2/5] コンテンツチェック ==="
 ERRORS=0
 
 # 空タイトルチェック
@@ -53,11 +62,11 @@ fi
 echo "✅ コンテンツチェック通過"
 
 echo ""
-echo "=== [3/4] デプロイ ==="
+echo "=== [3/5] デプロイ ==="
 npx wrangler pages deploy dist --project-name=hojotown --commit-dirty=true
 
 echo ""
-echo "=== [4/4] 本番確認 ==="
+echo "=== [4/5] 本番確認 ==="
 sleep 5
 
 PAGES=("/" "/about/" "/shindan/" "/compare/" "/saitama/kawagoe/" "/hokkaido/sapporo/" "/osaka/osaka/" "/privacy/" "/contact/")
