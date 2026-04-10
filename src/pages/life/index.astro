@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LIFE_EVENT_LABELS, LIFE_EVENT_CATEGORIES, getAdsByLifeEvent } from '../../data/affiliate';
+import type { LifeEvent } from '../../data/affiliate';
+import { CATEGORY_LABELS } from '../../data/types';
+import type { Category } from '../../data/types';
+
+const events: { event: LifeEvent; icon: string; desc: string }[] = [
+  { event: 'reform', icon: '🏠', desc: '補助金を使ってお得にリフォーム。無料見積もりで実質負担額がわかります。' },
+  { event: 'housing', icon: '🏗️', desc: '子育てエコホームなど、新築住宅で最大100万円以上の補助金。' },
+  { event: 'baby', icon: '👶', desc: '出産祝い金・児童手当・医療費助成など、子育て家庭の補助金を網羅。' },
+  { event: 'moving', icon: '🚚', desc: '移住支援金は最大100万円。引っ越し先の補助金を比較できます。' },
+  { event: 'energy', icon: '☀️', desc: '太陽光・蓄電池・EV。国と自治体の補助金を二重取りで大幅節約。' },
+  { event: 'retirement', icon: '🏥', desc: '介護保険・高齢者住宅改修・医療費助成など、シニア向け支援制度。' },
+  { event: 'marriage', icon: '💍', desc: '結婚新生活支援事業で最大60万円。新居の家賃・引越し費用を補助。' },
+  { event: 'career', icon: '📚', desc: '教育訓練給付金で最大70%補助。キャリアチェンジを公的制度が支援。' },
+  { event: 'funeral', icon: '🕊️', desc: '葬祭費補助・遺族年金・相続手続き。申請しそびれやすい制度を確認。' },
+];
+
+// 各ライフイベントの補助金件数を集計
+const subsidyFiles = import.meta.glob('../../data/subsidies/*.json', { eager: true });
+function countForEvent(event: LifeEvent): number {
+  const cats = LIFE_EVENT_CATEGORIES[event];
+  let count = 0;
+  for (const [, mod] of Object.entries(subsidyFiles)) {
+    const subsidies = (mod as any).default || mod;
+    if (!Array.isArray(subsidies)) continue;
+    count += subsidies.filter((s: any) => cats.includes(s.category as Category)).length;
+  }
+  return count;
+}
+---
+<BaseLayout
+  title="ライフイベント別 補助金ガイド"
+  description="家を建てる・リフォーム・出産・引っ越し・結婚など、ライフイベントごとに使える補助金をまとめて確認。無料見積もり・無料相談で次のステップへ。"
+>
+  <div class="container" style="padding-top: 16px;">
+    <nav style="font-size: 0.8rem; color: var(--text-soft);">
+      <a href="/">ホジョタウン</a> &gt;
+      <span>ライフイベント別ガイド</span>
+    </nav>
+  </div>
+
+  <section class="hero" style="padding: 48px 0 40px;">
+    <div class="container">
+      <h1 style="font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 12px;">
+        あなたの「今」に合った補助金を見つけよう
+      </h1>
+      <p style="font-size: 1rem; opacity: 0.9; max-width: 540px;">
+        ライフイベントごとに使える補助金と、次にやるべきことをまとめました。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="le-index-grid">
+        {events.map(({ event, icon, desc }) => {
+          const count = countForEvent(event);
+          return (
+            <a href={`/life/${event}/`} class="le-index-card">
+              <span class="le-index-icon">{icon}</span>
+              <div>
+                <h2 class="le-index-name">{LIFE_EVENT_LABELS[event]}</h2>
+                <p class="le-index-desc">{desc}</p>
+                <span class="le-index-count">{count.toLocaleString()}件の補助金</span>
+              </div>
+              <span class="le-index-arrow">→</span>
+            </a>
+          );
+        })}
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <p style="color: var(--text-mid); margin-bottom: 16px;">どれが当てはまるかわからない方は</p>
+        <a href="/shindan/" class="le-btn-primary" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #c8a84b, #b8960a); color: white; border-radius: 8px; font-weight: 800; font-size: 1rem; text-decoration: none;">
+          30秒で無料診断する
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .le-index-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .le-index-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 22px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .le-index-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(26, 92, 58, 0.1);
+    border-color: var(--green-mid);
+    text-decoration: none;
+  }
+  .le-index-icon {
+    font-size: 2.2rem;
+    flex-shrink: 0;
+  }
+  .le-index-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+  }
+  .le-index-desc {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  .le-index-count {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--green-mid);
+    background: var(--green-pale);
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+  .le-index-arrow {
+    font-size: 1.3rem;
+    color: var(--green-mid);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+</style>

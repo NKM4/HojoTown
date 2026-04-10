@@ -1,0 +1,116 @@
+---
+/**
+ * 補助金カテゴリに応じてライフイベントLPへの導線バナーを表示
+ * 市ページの補助金一覧の後に配置する
+ */
+import { LIFE_EVENT_CATEGORIES, LIFE_EVENT_LABELS } from '../data/affiliate';
+import type { LifeEvent } from '../data/affiliate';
+import type { Category } from '../data/types';
+
+interface Props {
+  /** このページに含まれる補助金カテゴリ */
+  categories: Category[];
+}
+
+const { categories } = Astro.props;
+
+// カテゴリからマッチするライフイベントを逆引き
+const matchedEvents: { event: LifeEvent; label: string; desc: string }[] = [];
+const eventDescriptions: Record<LifeEvent, string> = {
+  reform: '補助金を使ってお得にリフォームする方法と無料見積もり',
+  housing: '新築住宅の補助金と無料の間取りプラン',
+  baby: '出産・子育てで使える補助金とFP無料相談',
+  moving: '引っ越し先の補助金を比較して賢く移住',
+  energy: '太陽光・蓄電池の補助金と無料見積もり',
+  retirement: '介護・老後の補助金と施設検索',
+  marriage: '結婚新生活支援金と次のステップ',
+  career: '教育訓練給付金と資格取得支援',
+  funeral: '葬祭費補助と必要な手続き',
+};
+
+for (const [event, cats] of Object.entries(LIFE_EVENT_CATEGORIES)) {
+  if (cats.some(c => categories.includes(c))) {
+    matchedEvents.push({
+      event: event as LifeEvent,
+      label: LIFE_EVENT_LABELS[event as LifeEvent],
+      desc: eventDescriptions[event as LifeEvent],
+    });
+  }
+}
+
+// 最大3つまで
+const displayEvents = matchedEvents.slice(0, 3);
+---
+
+{displayEvents.length > 0 && (
+  <div class="le-banner-section">
+    <h3 class="le-banner-title">補助金を活用するなら</h3>
+    <div class="le-banner-list">
+      {displayEvents.map(({ event, label, desc }) => (
+        <a href={`/life/${event}/`} class="le-banner-item">
+          <div>
+            <span class="le-banner-label">{label}</span>
+            <p class="le-banner-desc">{desc}</p>
+          </div>
+          <span class="le-banner-arrow">→</span>
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+
+<style is:global>
+  .le-banner-section {
+    margin: 32px 0;
+    padding: 24px;
+    background: linear-gradient(135deg, #f0faf4 0%, #e8f7ef 100%);
+    border-radius: 16px;
+    border: 1px solid #c8e6d5;
+  }
+  .le-banner-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 14px;
+  }
+  .le-banner-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .le-banner-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: white;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e0e0e0;
+  }
+  .le-banner-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 92, 58, 0.1);
+    text-decoration: none;
+    border-color: var(--green-mid);
+  }
+  .le-banner-label {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--green-deep);
+  }
+  .le-banner-desc {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    margin-top: 2px;
+  }
+  .le-banner-arrow {
+    font-size: 1.2rem;
+    color: var(--green-mid);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+</style>

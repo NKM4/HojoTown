@@ -80,7 +80,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '補助金を使ったリフォーム、実質いくら？',
     description: '補助金適用後の実質負担額がわかる。地元の優良業者から無料でプランと見積もりが届きます。',
     ctaText: '無料で見積もりを比較する',
-    url: 'https://townlife-aff.com/link.php?i=reform&m=hojotown',  // TODO: タウンライフ提携後に差し替え
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え
     label: 'PR',
     icon: '🏠',
     conversionType: '無料見積り申込',
@@ -94,7 +94,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '注文住宅、補助金で最大100万円お得に',
     description: '子育てエコホーム支援事業など、住宅取得の補助金を活用。間取りプランと資金計画が無料で届きます。',
     ctaText: '無料で間取りプランを取り寄せる',
-    url: 'https://townlife-aff.com/link.php?i=house&m=hojotown',  // TODO: タウンライフ提携後に差し替え
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え
     label: 'PR',
     icon: '🏗️',
     conversionType: '無料間取りプラン申込',
@@ -108,7 +108,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '太陽光パネル、補助金でいくらお得に？',
     description: '補助金適用後の実質費用がわかる。複数メーカーの見積もりを無料で比較できます。',
     ctaText: '無料で太陽光の見積もりを取る',
-    url: 'https://townlife-aff.com/link.php?i=solar&m=hojotown',  // TODO: タウンライフ提携後に差し替え
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: タウンライフ提携承認後にグリエネURLに差し替え
     label: 'PR',
     icon: '☀️',
     conversionType: '無料見積り申込',
@@ -123,9 +123,9 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
   {
     id: 'childcare-insurance',
     triggerCategories: ['childcare', 'birth', 'medical', 'fertility'],
-    lifeEvents: ['baby', 'retirement', 'marriage'],
+    lifeEvents: ['baby', 'retirement', 'marriage', 'funeral', 'career'],
     title: 'お金のプロに無料で相談しませんか？',
-    description: '補助金だけでは不安な将来の備え。学資保険・医療保険・老後資金をFPに無料相談。',
+    description: '補助金だけでは不安な将来の備え。学資保険・医療保険・老後資金・相続対策をFPに無料相談。',
     ctaText: '無料でFPに相談する',
     url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',
     label: 'PR',
@@ -289,6 +289,72 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     icon: '📹',
     conversionType: '無料見積り申込',
     priority: 2,
+  },
+
+  // ============================================
+  // 教育訓練給付金連動（/life/career/ 本命）
+  // ============================================
+
+  // プログラミングスクール → DMM WEBCAMP（30,000円/契約、1,000円/無料カウンセリング）
+  {
+    id: 'dmm-webcamp',
+    triggerCategories: ['education'],
+    lifeEvents: ['career'],
+    title: '教育訓練給付金で最大56万円キャッシュバック',
+    description: 'DMM WEBCAMPは厚生労働省指定の給付金対象講座。受講料の最大70%が戻ってきます。まずは無料カウンセリングから。',
+    ctaText: '無料カウンセリングを予約する',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でDMM WEBCAMP提携後に差し替え（現在はFP相談にフォールバック）
+    label: 'PR',
+    icon: '💻',
+    conversionType: '無料カウンセリング',
+    priority: 9,
+  },
+  // プログラミングスクール → テックアカデミー（20,000円/申込）
+  {
+    id: 'techacademy',
+    triggerCategories: ['education'],
+    lifeEvents: ['career'],
+    title: '給付金対象のプログラミングスクールで転職',
+    description: 'テックアカデミーのエンジニア転職コースは教育訓練給付金の対象。オンライン完結で働きながら学べます。',
+    ctaText: '無料で相談してみる',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でテックアカデミー提携後に差し替え（現在はFP相談にフォールバック）
+    label: 'PR',
+    icon: '🎓',
+    conversionType: '無料相談',
+    priority: 8,
+  },
+
+  // ============================================
+  // EV補助金連動（/life/energy/ 追加枠）
+  // ============================================
+
+  // 車買取一括査定 → ナビクル（2,000〜3,000円/査定申込）
+  {
+    id: 'navikuru-car',
+    triggerCategories: ['ev'],
+    lifeEvents: ['energy'],
+    title: 'EV乗り換えなら、今の車を高く売ろう',
+    description: 'EV補助金で新車を買うなら、旧車の売却額も重要。最大10社の買取価格を無料で一括比較。',
+    ctaText: '無料で一括査定する',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: A8でナビクル提携後に差し替え（現在は太陽光見積りにフォールバック）
+    label: 'PR',
+    icon: '🚗',
+    conversionType: '無料一括査定',
+    priority: 7,
+  },
+  // 自動車保険見積り（1,000〜10,000円/見積り申込）
+  {
+    id: 'car-insurance',
+    triggerCategories: ['ev'],
+    lifeEvents: ['energy'],
+    title: 'EVに乗り換えたら、保険も見直そう',
+    description: '車種が変わると保険料も変わります。最大20社の自動車保険を無料で一括比較。',
+    ctaText: '無料で保険を比較する',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // TODO: A8で自動車保険提携後に差し替え（現在はFP相談にフォールバック）
+    label: 'PR',
+    icon: '🛡️',
+    conversionType: '無料一括見積り',
+    priority: 6,
   },
 ];
 

@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
 import type { Subsidy } from '../data/types';
 import { CATEGORY_LABELS } from '../data/types';
-import { getMatchingAds } from '../data/affiliate';
+import { getMatchingAds, getAdsByLifeEvent, LIFE_EVENT_LABELS } from '../data/affiliate';
+import type { LifeEvent } from '../data/affiliate';
 import postalMap from '../data/postal-codes.json';
 
 interface Props {
@@ -369,18 +370,44 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
           </div>
         )}
 
-        {/* カテゴリ連動アフィリエイト広告 */}
+        {/* ライフイベント連動「次のステップ」セクション */}
         {(() => {
+          // プロフィールからライフイベントを判定
+          const detectedEvents: LifeEvent[] = [];
+          if (profile.planningReform) detectedEvents.push('reform');
+          if (profile.wantsSolar) detectedEvents.push('energy');
+          if (profile.planningMove) detectedEvents.push('moving');
+          if (profile.planningMarriage) detectedEvents.push('marriage');
+          if (profile.wantsFertility || profile.isPregnant || profile.hasChildren) detectedEvents.push('baby');
+          if (profile.hasElderly) detectedEvents.push('retirement');
+
+          // ライフイベントからアフィリエイトを取得（最大3件）
+          const eventAds = detectedEvents.flatMap(ev =>
+            getAdsByLifeEvent(ev, 2).map(ad => ({ ...ad, _event: ev }))
+          );
+          // 重複排除してpriority順
+          const seen = new Set<string>();
+          const uniqueAds = eventAds.filter(ad => {
+            if (seen.has(ad.id)) return false;
+            seen.add(ad.id);
+            return true;
+          }).sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0)).slice(0, 3);
+
+          // フォールバック: ライフイベントが検出されなければカテゴリベース
           const resultCategories = [...new Set(matchedSubsidies.map(s => s.category))];
-          const ads = getMatchingAds(resultCategories);
-          if (ads.length === 0) return null;
+          const fallbackAds = uniqueAds.length > 0 ? [] : getMatchingAds(resultCategories);
+          const displayAds = uniqueAds.length > 0 ? uniqueAds : fallbackAds;
+
+          if (displayAds.length === 0) return null;
           return (
-            <div className="affiliate-section">
-              {ads.map(ad => (
-                <a key={ad.id} href={ad.url} target="_blank" rel="noopener noreferrer sponsored" className="affiliate-card"
+            <div className="next-steps-section">
+              <h3 className="next-steps-title">次のステップ</h3>
+              <p className="next-steps-desc">補助金を最大限活用するために、まずは無料で情報を集めましょう。</p>
+              {displayAds.map((ad, i) => (
+                <a key={ad.id} href={ad.url} target="_blank" rel="noopener noreferrer sponsored" className={`affiliate-card ${i === 0 ? 'affiliate-card-primary' : ''}`}
                   onClick={() => {
                     if (typeof window !== 'undefined' && (window as any).gtag) {
-                      (window as any).gtag('event', 'affiliate_click', { ad_id: ad.id, ad_title: ad.title });
+                      (window as any).gtag('event', 'affiliate_click', { ad_id: ad.id, ad_title: ad.title, source: 'shindan_result', position: i + 1 });
                     }
                   }}>
                   <span className="affiliate-label">{ad.label}</span>
@@ -389,12 +416,23 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
                     <div>
                       <h4 className="affiliate-title">{ad.title}</h4>
                       <p className="affiliate-desc">{ad.description}</p>
-                      <span className="affiliate-badge">無料で相談可能</span>
+                      {ad.conversionType && (
+                        <span className="affiliate-badge">{ad.conversionType}</span>
+                      )}
                     </div>
                   </div>
                   <span className="affiliate-cta">{ad.ctaText} →</span>
                 </a>
               ))}
+              {detectedEvents.length > 0 && (
+                <div className="life-event-links">
+                  {detectedEvents.slice(0, 3).map(ev => (
+                    <a key={ev} href={`/life/${ev}/`} className="life-event-link">
+                      {LIFE_EVENT_LABELS[ev]}の補助金をもっと見る →
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           );
         })()}

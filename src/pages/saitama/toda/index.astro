@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LifeEventBanner from '../../../components/LifeEventBanner.astro';
 import subsidies from '../../../data/subsidies/toda.json';
 import { CATEGORY_LABELS } from '../../../data/types';
 import type { Category } from '../../../data/types';
@@ -16,9 +17,12 @@ const totalCount = subsidies.length;
 const categoriesUsed = Object.keys(byCategory) as Category[];
 ---
 <BaseLayout
-  title={}
-  description={}
->
+  title={`${cityName}の補助金・助成金一覧 | ホジョタウン`}
+  description={`${prefecture}${cityName}で個人が使える補助金・助成金を${totalCount}件掲載。`}
+>      <!-- ライフイベント導線 -->
+      <LifeEventBanner categories={categoriesUsed} />
+
+
   <div class="container" style="padding-top: 16px;">
     <nav style="font-size: 0.8rem; color: var(--text-soft);">
       <a href="/">ホジョタウン</a> &gt; <span>{cityName}</span>
@@ -34,7 +38,7 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
   <section style="background: white; border-bottom: 1px solid var(--border); padding: 12px 0; position: sticky; top: 52px; z-index: 50;">
     <div class="container" style="display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap;">
       {categoriesUsed.map((cat) => (
-        <a href={} style="white-space: nowrap; padding: 6px 14px; background: var(--green-pale); color: var(--green-deep); border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+        <a href={`#${cat}`} style="white-space: nowrap; padding: 6px 14px; background: var(--green-pale); color: var(--green-deep); border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
           {CATEGORY_LABELS[cat]}（{byCategory[cat].length}）
         </a>
       ))}

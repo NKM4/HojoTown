@@ -175,6 +175,28 @@ const regions = [
     </div>
   </section>
 
+  <!-- ライフイベント -->
+  <section class="section" style="background: var(--green-pale);">
+    <div class="container">
+      <h2 class="hp-section-title">ライフイベントから探す</h2>
+      <p style="color: var(--text-mid); margin-bottom: 20px;">あなたの「今」に合った補助金と、次にやるべきことをまとめました。</p>
+      <div class="hp-life-grid">
+        <a href="/life/reform/" class="hp-life-item"><span>🏠</span> 家を直す</a>
+        <a href="/life/housing/" class="hp-life-item"><span>🏗️</span> 家を建てる</a>
+        <a href="/life/baby/" class="hp-life-item"><span>👶</span> 子どもが生まれる</a>
+        <a href="/life/moving/" class="hp-life-item"><span>🚚</span> 引っ越す</a>
+        <a href="/life/energy/" class="hp-life-item"><span>☀️</span> 省エネしたい</a>
+        <a href="/life/retirement/" class="hp-life-item"><span>🏥</span> 老後に備える</a>
+        <a href="/life/marriage/" class="hp-life-item"><span>💍</span> 結婚する</a>
+        <a href="/life/career/" class="hp-life-item"><span>📚</span> 仕事を変える</a>
+        <a href="/life/funeral/" class="hp-life-item"><span>🕊️</span> 家族が亡くなる</a>
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="/life/" style="color: var(--green-deep); font-weight: 600; font-size: 0.9rem;">すべてのライフイベントを見る →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="hp-final">
     <div class="container">
@@ -699,6 +721,48 @@ document.addEventListener('DOMContentLoaded', () => {
     font-size: 0.8rem;
     color: #7a7a7a;
     text-align: center;
+  }
+
+  /* ============================
+     LIFE EVENT GRID
+     ============================ */
+  .hp-life-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .hp-life-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .hp-life-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 92, 58, 0.1);
+    border-color: var(--green-mid);
+    text-decoration: none;
+  }
+  .hp-life-item span {
+    font-size: 1.3rem;
+  }
+  @media (max-width: 768px) {
+    .hp-life-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .hp-life-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ============================

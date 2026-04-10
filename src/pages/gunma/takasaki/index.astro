@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LifeEventBanner from '../../../components/LifeEventBanner.astro';
 import subsidies from '../../../data/subsidies/takasaki.json';
 import { CATEGORY_LABELS } from '../../../data/types';
 import type { Category } from '../../../data/types';
@@ -92,6 +93,9 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
         <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
       </div>
       ))}
+
+      <!-- ライフイベント導線 -->
+      <LifeEventBanner categories={categoriesUsed} />
 
       <!-- 比較CTA -->
       <div class="card" style="text-align: center; background: var(--green-pale); margin-top: 32px; padding: 28px;">

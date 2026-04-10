@@ -1,0 +1,418 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAdsByLifeEvent, getCategoriesForLifeEvent, LIFE_EVENT_LABELS } from '../data/affiliate';
+import type { LifeEvent } from '../data/affiliate';
+import type { Category } from '../data/types';
+import { CATEGORY_LABELS } from '../data/types';
+
+interface Props {
+  event: LifeEvent;
+  heroTitle: string;
+  heroSubtitle: string;
+  /** 「こんな補助金が使えます」セクションの説明 */
+  subsidyIntro: string;
+  /** シミュレーションの例文（例：「リフォーム費用200万円 − 補助金10万円 = 実質190万円」） */
+  simExample: { label: string; before: string; subsidy: string; after: string };
+  /** 「次のステップ」セクションの見出し */
+  nextStepTitle: string;
+  /** SEO用 */
+  metaDescription: string;
+}
+
+const { event, heroTitle, heroSubtitle, subsidyIntro, simExample, nextStepTitle, metaDescription } = Astro.props;
+
+const ads = getAdsByLifeEvent(event, 3);
+const categories = getCategoriesForLifeEvent(event);
+const eventLabel = LIFE_EVENT_LABELS[event];
+
+// 全市のデータからこのライフイベントに関連する補助金の件数を集計
+const subsidyFiles = import.meta.glob('../data/subsidies/*.json', { eager: true });
+let totalSubsidyCount = 0;
+let cityCount = 0;
+for (const [, mod] of Object.entries(subsidyFiles)) {
+  const subsidies = (mod as any).default || mod;
+  if (!Array.isArray(subsidies)) continue;
+  const matched = subsidies.filter((s: any) => categories.includes(s.category as Category));
+  if (matched.length > 0) {
+    totalSubsidyCount += matched.length;
+    cityCount++;
+  }
+}
+---
+<BaseLayout
+  title={heroTitle}
+  description={metaDescription}
+>
+  <!-- パンくず -->
+  <div class="container" style="padding-top: 16px;">
+    <nav style="font-size: 0.8rem; color: var(--text-soft);">
+      <a href="/">ホジョタウン</a> &gt;
+      <span>{eventLabel}</span>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <section class="le-hero">
+    <div class="container">
+      <p class="le-hero-label">{eventLabel}</p>
+      <h1 class="le-hero-title">{heroTitle}</h1>
+      <p class="le-hero-subtitle">{heroSubtitle}</p>
+      <div class="le-hero-stats">
+        <div class="le-stat">
+          <span class="le-stat-num">{cityCount}</span>
+          <span class="le-stat-label">対応市区町村</span>
+        </div>
+        <div class="le-stat">
+          <span class="le-stat-num">{totalSubsidyCount.toLocaleString()}</span>
+          <span class="le-stat-label">関連する補助金</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使える補助金カテゴリ -->
+  <section class="section" style="background: white;">
+    <div class="container">
+      <h2 class="le-section-title">使える補助金の種類</h2>
+      <p style="color: var(--text-mid); margin-bottom: 20px;">{subsidyIntro}</p>
+      <div class="le-categories">
+        {categories.map((cat) => (
+          <div class="le-category-chip">
+            {CATEGORY_LABELS[cat]}
+          </div>
+        ))}
+      </div>
+      <div style="margin-top: 24px; text-align: center;">
+        <a href="/shindan/" class="le-btn-secondary">診断であなたの補助金を調べる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- シミュレーション -->
+  <section class="section">
+    <div class="container">
+      <h2 class="le-section-title">補助金でいくらお得？</h2>
+      <div class="le-sim">
+        <p class="le-sim-label">{simExample.label}</p>
+        <div class="le-sim-row">
+          <div class="le-sim-item">
+            <span class="le-sim-sublabel">通常費用</span>
+            <span class="le-sim-value">{simExample.before}</span>
+          </div>
+          <span class="le-sim-op">−</span>
+          <div class="le-sim-item le-sim-highlight">
+            <span class="le-sim-sublabel">補助金</span>
+            <span class="le-sim-value">{simExample.subsidy}</span>
+          </div>
+          <span class="le-sim-op">=</span>
+          <div class="le-sim-item le-sim-result">
+            <span class="le-sim-sublabel">実質負担</span>
+            <span class="le-sim-value">{simExample.after}</span>
+          </div>
+        </div>
+        <p class="le-sim-note">※ 金額は自治体により異なります。正確な金額は無料見積りでご確認ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 次のステップ（アフィリエイトCTA） -->
+  {ads.length > 0 && (
+    <section class="section" style="background: white;">
+      <div class="container">
+        <h2 class="le-section-title">{nextStepTitle}</h2>
+        <p style="color: var(--text-mid); margin-bottom: 24px;">補助金を最大限活用するために、まずは無料で情報を集めましょう。</p>
+        <div class="le-ads">
+          {ads.map((ad, i) => (
+            <a href={ad.url} target="_blank" rel="noopener noreferrer sponsored" class={`le-ad ${i === 0 ? 'le-ad-primary' : ''}`}
+               data-ad-id={ad.id} data-life-event={event} data-position={i+1}>
+              <span class="le-ad-pr">PR</span>
+              <div class="le-ad-body">
+                <span class="le-ad-icon">{ad.icon}</span>
+                <div>
+                  <h3 class="le-ad-title">{ad.title}</h3>
+                  <p class="le-ad-desc">{ad.description}</p>
+                  {ad.conversionType && (
+                    <span class="le-ad-badge">{ad.conversionType}</span>
+                  )}
+                </div>
+              </div>
+              <span class="le-ad-cta">{ad.ctaText} →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 診断CTA -->
+  <section class="section" style="background: var(--green-pale);">
+    <div class="container" style="text-align: center;">
+      <h2 class="le-section-title">まずは診断してみよう</h2>
+      <p style="color: var(--text-mid); margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto;">
+        あなたの家族構成・住まい・今後の予定から、使える補助金を30秒で診断します。
+      </p>
+      <a href="/shindan/" class="le-btn-primary">無料で診断する</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.le-ad[data-ad-id]').forEach(el => {
+    el.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'affiliate_click', {
+          affiliate_id: el.getAttribute('data-ad-id'),
+          life_event: el.getAttribute('data-life-event'),
+          position: Number(el.getAttribute('data-position'))
+        });
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  .le-hero {
+    background: linear-gradient(135deg, var(--green-deep) 0%, #2a7a52 100%);
+    color: white;
+    padding: 48px 0 40px;
+  }
+  .le-hero-label {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .le-hero-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .le-hero-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 540px;
+  }
+  .le-hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+  }
+  .le-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .le-stat-num {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  .le-stat-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  .le-section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+  }
+  .le-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .le-category-chip {
+    padding: 8px 16px;
+    background: var(--green-pale);
+    color: var(--green-deep);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* シミュレーション */
+  .le-sim {
+    background: linear-gradient(135deg, #fffdf5 0%, #fff8e8 100%);
+    border: 2px solid #e8c84a;
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+  .le-sim-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+  }
+  .le-sim-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .le-sim-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 20px;
+    background: white;
+    border-radius: 12px;
+    min-width: 120px;
+  }
+  .le-sim-sublabel {
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+  .le-sim-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .le-sim-highlight {
+    background: var(--green-pale);
+    border: 2px solid var(--green-mid);
+  }
+  .le-sim-highlight .le-sim-value {
+    color: var(--green-deep);
+  }
+  .le-sim-result .le-sim-value {
+    color: #c8a84b;
+  }
+  .le-sim-op {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-soft);
+  }
+  .le-sim-note {
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  /* アフィリエイトCTA */
+  .le-ads {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .le-ad {
+    display: block;
+    background: linear-gradient(135deg, #fffdf5 0%, #fff8e8 100%);
+    border: 2px solid #e8c84a;
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .le-ad-primary {
+    border-width: 3px;
+    box-shadow: 0 4px 16px rgba(200, 168, 75, 0.15);
+  }
+  .le-ad-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c8a84b, #e8c84a, #c8a84b);
+  }
+  .le-ad:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(200, 168, 75, 0.2);
+    text-decoration: none;
+  }
+  .le-ad-pr {
+    position: absolute;
+    top: 10px; right: 12px;
+    font-size: 0.6rem;
+    color: #b8960a;
+    background: rgba(232,200,74,0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .le-ad-body {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .le-ad-icon {
+    font-size: 2.2rem;
+    flex-shrink: 0;
+  }
+  .le-ad-title {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .le-ad-desc {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .le-ad-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 12px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 10px;
+  }
+  .le-ad-cta {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #c8a84b, #b8960a);
+    color: white;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    box-shadow: 0 3px 8px rgba(200,168,75,0.3);
+  }
+  .le-ad:hover .le-ad-cta {
+    box-shadow: 0 4px 14px rgba(200,168,75,0.4);
+  }
+
+  /* ボタン */
+  .le-btn-primary {
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #c8a84b, #b8960a);
+    color: white;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 3px 12px rgba(200,168,75,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .le-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200,168,75,0.4);
+    text-decoration: none;
+  }
+  .le-btn-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    background: white;
+    color: var(--green-deep);
+    border: 2px solid var(--green-mid);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .le-btn-secondary:hover {
+    background: var(--green-pale);
+    text-decoration: none;
+  }
+</style>
