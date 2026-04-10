@@ -101,7 +101,7 @@ export default {
       try {
         const res = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token=' + token);
         const info = await res.json();
-        if (info.email !== 'hojotown2026@gmail.com' && info.email !== 'taitatu4barisuta@gmail.com') {
+        if (info.email !== 'taitatu4barisuta@gmail.com' && info.email !== 'taitatu4alexandros@gmail.com') {
           return new Response(JSON.stringify({ error: 'Forbidden' }), {
             status: 403, headers: { 'Content-Type': 'application/json', ...corsHeaders }
           });
