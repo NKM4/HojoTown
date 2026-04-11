@@ -188,7 +188,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'リフォーム補助金と併用でさらにお得',
     description: '補助金を活用したリフォームプランを無料で一括比較。地元の優良業者から最適なプランが届きます。',
     ctaText: '無料でリフォームプランを比較する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: Speee固有のa8matリンクに差し替え必要  // 現在のURL: townlife-reform, townlife-housing と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5Z6WX',  // Speee ヌリカエ固有リンク (2026-04-12差替済)
     label: 'PR',
     icon: '🏠',
     conversionType: '無料見積り申込',
@@ -243,7 +243,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '太陽光パネルの見積もり、もう1社比較',
     description: '複数メーカーの見積もりを無料で比較。補助金適用後の実質費用がわかります。',
     ctaText: '無料で見積もりを取る',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: WAVE固有のa8matリンクに差し替え必要  // 現在のURL: griene-solar, navikuru-car と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5YZ75',  // WAVE エコ×エネ固有リンク (2026-04-12差替済)
     label: 'PR',
     icon: '⚡',
     conversionType: '無料見積り申込',
