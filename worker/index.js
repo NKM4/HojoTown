@@ -147,15 +147,13 @@ export default {
         const data = JSON.parse(body);
         for (const event of data.events || []) {
           if (event.type === 'follow') {
-            // 友だち追加時: DBに登録 + ウェルカムメッセージ
             const userId = event.source.userId;
             const now = new Date().toISOString();
             await env.DB.prepare(
               'INSERT OR IGNORE INTO line_users (user_id, followed_at, updated_at) VALUES (?, ?, ?)'
             ).bind(userId, now, now).run();
             await lineReply(env, event.replyToken, [
-              { type: 'text', text: '友だち追加ありがとうございます！🏠\nホジョタウンは、あなたの街の補助金を30秒で検索できるサービスです。' },
-              { type: 'text', text: '📍 お住まいの市区町村名を送信すると、補助金の更新通知をお届けします。\n\n例: 「名古屋市」「世田谷区」' },
+              welcomeFlexMessage(),
             ]);
           } else if (event.type === 'message' && event.message.type === 'text') {
             const userId = event.source.userId;
@@ -195,7 +193,7 @@ export default {
               }
             } else if (['ヘルプ', 'help', '使い方'].includes(text)) {
               await lineReply(env, event.replyToken, [
-                { type: 'text', text: '📖 ホジョタウン LINE通知の使い方\n\n📍 市名を送信 → 通知登録\n  例: 「名古屋市」「世田谷区」\n  ※複数登録OK\n\n📋 「確認」→ 登録中の市一覧\n🗑️ 「○○市 解除」→ 個別解除\n🗑️ 「解除」→ 全解除\n🔍 「診断」→ 補助金診断ページ\n\n補助金データに更新があれば、登録した市の情報をお届けします。' },
+                helpFlexMessage(),
               ]);
             } else if (['診断', 'しんだん'].includes(text)) {
               await lineReply(env, event.replyToken, [
@@ -223,13 +221,22 @@ export default {
                   const count = await env.DB.prepare('SELECT COUNT(*) as cnt FROM line_user_cities WHERE user_id = ?').bind(userId).all();
                   const total = count.results?.[0]?.cnt || 1;
                   await lineReply(env, event.replyToken, [
-                    { type: 'text', text: `✅ ${cityMatch.pref}${cityMatch.name}を登録しました！（${total}件目）\n\n補助金情報に更新があればお知らせします。\n他の市も追加で登録できます。\n\n📋 「確認」で登録一覧\n🔍 診断はこちら:\nhttps://hojotown.jp/shindan/` },
+                    registeredFlexMessage(cityMatch.pref, cityMatch.name, total),
                   ]);
                 }
               } else {
-                await lineReply(env, event.replyToken, [
-                  { type: 'text', text: `「${text}」に該当する市区町村が見つかりませんでした。\n\n正式名称で入力してみてください。\n例: 「名古屋市」「横浜市」「世田谷区」\n\n📖 「ヘルプ」で使い方を確認` },
-                ]);
+                // 候補検索
+                const suggestions = await findCitySuggestions(env, text);
+                if (suggestions.length > 0) {
+                  const sugList = suggestions.map(s => `・${s.prefecture}${s.name}`).join('\n');
+                  await lineReply(env, event.replyToken, [
+                    { type: 'text', text: `「${text}」に完全一致する市区町村が見つかりませんでした。\n\nもしかして:\n${sugList}\n\n正式名称で送り直してみてください。` },
+                  ]);
+                } else {
+                  await lineReply(env, event.replyToken, [
+                    { type: 'text', text: `「${text}」に該当する市区町村が見つかりませんでした。\n\n現在455市区町村に対応しています。\n正式名称（例: 「さいたま市」「世田谷区」）で送信してみてください。\n\n📖 「ヘルプ」で使い方を確認` },
+                  ]);
+                }
               }
             }
           } else if (event.type === 'unfollow') {
@@ -308,6 +315,99 @@ async function linePush(env, userId, messages) {
     },
     body: JSON.stringify({ to: userId, messages }),
   });
+}
+
+// Flex Messages
+function welcomeFlexMessage() {
+  return {
+    type: 'flex', altText: 'ホジョタウンへようこそ！',
+    contents: {
+      type: 'bubble',
+      header: { type: 'box', layout: 'vertical', backgroundColor: '#1a5c3a', paddingAll: '16px', contents: [
+        { type: 'text', text: 'ホジョタウン', color: '#ffffff', weight: 'bold', size: 'xl' },
+        { type: 'text', text: 'あなたの街の補助金、30秒で全部わかる', color: '#c8e6c9', size: 'xs', margin: 'sm' },
+      ]},
+      body: { type: 'box', layout: 'vertical', spacing: 'md', paddingAll: '16px', contents: [
+        { type: 'text', text: '友だち追加ありがとうございます！', weight: 'bold', size: 'md' },
+        { type: 'separator', margin: 'md' },
+        { type: 'text', text: 'できること', weight: 'bold', size: 'sm', margin: 'md', color: '#1a5c3a' },
+        { type: 'box', layout: 'vertical', spacing: 'sm', margin: 'sm', contents: [
+          { type: 'text', text: '📍 市名を送信 → 補助金の更新通知を登録', size: 'sm', wrap: true },
+          { type: 'text', text: '📋 「確認」→ 登録中の市を表示', size: 'sm', wrap: true },
+          { type: 'text', text: '🔍 「診断」→ 30秒で補助金診断', size: 'sm', wrap: true },
+          { type: 'text', text: '📖 「ヘルプ」→ 使い方を表示', size: 'sm', wrap: true },
+        ]},
+        { type: 'separator', margin: 'md' },
+        { type: 'text', text: 'まずはお住まいの市区町村名を\n送信してみてください！', size: 'sm', wrap: true, margin: 'md', color: '#666666' },
+        { type: 'text', text: '例: 名古屋市、世田谷区、札幌市', size: 'xs', color: '#999999', margin: 'sm' },
+      ]},
+      footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [
+        { type: 'button', action: { type: 'uri', label: '補助金を診断する', uri: 'https://hojotown.jp/shindan/' }, style: 'primary', color: '#1a5c3a', height: 'sm' },
+        { type: 'button', action: { type: 'message', label: 'ヘルプを見る', text: 'ヘルプ' }, style: 'secondary', height: 'sm' },
+      ]},
+    }
+  };
+}
+
+function registeredFlexMessage(pref, name, total) {
+  return {
+    type: 'flex', altText: `${pref}${name}を登録しました`,
+    contents: {
+      type: 'bubble', size: 'kilo',
+      body: { type: 'box', layout: 'vertical', spacing: 'md', paddingAll: '16px', contents: [
+        { type: 'text', text: '✅ 登録完了', weight: 'bold', size: 'lg', color: '#1a5c3a' },
+        { type: 'text', text: `${pref}${name}`, weight: 'bold', size: 'md', margin: 'sm' },
+        { type: 'text', text: `（現在${total}件登録中）`, size: 'xs', color: '#999999' },
+        { type: 'separator', margin: 'md' },
+        { type: 'text', text: '補助金情報に更新があればお知らせします。\n他の市も追加で登録できます。', size: 'sm', wrap: true, margin: 'md', color: '#666666' },
+      ]},
+      footer: { type: 'box', layout: 'horizontal', spacing: 'sm', paddingAll: '12px', contents: [
+        { type: 'button', action: { type: 'message', label: '登録一覧', text: '確認' }, style: 'secondary', height: 'sm', flex: 1 },
+        { type: 'button', action: { type: 'uri', label: '診断する', uri: 'https://hojotown.jp/shindan/' }, style: 'primary', color: '#1a5c3a', height: 'sm', flex: 1 },
+      ]},
+    }
+  };
+}
+
+function helpFlexMessage() {
+  return {
+    type: 'flex', altText: 'ホジョタウンの使い方',
+    contents: {
+      type: 'bubble',
+      header: { type: 'box', layout: 'vertical', backgroundColor: '#1a5c3a', paddingAll: '14px', contents: [
+        { type: 'text', text: '📖 使い方ガイド', color: '#ffffff', weight: 'bold', size: 'lg' },
+      ]},
+      body: { type: 'box', layout: 'vertical', spacing: 'lg', paddingAll: '16px', contents: [
+        { type: 'box', layout: 'vertical', spacing: 'xs', contents: [
+          { type: 'text', text: '通知を受け取る', weight: 'bold', size: 'sm', color: '#1a5c3a' },
+          { type: 'text', text: '市区町村名を送信するだけ！\n複数の市を登録できます。', size: 'sm', wrap: true, color: '#666666' },
+          { type: 'text', text: '例: 「名古屋市」「世田谷区」', size: 'xs', color: '#999999' },
+        ]},
+        { type: 'separator' },
+        { type: 'box', layout: 'vertical', spacing: 'xs', contents: [
+          { type: 'text', text: 'コマンド一覧', weight: 'bold', size: 'sm', color: '#1a5c3a' },
+          { type: 'text', text: '📋 確認 → 登録中の市一覧', size: 'sm', wrap: true },
+          { type: 'text', text: '🗑️ ○○市 解除 → その市を解除', size: 'sm', wrap: true },
+          { type: 'text', text: '🗑️ 解除 → 全て解除', size: 'sm', wrap: true },
+          { type: 'text', text: '🔍 診断 → 補助金診断ページ', size: 'sm', wrap: true },
+        ]},
+      ]},
+      footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [
+        { type: 'button', action: { type: 'uri', label: '補助金を診断する', uri: 'https://hojotown.jp/shindan/' }, style: 'primary', color: '#1a5c3a', height: 'sm' },
+        { type: 'button', action: { type: 'uri', label: 'サイトを開く', uri: 'https://hojotown.jp/' }, style: 'secondary', height: 'sm' },
+      ]},
+    }
+  };
+}
+
+// 候補検索（部分一致で最大5件）
+async function findCitySuggestions(env, text) {
+  const cleaned = text.replace(/[市区町村県都府]$/g, '').trim();
+  if (cleaned.length < 1) return [];
+  const results = await env.DB.prepare(
+    "SELECT code, name, prefecture FROM cities WHERE name LIKE ? OR name LIKE ? LIMIT 5"
+  ).bind('%' + cleaned + '%', cleaned + '%').all();
+  return results.results || [];
 }
 
 // 市区町村検索（テキストから）
