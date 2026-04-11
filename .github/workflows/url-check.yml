@@ -47,14 +47,30 @@ jobs:
       - name: Check content and notify
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONTENT_CHANGE }}
+          LINE_PUSH_URL: ${{ secrets.LINE_PUSH_URL }}
+          LINE_PUSH_SECRET: ${{ secrets.LINE_PUSH_SECRET }}
         run: |
           node scripts/check-content.cjs > content-report.txt 2>&1 || true
           COUNT=$(grep -c "CHANGED" content-report.txt || true)
           echo "Changed pages: $COUNT"
-          if [ "$COUNT" -gt 0 ] && [ -n "$DISCORD_WEBHOOK" ]; then
-            curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
-              -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"
-            echo "Discord通知送信完了"
+          if [ "$COUNT" -gt 0 ]; then
+            # Discord通知
+            if [ -n "$DISCORD_WEBHOOK" ]; then
+              curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+                -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"
+              echo "Discord通知送信完了"
+            fi
+            # LINE Push通知（変更があった市の登録ユーザーに通知）
+            if [ -n "$LINE_PUSH_URL" ] && [ -n "$LINE_PUSH_SECRET" ]; then
+              CITIES=$(grep "CHANGED" content-report.txt | awk -F'|' '{print $2}' | sed 's/ //g' | sort -u)
+              for CITY in $CITIES; do
+                curl -s -X POST "$LINE_PUSH_URL" \
+                  -H "Authorization: Bearer $LINE_PUSH_SECRET" \
+                  -H "Content-Type: application/json" \
+                  -d "{\"message\":\"📢 ${CITY}の補助金情報に更新がありました。\\n\\n最新情報はこちら:\\nhttps://hojotown.jp/\"}"
+                echo "LINE Push送信: $CITY"
+              done
+            fi
           fi
 
       - name: Save content hashes

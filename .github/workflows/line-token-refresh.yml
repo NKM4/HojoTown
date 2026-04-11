@@ -1,0 +1,58 @@
+name: LINE Token Refresh
+
+on:
+  schedule:
+    - cron: '0 0 1,15 * *'  # 毎月1日と15日 09:00 JST
+  workflow_dispatch:
+
+jobs:
+  refresh-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Issue new LINE channel access token
+        env:
+          LINE_CHANNEL_ID: ${{ secrets.LINE_CHANNEL_ID }}
+          LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONTACT }}
+        run: |
+          # 新しいトークンを発行
+          RESPONSE=$(curl -s -X POST "https://api.line.me/v2/oauth/accessToken" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "grant_type=client_credentials&client_id=${LINE_CHANNEL_ID}&client_secret=${LINE_CHANNEL_SECRET}")
+
+          TOKEN=$(echo "$RESPONSE" | jq -r '.access_token // empty')
+          if [ -z "$TOKEN" ]; then
+            echo "❌ トークン発行失敗: $RESPONSE"
+            # Discord通知
+            if [ -n "$DISCORD_WEBHOOK" ]; then
+              curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+                -d '{"embeds":[{"title":"❌ LINE Token更新失敗","description":"手動で確認してください","color":15158332}]}'
+            fi
+            exit 1
+          fi
+
+          echo "✅ 新しいトークン取得成功"
+
+          # Cloudflare Worker secretを更新
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            curl -s -X PUT "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/hojotown-api/secrets" \
+              -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              -H "Content-Type: application/json" \
+              -d "{\"name\":\"LINE_CHANNEL_TOKEN\",\"text\":\"${TOKEN}\",\"type\":\"secret_text\"}" > /dev/null
+            echo "✅ Worker secret更新完了"
+          else
+            echo "⚠️ Cloudflare credentials未設定 - Worker secretは手動更新が必要"
+          fi
+
+          # トークンの動作確認
+          BOT_INFO=$(curl -s "https://api.line.me/v2/bot/info" -H "Authorization: Bearer ${TOKEN}")
+          BOT_NAME=$(echo "$BOT_INFO" | jq -r '.displayName // "unknown"')
+          echo "✅ Bot確認: $BOT_NAME"
+
+          # Discord通知
+          if [ -n "$DISCORD_WEBHOOK" ]; then
+            curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+              -d "{\"embeds\":[{\"title\":\"✅ LINE Token更新完了\",\"description\":\"Bot: ${BOT_NAME}\",\"color\":3066993}]}"
+          fi
