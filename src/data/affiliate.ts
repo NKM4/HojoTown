@@ -80,7 +80,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '補助金を使ったリフォーム、実質いくら？',
     description: '補助金適用後の実質負担額がわかる。地元の優良業者から無料でプランと見積もりが届きます。',
     ctaText: '無料で見積もりを比較する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え  // 現在のURL: townlife-housing, reform-speee と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフはA8にプログラムなし、独自ASP(town-life-aff.com)も消滅済み。アクセストレード/バリューコマース等で要探索  // 現在のURL: townlife-housing, reform-speee と共有中
     label: 'PR',
     icon: '🏠',
     conversionType: '無料見積り申込',
@@ -94,7 +94,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '注文住宅、補助金で最大100万円お得に',
     description: '子育てエコホーム支援事業など、住宅取得の補助金を活用。間取りプランと資金計画が無料で届きます。',
     ctaText: '無料で間取りプランを取り寄せる',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え  // 現在のURL: townlife-reform, reform-speee と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフはA8にプログラムなし、独自ASP(town-life-aff.com)も消滅済み。アクセストレード/バリューコマース等で要探索  // 現在のURL: townlife-reform, reform-speee と共有中
     label: 'PR',
     icon: '🏗️',
     conversionType: '無料間取りプラン申込',
@@ -108,7 +108,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '太陽光パネル、補助金でいくらお得に？',
     description: '補助金適用後の実質費用がわかる。複数メーカーの見積もりを無料で比較できます。',
     ctaText: '無料で太陽光の見積もりを取る',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: タウンライフ提携承認後にグリエネURLに差し替え  // 現在のURL: solar-estimate, navikuru-car と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: グリエネ(株式会社じげん)はA8申込中、審査待ち。承認後に固有リンクに差し替え  // 現在のURL: solar-estimate, navikuru-car と共有中
     label: 'PR',
     icon: '☀️',
     conversionType: '無料見積り申込',
@@ -303,7 +303,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '教育訓練給付金で最大56万円キャッシュバック',
     description: 'DMM WEBCAMPは厚生労働省指定の給付金対象講座。受講料の最大70%が戻ってきます。まずは無料カウンセリングから。',
     ctaText: '無料カウンセリングを予約する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でDMM WEBCAMP提携後に差し替え（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, techacademy と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: DMM WEBCAMPはA8にプログラムなし。別ASP(アクセストレード/バリューコマース等)が必要（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, techacademy と共有中
     label: 'PR',
     icon: '💻',
     conversionType: '無料カウンセリング',
@@ -317,7 +317,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '給付金対象のプログラミングスクールで転職',
     description: 'テックアカデミーのエンジニア転職コースは教育訓練給付金の対象。オンライン完結で働きながら学べます。',
     ctaText: '無料で相談してみる',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でテックアカデミー提携後に差し替え（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, dmm-webcamp と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: テックアカデミーはA8にプログラムなし。別ASP(アクセストレード/バリューコマース等)が必要（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, dmm-webcamp と共有中
     label: 'PR',
     icon: '🎓',
     conversionType: '無料相談',
@@ -336,7 +336,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'EV乗り換えなら、今の車を高く売ろう',
     description: 'EV補助金で新車を買うなら、旧車の売却額も重要。最大10社の買取価格を無料で一括比較。',
     ctaText: '無料で一括査定する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: A8でナビクル提携後に差し替え（現在は太陽光見積りにフォールバック）  // 現在のURL: griene-solar, solar-estimate と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: ナビクルはA8にプログラムなし。別ASP(アクセストレード/バリューコマース等)が必要（現在は太陽光見積りにフォールバック）  // 現在のURL: griene-solar, solar-estimate と共有中
     label: 'PR',
     icon: '🚗',
     conversionType: '無料一括査定',
@@ -350,7 +350,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'EVに乗り換えたら、保険も見直そう',
     description: '車種が変わると保険料も変わります。最大20社の自動車保険を無料で一括比較。',
     ctaText: '無料で保険を比較する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // TODO: A8で自動車保険提携後に差し替え（現在はFP相談にフォールバック）  // 現在のURL: childcare-insurance, fertility-insurance と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // TODO: 自動車保険はA8に8件あり申請可能。提携申請→承認後に固有リンクに差し替え（現在はFP相談にフォールバック）  // 現在のURL: childcare-insurance, fertility-insurance と共有中
     label: 'PR',
     icon: '🛡️',
     conversionType: '無料一括見積り',
