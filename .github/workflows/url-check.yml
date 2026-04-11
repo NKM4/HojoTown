@@ -88,10 +88,14 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install GA4 dependency
+        run: npm install @google-analytics/data
+
       - name: Send weekly report
         env:
           WEBHOOK_ACCESS: ${{ secrets.DISCORD_WEBHOOK_ACCESS }}
           WEBHOOK_CLICKS: ${{ secrets.DISCORD_WEBHOOK_CLICKS }}
           LINE_PUSH_URL: ${{ secrets.LINE_PUSH_URL }}
           LINE_PUSH_SECRET: ${{ secrets.LINE_PUSH_SECRET }}
+          GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
         run: node scripts/weekly-report.cjs

@@ -21,6 +21,7 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@google-analytics/data": "^5.2.1",
     "glob": "^13.0.6"
   }
 }

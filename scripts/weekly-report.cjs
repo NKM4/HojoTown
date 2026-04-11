@@ -11,6 +11,7 @@ const https = require('https');
 
 const WEBHOOK_ACCESS = process.env.WEBHOOK_ACCESS;
 const WEBHOOK_CLICKS = process.env.WEBHOOK_CLICKS;
+const GA4_PROPERTY_ID = '531123324';
 
 if (!WEBHOOK_ACCESS) {
   console.error('WEBHOOK_ACCESS 環境変数が未設定');
@@ -116,27 +117,99 @@ function sendWebhook(webhookUrl, payload) {
   });
 }
 
+// GA4 Data API - affiliate_click集計
+async function getGA4AffiliateClicks() {
+  try {
+    // サービスアカウントキーがある場合のみ実行
+    const keyPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    if (!keyPath && !process.env.GA4_SERVICE_ACCOUNT_KEY) return null;
+
+    // 環境変数からキーを書き出す（GitHub Actions用）
+    if (process.env.GA4_SERVICE_ACCOUNT_KEY && !keyPath) {
+      const tmpKey = path.join(__dirname, '..', '.ga4-tmp-key.json');
+      fs.writeFileSync(tmpKey, process.env.GA4_SERVICE_ACCOUNT_KEY);
+      process.env.GOOGLE_APPLICATION_CREDENTIALS = tmpKey;
+    }
+
+    const { BetaAnalyticsDataClient } = require('@google-analytics/data');
+    const client = new BetaAnalyticsDataClient();
+
+    // affiliate_click total
+    const [clickResponse] = await client.runReport({
+      property: `properties/${GA4_PROPERTY_ID}`,
+      dimensions: [{ name: 'eventName' }],
+      metrics: [{ name: 'eventCount' }],
+      dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+      dimensionFilter: {
+        filter: { fieldName: 'eventName', stringFilter: { value: 'affiliate_click' } }
+      }
+    });
+    const clicks = clickResponse.rows?.[0]?.metricValues?.[0]?.value || '0';
+
+    // Page views + users
+    const [summaryResponse] = await client.runReport({
+      property: `properties/${GA4_PROPERTY_ID}`,
+      metrics: [
+        { name: 'screenPageViews' },
+        { name: 'activeUsers' },
+        { name: 'newUsers' },
+        { name: 'sessions' },
+      ],
+      dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+    });
+    const summary = summaryResponse.rows?.[0]?.metricValues || [];
+
+    // Clean up temp key
+    if (process.env.GA4_SERVICE_ACCOUNT_KEY) {
+      try { fs.unlinkSync(path.join(__dirname, '..', '.ga4-tmp-key.json')); } catch (_) {}
+    }
+
+    return {
+      affiliateClicks: clicks,
+      pageViews: summary[0]?.value || '?',
+      activeUsers: summary[1]?.value || '?',
+      newUsers: summary[2]?.value || '?',
+      sessions: summary[3]?.value || '?',
+    };
+  } catch (e) {
+    console.error('GA4 API error:', e.message);
+    return null;
+  }
+}
+
 async function main() {
   const pages = countPages();
   const cities = countCities();
   const subsidies = countSubsidies();
   const lastModified = getLastModified();
   const affiliatePrograms = countAffiliatePrograms();
+  const ga4 = await getGA4AffiliateClicks();
 
   const now = new Date().toISOString();
   const weekOf = new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
 
-  // アクセスレポート（サイト統計）
+  // アクセスレポート（サイト統計 + GA4）
+  const accessFields = [
+    { name: 'HTMLページ数', value: `${pages}`, inline: true },
+    { name: '対応市区町村数', value: `${cities}`, inline: true },
+    { name: '補助金掲載件数', value: `${subsidies}`, inline: true },
+  ];
+  if (ga4) {
+    accessFields.push(
+      { name: 'PV (7日間)', value: ga4.pageViews, inline: true },
+      { name: 'ユーザー', value: ga4.activeUsers, inline: true },
+      { name: '新規ユーザー', value: ga4.newUsers, inline: true },
+      { name: 'セッション', value: ga4.sessions, inline: true },
+    );
+  }
+  accessFields.push(
+    { name: 'アフィリエイト数', value: `${affiliatePrograms}`, inline: true },
+    { name: '最終ビルド日', value: lastModified, inline: true },
+  );
   const accessEmbed = {
     title: `週次レポート (${weekOf})`,
     color: 0x1a5c3a,
-    fields: [
-      { name: 'HTMLページ数', value: `${pages}`, inline: true },
-      { name: '対応市区町村数', value: `${cities}`, inline: true },
-      { name: '補助金掲載件数', value: `${subsidies}`, inline: true },
-      { name: 'アフィリエイトプログラム数', value: `${affiliatePrograms}`, inline: true },
-      { name: '最終ビルド日', value: lastModified, inline: true },
-    ],
+    fields: accessFields,
     footer: { text: 'GitHub Actions 自動レポート' },
     timestamp: now,
   };
@@ -178,14 +251,15 @@ async function main() {
 
   // 成果報酬チャンネル
   if (WEBHOOK_CLICKS) {
+    const clicksFields = [
+      { name: 'アフィリエイトクリック (7日)', value: ga4 ? ga4.affiliateClicks : '取得不可', inline: true },
+      { name: 'プログラム数', value: `${affiliatePrograms}`, inline: true },
+      { name: 'LINE登録ユーザー', value: lineUsers, inline: true },
+    ];
     const clicksEmbed = {
       title: `A8.net 週次サマリー (${weekOf})`,
       color: 0xc8a84b,
-      fields: [
-        { name: 'アフィリエイトプログラム数', value: `${affiliatePrograms}`, inline: true },
-        { name: '対応市区町村数', value: `${cities}`, inline: true },
-        { name: 'LINE登録ユーザー', value: lineUsers, inline: true },
-      ],
+      fields: clicksFields,
       footer: { text: 'GitHub Actions 自動レポート' },
       timestamp: now,
     };
