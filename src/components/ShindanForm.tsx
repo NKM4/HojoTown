@@ -205,7 +205,9 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
     return subsidies.filter(s => {
       if (s.cityCode !== profile.cityCode) return false;
       const cat = s.category;
+      const name = s.name || '';
 
+      // カテゴリベースのフィルタ
       if (cat === 'childcare' && !hasAnyChild && !profile.isPregnant) return false;
       if (cat === 'birth' && !profile.isPregnant && !hasSmallChild) return false;
       if (cat === 'reform' && (!profile.ownsHome || !profile.planningReform)) return false;
@@ -217,6 +219,13 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
       if (cat === 'solar' && (!profile.ownsHome || !profile.wantsSolar)) return false;
       if (cat === 'fertility' && !profile.wantsFertility) return false;
       if (cat === 'school_meal' && !hasSchoolChild) return false;
+
+      // 名前ベースの細かいフィルタ（カテゴリが広いが対象者が限定されるもの）
+      if (/ひとり親|一人親|母子|父子/.test(name) && !profile.isSingleParent) return false;
+      if (/障害者|障がい者|障碍者/.test(name) && !profile.hasDisability) return false;
+      if (/高齢者|帯状疱疹|シニア/.test(name) && !profile.hasElderly) return false;
+      if (/妊婦|妊産婦/.test(name) && !profile.isPregnant) return false;
+      if (/子ども|こども|児童|乳幼児|学校給食|就学/.test(name) && !hasAnyChild && !profile.isPregnant) return false;
 
       return true;
     });
