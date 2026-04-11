@@ -465,28 +465,33 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
         )}
 
         {/* LINE保存 */}
-        <div className="line-save-card">
-          <div className="line-save-icon">💚</div>
-          <h3>この診断結果をLINEで受け取る</h3>
-          <p>LINE公式アカウントに診断結果を送信すると、<strong>あなたの街の補助金一覧</strong>がカード形式で届きます。</p>
-          <a
-            href={`https://line.me/R/oaMessage/@555ccqew/?${encodeURIComponent(
-              `診断結果を送信\n市:${(profile.cityName || '').replace(/^.+?\s/, '')}\n件数:${matchedSubsidies.length}件\n最大合計:${totalMaxAmount.toLocaleString()}円`
-            )}`}
-            className="line-save-btn"
-            onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).gtag) {
-                (window as any).gtag('event', 'line_shindan_send', {
-                  city_code: profile.cityCode,
-                  result_count: matchedSubsidies.length,
-                });
-              }
-            }}
-          >
-            LINEで結果を受け取る
-          </a>
-          <span className="line-save-note">LINE公式アカウントが開きます</span>
-        </div>
+        {(() => {
+          const lineCityName = (profile.cityName || '').replace(/^.+?\s/, '').trim();
+          return lineCityName ? (
+            <div className="line-save-card">
+              <div className="line-save-icon">💚</div>
+              <h3>この診断結果をLINEで受け取る</h3>
+              <p>LINE公式アカウントに診断結果を送信すると、<strong>あなたの街の補助金一覧</strong>がカード形式で届きます。</p>
+              <a
+                href={`https://line.me/R/oaMessage/@555ccqew/?${encodeURIComponent(
+                  `診断結果を送信\n市:${lineCityName}\n件数:${matchedSubsidies.length}件\n最大合計:${totalMaxAmount.toLocaleString()}円`
+                )}`}
+                className="line-save-btn"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).gtag) {
+                    (window as any).gtag('event', 'line_shindan_send', {
+                      city_code: profile.cityCode,
+                      result_count: matchedSubsidies.length,
+                    });
+                  }
+                }}
+              >
+                LINEで結果を受け取る
+              </a>
+              <span className="line-save-note">LINE公式アカウントが開きます</span>
+            </div>
+          ) : null;
+        })()}
 
         {/* 条件編集ボタン */}
         <div className="edit-conditions">
