@@ -1,12 +1,14 @@
 #!/bin/bash
 set -e
 
-echo "=== [0/5] 記事整合性チェック ==="
-node scripts/check-articles.cjs
-if [ $? -ne 0 ]; then
-  echo "❌ 記事チェック失敗。デプロイ中止。"
-  exit 1
+# Load env vars from bot/.env if available
+ENV_FILE="$(dirname "$0")/../bot/.env"
+if [ -f "$ENV_FILE" ]; then
+  export $(grep -v '^#' "$ENV_FILE" | xargs) 2>/dev/null || true
 fi
+
+echo "=== [0/5] 記事整合性チェック ==="
+node scripts/check-articles.cjs || { echo "❌ 記事チェック失敗。デプロイ中止。"; exit 1; }
 echo "✅ 記事チェック通過"
 
 echo ""
@@ -63,11 +65,7 @@ echo "✅ コンテンツチェック通過"
 
 echo ""
 echo "=== [2.5/5] D1都市データ同期 ==="
-node scripts/sync-cities-d1.cjs
-if [ $? -ne 0 ]; then
-  echo "❌ D1同期失敗。デプロイ中止。"
-  exit 1
-fi
+node scripts/sync-cities-d1.cjs || { echo "❌ D1同期失敗。デプロイ中止。"; exit 1; }
 echo "✅ D1同期完了"
 
 echo ""
@@ -104,8 +102,9 @@ echo ""
 echo "🎉 デプロイ完了。全ページ正常。"
 
 # Discord通知
-DEPLOY_WEBHOOK="REDACTED_DISCORD_DEPLOY_WEBHOOK"
-PAGES=$(find dist -name "index.html" | wc -l)
-curl -s -X POST "$DEPLOY_WEBHOOK" \
-  -H "Content-Type: application/json" \
-  -d "{\"embeds\":[{\"title\":\"デプロイ完了\",\"description\":\"${PAGES}ページ正常にデプロイされました\",\"color\":3066993,\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}]}" > /dev/null 2>&1
+if [ -n "${DISCORD_DEPLOY_WEBHOOK:-}" ]; then
+  PAGES=$(find dist -name "index.html" | wc -l)
+  curl -s -X POST "$DISCORD_DEPLOY_WEBHOOK" \
+    -H "Content-Type: application/json" \
+    -d "{\"embeds\":[{\"title\":\"デプロイ完了\",\"description\":\"${PAGES}ページ正常にデプロイされました\",\"color\":3066993,\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}]}" > /dev/null 2>&1
+fi

@@ -159,6 +159,14 @@ export default {
             const userId = event.source.userId;
             const text = event.message.text.trim();
 
+            // 超長文ガード
+            if (text.length > 200) {
+              await lineReply(env, event.replyToken, [
+                { type: 'text', text: '市区町村名を短く入力してください。\n例: 「名古屋市」「世田谷区」\n\n📖 「ヘルプ」で使い方を確認' },
+              ]);
+              continue;
+            }
+
             // コマンド処理
             if (['解除', 'リセット', '全解除', 'クリア'].includes(text)) {
               await env.DB.prepare('DELETE FROM line_user_cities WHERE user_id = ?').bind(userId).run();
@@ -276,6 +284,7 @@ export default {
               }
             }
           } else if (event.type === 'unfollow') {
+            await env.DB.prepare('DELETE FROM line_user_cities WHERE user_id = ?').bind(event.source.userId).run();
             await env.DB.prepare('DELETE FROM line_users WHERE user_id = ?').bind(event.source.userId).run();
           }
         }
@@ -294,16 +303,26 @@ export default {
       }
       try {
         const { message, city_code } = await request.json();
+        if (!message) {
+          return new Response(JSON.stringify({ error: 'message is required' }), { status: 400 });
+        }
         let users;
         if (city_code) {
           users = await env.DB.prepare('SELECT DISTINCT user_id FROM line_user_cities WHERE city_code = ?').bind(city_code).all();
         } else {
           users = await env.DB.prepare('SELECT DISTINCT user_id FROM line_users').all();
         }
+        const userIds = (users.results || []).map(u => u.user_id);
         let sent = 0;
-        for (const user of users.results || []) {
-          await linePush(env, user.user_id, [{ type: 'text', text: message }]);
-          sent++;
+        // multicast: 最大500人ずつ一括送信
+        for (let i = 0; i < userIds.length; i += 500) {
+          const chunk = userIds.slice(i, i + 500);
+          await fetch('https://api.line.me/v2/bot/message/multicast', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${env.LINE_CHANNEL_TOKEN}` },
+            body: JSON.stringify({ to: chunk, messages: [{ type: 'text', text: message }] }),
+          });
+          sent += chunk.length;
         }
         return new Response(JSON.stringify({ sent }), {
           headers: { 'Content-Type': 'application/json' }
