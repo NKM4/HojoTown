@@ -62,6 +62,15 @@ fi
 echo "✅ コンテンツチェック通過"
 
 echo ""
+echo "=== [2.5/5] D1都市データ同期 ==="
+node scripts/sync-cities-d1.cjs
+if [ $? -ne 0 ]; then
+  echo "❌ D1同期失敗。デプロイ中止。"
+  exit 1
+fi
+echo "✅ D1同期完了"
+
+echo ""
 echo "=== [3/5] デプロイ ==="
 npx wrangler pages deploy dist --project-name=hojotown --commit-dirty=true
 
