@@ -97,6 +97,10 @@ if [ $FAIL -gt 0 ]; then
 fi
 
 echo ""
+echo "=== [5/5] IndexNow送信 ==="
+node scripts/indexnow-submit.cjs || true
+
+echo ""
 echo "🎉 デプロイ完了。全ページ正常。"
 
 # Discord通知

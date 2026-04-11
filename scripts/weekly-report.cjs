@@ -151,15 +151,40 @@ async function main() {
   await sendWebhook(WEBHOOK_ACCESS, { embeds: [accessEmbed] });
   console.log('Discord (#アクセス) に送信完了');
 
-  // 成果報酬チャンネルにもサマリー送信（クリック数はGA4連携後に追加予定）
+  // LINE登録ユーザー数を取得
+  let lineUsers = '取得不可';
+  const LINE_PUSH_URL = process.env.LINE_PUSH_URL;
+  const LINE_PUSH_SECRET = process.env.LINE_PUSH_SECRET;
+  if (LINE_PUSH_URL && LINE_PUSH_SECRET) {
+    try {
+      const usersUrl = LINE_PUSH_URL.replace('/line/push', '/line/users');
+      const lineRes = await new Promise((resolve) => {
+        const url = new URL(usersUrl);
+        const req = https.request({
+          hostname: url.hostname, path: url.pathname, method: 'GET',
+          headers: { 'Authorization': `Bearer ${LINE_PUSH_SECRET}` },
+        }, (res) => {
+          let body = '';
+          res.on('data', d => body += d);
+          res.on('end', () => resolve(body));
+        });
+        req.on('error', () => resolve('[]'));
+        req.end();
+      });
+      const users = JSON.parse(lineRes);
+      lineUsers = `${users.length}人`;
+    } catch (_) {}
+  }
+
+  // 成果報酬チャンネル
   if (WEBHOOK_CLICKS) {
     const clicksEmbed = {
       title: `A8.net 週次サマリー (${weekOf})`,
       color: 0xc8a84b,
-      description: 'アフィリエイトリンクのクリック追跡は GA4 連携後に有効化予定です。',
       fields: [
         { name: 'アフィリエイトプログラム数', value: `${affiliatePrograms}`, inline: true },
         { name: '対応市区町村数', value: `${cities}`, inline: true },
+        { name: 'LINE登録ユーザー', value: lineUsers, inline: true },
       ],
       footer: { text: 'GitHub Actions 自動レポート' },
       timestamp: now,
