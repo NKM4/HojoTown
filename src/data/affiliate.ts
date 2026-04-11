@@ -80,7 +80,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '補助金を使ったリフォーム、実質いくら？',
     description: '補助金適用後の実質負担額がわかる。地元の優良業者から無料でプランと見積もりが届きます。',
     ctaText: '無料で見積もりを比較する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え  // 現在のURL: townlife-housing, reform-speee と共有中
     label: 'PR',
     icon: '🏠',
     conversionType: '無料見積り申込',
@@ -94,7 +94,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '注文住宅、補助金で最大100万円お得に',
     description: '子育てエコホーム支援事業など、住宅取得の補助金を活用。間取りプランと資金計画が無料で届きます。',
     ctaText: '無料で間取りプランを取り寄せる',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフ提携承認後にタウンライフURLに差し替え  // 現在のURL: townlife-reform, reform-speee と共有中
     label: 'PR',
     icon: '🏗️',
     conversionType: '無料間取りプラン申込',
@@ -108,7 +108,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '太陽光パネル、補助金でいくらお得に？',
     description: '補助金適用後の実質費用がわかる。複数メーカーの見積もりを無料で比較できます。',
     ctaText: '無料で太陽光の見積もりを取る',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: タウンライフ提携承認後にグリエネURLに差し替え
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: タウンライフ提携承認後にグリエネURLに差し替え  // 現在のURL: solar-estimate, navikuru-car と共有中
     label: 'PR',
     icon: '☀️',
     conversionType: '無料見積り申込',
@@ -127,7 +127,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'お金のプロに無料で相談しませんか？',
     description: '補助金だけでは不安な将来の備え。学資保険・医療保険・老後資金・相続対策をFPに無料相談。',
     ctaText: '無料でFPに相談する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // 現在のURL: fertility-insurance, car-insurance と共有中 → 各自固有のa8matリンクが望ましい
     label: 'PR',
     icon: '🛡️',
     conversionType: '無料FP相談',
@@ -188,7 +188,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'リフォーム補助金と併用でさらにお得',
     description: '補助金を活用したリフォームプランを無料で一括比較。地元の優良業者から最適なプランが届きます。',
     ctaText: '無料でリフォームプランを比較する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: Speee固有のa8matリンクに差し替え必要  // 現在のURL: townlife-reform, townlife-housing と共有中
     label: 'PR',
     icon: '🏠',
     conversionType: '無料見積り申込',
@@ -243,7 +243,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '太陽光パネルの見積もり、もう1社比較',
     description: '複数メーカーの見積もりを無料で比較。補助金適用後の実質費用がわかります。',
     ctaText: '無料で見積もりを取る',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: WAVE固有のa8matリンクに差し替え必要  // 現在のURL: griene-solar, navikuru-car と共有中
     label: 'PR',
     icon: '⚡',
     conversionType: '無料見積り申込',
@@ -257,7 +257,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '教育費の準備、保険で賢く備える',
     description: '学資保険や積立型保険で教育資金を準備。FPに無料相談できます。',
     ctaText: '無料でFPに相談する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // 現在のURL: dmm-webcamp, techacademy と共有中 → 各自固有のa8matリンクが望ましい
     label: 'PR',
     icon: '📚',
     conversionType: '無料FP相談',
@@ -271,7 +271,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '不妊治療の費用、保険でカバーできる部分も',
     description: '医療保険の中には不妊治療をカバーするものも。FPに無料で相談して最適なプランを見つけましょう。',
     ctaText: '無料でFPに相談する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // 現在のURL: childcare-insurance, car-insurance と共有中 → 各自固有のa8matリンクが望ましい
     label: 'PR',
     icon: '🍀',
     conversionType: '無料FP相談',
@@ -303,7 +303,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '教育訓練給付金で最大56万円キャッシュバック',
     description: 'DMM WEBCAMPは厚生労働省指定の給付金対象講座。受講料の最大70%が戻ってきます。まずは無料カウンセリングから。',
     ctaText: '無料カウンセリングを予約する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でDMM WEBCAMP提携後に差し替え（現在はFP相談にフォールバック）
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でDMM WEBCAMP提携後に差し替え（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, techacademy と共有中
     label: 'PR',
     icon: '💻',
     conversionType: '無料カウンセリング',
@@ -317,7 +317,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '給付金対象のプログラミングスクールで転職',
     description: 'テックアカデミーのエンジニア転職コースは教育訓練給付金の対象。オンライン完結で働きながら学べます。',
     ctaText: '無料で相談してみる',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でテックアカデミー提携後に差し替え（現在はFP相談にフォールバック）
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: A8でテックアカデミー提携後に差し替え（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, dmm-webcamp と共有中
     label: 'PR',
     icon: '🎓',
     conversionType: '無料相談',
@@ -336,7 +336,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'EV乗り換えなら、今の車を高く売ろう',
     description: 'EV補助金で新車を買うなら、旧車の売却額も重要。最大10社の買取価格を無料で一括比較。',
     ctaText: '無料で一括査定する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: A8でナビクル提携後に差し替え（現在は太陽光見積りにフォールバック）
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: A8でナビクル提携後に差し替え（現在は太陽光見積りにフォールバック）  // 現在のURL: griene-solar, solar-estimate と共有中
     label: 'PR',
     icon: '🚗',
     conversionType: '無料一括査定',
@@ -350,7 +350,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'EVに乗り換えたら、保険も見直そう',
     description: '車種が変わると保険料も変わります。最大20社の自動車保険を無料で一括比較。',
     ctaText: '無料で保険を比較する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // TODO: A8で自動車保険提携後に差し替え（現在はFP相談にフォールバック）
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // TODO: A8で自動車保険提携後に差し替え（現在はFP相談にフォールバック）  // 現在のURL: childcare-insurance, fertility-insurance と共有中
     label: 'PR',
     icon: '🛡️',
     conversionType: '無料一括見積り',
