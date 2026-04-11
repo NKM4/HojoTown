@@ -384,7 +384,7 @@
     "population": 68000
   },
   {
-    "code": "08208",
+    "code": "08203",
     "name": "土浦市",
     "prefecture": "茨城県",
     "prefectureSlug": "ibaraki",
@@ -664,7 +664,7 @@
     "population": 111000
   },
   {
-    "code": "11212",
+    "code": "11215",
     "name": "狭山市",
     "slug": "sayama",
     "prefecture": "埼玉県",
@@ -680,7 +680,7 @@
     "population": 93000
   },
   {
-    "code": "11214",
+    "code": "11222",
     "name": "越谷市",
     "prefecture": "埼玉県",
     "prefectureSlug": "saitama",
@@ -688,7 +688,7 @@
     "population": 341000
   },
   {
-    "code": "11215",
+    "code": "11218",
     "name": "深谷市",
     "slug": "fukaya",
     "prefecture": "埼玉県",
@@ -704,7 +704,7 @@
     "population": 116000
   },
   {
-    "code": "11218",
+    "code": "11219",
     "name": "上尾市",
     "prefecture": "埼玉県",
     "prefectureSlug": "saitama",
@@ -712,7 +712,7 @@
     "population": 228000
   },
   {
-    "code": "11219",
+    "code": "11221",
     "name": "草加市",
     "prefecture": "埼玉県",
     "prefectureSlug": "saitama",
@@ -720,7 +720,7 @@
     "population": 251000
   },
   {
-    "code": "11221",
+    "code": "11211",
     "name": "本庄市",
     "slug": "honjo",
     "prefecture": "埼玉県",
@@ -728,7 +728,7 @@
     "population": 77000
   },
   {
-    "code": "11222",
+    "code": "11245",
     "name": "ふじみ野市",
     "prefecture": "埼玉県",
     "prefectureSlug": "saitama",
@@ -736,7 +736,7 @@
     "population": 114000
   },
   {
-    "code": "11222",
+    "code": "11214",
     "name": "春日部市",
     "prefecture": "埼玉県",
     "prefectureSlug": "saitama",
@@ -856,7 +856,7 @@
     "population": 99000
   },
   {
-    "code": "11245",
+    "code": "11243",
     "name": "吉川市",
     "slug": "yoshikawa",
     "prefecture": "埼玉県",
@@ -936,7 +936,7 @@
     "population": 164000
   },
   {
-    "code": "12216",
+    "code": "12219",
     "name": "市原市",
     "prefecture": "千葉県",
     "prefectureSlug": "chiba",
@@ -1440,7 +1440,7 @@
     "population": 388000
   },
   {
-    "code": "14204",
+    "code": "14205",
     "name": "藤沢市",
     "prefecture": "神奈川県",
     "prefectureSlug": "kanagawa",
@@ -1456,7 +1456,7 @@
     "population": 170000
   },
   {
-    "code": "14205",
+    "code": "14203",
     "name": "平塚市",
     "prefecture": "神奈川県",
     "prefectureSlug": "kanagawa",
@@ -2080,7 +2080,7 @@
     "population": 77000
   },
   {
-    "code": "23215",
+    "code": "23217",
     "name": "江南市",
     "slug": "konan-aichi",
     "prefecture": "愛知県",
@@ -2096,7 +2096,7 @@
     "population": 73000
   },
   {
-    "code": "23217",
+    "code": "23224",
     "name": "知多市",
     "slug": "chita",
     "prefecture": "愛知県",
@@ -2264,7 +2264,7 @@
     "population": 345000
   },
   {
-    "code": "25202",
+    "code": "25206",
     "name": "草津市",
     "prefecture": "滋賀県",
     "prefectureSlug": "shiga",
@@ -2272,7 +2272,7 @@
     "population": 147000
   },
   {
-    "code": "25204",
+    "code": "25202",
     "name": "彦根市",
     "prefecture": "滋賀県",
     "prefectureSlug": "shiga",
@@ -2288,7 +2288,7 @@
     "population": 81000
   },
   {
-    "code": "25206",
+    "code": "25203",
     "name": "長浜市",
     "prefecture": "滋賀県",
     "prefectureSlug": "shiga",
@@ -2360,7 +2360,7 @@
     "population": 178000
   },
   {
-    "code": "26209",
+    "code": "26206",
     "name": "亀岡市",
     "prefecture": "京都府",
     "prefectureSlug": "kyoto",
@@ -2368,7 +2368,7 @@
     "population": 86000
   },
   {
-    "code": "26209",
+    "code": "26211",
     "name": "京田辺市",
     "slug": "kyotanabe",
     "prefecture": "京都府",
@@ -2376,7 +2376,7 @@
     "population": 74000
   },
   {
-    "code": "26210",
+    "code": "26207",
     "name": "城陽市",
     "prefecture": "京都府",
     "prefectureSlug": "kyoto",
@@ -2392,7 +2392,7 @@
     "population": 70000
   },
   {
-    "code": "26211",
+    "code": "26209",
     "name": "長岡京市",
     "prefecture": "京都府",
     "prefectureSlug": "kyoto",
@@ -2440,7 +2440,7 @@
     "population": 404000
   },
   {
-    "code": "27204",
+    "code": "27209",
     "name": "守口市",
     "slug": "moriguchi",
     "prefecture": "大阪府",
@@ -2464,7 +2464,7 @@
     "population": 348000
   },
   {
-    "code": "27209",
+    "code": "27216",
     "name": "河内長野市",
     "slug": "kawachinagano",
     "prefecture": "大阪府",
@@ -2512,7 +2512,7 @@
     "population": 223000
   },
   {
-    "code": "27216",
+    "code": "27222",
     "name": "羽曳野市",
     "slug": "habikino",
     "prefecture": "大阪府",
@@ -2520,7 +2520,7 @@
     "population": 105000
   },
   {
-    "code": "27216",
+    "code": "27204",
     "name": "池田市",
     "slug": "ikeda",
     "prefecture": "大阪府",
@@ -2568,7 +2568,7 @@
     "population": 69000
   },
   {
-    "code": "27222",
+    "code": "27223",
     "name": "門真市",
     "slug": "kadoma",
     "prefecture": "大阪府",
@@ -2576,7 +2576,7 @@
     "population": 114000
   },
   {
-    "code": "27222",
+    "code": "27208",
     "name": "貝塚市",
     "slug": "kaizuka",
     "prefecture": "大阪府",
@@ -2584,7 +2584,7 @@
     "population": 80000
   },
   {
-    "code": "27223",
+    "code": "27206",
     "name": "泉大津市",
     "slug": "izumiotsu",
     "prefecture": "大阪府",
@@ -2696,7 +2696,7 @@
     "population": 259000
   },
   {
-    "code": "28210",
+    "code": "28216",
     "name": "高砂市",
     "slug": "takasago",
     "prefecture": "兵庫県",
@@ -3040,7 +3040,7 @@
     "population": 127000
   },
   {
-    "code": "35206",
+    "code": "35215",
     "name": "周南市",
     "prefecture": "山口県",
     "prefectureSlug": "yamaguchi",
@@ -3104,7 +3104,7 @@
     "population": 420000
   },
   {
-    "code": "37201",
+    "code": "37202",
     "name": "丸亀市",
     "prefecture": "香川県",
     "prefectureSlug": "kagawa",
@@ -3112,7 +3112,7 @@
     "population": 109000
   },
   {
-    "code": "37202",
+    "code": "37203",
     "name": "坂出市",
     "prefecture": "香川県",
     "prefectureSlug": "kagawa",
@@ -3120,7 +3120,7 @@
     "population": 50000
   },
   {
-    "code": "37203",
+    "code": "37208",
     "name": "三豊市",
     "prefecture": "香川県",
     "prefectureSlug": "kagawa",
@@ -3152,7 +3152,7 @@
     "population": 510000
   },
   {
-    "code": "38201",
+    "code": "38203",
     "name": "宇和島市",
     "prefecture": "愛媛県",
     "prefectureSlug": "ehime",
@@ -3168,7 +3168,7 @@
     "population": 148000
   },
   {
-    "code": "38203",
+    "code": "38206",
     "name": "西条市",
     "prefecture": "愛媛県",
     "prefectureSlug": "ehime",
@@ -3232,7 +3232,7 @@
     "population": 32000
   },
   {
-    "code": "40100",
+    "code": "40130",
     "name": "福岡市",
     "prefecture": "福岡県",
     "prefectureSlug": "fukuoka",
