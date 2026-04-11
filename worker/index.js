@@ -83,7 +83,7 @@ export default {
         });
       } catch (e) {
         await notifyError(env, e, 'POST /contact');
-        return new Response(JSON.stringify({ status: 'error', message: e.message }), {
+        return new Response(JSON.stringify({ status: 'error', message: 'Internal server error' }), {
           status: 500,
           headers: { 'Content-Type': 'application/json', ...corsHeaders }
         });
@@ -348,10 +348,17 @@ export default {
       if (authHeader !== `Bearer ${env.LINE_CHANNEL_SECRET}`) {
         return new Response('Unauthorized', { status: 401 });
       }
-      const results = await env.DB.prepare('SELECT * FROM line_users ORDER BY updated_at DESC').all();
-      return new Response(JSON.stringify(results.results), {
-        headers: { 'Content-Type': 'application/json' }
-      });
+      try {
+        const results = await env.DB.prepare('SELECT * FROM line_users ORDER BY updated_at DESC').all();
+        return new Response(JSON.stringify(results.results), {
+          headers: { 'Content-Type': 'application/json' }
+        });
+      } catch (e) {
+        await notifyError(env, e, 'GET /line/users');
+        return new Response(JSON.stringify({ error: 'DB error' }), {
+          status: 500, headers: { 'Content-Type': 'application/json' }
+        });
+      }
     }
 
     // GET /health - ヘルスチェック
@@ -583,6 +590,8 @@ async function findCitySuggestions(env, text) {
 async function findCity(env, text) {
   const cityName = text.trim();
   const cleaned = cityName.replace(/[市区町村]$/g, '').trim();
+  // 空文字ガード
+  if (!cleaned) return null;
   // 完全一致
   const exact = await env.DB.prepare(
     "SELECT code, name, prefecture FROM cities WHERE name = ? LIMIT 1"
@@ -599,9 +608,9 @@ async function findCity(env, text) {
     const r = withSuffix.results[0];
     return { code: r.code, name: r.name, pref: r.prefecture };
   }
-  // 部分一致
+  // 部分一致（短い名前を優先）
   const partial = await env.DB.prepare(
-    "SELECT code, name, prefecture FROM cities WHERE name LIKE ? LIMIT 1"
+    "SELECT code, name, prefecture FROM cities WHERE name LIKE ? ORDER BY length(name) ASC LIMIT 1"
   ).bind('%' + cleaned + '%').all();
   if (partial.results && partial.results.length > 0) {
     const r = partial.results[0];

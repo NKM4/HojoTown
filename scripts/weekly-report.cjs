@@ -119,6 +119,8 @@ function sendWebhook(webhookUrl, payload) {
 
 // GA4 Data API - affiliate_click集計
 async function getGA4AffiliateClicks() {
+  const tmpKey = path.join(__dirname, '..', '.ga4-tmp-key.json');
+  let wroteKey = false;
   try {
     // サービスアカウントキーがある場合のみ実行
     const keyPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
@@ -126,8 +128,8 @@ async function getGA4AffiliateClicks() {
 
     // 環境変数からキーを書き出す（GitHub Actions用）
     if (process.env.GA4_SERVICE_ACCOUNT_KEY && !keyPath) {
-      const tmpKey = path.join(__dirname, '..', '.ga4-tmp-key.json');
       fs.writeFileSync(tmpKey, process.env.GA4_SERVICE_ACCOUNT_KEY);
+      wroteKey = true;
       process.env.GOOGLE_APPLICATION_CREDENTIALS = tmpKey;
     }
 
@@ -159,11 +161,6 @@ async function getGA4AffiliateClicks() {
     });
     const summary = summaryResponse.rows?.[0]?.metricValues || [];
 
-    // Clean up temp key
-    if (process.env.GA4_SERVICE_ACCOUNT_KEY) {
-      try { fs.unlinkSync(path.join(__dirname, '..', '.ga4-tmp-key.json')); } catch (_) {}
-    }
-
     return {
       affiliateClicks: clicks,
       pageViews: summary[0]?.value || '?',
@@ -174,6 +171,11 @@ async function getGA4AffiliateClicks() {
   } catch (e) {
     console.error('GA4 API error:', e.message);
     return null;
+  } finally {
+    // 一時キーファイルを確実に削除
+    if (wroteKey) {
+      try { fs.unlinkSync(tmpKey); } catch (_) {}
+    }
   }
 }
 

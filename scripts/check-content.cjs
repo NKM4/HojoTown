@@ -7,15 +7,16 @@ const crypto = require('crypto');
 const subsidiesDir = path.join(__dirname, '..', 'src', 'data', 'subsidies');
 const hashFile = path.join(__dirname, '..', 'content-hashes.json');
 
-function fetchPage(url) {
+function fetchPage(url, maxRedirects = 5) {
   return new Promise((resolve) => {
+    if (maxRedirects <= 0) return resolve(null);
     const mod = url.startsWith('https') ? https : http;
     const req = mod.get(url, {
       timeout: 15000,
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; HojoTown Content Monitor)' }
     }, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return resolve(fetchPage(res.headers.location));
+        return resolve(fetchPage(res.headers.location, maxRedirects - 1));
       }
       let body = '';
       res.on('data', d => body += d);
