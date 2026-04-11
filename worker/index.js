@@ -160,20 +160,77 @@ export default {
           } else if (event.type === 'message' && event.message.type === 'text') {
             const userId = event.source.userId;
             const text = event.message.text.trim();
-            // 市区町村登録を試みる
-            const cityMatch = await findCity(env, text);
-            if (cityMatch) {
-              const now = new Date().toISOString();
-              await env.DB.prepare(
-                'INSERT INTO line_users (user_id, city_code, city_name, prefecture, followed_at, updated_at) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(user_id) DO UPDATE SET city_code=?, city_name=?, prefecture=?, updated_at=?'
-              ).bind(userId, cityMatch.code, cityMatch.name, cityMatch.pref, now, now, cityMatch.code, cityMatch.name, cityMatch.pref, now).run();
+
+            // コマンド処理
+            if (['解除', 'リセット', '全解除', 'クリア'].includes(text)) {
+              await env.DB.prepare('DELETE FROM line_user_cities WHERE user_id = ?').bind(userId).run();
               await lineReply(env, event.replyToken, [
-                { type: 'text', text: `✅ ${cityMatch.pref}${cityMatch.name}を登録しました！\n\n補助金情報に更新があればお知らせします。\n\n🔍 診断はこちら:\nhttps://hojotown.jp/shindan/` },
+                { type: 'text', text: '🗑️ 登録した市区町村をすべて解除しました。\n\nまた市名を送信すれば再登録できます。' },
+              ]);
+            } else if (['確認', '登録情報', 'マイページ', '一覧'].includes(text)) {
+              const cities = await env.DB.prepare('SELECT city_name, prefecture FROM line_user_cities WHERE user_id = ? ORDER BY registered_at').bind(userId).all();
+              if (cities.results && cities.results.length > 0) {
+                const list = cities.results.map((c, i) => `${i + 1}. ${c.prefecture}${c.city_name}`).join('\n');
+                await lineReply(env, event.replyToken, [
+                  { type: 'text', text: `📋 登録中の市区町村（${cities.results.length}件）:\n\n${list}\n\n🗑️ 個別解除: 「○○市 解除」\n🗑️ 全解除: 「解除」` },
+                ]);
+              } else {
+                await lineReply(env, event.replyToken, [
+                  { type: 'text', text: '📋 登録中の市区町村はありません。\n\n市名を送信すると通知を受け取れます。\n例: 「名古屋市」「世田谷区」' },
+                ]);
+              }
+            } else if (text.endsWith('解除') && text.length > 2) {
+              // 個別解除: 「名古屋市 解除」「名古屋市���除」
+              const cityText = text.replace(/\s*解除$/, '').trim();
+              const cityMatch = await findCity(env, cityText);
+              if (cityMatch) {
+                const del = await env.DB.prepare('DELETE FROM line_user_cities WHERE user_id = ? AND city_code = ?').bind(userId, cityMatch.code).run();
+                await lineReply(env, event.replyToken, [
+                  { type: 'text', text: `🗑️ ${cityMatch.pref}${cityMatch.name}の通知を解除しました。` },
+                ]);
+              } else {
+                await lineReply(env, event.replyToken, [
+                  { type: 'text', text: `「${cityText}」が見つかりませんでした。「確認」で登録一覧を確認できます。` },
+                ]);
+              }
+            } else if (['ヘルプ', 'help', '使い方'].includes(text)) {
+              await lineReply(env, event.replyToken, [
+                { type: 'text', text: '📖 ホジョタウン LINE通知の使い方\n\n📍 市名を送信 → 通知登録\n  例: 「名古屋市」「世田谷区」\n  ※複数登録OK\n\n📋 「確認」→ 登録中の市一覧\n🗑️ 「○○市 解除」→ 個別解除\n🗑️ 「解除」→ 全解除\n🔍 「診断」→ 補助金診断ページ\n\n補助金データに更新があれば、登録した市の情報をお届けします。' },
+              ]);
+            } else if (['診断', 'しんだん'].includes(text)) {
+              await lineReply(env, event.replyToken, [
+                { type: 'text', text: '🔍 あなたがもらえる補助金を30秒で診断！\n\nhttps://hojotown.jp/shindan/' },
               ]);
             } else {
-              await lineReply(env, event.replyToken, [
-                { type: 'text', text: `「${text}」に該当する市区町村が見つかりませんでした。\n\n正式名称で入力してみてください。\n例: 「名古屋市」「横浜市」「世田谷区」` },
-              ]);
+              // 市区町村登録を試みる
+              const cityMatch = await findCity(env, text);
+              if (cityMatch) {
+                const now = new Date().toISOString();
+                // 重複チェック
+                const exists = await env.DB.prepare('SELECT 1 FROM line_user_cities WHERE user_id = ? AND city_code = ?').bind(userId, cityMatch.code).all();
+                if (exists.results && exists.results.length > 0) {
+                  await lineReply(env, event.replyToken, [
+                    { type: 'text', text: `${cityMatch.pref}${cityMatch.name}は既に登録済みです。\n\n📋 「確認」で登録一覧を表示\n🗑️ 「${cityMatch.name} 解除」で解除` },
+                  ]);
+                } else {
+                  await env.DB.prepare(
+                    'INSERT INTO line_user_cities (user_id, city_code, city_name, prefecture, registered_at) VALUES (?, ?, ?, ?, ?)'
+                  ).bind(userId, cityMatch.code, cityMatch.name, cityMatch.pref, now).run();
+                  // line_usersも更新（フォロー管理用）
+                  await env.DB.prepare(
+                    'UPDATE line_users SET updated_at = ? WHERE user_id = ?'
+                  ).bind(now, userId).run();
+                  const count = await env.DB.prepare('SELECT COUNT(*) as cnt FROM line_user_cities WHERE user_id = ?').bind(userId).all();
+                  const total = count.results?.[0]?.cnt || 1;
+                  await lineReply(env, event.replyToken, [
+                    { type: 'text', text: `✅ ${cityMatch.pref}${cityMatch.name}を登録しました！（${total}件目）\n\n補助金情報に更新があればお知らせします。\n他の市も追加で登録できます。\n\n📋 「確認」で登録一覧\n🔍 診断はこちら:\nhttps://hojotown.jp/shindan/` },
+                  ]);
+                }
+              } else {
+                await lineReply(env, event.replyToken, [
+                  { type: 'text', text: `「${text}」に該当する市区町村が見つかりませんでした。\n\n正式名称で入力してみてください。\n例: 「名古屋市」「横浜市」「世田谷区」\n\n📖 「ヘルプ」で使い方を確認` },
+                ]);
+              }
             }
           } else if (event.type === 'unfollow') {
             await env.DB.prepare('DELETE FROM line_users WHERE user_id = ?').bind(event.source.userId).run();
@@ -196,9 +253,9 @@ export default {
         const { message, city_code } = await request.json();
         let users;
         if (city_code) {
-          users = await env.DB.prepare('SELECT user_id FROM line_users WHERE city_code = ?').bind(city_code).all();
+          users = await env.DB.prepare('SELECT DISTINCT user_id FROM line_user_cities WHERE city_code = ?').bind(city_code).all();
         } else {
-          users = await env.DB.prepare('SELECT user_id FROM line_users WHERE user_id IS NOT NULL').all();
+          users = await env.DB.prepare('SELECT DISTINCT user_id FROM line_users').all();
         }
         let sent = 0;
         for (const user of users.results || []) {
