@@ -199,6 +199,42 @@ export default {
               await lineReply(env, event.replyToken, [
                 { type: 'text', text: '🔍 あなたがもらえる補助金を30秒で診断！\n\nhttps://hojotown.jp/shindan/' },
               ]);
+            } else if (text.startsWith('診断結果を送信')) {
+              // 診断結果送信: テキストから市名を抽出して補助金カードを返信
+              const cityLine = text.split('\n').find(l => l.startsWith('市:'));
+              const cityName = cityLine ? cityLine.replace('市:', '').trim() : '';
+              const countLine = text.split('\n').find(l => l.startsWith('件数:'));
+              const countText = countLine ? countLine.replace('件数:', '').replace('件', '').trim() : '0';
+              const amountLine = text.split('\n').find(l => l.startsWith('最大合計:'));
+              const amountText = amountLine ? amountLine.replace('最大合計:', '').replace('円', '').trim() : '0';
+
+              if (cityName) {
+                const cityMatch = await findCity(env, cityName);
+                if (cityMatch) {
+                  // 市の通知も自動登録
+                  const now = new Date().toISOString();
+                  const exists = await env.DB.prepare('SELECT 1 FROM line_user_cities WHERE user_id = ? AND city_code = ?').bind(userId, cityMatch.code).all();
+                  if (!(exists.results && exists.results.length > 0)) {
+                    await env.DB.prepare(
+                      'INSERT INTO line_user_cities (user_id, city_code, city_name, prefecture, registered_at) VALUES (?, ?, ?, ?, ?)'
+                    ).bind(userId, cityMatch.code, cityMatch.name, cityMatch.pref, now).run();
+                    await env.DB.prepare(
+                      'INSERT OR IGNORE INTO line_users (user_id, followed_at, updated_at) VALUES (?, ?, ?)'
+                    ).bind(userId, now, now).run();
+                  }
+                  await lineReply(env, event.replyToken, [
+                    shindanResultFlexMessage(cityMatch.pref, cityMatch.name, countText, amountText),
+                  ]);
+                } else {
+                  await lineReply(env, event.replyToken, [
+                    { type: 'text', text: `「${cityName}」の補助金情報が見つかりませんでした。\n\n正式名称（例: 名古屋市）で「診断」を再度お試しください。\n\nhttps://hojotown.jp/shindan/` },
+                  ]);
+                }
+              } else {
+                await lineReply(env, event.replyToken, [
+                  { type: 'text', text: '診断結果の読み取りに失敗しました。\n\nもう一度診断を行ってください。\nhttps://hojotown.jp/shindan/' },
+                ]);
+              }
             } else {
               // 市区町村登録を試みる
               const cityMatch = await findCity(env, text);
@@ -395,6 +431,43 @@ function helpFlexMessage() {
       footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [
         { type: 'button', action: { type: 'uri', label: '補助金を診断する', uri: 'https://hojotown.jp/shindan/' }, style: 'primary', color: '#1a5c3a', height: 'sm' },
         { type: 'button', action: { type: 'uri', label: 'サイトを開く', uri: 'https://hojotown.jp/' }, style: 'secondary', height: 'sm' },
+      ]},
+    }
+  };
+}
+
+function shindanResultFlexMessage(pref, cityName, count, amount) {
+  return {
+    type: 'flex', altText: `${pref}${cityName}の診断結果: ${count}件（最大${amount}円）`,
+    contents: {
+      type: 'bubble',
+      header: { type: 'box', layout: 'vertical', backgroundColor: '#1a5c3a', paddingAll: '16px', contents: [
+        { type: 'text', text: '🔍 補助金診断結果', color: '#ffffff', weight: 'bold', size: 'lg' },
+        { type: 'text', text: 'ホジョタウン', color: '#c8e6c9', size: 'xs', margin: 'sm' },
+      ]},
+      body: { type: 'box', layout: 'vertical', spacing: 'md', paddingAll: '16px', contents: [
+        { type: 'box', layout: 'horizontal', contents: [
+          { type: 'text', text: '📍 地域', size: 'sm', color: '#999999', flex: 2 },
+          { type: 'text', text: `${pref}${cityName}`, size: 'sm', weight: 'bold', flex: 5 },
+        ]},
+        { type: 'separator', margin: 'md' },
+        { type: 'box', layout: 'horizontal', margin: 'md', contents: [
+          { type: 'box', layout: 'vertical', flex: 1, contents: [
+            { type: 'text', text: '該当件数', size: 'xs', color: '#999999', align: 'center' },
+            { type: 'text', text: `${count}件`, size: 'xxl', weight: 'bold', color: '#1a5c3a', align: 'center' },
+          ]},
+          { type: 'separator' },
+          { type: 'box', layout: 'vertical', flex: 1, contents: [
+            { type: 'text', text: '最大合計額', size: 'xs', color: '#999999', align: 'center' },
+            { type: 'text', text: `${amount}円`, size: 'lg', weight: 'bold', color: '#e65100', align: 'center' },
+          ]},
+        ]},
+        { type: 'separator', margin: 'md' },
+        { type: 'text', text: `✅ ${pref}${cityName}の補助金通知に登録しました。新しい補助金が追加されたらお知らせします。`, size: 'xs', wrap: true, margin: 'md', color: '#666666' },
+      ]},
+      footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [
+        { type: 'button', action: { type: 'uri', label: `${cityName}の補助金を見る`, uri: `https://hojotown.jp/?city=${encodeURIComponent(cityName)}` }, style: 'primary', color: '#1a5c3a', height: 'sm' },
+        { type: 'button', action: { type: 'uri', label: 'もう一度診断する', uri: 'https://hojotown.jp/shindan/' }, style: 'secondary', height: 'sm' },
       ]},
     }
   };
