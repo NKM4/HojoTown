@@ -317,11 +317,20 @@ export default {
         // multicast: 最大500人ずつ一括送信
         for (let i = 0; i < userIds.length; i += 500) {
           const chunk = userIds.slice(i, i + 500);
-          await fetch('https://api.line.me/v2/bot/message/multicast', {
+          const mcRes = await fetch('https://api.line.me/v2/bot/message/multicast', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${env.LINE_CHANNEL_TOKEN}` },
             body: JSON.stringify({ to: chunk, messages: [{ type: 'text', text: message }] }),
           });
+          if (!mcRes.ok) {
+            const mcBody = await mcRes.text().catch(() => '');
+            const isTokenExpired = mcRes.status === 401 || mcRes.status === 403;
+            await notifyError(env, new Error(`multicast failed: ${mcRes.status} ${mcBody}`),
+              isTokenExpired
+                ? '⚠️ LINE Token失効の可能性 - multicast'
+                : `multicast HTTP ${mcRes.status} (${chunk.length}人分)`
+            );
+          }
           sent += chunk.length;
         }
         return new Response(JSON.stringify({ sent }), {
@@ -345,31 +354,99 @@ export default {
       });
     }
 
+    // GET /health - ヘルスチェック
+    if (request.method === 'GET' && url.pathname === '/health') {
+      const checks = { worker: true, db: false, line_token: false, timestamp: new Date().toISOString() };
+      let status = 200;
+
+      // D1接続チェック
+      try {
+        await env.DB.prepare('SELECT 1').all();
+        checks.db = true;
+      } catch (e) {
+        checks.db_error = e.message;
+        status = 503;
+      }
+
+      // LINE Token有効性チェック
+      try {
+        const lineRes = await fetch('https://api.line.me/v2/bot/info', {
+          headers: { 'Authorization': `Bearer ${env.LINE_CHANNEL_TOKEN}` },
+        });
+        if (lineRes.ok) {
+          checks.line_token = true;
+        } else {
+          checks.line_token = false;
+          checks.line_status = lineRes.status;
+          status = 503;
+          // Token失効時はDiscord通知
+          if (lineRes.status === 401 || lineRes.status === 403) {
+            await notifyError(env, new Error(`LINE Token無効: HTTP ${lineRes.status}`), '⚠️ /health チェックで LINE Token失効を検出');
+          }
+        }
+      } catch (e) {
+        checks.line_token = false;
+        checks.line_error = e.message;
+        status = 503;
+      }
+
+      return new Response(JSON.stringify(checks), {
+        status,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders },
+      });
+    }
+
     return new Response('Not found', { status: 404, headers: corsHeaders });
   }
 };
 
 // LINE API helpers
 async function lineReply(env, replyToken, messages) {
-  await fetch('https://api.line.me/v2/bot/message/reply', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${env.LINE_CHANNEL_TOKEN}`,
-    },
-    body: JSON.stringify({ replyToken, messages }),
-  });
+  try {
+    const res = await fetch('https://api.line.me/v2/bot/message/reply', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${env.LINE_CHANNEL_TOKEN}`,
+      },
+      body: JSON.stringify({ replyToken, messages }),
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      const isTokenExpired = res.status === 401 || res.status === 403;
+      await notifyError(env, new Error(`lineReply failed: ${res.status} ${body}`),
+        isTokenExpired
+          ? '⚠️ LINE Token失効の可能性 - lineReply'
+          : `lineReply HTTP ${res.status}`
+      );
+    }
+  } catch (e) {
+    await notifyError(env, e, 'lineReply fetch例外');
+  }
 }
 
 async function linePush(env, userId, messages) {
-  await fetch('https://api.line.me/v2/bot/message/push', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${env.LINE_CHANNEL_TOKEN}`,
-    },
-    body: JSON.stringify({ to: userId, messages }),
-  });
+  try {
+    const res = await fetch('https://api.line.me/v2/bot/message/push', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${env.LINE_CHANNEL_TOKEN}`,
+      },
+      body: JSON.stringify({ to: userId, messages }),
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      const isTokenExpired = res.status === 401 || res.status === 403;
+      await notifyError(env, new Error(`linePush failed: ${res.status} ${body}`),
+        isTokenExpired
+          ? '⚠️ LINE Token失効の可能性 - linePush'
+          : `linePush HTTP ${res.status}`
+      );
+    }
+  } catch (e) {
+    await notifyError(env, e, 'linePush fetch例外');
+  }
 }
 
 // Flex Messages

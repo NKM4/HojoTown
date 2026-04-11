@@ -91,6 +91,31 @@ jobs:
       - name: Install GA4 dependency
         run: npm install @google-analytics/data
 
+      - name: Check LINE Token validity
+        env:
+          LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
+          DISCORD_WEBHOOK_ERROR: ${{ secrets.DISCORD_WEBHOOK_ERROR }}
+        run: |
+          if [ -z "$LINE_CHANNEL_TOKEN" ]; then
+            echo "LINE_CHANNEL_TOKEN not set, skipping"
+            exit 0
+          fi
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer $LINE_CHANNEL_TOKEN" \
+            https://api.line.me/v2/bot/info)
+          echo "LINE API status: $HTTP_STATUS"
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "⚠️ LINE Token is invalid or expired (HTTP $HTTP_STATUS)"
+            if [ -n "$DISCORD_WEBHOOK_ERROR" ]; then
+              curl -s -X POST "$DISCORD_WEBHOOK_ERROR" -H "Content-Type: application/json" \
+                -d "{\"embeds\":[{\"title\":\"⚠️ LINE Token 失効警告\",\"description\":\"api.line.me/v2/bot/info が HTTP ${HTTP_STATUS} を返しました。\\nTokenを再発行してください。\",\"color\":15158332,\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}]}"
+              echo "Discord警告通知送信完了"
+            fi
+            exit 1
+          else
+            echo "✅ LINE Token is valid"
+          fi
+
       - name: Send weekly report
         env:
           WEBHOOK_ACCESS: ${{ secrets.DISCORD_WEBHOOK_ACCESS }}
