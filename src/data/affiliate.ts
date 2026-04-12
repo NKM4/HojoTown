@@ -342,18 +342,18 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     conversionType: '無料一括査定',
     priority: 7,
   },
-  // 自動車保険見積り（1,000〜10,000円/見積り申込）
+  // カーリース → ニコノリ（月5,500円〜、A8承認済み 2026-04-12）
   {
     id: 'car-insurance',
     triggerCategories: ['ev'],
     lifeEvents: ['energy'],
-    title: 'EVに乗り換えたら、保険も見直そう',
-    description: '車種が変わると保険料も変わります。最大20社の自動車保険を無料で一括比較。',
-    ctaText: '最大20社の自動車保険を無料で一括比較',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // TODO: 自動車保険はA8に8件あり申請可能。提携申請→承認後に固有リンクに差し替え（現在はFP相談にフォールバック）  // 現在のURL: childcare-insurance, fertility-insurance と共有中
+    title: 'EV補助金×カーリースで月5,500円から新車',
+    description: '補助金対象のEV・PHEVが月々5,500円から。頭金0円、車検・税金コミ。全国47都道府県対応。',
+    ctaText: '月5,500円〜のカーリースを見てみる',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4B1JDI+7QNN6+4R22+5YJRM',  // ニコノリ固有リンク (2026-04-12承認+差替済)
     label: 'PR',
-    icon: '🛡️',
-    conversionType: '無料一括見積り',
+    icon: '🚗',
+    conversionType: 'カーリース申込',
     priority: 6,
   },
 ];
