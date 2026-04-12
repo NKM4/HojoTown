@@ -161,8 +161,8 @@ for (const [, mod] of Object.entries(subsidyFiles)) {
     el.addEventListener('click', () => {
       if (typeof gtag === 'function') {
         gtag('event', 'affiliate_click', {
-          affiliate_id: el.getAttribute('data-ad-id'),
-          life_event: el.getAttribute('data-life-event'),
+          ad_id: el.getAttribute('data-ad-id'),
+          source: 'life_event_lp',
           position: Number(el.getAttribute('data-position'))
         });
       }

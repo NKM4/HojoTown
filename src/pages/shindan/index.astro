@@ -767,6 +767,25 @@ for (const file of fs.readdirSync(subsidiesDir).filter(f => f.endsWith('.json'))
     box-shadow: 0 3px 8px rgba(200,168,75,0.3);
     transition: box-shadow 0.2s, transform 0.2s;
   }
+  .affiliate-cta-btn {
+    display: block;
+    text-align: center;
+    padding: 15px 24px;
+    background: linear-gradient(135deg, #c8a84b, #b8960a);
+    color: white;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 12px rgba(200,168,75,0.35);
+    transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .affiliate-card:hover .affiliate-cta-btn {
+    box-shadow: 0 6px 20px rgba(200,168,75,0.5);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #d4b455, #c8a21a);
+  }
   .affiliate-card:hover .affiliate-cta {
     box-shadow: 0 4px 14px rgba(200,168,75,0.4);
     transform: translateY(-1px);

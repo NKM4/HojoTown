@@ -410,8 +410,8 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
           if (displayAds.length === 0) return null;
           return (
             <div className="next-steps-section">
-              <h3 className="next-steps-title">次のステップ</h3>
-              <p className="next-steps-desc">補助金を最大限活用するために、まずは無料で情報を集めましょう。</p>
+              <h3 className="next-steps-title">補助金活用の次のステップ</h3>
+              <p className="next-steps-desc">最大限の補助金を活用するには、複数社の見積もり比較が必須です。</p>
               {displayAds.map((ad, i) => (
                 <a key={ad.id} href={ad.url} target="_blank" rel="noopener noreferrer sponsored" className={`affiliate-card ${i === 0 ? 'affiliate-card-primary' : ''}`}
                   onClick={() => {
@@ -430,7 +430,7 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
                       )}
                     </div>
                   </div>
-                  <span className="affiliate-cta">{ad.ctaText} →</span>
+                  <span className="affiliate-cta affiliate-cta-btn">{ad.ctaText}</span>
                 </a>
               ))}
               {detectedEvents.length > 0 && (
