@@ -328,18 +328,18 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
   // EV補助金連動（/life/energy/ 追加枠）
   // ============================================
 
-  // 車買取一括査定 → ナビクル（2,000〜3,000円/査定申込）
+  // 自動車保険 → はたらくクルマの自動車保険（未来保険、A8承認済み 2026-04-13、見積依頼3,000円）
   {
     id: 'navikuru-car',
     triggerCategories: ['ev'],
     lifeEvents: ['energy'],
-    title: 'EV乗り換えなら、今の車を高く売ろう',
-    description: 'EV補助金で新車を買うなら、旧車の売却額も重要。最大10社の買取価格を無料で一括比較。',
-    ctaText: '最大10社の買取価格を無料で一括比較',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: ナビクルはA8にプログラムなし。別ASP(アクセストレード/バリューコマース等)が必要（現在は太陽光見積りにフォールバック）  // 現在のURL: griene-solar, solar-estimate と共有中
+    title: '自動車保険、見積りで3,000円の価値',
+    description: 'EV・PHEVの保険料を無料で見積もり。ネット完結で最短5分、自動車検査証があればOK。',
+    ctaText: '自動車保険を無料で見積もる',
+    url: 'https://px.a8.net/svt/ejp?a8mat=4B1JDI+5YCTU+5TH4+5YJRM',  // はたらくクルマ固有リンク (2026-04-13承認+差替済)
     label: 'PR',
     icon: '🚗',
-    conversionType: '無料一括査定',
+    conversionType: '無料見積り',
     priority: 7,
   },
   // カーリース → ニコノリ（月5,500円〜、A8承認済み 2026-04-12）
