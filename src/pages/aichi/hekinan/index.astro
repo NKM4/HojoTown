@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import LifeEventBanner from '../../../components/LifeEventBanner.astro';
+import ArticleAds from '../../../components/ArticleAds.astro';
 import subsidies from '../../../data/subsidies/hekinan.json';
 import { CATEGORY_LABELS } from '../../../data/types';
 import type { Category } from '../../../data/types';
@@ -20,6 +21,7 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
   title={`${cityName}の補助金・助成金一覧 | ホジョタウン`}
   description={`${prefecture}${cityName}で個人が使える補助金・助成金を${totalCount}件掲載。`}
 >      <!-- ライフイベント導線 -->
+      <ArticleAds categories={categoriesUsed} />
       <LifeEventBanner categories={categoriesUsed} />
 
 

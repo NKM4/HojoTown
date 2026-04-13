@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import LifeEventBanner from '../../../components/LifeEventBanner.astro';
+import ArticleAds from '../../../components/ArticleAds.astro';
 import subsidies from '../../../data/subsidies/kawaguchi.json';
 import { CATEGORY_LABELS } from '../../../data/types';
 import type { Category } from '../../../data/types';
@@ -95,6 +96,7 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
       ))}
 
       <!-- ライフイベント導線 -->
+      <ArticleAds categories={categoriesUsed} />
       <LifeEventBanner categories={categoriesUsed} />
 
       <!-- 比較CTA -->

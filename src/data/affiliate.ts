@@ -80,7 +80,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '補助金を使ったリフォーム、実質いくら？',
     description: '補助金適用後の実質負担額がわかる。地元の優良業者から無料でプランと見積もりが届きます。',
     ctaText: '最大20万円の補助金を確認（無料）',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフはA8にプログラムなし、独自ASP(town-life-aff.com)も消滅済み。アクセストレード/バリューコマース等で要探索  // 現在のURL: townlife-housing, reform-speee と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5Z6WX',  // Speeeヌリカエ（タウンライフはA8になし、同カテゴリのSpeeeで代替）
     label: 'PR',
     icon: '🏠',
     conversionType: '無料見積り申込',
@@ -94,7 +94,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '注文住宅、補助金で最大100万円お得に',
     description: '子育てエコホーム支援事業など、住宅取得の補助金を活用。間取りプランと資金計画が無料で届きます。',
     ctaText: '間取りプラン+資金計画を無料で取り寄せ',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5ZMCH',  // TODO: タウンライフはA8にプログラムなし、独自ASP(town-life-aff.com)も消滅済み。アクセストレード/バリューコマース等で要探索  // 現在のURL: townlife-reform, reform-speee と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3X3R5E+410U+5Z6WX',  // Speeeヌリカエ（タウンライフはA8になし、同カテゴリのSpeeeで代替）
     label: 'PR',
     icon: '🏗️',
     conversionType: '無料間取りプラン申込',
@@ -303,11 +303,11 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '教育訓練給付金で最大56万円キャッシュバック',
     description: 'DMM WEBCAMPは厚生労働省指定の給付金対象講座。受講料の最大70%が戻ってきます。まずは無料カウンセリングから。',
     ctaText: '最大56万円キャッシュバック対象か確認',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: DMM WEBCAMPはA8にプログラムなし。別ASP(アクセストレード/バリューコマース等)が必要（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, techacademy と共有中
+    url: '',  // A8にプログラムなし。別ASP(アクセストレード等)で提携するまで無効化
     label: 'PR',
     icon: '💻',
     conversionType: '無料カウンセリング',
-    priority: 9,
+    priority: 0,  // 無効化（URLなし）
   },
   // プログラミングスクール → テックアカデミー（20,000円/申込）
   {
@@ -317,11 +317,11 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '給付金対象のプログラミングスクールで転職',
     description: 'テックアカデミーのエンジニア転職コースは教育訓練給付金の対象。オンライン完結で働きながら学べます。',
     ctaText: '給付金対象コースを無料で確認',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // TODO: テックアカデミーはA8にプログラムなし。別ASP(アクセストレード/バリューコマース等)が必要（現在はFP相談にフォールバック）  // 現在のURL: education-insurance, dmm-webcamp と共有中
+    url: '',  // A8にプログラムなし。別ASP(アクセストレード等)で提携するまで無効化
     label: 'PR',
     icon: '🎓',
     conversionType: '無料相談',
-    priority: 8,
+    priority: 0,  // 無効化（URLなし）
   },
 
   // ============================================
