@@ -257,7 +257,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '教育費の準備、保険で賢く備える',
     description: '学資保険や積立型保険で教育資金を準備。FPに無料相談できます。',
     ctaText: '学資保険・教育ローンをFPに無料相談',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // 現在のURL: dmm-webcamp, techacademy と共有中 → 各自固有のa8matリンクが望ましい
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // エイチームFP相談リンク（education-insurance用、dmm-webcamp/techacademyは無効化済み）
     label: 'PR',
     icon: '📚',
     conversionType: '無料FP相談',
