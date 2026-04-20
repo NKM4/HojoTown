@@ -1,0 +1,76 @@
+#!/bin/bash
+# Pre-commit hook: シークレット漏洩防止
+# インストール: cp .github/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+RED='\033[0;31m'
+NC='\033[0m'
+
+# ステージされたファイルの差分を検査
+STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [ -z "$STAGED" ]; then
+  exit 0
+fi
+
+FOUND=0
+
+for FILE in $STAGED; do
+  # バイナリファイルはスキップ
+  if file "$FILE" 2>/dev/null | grep -q "binary"; then
+    continue
+  fi
+
+  # .env ファイルが直接コミットされようとしていないか
+  if echo "$FILE" | grep -qE '\.env($|\.)'; then
+    echo -e "${RED}BLOCKED: .env ファイルのコミットを検出: $FILE${NC}"
+    FOUND=1
+  fi
+
+  # シークレットパターンの検出
+  if [ -f "$FILE" ]; then
+    # Discord Webhook URL
+    if grep -qE 'discord\.com/api/webhooks/[0-9]+/' "$FILE" 2>/dev/null; then
+      echo -e "${RED}BLOCKED: Discord Webhook URL を検出: $FILE${NC}"
+      FOUND=1
+    fi
+
+    # APIキー/シークレットのハードコード（env参照でないもの）
+    if grep -qE "(CHANNEL_SECRET|CHANNEL_TOKEN|API_KEY|api_key|apiKey)\s*[:=]\s*['\"][a-zA-Z0-9]{16,}" "$FILE" 2>/dev/null; then
+      # 環境変数参照は除外
+      if ! grep -qE '(process\.env|secrets\.|env\.|ENV\[|getenv|\$\{)' "$FILE" 2>/dev/null || \
+         grep -qE "(CHANNEL_SECRET|CHANNEL_TOKEN|API_KEY)\s*[:=]\s*['\"][a-zA-Z0-9]{16,}" "$FILE" 2>/dev/null; then
+        MATCHES=$(grep -nE "(CHANNEL_SECRET|CHANNEL_TOKEN|API_KEY|api_key|apiKey)\s*[:=]\s*['\"][a-zA-Z0-9]{16,}" "$FILE" 2>/dev/null | grep -v 'process\.env\|secrets\.\|env\.\|ENV\[' || true)
+        if [ -n "$MATCHES" ]; then
+          echo -e "${RED}BLOCKED: ハードコードされたシークレットを検出: $FILE${NC}"
+          echo "$MATCHES"
+          FOUND=1
+        fi
+      fi
+    fi
+
+    # パスワードのハードコード
+    if grep -qiE "(password|passwd|pw)\s*[:=]\s*['\"][^'\"]{6,}" "$FILE" 2>/dev/null; then
+      MATCHES=$(grep -niE "(password|passwd|pw)\s*[:=]\s*['\"][^'\"]{6,}" "$FILE" 2>/dev/null | grep -v 'process\.env\|env\.\|placeholder\|example\|TODO' || true)
+      if [ -n "$MATCHES" ]; then
+        echo -e "${RED}BLOCKED: ハードコードされたパスワードを検出: $FILE${NC}"
+        echo "$MATCHES"
+        FOUND=1
+      fi
+    fi
+
+    # サービスアカウントキー / 秘密鍵
+    if grep -qE '"private_key"|BEGIN.*PRIVATE KEY" ' "$FILE" 2>/dev/null; then
+      echo -e "${RED}BLOCKED: 秘密鍵を検出: $FILE${NC}"
+      FOUND=1
+    fi
+  fi
+done
+
+if [ "$FOUND" -ne 0 ]; then
+  echo ""
+  echo -e "${RED}シークレットが含まれるファイルのコミットをブロックしました。${NC}"
+  echo "環境変数(.env)に移動するか、--no-verify で強制コミット（非推奨）"
+  exit 1
+fi
+
+exit 0

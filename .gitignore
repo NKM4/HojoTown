@@ -15,7 +15,18 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
+
+# secrets / credentials (絶対にコミットするな)
+**/secret*
+**/credential*
+**/*-key.json
+**/*_key.json
+**/service-account*.json
+ga4-service-account-key.json
+gmail-cookies.json
+**/current_jwt.txt
 
 # macOS-specific files
 .DS_Store
@@ -27,9 +38,9 @@ pnpm-debug.log*
 *.png
 !public/*.png
 *.bak
-captcha-page.png
-gmail-cookies.json
 factcheck_result.md
 all_cities_top5.json
 nagoya_subsidies.json
-ga4-service-account-key.json
+
+# wrangler local state
+.wrangler/
