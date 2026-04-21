@@ -22,11 +22,31 @@ jobs:
           node scripts/check-urls.cjs > url-report.txt 2>&1 || true
           COUNT=$(grep -c "BROKEN" url-report.txt 2>/dev/null || echo 0)
           echo "Broken URLs: $COUNT"
-          if [ "$COUNT" -gt 0 ] && [ -n "$DISCORD_WEBHOOK" ]; then
-            curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
-              -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"GitHub Actionsのログを確認してください\",\"color\":15158332}]}"
-            echo "Discord通知送信完了"
+          # BROKENリストを別ファイルに抽出
+          grep "BROKEN" url-report.txt > broken-urls.txt 2>/dev/null || true
+          # サマリー: ドメイン別集計
+          if [ "$COUNT" -gt 0 ]; then
+            echo "" >> broken-urls.txt
+            echo "--- ドメイン別集計 ---" >> broken-urls.txt
+            awk -F'|' '{print $2}' broken-urls.txt | sed 's/^ //' | sort | uniq -c | sort -rn >> broken-urls.txt 2>/dev/null || true
+            if [ -n "$DISCORD_WEBHOOK" ]; then
+              # 上位5市を通知に含める
+              TOP5=$(awk -F'|' '{print $2}' broken-urls.txt | sed 's/^ //' | sort | uniq -c | sort -rn | head -5 | awk '{printf "%s(%d件) ", $2, $1}')
+              curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+                -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"上位: ${TOP5}\\n\\nArtifactにbroken-urls.txtを保存済み\",\"color\":15158332}]}"
+              echo "Discord通知送信完了"
+            fi
           fi
+
+      - name: Save broken URL report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: url-check-report
+          path: |
+            url-report.txt
+            broken-urls.txt
+          retention-days: 30
 
   check-content:
     runs-on: ubuntu-latest
@@ -41,8 +61,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: content-hashes.json
-          key: content-hashes-${{ github.run_id }}
-          restore-keys: content-hashes-
+          key: content-hashes-${{ github.ref }}-${{ github.run_id }}
+          restore-keys: |
+            content-hashes-${{ github.ref }}-
+            content-hashes-
 
       - name: Check content and notify
         env:
@@ -77,7 +99,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: content-hashes.json
-          key: content-hashes-${{ github.run_id }}
+          key: content-hashes-${{ github.ref }}-${{ github.run_id }}
 
   weekly-report:
     runs-on: ubuntu-latest

@@ -15,6 +15,11 @@ fi
 FOUND=0
 
 for FILE in $STAGED; do
+  # フック自身はスキップ（パターン文字列を含むため）
+  if echo "$FILE" | grep -qE '\.github/hooks/|\.git/hooks/'; then
+    continue
+  fi
+
   # バイナリファイルはスキップ
   if file "$FILE" 2>/dev/null | grep -q "binary"; then
     continue
