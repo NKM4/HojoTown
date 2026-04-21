@@ -59,7 +59,7 @@
     "amount": "出産応援金5万円＋子育て応援金5万円（計10万円）",
     "maxAmount": 100000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.okayama.jp/kosodate/0000047383.html",
+    "officialUrl": "https://www.city.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "太陽光発電・蓄電池等の導入費用の一部（上限あり）",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.okayama.jp/ondankataisaku/0000042045.html",
+    "officialUrl": "https://www.city.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

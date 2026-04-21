@@ -75,7 +75,7 @@
     "amount": "工事費の10〜20%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.izumiotsu.lg.jp/kakuka/tosiseisakubu/kankyouka/hojyokin/index.html",
+    "officialUrl": "https://www.city.izumiotsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "太陽光：1kWあたり2万円（上限8万円）、蓄電池：上限10万円",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.izumiotsu.lg.jp/kakuka/tosiseisakubu/kankyouka/hojyokin/index.html",
+    "officialUrl": "https://www.city.izumiotsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "耐震改修費の一部（上限100万円）",
     "maxAmount": 1000000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.izumiotsu.lg.jp/kakuka/tosiseisakubu/kankyouka/hojyokin/index.html",
+    "officialUrl": "https://www.city.izumiotsu.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -152,7 +152,7 @@
     "amount": "不妊手術：上限5,000円、去勢手術：上限3,000円",
     "maxAmount": 5000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.izumiotsu.lg.jp/kakuka/tosiseisakubu/kankyouka/hojyokin/index.html",
+    "officialUrl": "https://www.city.izumiotsu.lg.jp/",
     "cityCode": "27223",
     "cityName": "泉大津市",
     "prefecture": "大阪府",

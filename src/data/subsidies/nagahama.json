@@ -43,7 +43,7 @@
     "amount": "基本額20万円＋子育て世帯加算10万円＋転入世帯加算10万円＋ZEH加算10万円（最大50万円）",
     "maxAmount": 500000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.nagahama.lg.jp/0000013879.html",
+    "officialUrl": "https://www.city.nagahama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "住居費・引越費用の一部を助成",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.nagahama.lg.jp/0000010127.html",
+    "officialUrl": "https://www.city.nagahama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "改修費の一部を助成",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.nagahama.lg.jp/0000002229.html",
+    "officialUrl": "https://www.city.nagahama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

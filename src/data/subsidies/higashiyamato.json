@@ -43,7 +43,7 @@
     "amount": "妊娠届出時50,000円＋出生届出後50,000円",
     "maxAmount": 100000,
     "deadline": "妊娠届出時・出生届出後",
-    "officialUrl": "https://www.city.higashiyamato.lg.jp/kenkofukushi/kenkoiryo/1002851/1007611.html",
+    "officialUrl": "https://www.city.higashiyamato.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.higashiyamato.lg.jp/kosodatekyoiku/kosodate/1003193/1003202.html",
+    "officialUrl": "https://www.city.higashiyamato.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

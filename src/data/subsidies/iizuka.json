@@ -43,7 +43,7 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.iizuka.lg.jp/jyukankyo/jyuutakukaishuuhojokin.html",
+    "officialUrl": "https://www.city.iizuka.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

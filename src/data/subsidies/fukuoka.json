@@ -235,7 +235,7 @@
     "amount": "一般世帯：上限10万円、非課税世帯：上限15万円",
     "maxAmount": 150000,
     "deadline": "令和7年4月1日〜令和8年3月31日",
-    "officialUrl": "https://www.city.fukuoka.lg.jp/fukushi/syougaisyashien/health/fukushitaku_3_3_2_2.html",
+    "officialUrl": "https://www.city.fukuoka.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-26"
   },
@@ -267,7 +267,7 @@
     "amount": "自己負担1,500円（通常費用との差額を市が助成、非課税世帯等は無料）",
     "maxAmount": 0,
     "deadline": "令和7年10月1日〜令和8年3月31日",
-    "officialUrl": "https://www.city.fukuoka.lg.jp/hofuku/k-kanri/health/koreishainfluenza.html",
+    "officialUrl": "https://www.city.fukuoka.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-26"
   },
@@ -299,7 +299,7 @@
     "amount": "太陽光：2万円/kW（上限10万円）、蓄電池：設備費50%（上限40万円）、V2H：設備費50%（上限20万円）、エコキュート：2万円、エネファーム：5万円",
     "maxAmount": 400000,
     "deadline": "予算到達次第終了（令和7年度）",
-    "officialUrl": "https://www.city.fukuoka.lg.jp/kankyo/j-suishin/hp/energy-system_reiwa.html",
+    "officialUrl": "https://www.city.fukuoka.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-26"
   },

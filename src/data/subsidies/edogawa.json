@@ -59,7 +59,7 @@
     "amount": "1kWあたり75,000円（上限225,000円）",
     "maxAmount": 225000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.edogawa.tokyo.jp/e086/toshikeikaku/kankyo/inochi/hojokin/taiyoukou.html",
+    "officialUrl": "https://www.city.edogawa.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "補助対象経費の1/4（上限200,000円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.edogawa.tokyo.jp/e086/toshikeikaku/kankyo/inochi/hojokin/tikudenti.html",
+    "officialUrl": "https://www.city.edogawa.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

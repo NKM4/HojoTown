@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円",
     "maxAmount": 30000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/contents/1305080362829/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/contents/1223269073293/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "若者世帯：5万円、子育て世帯：10万円",
     "maxAmount": 100000,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/genre/1187670219462/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "改修費・家財処分費（上限40万円）",
     "maxAmount": 400000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/genre/1187670219462/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "児童1人：月額最大45,500円",
     "maxAmount": 45500,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/genre/1187670219462/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/genre/1187670219462/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "耐震改修工事費の一部を補助",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/genre/1187670219462/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "治療費の一部を助成",
     "maxAmount": 0,
     "deadline": "年度内申請",
-    "officialUrl": "https://www.city.tottori.lg.jp/www/genre/1187670219462/index.html",
+    "officialUrl": "https://www.city.tottori.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

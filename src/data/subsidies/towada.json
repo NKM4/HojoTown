@@ -43,7 +43,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/kosodate/jidou/2023_kodomokosodate-ouenkin.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "おむつ12パック（1人につき）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.towada.lg.jp/fukushi/kosodate/jidou/2023_kodomokosodate-ouenkin.html",
+    "officialUrl": "https://www.city.towada.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

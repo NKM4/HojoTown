@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.sanda.lg.jp/soshiki/22/gyomu/jidofukushi/kakusyuteatejyoseiseido/1309.html",
+    "officialUrl": "https://www.city.sanda.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sanda.lg.jp/soshiki/22/gyomu/jidofukushi/kakusyuteatejyoseiseido/1308.html",
+    "officialUrl": "https://www.city.sanda.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "緊急通報装置の設置費用を助成（自己負担あり）",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sanda.lg.jp/kosodate/kosodate/teate/index.html",
+    "officialUrl": "https://www.city.sanda.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

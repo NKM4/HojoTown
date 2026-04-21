@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.soja.okayama.jp/kodomo/kosodate_kyouiku/akachan_kodomo/soudan_teate_keikaku_kaigi_jourei/kodomo_teate.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円（妊娠届出後5万円＋出生届出後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.soja.okayama.jp/kodomo/kosodate_kyouiku/akachan_kodomo/ninsin_shusan/ouenkyuuhukinn.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.soja.okayama.jp/kodomo/iryou_fukushi/iryohi_josei.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額最大44,140円（児童1人の場合）",
     "maxAmount": 44140,
     "deadline": "通年",
-    "officialUrl": "https://www.city.soja.okayama.jp/kodomo/iryou_fukushi/jido_fuyo_teate.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "雇用助成金の支給",
     "maxAmount": 300000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.soja.okayama.jp/fukushi/shogaisha/senninkoyou/sengohyakunin_top.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "耐震改修工事費の一部（上限100万円）",
     "maxAmount": 1000000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.soja.okayama.jp/kenchikujyuutaku/sisei/kenjyu.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "単身60万円、世帯100万円",
     "maxAmount": 1000000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.soja.okayama.jp/kigyouyuutisyoukoushinkou/jigyou_yushi_koyou/ijyu_mattingu.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "設置費用の一部を補助（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.soja.okayama.jp/kankyo/kurashi/enerugi/denkijidousha_2.html",
+    "officialUrl": "https://www.city.soja.okayama.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

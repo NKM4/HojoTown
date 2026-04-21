@@ -43,7 +43,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasago.lg.jp/soshikikarasagasu/kosodateshienka/kosodateshien/1434.html",
+    "officialUrl": "https://www.city.takasago.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "妊娠届出時5万円＋出生届出後5万円（計10万円相当）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasago.lg.jp/soshikikarasagasu/kenkozoshinka/ninshin_shussan/1/8372.html",
+    "officialUrl": "https://www.city.takasago.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "太陽光：上限5万円、蓄電池：上限10万円",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.takasago.lg.jp/soshikikarasagasu/kankyoseisakuka/4/hojyokinn/10319.html",
+    "officialUrl": "https://www.city.takasago.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -152,7 +152,7 @@
     "amount": "EV購入：上限10万円、V2H設備：上限5万円",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.takasago.lg.jp/soshikikarasagasu/kankyoseisakuka/4/hojyokinn/index.html",
+    "officialUrl": "https://www.city.takasago.lg.jp/",
     "cityCode": "28210",
     "cityName": "高砂市",
     "prefecture": "兵庫県",

@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/page/4288.html",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -155,7 +155,7 @@
     "amount": "給食費全額無償",
     "maxAmount": 0,
     "deadline": "通年（在学中）",
-    "officialUrl": "https://www.city.takasaki.gunma.jp/page/45373.html",
+    "officialUrl": "https://www.city.takasaki.gunma.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

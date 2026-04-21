@@ -59,7 +59,7 @@
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sakura.lg.jp/soshiki/kodomokateika/168/5903.html",
+    "officialUrl": "https://www.city.sakura.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "1級月額53,700円、2級月額35,760円",
     "maxAmount": 53700,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sakura.lg.jp/soshiki/shogaifukushika/118/1862.html",
+    "officialUrl": "https://www.city.sakura.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "月額15,220円",
     "maxAmount": 15220,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sakura.lg.jp/soshiki/shogaifukushika/118/1862.html",
+    "officialUrl": "https://www.city.sakura.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

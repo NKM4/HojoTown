@@ -43,7 +43,7 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.narashino.lg.jp/soshiki/kenkoshien/gyomu/minnnanokennko/boshi_hoken/shussankosodateouen.html",
+    "officialUrl": "https://www.city.narashino.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "太陽光発電1kWあたり2万円（上限8万円）、蓄電池上限10万円",
     "maxAmount": 100000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.narashino.lg.jp/soshiki/kankyoseisaku/gyomu/keikaku/toshikankyou/25082016.html",
+    "officialUrl": "https://www.city.narashino.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

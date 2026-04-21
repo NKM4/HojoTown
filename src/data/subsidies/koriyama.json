@@ -27,7 +27,7 @@
     "amount": "計10万円",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.koriyama.lg.jp/site/kosodate/66034.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.koriyama.lg.jp/soshiki/133/2315.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "自己負担1,200円（残額を市が助成）",
     "maxAmount": 3000,
     "deadline": "10月〜1月",
-    "officialUrl": "https://www.city.koriyama.lg.jp/site/kokokara-koriyama/60526.html",
+    "officialUrl": "https://www.city.koriyama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

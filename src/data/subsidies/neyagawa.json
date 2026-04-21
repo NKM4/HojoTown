@@ -75,7 +75,7 @@
     "amount": "工事費の10〜20%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.neyagawa.osaka.jp/organization_list/machizukurisuishin/jutaku/1606959278031.html",
+    "officialUrl": "https://www.city.neyagawa.osaka.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -139,7 +139,7 @@
     "amount": "耐震改修費の一部（上限100万円）",
     "maxAmount": 1000000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.neyagawa.osaka.jp/organization_list/machizukurisuishin/jutaku/taishin/1377574122858.html",
+    "officialUrl": "https://www.city.neyagawa.osaka.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

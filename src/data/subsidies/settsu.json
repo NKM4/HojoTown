@@ -59,7 +59,7 @@
     "amount": "妊娠届出時5万円＋出生届出後5万円（計10万円相当）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.settsu.osaka.jp/soshiki/kodomokateibu/shussannikuji/oshirase/20738.html",
+    "officialUrl": "https://www.city.settsu.osaka.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費の10〜20%（上限20万円）",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.settsu.osaka.jp/soshiki/kensetsubu/kenchikuka/tasedai_doukyo/10180.html",
+    "officialUrl": "https://www.city.settsu.osaka.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "改修費の一部（上限30万円、介護保険併用可）",
     "maxAmount": 300000,
     "deadline": "通年（事前申請が必要）",
-    "officialUrl": "https://www.city.settsu.osaka.jp/soshiki/kensetsubu/kenchikuka/tasedai_doukyo/10180.html",
+    "officialUrl": "https://www.city.settsu.osaka.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

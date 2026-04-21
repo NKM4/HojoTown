@@ -427,7 +427,7 @@
     "amount": "控除しきれなかった額を給付",
     "maxAmount": 0,
     "deadline": "通知に記載の期限まで",
-    "officialUrl": "https://www.city.yokohama.lg.jp/kenko-iryo-fukushi/fukushi-kaigo/kyuhukin/fusokugaku-kyufu/",
+    "officialUrl": "https://www.city.yokohama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-26"
   },
@@ -443,7 +443,7 @@
     "amount": "所得税・住民税の控除不足額を給付",
     "maxAmount": 0,
     "deadline": "通知に記載の期限まで",
-    "officialUrl": "https://www.city.yokohama.lg.jp/kenko-iryo-fukushi/fukushi-kaigo/kyuhukin/chosei-kyufu/",
+    "officialUrl": "https://www.city.yokohama.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-26"
   },

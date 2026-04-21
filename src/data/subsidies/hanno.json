@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担金を全額助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/kenkosuishimbu/hokennenkinka/2/516.html",
+    "officialUrl": "https://www.city.hanno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "妊娠届出時50,000円＋出生後50,000円（計100,000円）",
     "maxAmount": 100000,
     "deadline": "妊娠届出時・出生届出後",
-    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/kenkosuishimbu/hokencenter/6359.html",
+    "officialUrl": "https://www.city.hanno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/kenkosuishimbu/hokennenkinka/2/518.html",
+    "officialUrl": "https://www.city.hanno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "年間最大12,000円分のタクシー利用券",
     "maxAmount": 12000,
     "deadline": "通年（年度ごと申請）",
-    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/fukushibu/kaigofukushika/hukushi-service/index.html",
+    "officialUrl": "https://www.city.hanno.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

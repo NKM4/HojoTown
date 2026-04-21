@@ -59,7 +59,7 @@
     "amount": "月額最大45,500円",
     "maxAmount": 45500,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.omihachiman.lg.jp/soshiki/shien/4/2/1372.html",
+    "officialUrl": "https://www.city.omihachiman.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://www.city.omihachiman.lg.jp/soshiki/shogai/seido/22517.html",
+    "officialUrl": "https://www.city.omihachiman.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

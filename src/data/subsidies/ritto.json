@@ -43,7 +43,7 @@
     "amount": "上限100万円",
     "maxAmount": 1000000,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.ritto.lg.jp/soshiki/toshiseibi/jutaku/gyoumu/choujumyoukataisaku/index.html",
+    "officialUrl": "https://www.city.ritto.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "上限10万円/回",
     "maxAmount": 100000,
     "deadline": "年度内申請",
-    "officialUrl": "https://www.city.ritto.lg.jp/soshiki/kodomo_katei/kodomokatei/boshihoken/ninsinsyultusan/5804.html",
+    "officialUrl": "https://www.city.ritto.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
