@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "計10万円（妊娠届出後5万円＋出生届出後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "固定資産税額の1/2を3年間交付",
     "maxAmount": 0,
     "deadline": "2027年1月1日まで",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費50%（上限100万円）＋家財処分費50%（上限10万円）",
     "maxAmount": 1000000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "太陽光最大8万円、蓄電池8万円、V2H5万円、ZEH20万円",
     "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "工事費用の2/3（上限100万円）",
     "maxAmount": 1000000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "除却費用の8/10（上限160万円）",
     "maxAmount": 1600000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.sanuki.kagawa.jp/",
+    "officialUrl": "https://www.city.sanuki.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
