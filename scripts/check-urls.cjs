@@ -5,18 +5,24 @@ const http = require('http');
 
 const subsidiesDir = path.join(__dirname, '..', 'src', 'data', 'subsidies');
 
-function checkUrl(url, method = 'HEAD') {
+function isOkStatus(status) {
+  return typeof status === 'number' && status >= 200 && status < 400;
+}
+
+function requestStatus(url, method = 'HEAD', maxRedirects = 5) {
   return new Promise((resolve) => {
+    if (maxRedirects < 0) return resolve('TOO_MANY_REDIRECTS');
     const mod = url.startsWith('https') ? https : http;
     const opts = {
       method,
-      timeout: 10000,
+      timeout: 20000,
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; HojoTown URL Checker)' }
     };
     const req = mod.request(url, opts, (res) => {
-      if (method === 'HEAD' && res.statusCode === 403) {
-        // Some servers block HEAD, retry with GET
-        resolve(checkUrl(url, 'GET'));
+      res.resume();
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        const nextUrl = new URL(res.headers.location, url).toString();
+        resolve(requestStatus(nextUrl, method, maxRedirects - 1));
       } else {
         resolve(res.statusCode);
       }
@@ -25,6 +31,26 @@ function checkUrl(url, method = 'HEAD') {
     req.on('timeout', () => { req.destroy(); resolve('TIMEOUT'); });
     req.end();
   });
+}
+
+async function checkUrl(url) {
+  const headStatus = await requestStatus(url, 'HEAD');
+  if (isOkStatus(headStatus)) return headStatus;
+
+  // Some municipal sites block, throttle, or delay HEAD. Verify with GET before marking broken.
+  if ([403, 405, 501, 'ERROR', 'TIMEOUT'].includes(headStatus)) {
+    const getStatus = await requestStatus(url, 'GET');
+    if (isOkStatus(getStatus)) return getStatus;
+
+    // One extra retry reduces false positives from slow municipal servers.
+    if (['ERROR', 'TIMEOUT', 502, 503].includes(getStatus)) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return requestStatus(url, 'GET');
+    }
+    return getStatus;
+  }
+
+  return headStatus;
 }
 
 async function main() {
@@ -47,7 +73,7 @@ async function main() {
     for (const url of urls) {
       total++;
       const status = await checkUrl(url);
-      if (status === 200 || status === 301 || status === 302) {
+      if (isOkStatus(status)) {
         ok++;
         console.log(`OK | ${city} | ${url} | ${status}`);
       } else {

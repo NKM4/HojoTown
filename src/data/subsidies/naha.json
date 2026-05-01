@@ -43,7 +43,7 @@
     "amount": "月額最大45,500円（全部支給、第2子加算10,750円、第3子以降6,450円）",
     "maxAmount": 45500,
     "deadline": "随時申請可能（所得制限あり）",
-    "officialUrl": "https://www.city.naha.okinawa.jp/child/kosodateouen/jidoufuyouteate.html",
+    "officialUrl": "https://www.city.naha.okinawa.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "給付金支給（詳細は公式サイト参照）",
     "maxAmount": 0,
     "deadline": "申請期限あり（詳細は公式サイト参照）",
-    "officialUrl": "https://www.city.naha.okinawa.jp/child/kosodateouen/hitorioyasien/HKOSODA00120250702153531257.html",
+    "officialUrl": "https://www.city.naha.okinawa.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

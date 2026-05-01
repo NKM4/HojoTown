@@ -43,7 +43,7 @@
     "amount": "使用材積1m3あたり1万円（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.yatsushiro.lg.jp/kurashi/sumai/reform/index.html",
+    "officialUrl": "https://www.city.yatsushiro.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "単身60万円、世帯100万円（子ども加算あり）",
     "maxAmount": 1000000,
     "deadline": "令和8年3月31日まで",
-    "officialUrl": "https://www.city.yatsushiro.lg.jp/kurashi/iju/index.html",
+    "officialUrl": "https://www.city.yatsushiro.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "耐震改修工事費の一部（上限60万円）",
     "maxAmount": 600000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.yatsushiro.lg.jp/kurashi/sumai/taishin/index.html",
+    "officialUrl": "https://www.city.yatsushiro.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },

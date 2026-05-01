@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の順番により異なる）",
     "maxAmount": 30000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.omuta.lg.jp/kosodate/teate/jidouteate/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "通院・入院の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.omuta.lg.jp/kosodate/iryo/kodomo/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "上限36万円（月額最大3万円×12か月）",
     "maxAmount": 360000,
     "deadline": "令和8年3月31日まで",
-    "officialUrl": "https://www.city.omuta.lg.jp/shigoto/koyo/uij/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "全部支給：月額45,500円、一部支給：月額10,740〜45,490円",
     "maxAmount": 45500,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.omuta.lg.jp/kosodate/teate/jidoufuyou/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "月額15,690円",
     "maxAmount": 15690,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.omuta.lg.jp/fukushi/shougai/teate/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.omuta.lg.jp/kurashi/sumai/reform/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "耐震改修工事費の一部（上限60万円）",
     "maxAmount": 600000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.omuta.lg.jp/kurashi/sumai/taishin/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "改修費用の一部（上限20万円）",
     "maxAmount": 200000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.omuta.lg.jp/fukushi/koureisha/kaigo/index.html",
+    "officialUrl": "https://www.city.omuta.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "保険診療の自己負担金を助成",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "妊娠届出時50,000円＋出生届出後50,000円",
     "maxAmount": 100000,
     "deadline": "妊娠届出時・出生届出後",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "月額11,010〜46,690円（所得・子の数による）",
     "maxAmount": 46690,
     "deadline": "通年",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費の5%、上限80,000円",
     "maxAmount": 80000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "月額15,500円（都制度）＋市独自上乗せ",
     "maxAmount": 15500,
     "deadline": "通年",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "上限25,000円",
     "maxAmount": 25000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "太陽光: 上限40,000円 / 蓄電池: 上限80,000円",
     "maxAmount": 80000,
     "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.komae.tokyo.jp/index.cfm/46,0,352,html",
+    "officialUrl": "https://www.city.komae.tokyo.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }
