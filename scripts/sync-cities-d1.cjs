@@ -38,7 +38,7 @@ fs.writeFileSync(tmpSql, statements.join('\n'), 'utf-8');
 
 try {
   const result = execSync(
-    `npx wrangler d1 execute hojotown-contacts --remote --file="${tmpSql}"`,
+    `npx wrangler d1 execute hojotown-contacts --remote --file="${tmpSql}" --yes`,
     { cwd: WRANGLER_DIR, stdio: 'pipe', timeout: 30000 }
   );
   const output = result.toString();
