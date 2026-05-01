@@ -10,13 +10,20 @@ const hashFile = path.join(__dirname, '..', 'content-hashes.json');
 function fetchPage(url, maxRedirects = 5) {
   return new Promise((resolve) => {
     if (maxRedirects <= 0) return resolve(null);
-    const mod = url.startsWith('https') ? https : http;
-    const req = mod.get(url, {
+    let currentUrl;
+    try {
+      currentUrl = new URL(url);
+    } catch {
+      return resolve(null);
+    }
+    const mod = currentUrl.protocol === 'https:' ? https : http;
+    const req = mod.get(currentUrl, {
       timeout: 15000,
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; HojoTown Content Monitor)' }
     }, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return resolve(fetchPage(res.headers.location, maxRedirects - 1));
+        const nextUrl = new URL(res.headers.location, currentUrl).toString();
+        return resolve(fetchPage(nextUrl, maxRedirects - 1));
       }
       let body = '';
       res.on('data', d => body += d);

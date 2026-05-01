@@ -27,6 +27,58 @@ const pendingA8matInput = new Map();
 // 入力待ちのタイムアウト（5分）
 const A8MAT_INPUT_TIMEOUT_MS = 5 * 60 * 1000;
 
+function inferAffiliateMetadata(programName) {
+  const name = programName.toLowerCase();
+  if (/リフォーム|外壁|塗装|住宅|repair|reform/.test(programName) || name.includes('reform')) {
+    return {
+      categories: "['reform', 'vacant_house']",
+      lifeEvents: "['reform']",
+      description: '住宅リフォームや修繕を検討している方向けの関連サービスです。補助金の対象工事とあわせて比較できます。',
+      conversionType: '無料相談・見積り',
+      icon: '🏠',
+      priority: 1,
+    };
+  }
+  if (/太陽光|蓄電|省エネ|EV|電気|solar|energy/.test(programName) || name.includes('solar')) {
+    return {
+      categories: "['solar', 'appliance', 'ev']",
+      lifeEvents: "['energy']",
+      description: '太陽光・蓄電池・省エネ設備を検討している方向けの関連サービスです。自治体補助金とあわせて確認できます。',
+      conversionType: '無料相談・見積り',
+      icon: '☀️',
+      priority: 1,
+    };
+  }
+  if (/保険|FP|教育|子育て|医療|出産|insurance|school/.test(programName) || name.includes('insurance')) {
+    return {
+      categories: "['childcare', 'birth', 'medical', 'education']",
+      lifeEvents: "['baby', 'career']",
+      description: '家計や将来資金を見直したい方向けの関連サービスです。補助金で足りない部分の備えを相談できます。',
+      conversionType: '無料相談',
+      icon: '🛡️',
+      priority: 1,
+    };
+  }
+  if (/引越|移住|不用品|買取|moving/.test(programName) || name.includes('moving')) {
+    return {
+      categories: "['moving', 'migration']",
+      lifeEvents: "['moving']",
+      description: '引越しや移住を検討している方向けの関連サービスです。自治体の移住支援とあわせて準備できます。',
+      conversionType: '無料相談・見積り',
+      icon: '📦',
+      priority: 1,
+    };
+  }
+  return {
+    categories: "['other']",
+    lifeEvents: '',
+    description: '補助金や暮らしの手続きを検討している方向けの関連サービスです。条件に合う場合のみ表示されます。',
+    conversionType: '無料相談',
+    icon: '📌',
+    priority: 0,
+  };
+}
+
 /**
  * affiliate.tsから既存のAFFILIATE_ADS配列を解析し、各広告のid/title/urlを返す
  */
@@ -377,20 +429,22 @@ client.on('messageCreate', async (message) => {
           .replace(/\s+/g, '-')
           .toLowerCase()
           .substring(0, 30) || 'new-affiliate';
+        const metadata = inferAffiliateMetadata(pending.programName);
+        const lifeEventsLine = metadata.lifeEvents ? `\n    lifeEvents: ${metadata.lifeEvents},` : '';
 
         const newEntry = `
   // ${pending.programName}（自動追加 ${new Date().toISOString().split('T')[0]}）
   {
     id: '${safeId}',
-    triggerCategories: [],  // TODO: 適切なカテゴリを設定
+    triggerCategories: ${metadata.categories},${lifeEventsLine}
     title: '${pending.programName.replace(/'/g, "\\'")}',
-    description: '',  // TODO: 説明文を設定
+    description: '${metadata.description}',
     ctaText: '詳しく見る',
     url: '${newUrl}',
     label: 'PR',
-    icon: '📌',
-    conversionType: '',  // TODO: 成約条件を設定
-    priority: 0,
+    icon: '${metadata.icon}',
+    conversionType: '${metadata.conversionType}',
+    priority: ${metadata.priority},
   },`;
 
         try {
@@ -418,7 +472,7 @@ client.on('messageCreate', async (message) => {
             embeds: [
               new EmbedBuilder()
                 .setTitle('✅ 新規エントリ追加完了')
-                .setDescription(`**${pending.programName}** をaffiliate.tsに追加しました。\n\n**ID:** \`${safeId}\`\n**URL:** \`${newUrl}\`\n\n⚠️ \`triggerCategories\`・\`description\`・\`conversionType\` はTODOのままです。後で編集してください。\n\nデプロイしますか？`)
+                .setDescription(`**${pending.programName}** をaffiliate.tsに追加しました。\n\n**ID:** \`${safeId}\`\n**URL:** \`${newUrl}\`\n\nカテゴリ・説明文・成約条件はプログラム名から仮設定済みです。必要に応じて後で微調整してください。\n\nデプロイしますか？`)
                 .setColor(0x1a5c3a)
             ],
             components: [deployRow],

@@ -1,15 +1,12 @@
 ---
-import { AFFILIATE_ADS } from '../data/affiliate';
-import type { AffiliateAd } from '../data/affiliate';
+import { getMatchingAds } from '../data/affiliate';
 
 interface Props {
   categories: string[];
 }
 
 const { categories } = Astro.props;
-const ads = AFFILIATE_ADS.filter(ad =>
-  ad.triggerCategories.some(tc => categories.includes(tc))
-).slice(0, 2);
+const ads = getMatchingAds(categories);
 ---
 
 {ads.length > 0 && (

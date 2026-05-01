@@ -372,12 +372,17 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
   },
 ];
 
+export function isActiveAffiliateAd(ad: AffiliateAd): boolean {
+  return ad.url.trim().length > 0;
+}
+
 /**
  * 診断結果のカテゴリに合致するアフィ広告を取得
  * priority降順でソートし、最大2件返す
  */
 export function getMatchingAds(resultCategories: string[]): AffiliateAd[] {
   const matched = AFFILIATE_ADS.filter(ad =>
+    isActiveAffiliateAd(ad) &&
     ad.triggerCategories.some(tc => resultCategories.includes(tc))
   );
   return matched
@@ -391,6 +396,7 @@ export function getMatchingAds(resultCategories: string[]): AffiliateAd[] {
  */
 export function getAdsByLifeEvent(event: LifeEvent, count = 3): AffiliateAd[] {
   const matched = AFFILIATE_ADS.filter(ad =>
+    isActiveAffiliateAd(ad) &&
     ad.lifeEvents?.includes(event)
   );
   return matched
