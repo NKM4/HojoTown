@@ -89,7 +89,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
   // 注文住宅 → タウンライフ家づくり（14,300円/件）
   {
     id: 'townlife-housing',
-    triggerCategories: ['reform', 'solar', 'childcare'],
+    triggerCategories: [],
     lifeEvents: ['housing'],
     title: '注文住宅、補助金で最大100万円お得に',
     description: '子育てエコホーム支援事業など、住宅取得の補助金を活用。間取りプランと資金計画が無料で届きます。',
@@ -103,7 +103,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
   // 太陽光 → グリエネ（9,350円/件）
   {
     id: 'griene-solar',
-    triggerCategories: ['solar', 'appliance', 'ev'],
+    triggerCategories: ['solar', 'appliance'],
     lifeEvents: ['energy', 'housing', 'reform'],
     title: '太陽光パネル、補助金でいくらお得に？',
     description: '補助金適用後の実質費用がわかる。複数メーカーの見積もりを無料で比較できます。',
@@ -122,8 +122,8 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
   // 保険・FP相談 → エイチームライフデザイン（8,000〜11,000円/件）
   {
     id: 'childcare-insurance',
-    triggerCategories: ['childcare', 'birth', 'medical', 'fertility'],
-    lifeEvents: ['baby', 'retirement', 'marriage', 'funeral', 'career'],
+    triggerCategories: ['childcare', 'birth', 'medical'],
+    lifeEvents: ['baby', 'retirement', 'marriage', 'funeral'],
     title: 'お金のプロに無料で相談しませんか？',
     description: '補助金だけでは不安な将来の備え。学資保険・医療保険・老後資金・相続対策をFPに無料相談。',
     ctaText: '教育費・老後資金をFPに無料で相談',
@@ -159,7 +159,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     label: 'PR',
     icon: '💍',
     conversionType: '無料資料請求',
-    priority: 6,
+    priority: 9,
   },
 
   // ============================================
@@ -261,7 +261,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     label: 'PR',
     icon: '📚',
     conversionType: '無料FP相談',
-    priority: 3,
+    priority: 8,
   },
   // 不妊治療 → 保険相談
   {

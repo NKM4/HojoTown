@@ -12,8 +12,15 @@ const ads = getMatchingAds(categories);
 {ads.length > 0 && (
   <div class="article-ads">
     <p class="article-ads-label">関連サービス</p>
-    {ads.map(ad => (
-      <a href={ad.url} target="_blank" rel="noopener noreferrer sponsored" class="article-ad-card">
+    {ads.map((ad, i) => (
+      <a
+        href={ad.url}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        class="article-ad-card"
+        data-ad-id={ad.id}
+        data-position={i + 1}
+      >
         <span class="article-ad-pr">PR</span>
         <div class="article-ad-body">
           <span class="article-ad-icon">{ad.icon}</span>
@@ -28,6 +35,20 @@ const ads = getMatchingAds(categories);
     ))}
   </div>
 )}
+
+<script>
+  document.querySelectorAll('.article-ad-card[data-ad-id]').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'affiliate_click', {
+          ad_id: el.getAttribute('data-ad-id'),
+          source: 'article_ad',
+          position: Number(el.getAttribute('data-position')),
+        });
+      }
+    });
+  });
+</script>
 
 <style is:global>
   .article-ads {
