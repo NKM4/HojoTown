@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: '0 9 * * 1'  # 毎週月曜 18:00 JST
   workflow_dispatch:
+    inputs:
+      send_weekly_report:
+        description: '手動実行でも週次レポートをDiscord送信する'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -107,6 +113,7 @@ jobs:
           key: content-hashes-${{ github.ref }}-${{ github.run_id }}
 
   weekly-report:
+    if: github.event_name == 'schedule' || inputs.send_weekly_report == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
