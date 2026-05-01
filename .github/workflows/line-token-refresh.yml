@@ -5,13 +5,17 @@ on:
     - cron: '0 0 1,15 * *'  # 毎月1日と15日 09:00 JST
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   refresh-token:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
+          package-manager-cache: false
 
       - name: Issue new LINE channel access token
         env:

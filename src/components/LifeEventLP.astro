@@ -11,6 +11,12 @@ interface Props {
   heroSubtitle: string;
   /** 「こんな補助金が使えます」セクションの説明 */
   subsidyIntro: string;
+  /** 本文の手順・判断材料 */
+  guideSections?: { title: string; body: string }[];
+  /** 申請前に確認すること */
+  checklist?: string[];
+  /** つまずきやすい注意点 */
+  caution?: string;
   /** シミュレーションの例文（例：「リフォーム費用200万円 − 補助金10万円 = 実質190万円」） */
   simExample: { label: string; before: string; subsidy: string; after: string };
   /** 「次のステップ」セクションの見出し */
@@ -19,7 +25,18 @@ interface Props {
   metaDescription: string;
 }
 
-const { event, heroTitle, heroSubtitle, subsidyIntro, simExample, nextStepTitle, metaDescription } = Astro.props;
+const {
+  event,
+  heroTitle,
+  heroSubtitle,
+  subsidyIntro,
+  guideSections = [],
+  checklist = [],
+  caution,
+  simExample,
+  nextStepTitle,
+  metaDescription,
+} = Astro.props;
 
 const ads = getAdsByLifeEvent(event, 3);
 const categories = getCategoriesForLifeEvent(event);
@@ -87,6 +104,34 @@ for (const [, mod] of Object.entries(subsidyFiles)) {
       </div>
     </div>
   </section>
+
+  {(guideSections.length > 0 || checklist.length > 0 || caution) && (
+    <section class="section">
+      <div class="container">
+        <h2 class="le-section-title">失敗しない進め方</h2>
+        {guideSections.length > 0 && (
+          <div class="le-guide-grid">
+            {guideSections.map((section, i) => (
+              <article class="le-guide-card">
+                <span class="le-guide-step">{i + 1}</span>
+                <h3>{section.title}</h3>
+                <p>{section.body}</p>
+              </article>
+            ))}
+          </div>
+        )}
+        {checklist.length > 0 && (
+          <div class="le-checklist">
+            <h3>申請前チェック</h3>
+            <ul>
+              {checklist.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        )}
+        {caution && <p class="le-caution">{caution}</p>}
+      </div>
+    </section>
+  )}
 
   <!-- シミュレーション -->
   <section class="section">
@@ -229,6 +274,66 @@ for (const [, mod] of Object.entries(subsidyFiles)) {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
+  }
+
+  /* 本文ガイド */
+  .le-guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .le-guide-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .le-guide-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--green-pale);
+    color: var(--green-deep);
+    font-weight: 800;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  .le-guide-card h3,
+  .le-checklist h3 {
+    font-size: 1rem;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+  }
+  .le-guide-card p,
+  .le-checklist li,
+  .le-caution {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+  .le-checklist {
+    margin-top: 18px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .le-checklist ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 20px;
+    padding-left: 1.2em;
+  }
+  .le-caution {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: #fff8e8;
+    border-left: 4px solid #c8a84b;
+    border-radius: 6px;
   }
 
   /* シミュレーション */
@@ -414,5 +519,15 @@ for (const [, mod] of Object.entries(subsidyFiles)) {
   .le-btn-secondary:hover {
     background: var(--green-pale);
     text-decoration: none;
+  }
+
+  @media (max-width: 760px) {
+    .le-guide-grid,
+    .le-checklist ul {
+      grid-template-columns: 1fr;
+    }
+    .le-hero-stats {
+      gap: 20px;
+    }
   }
 </style>
