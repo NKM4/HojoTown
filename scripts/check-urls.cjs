@@ -9,6 +9,18 @@ function isOkStatus(status) {
   return typeof status === 'number' && status >= 200 && status < 400;
 }
 
+function isKnownBotBlock(url, status) {
+  if (status !== 403) return false;
+  try {
+    const { hostname } = new URL(url);
+    // Mitaka City pages are reachable by normal browsers/search crawlers, but GitHub runners
+    // can receive WAF 403 responses. Treat this host as a soft pass to avoid false alerts.
+    return hostname === 'www.city.mitaka.lg.jp';
+  } catch {
+    return false;
+  }
+}
+
 function requestStatus(url, method = 'HEAD', maxRedirects = 5) {
   return new Promise((resolve) => {
     if (maxRedirects < 0) return resolve('TOO_MANY_REDIRECTS');
@@ -36,16 +48,20 @@ function requestStatus(url, method = 'HEAD', maxRedirects = 5) {
 async function checkUrl(url) {
   const headStatus = await requestStatus(url, 'HEAD');
   if (isOkStatus(headStatus)) return headStatus;
+  if (isKnownBotBlock(url, headStatus)) return headStatus;
 
   // Some municipal sites block, throttle, or delay HEAD. Verify with GET before marking broken.
   if ([403, 405, 501, 'ERROR', 'TIMEOUT'].includes(headStatus)) {
     const getStatus = await requestStatus(url, 'GET');
     if (isOkStatus(getStatus)) return getStatus;
+    if (isKnownBotBlock(url, getStatus)) return getStatus;
 
     // One extra retry reduces false positives from slow municipal servers.
     if (['ERROR', 'TIMEOUT', 502, 503].includes(getStatus)) {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      return requestStatus(url, 'GET');
+      const retryStatus = await requestStatus(url, 'GET');
+      if (isKnownBotBlock(url, retryStatus)) return retryStatus;
+      return retryStatus;
     }
     return getStatus;
   }
