@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円",
     "maxAmount": 30000,
     "deadline": "随時申請可",
-    "officialUrl": "https://city-akashi-kosodate.jp/mokuteki/siritai/teate/index.html",
+    "officialUrl": "https://www.city.akashi.lg.jp/shise/koho/citysales/taneakashi-child.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "医療費完全無料（自己負担なし）",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://city-akashi-kosodate.jp/mokuteki/siritai/teate/index.html",
+    "officialUrl": "https://www.city.akashi.lg.jp/shise/koho/citysales/taneakashi-child.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "第2子以降の保育料が完全無料",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://city-akashi-kosodate.jp/mokuteki/siritai/teate/index.html",
+    "officialUrl": "https://www.city.akashi.lg.jp/shise/koho/citysales/taneakashi-child.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "中学校給食費が完全無料",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://city-akashi-kosodate.jp/mokuteki/siritai/teate/index.html",
+    "officialUrl": "https://www.city.akashi.lg.jp/shise/koho/citysales/taneakashi-child.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "毎月約3,000円相当の品を届ける",
     "maxAmount": 3000,
     "deadline": "随時申請可",
-    "officialUrl": "https://city-akashi-kosodate.jp/mokuteki/siritai/teate/index.html",
+    "officialUrl": "https://www.city.akashi.lg.jp/kodomo/kosodatesien/omutu.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "児童1人：月額最大45,500円",
     "maxAmount": 45500,
     "deadline": "随時申請可",
-    "officialUrl": "https://city-akashi-kosodate.jp/mokuteki/siritai/teate/index.html",
+    "officialUrl": "https://www.city.akashi.lg.jp/kodomo/jidou_fu_ka/kodomo-kyoiku/kosodate/hitorioya/jidoufuyouteate.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "保険診療の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可",
-    "officialUrl": "https://city-akashi-kosodate.jp/mokuteki/siritai/teate/index.html",
+    "officialUrl": "https://www.city.akashi.lg.jp/kodomo/jidou_fu_ka/kodomo-kyoiku/kosodate/iryohi/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

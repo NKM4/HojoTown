@@ -74,10 +74,10 @@
     "target": "飯能市在住の住宅所有者（市税滞納なし）",
     "amount": "工事費の5%、上限50,000円",
     "maxAmount": 50000,
-    "deadline": "予算額に達し次第終了",
-    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/kankyokeizaibu/sangyoshinkoka/700.html",
-    "status": "active",
-    "lastUpdated": "2026-03-27"
+    "deadline": "受付終了",
+    "officialUrl": "https://www.city.hanno.lg.jp/kurashi_seikatsukankyo/akiya_reform/reform/",
+    "status": "ended",
+    "lastUpdated": "2026-05-01"
   },
   {
     "id": "hanno-disability-001",

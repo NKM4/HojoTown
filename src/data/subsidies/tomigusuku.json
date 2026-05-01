@@ -59,7 +59,7 @@
     "amount": "単身60万円、世帯100万円（子ども加算あり）",
     "maxAmount": 1000000,
     "deadline": "令和8年3月31日まで",
-    "officialUrl": "https://www.city.tomigusuku.lg.jp/kosodate_kyoiku/jidofukushi_hitorioyafukushi/2/9261.html",
+    "officialUrl": "https://www.city.tomigusuku.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -91,7 +91,7 @@
     "amount": "工事費の一部（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tomigusuku.lg.jp/kosodate_kyoiku/jidofukushi_hitorioyafukushi/2/9261.html",
+    "officialUrl": "https://www.city.tomigusuku.lg.jp/kurashi_tetsuzuki/sumai/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "耐震改修工事費の一部（上限60万円）",
     "maxAmount": 600000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.tomigusuku.lg.jp/kosodate_kyoiku/jidofukushi_hitorioyafukushi/2/9261.html",
+    "officialUrl": "https://www.city.tomigusuku.lg.jp/kurashi_tetsuzuki/sumai/index.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "改修費用の一部（上限20万円）",
     "maxAmount": 200000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.tomigusuku.lg.jp/kosodate_kyoiku/jidofukushi_hitorioyafukushi/2/9261.html",
+    "officialUrl": "https://www.city.tomigusuku.lg.jp/soshiki/3/1016/gyomuannai/7/5/1333.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

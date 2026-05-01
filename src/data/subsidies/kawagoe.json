@@ -219,7 +219,7 @@
     "amount": "給食費を2分の1に減額（小学生: 月2,175円 / 中学生: 月2,625円）",
     "maxAmount": 0,
     "deadline": "手続き不要（自動適用）",
-    "officialUrl": "https://www.city.kawagoe.saitama.jp/kosodate/shugaku/1004742/1018412.html",
+    "officialUrl": "https://www.city.kawagoe.saitama.jp/kosodate/shugaku/1004742/index.html",
     "status": "active",
     "lastUpdated": "2026-03-26"
   },
@@ -235,7 +235,7 @@
     "amount": "太陽光/蓄電池/エネファーム/V2H: 各30,000円 / ZEH: 150,000円",
     "maxAmount": 150000,
     "deadline": "前期9月（令和7年度前期は受付終了）",
-    "officialUrl": "https://www.city.kawagoe.saitama.jp/kurashi/kankyo/1002642/1002702/1017472.html",
+    "officialUrl": "https://www.city.kawagoe.saitama.jp/kurashi/kankyo/1002642/1002702/index.html",
     "status": "ended",
     "lastUpdated": "2026-03-26"
   },
