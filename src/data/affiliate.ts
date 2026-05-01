@@ -108,7 +108,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '太陽光パネル、補助金でいくらお得に？',
     description: '補助金適用後の実質費用がわかる。複数メーカーの見積もりを無料で比較できます。',
     ctaText: '太陽光の実質費用を3社で比較',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // TODO: グリエネ(株式会社じげん)はA8申込中、審査待ち。承認後に固有リンクに差し替え  // 現在のURL: solar-estimate, navikuru-car と共有中
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3WIBJM+5CRG+5ZEMP',  // 差替予定: グリエネ(株式会社じげん)はA8申込中、審査待ち。承認後に固有リンクへ差し替え  // 現在のURL: solar-estimate, navikuru-car と共有中
     label: 'PR',
     icon: '☀️',
     conversionType: '無料見積り申込',
