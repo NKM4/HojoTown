@@ -14,6 +14,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: weekly-url-content-check-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   check-urls:
     runs-on: ubuntu-latest
@@ -127,6 +131,15 @@ jobs:
       - name: Install GA4 dependency
         run: npm ci
 
+      - name: Restore weekly report dedupe marker
+        uses: actions/cache/restore@v5
+        with:
+          path: .weekly-report-sent.json
+          key: weekly-report-sent-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            weekly-report-sent-${{ github.ref_name }}-
+            weekly-report-sent-
+
       - name: Check Worker and LINE Token health
         env:
           DISCORD_WEBHOOK_ERROR: ${{ secrets.DISCORD_WEBHOOK_ERROR }}
@@ -154,4 +167,12 @@ jobs:
           LINE_PUSH_URL: ${{ secrets.LINE_PUSH_URL }}
           LINE_PUSH_SECRET: ${{ secrets.LINE_PUSH_SECRET }}
           GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
+          WEEKLY_REPORT_DEDUPE_FILE: .weekly-report-sent.json
         run: node scripts/weekly-report.cjs
+
+      - name: Save weekly report dedupe marker
+        if: always() && hashFiles('.weekly-report-sent.json') != ''
+        uses: actions/cache/save@v5
+        with:
+          path: .weekly-report-sent.json
+          key: weekly-report-sent-${{ github.ref_name }}-${{ github.run_id }}

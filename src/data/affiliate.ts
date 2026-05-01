@@ -127,7 +127,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: 'お金のプロに無料で相談しませんか？',
     description: '補助金だけでは不安な将来の備え。学資保険・医療保険・老後資金・相続対策をFPに無料相談。',
     ctaText: '教育費・老後資金をFPに無料で相談',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // 現在のURL: fertility-insurance, car-insurance と共有中 → 各自固有のa8matリンクが望ましい
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3B2PRM+4GN2+NTJWY',  // Global8 保険の無料相談サイト「ガーデン」固有リンク (2026-04-30承認+差替済)
     label: 'PR',
     icon: '🛡️',
     conversionType: '無料FP相談',
@@ -257,7 +257,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '教育費の準備、保険で賢く備える',
     description: '学資保険や積立型保険で教育資金を準備。FPに無料相談できます。',
     ctaText: '学資保険・教育ローンをFPに無料相談',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3K07UA+ZXM+I7NE9',  // エイチームFP相談リンク（education-insurance用、dmm-webcamp/techacademyは無効化済み）
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3BO5DE+4GN2+60OXE',  // Global8 学資保険の無料相談サイト「ガーデン」固有リンク (2026-04-30承認+差替済)
     label: 'PR',
     icon: '📚',
     conversionType: '無料FP相談',
@@ -271,7 +271,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '不妊治療の費用、保険でカバーできる部分も',
     description: '医療保険の中には不妊治療をカバーするものも。FPに無料で相談して最適なプランを見つけましょう。',
     ctaText: '不妊治療の医療保険をFPに無料相談',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3LSINM+ZXM+6HES1',  // 現在のURL: childcare-insurance, car-insurance と共有中 → 各自固有のa8matリンクが望ましい
+    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+3B2PRM+4GN2+NTRMQ',  // Global8 保険の無料相談サイト「ガーデン」予約リンク (2026-04-30承認+差替済)
     label: 'PR',
     icon: '🍀',
     conversionType: '無料FP相談',

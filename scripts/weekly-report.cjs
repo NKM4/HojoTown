@@ -12,6 +12,7 @@ const https = require('https');
 const WEBHOOK_ACCESS = process.env.WEBHOOK_ACCESS;
 const WEBHOOK_CLICKS = process.env.WEBHOOK_CLICKS;
 const GA4_PROPERTY_ID = '531123324';
+const DEDUPE_FILE = process.env.WEEKLY_REPORT_DEDUPE_FILE || '';
 
 if (!WEBHOOK_ACCESS) {
   console.error('WEBHOOK_ACCESS 環境変数が未設定');
@@ -117,6 +118,35 @@ function sendWebhook(webhookUrl, payload) {
   });
 }
 
+function getTokyoWeekKey(date = new Date()) {
+  const tokyo = new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+  const day = tokyo.getDay() || 7;
+  tokyo.setDate(tokyo.getDate() - day + 1);
+  const yyyy = tokyo.getFullYear();
+  const mm = String(tokyo.getMonth() + 1).padStart(2, '0');
+  const dd = String(tokyo.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+
+function hasAlreadySentThisWeek(weekKey) {
+  if (!DEDUPE_FILE || !fs.existsSync(DEDUPE_FILE)) return false;
+  try {
+    const data = JSON.parse(fs.readFileSync(DEDUPE_FILE, 'utf-8'));
+    return data.weekKey === weekKey && data.sent === true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function markSentThisWeek(weekKey) {
+  if (!DEDUPE_FILE) return;
+  fs.writeFileSync(DEDUPE_FILE, JSON.stringify({
+    weekKey,
+    sent: true,
+    sentAt: new Date().toISOString(),
+  }, null, 2));
+}
+
 // GA4 Data API - affiliate_click集計
 async function getGA4AffiliateClicks() {
   const tmpKey = path.join(__dirname, '..', '.ga4-tmp-key.json');
@@ -180,6 +210,12 @@ async function getGA4AffiliateClicks() {
 }
 
 async function main() {
+  const weekKey = getTokyoWeekKey();
+  if (hasAlreadySentThisWeek(weekKey)) {
+    console.log(`週次レポート送信済みのためスキップ: ${weekKey}`);
+    return;
+  }
+
   const pages = countPages();
   const cities = countCities();
   const subsidies = countSubsidies();
@@ -268,6 +304,8 @@ async function main() {
     await sendWebhook(WEBHOOK_CLICKS, { embeds: [clicksEmbed] });
     console.log('Discord (#成果報酬) に送信完了');
   }
+
+  markSentThisWeek(weekKey);
 }
 
 main().catch((e) => {
