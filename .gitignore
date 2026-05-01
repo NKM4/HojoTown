@@ -21,10 +21,14 @@ pnpm-debug.log*
 # secrets / credentials (絶対にコミットするな)
 **/secret*
 **/credential*
+**/*credential*.json
+**/*credentials*.json
 **/*-key.json
 **/*_key.json
 **/service-account*.json
 ga4-service-account-key.json
+bot/gmail-token.json
+bot/gmail-last-check.json
 gmail-cookies.json
 **/current_jwt.txt
 
@@ -38,9 +42,15 @@ gmail-cookies.json
 *.png
 !public/*.png
 *.bak
+broken-urls.txt
+url-report.txt
 factcheck_result.md
 all_cities_top5.json
 nagoya_subsidies.json
+
+# local agent/work scratch
+.work/
+=
 
 # wrangler local state
 .wrangler/
