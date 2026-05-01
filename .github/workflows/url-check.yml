@@ -45,6 +45,7 @@ jobs:
                 -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"上位: ${TOP5}\\n\\nArtifactにbroken-urls.txtを保存済み\",\"color\":15158332}]}"
               echo "Discord通知送信完了"
             fi
+            exit 1
           fi
 
       - name: Save broken URL report
