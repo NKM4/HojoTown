@@ -9,14 +9,20 @@ jobs:
   refresh-token:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       - name: Issue new LINE channel access token
         env:
           LINE_CHANNEL_ID: ${{ secrets.LINE_CHANNEL_ID }}
           LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONTACT }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_ERROR }}
         run: |
+          set -euo pipefail
+
           # 新しいトークンを発行
           RESPONSE=$(curl -s -X POST "https://api.line.me/v2/oauth/accessToken" \
             -H "Content-Type: application/x-www-form-urlencoded" \
@@ -35,19 +41,32 @@ jobs:
 
           echo "✅ 新しいトークン取得成功"
 
-          # Cloudflare Worker secretを更新（wrangler CLI使用）
-          if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
-            echo "$TOKEN" | npx wrangler secret put LINE_CHANNEL_TOKEN --name hojotown-api 2>&1 || echo "⚠️ wrangler secret更新失敗"
-            echo "✅ Worker secret更新完了"
-          else
-            echo "⚠️ CLOUDFLARE_API_TOKEN未設定 - Worker secretは手動更新が必要"
-            echo "ローカルで実行: echo 'TOKEN' | npx wrangler secret put LINE_CHANNEL_TOKEN"
-          fi
-
           # トークンの動作確認
           BOT_INFO=$(curl -s "https://api.line.me/v2/bot/info" -H "Authorization: Bearer ${TOKEN}")
-          BOT_NAME=$(echo "$BOT_INFO" | jq -r '.displayName // "unknown"')
+          BOT_NAME=$(echo "$BOT_INFO" | jq -r '.displayName // empty')
+          if [ -z "$BOT_NAME" ]; then
+            echo "❌ 新トークンの検証失敗: $BOT_INFO"
+            exit 1
+          fi
           echo "✅ Bot確認: $BOT_NAME"
+
+          # Cloudflare Worker secretを更新（wrangler CLI使用）
+          if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "$TOKEN" | npx wrangler secret put LINE_CHANNEL_TOKEN --name hojotown-api
+            echo "✅ Worker secret更新完了"
+          else
+            echo "❌ CLOUDFLARE_API_TOKEN未設定 - Worker secretを更新できません"
+            exit 1
+          fi
+
+          # Workerに反映されたトークンの確認
+          HEALTH_STATUS=$(curl -s -o health.json -w "%{http_code}" \
+            https://hojotown-api.taitatu4barisuta.workers.dev/health)
+          cat health.json
+          if [ "$HEALTH_STATUS" != "200" ]; then
+            echo "❌ Worker health failed after token refresh: HTTP $HEALTH_STATUS"
+            exit 1
+          fi
 
           # Discord通知
           if [ -n "$DISCORD_WEBHOOK" ]; then
