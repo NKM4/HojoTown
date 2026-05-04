@@ -10,6 +10,11 @@ on:
         required: false
         default: false
         type: boolean
+      send_line_push:
+        description: '手動実行で公式ページ変更をLINE通知する（通常はfalse）'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -86,6 +91,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONTENT_CHANGE }}
           LINE_PUSH_URL: ${{ secrets.LINE_PUSH_URL }}
           LINE_PUSH_SECRET: ${{ secrets.LINE_PUSH_SECRET }}
+          SEND_LINE_PUSH: ${{ github.event_name == 'workflow_dispatch' && inputs.send_line_push == true }}
         run: |
           node scripts/check-content.cjs > content-report.txt 2>&1 || true
           COUNT=$(grep -c "CHANGED" content-report.txt || true)
@@ -97,16 +103,23 @@ jobs:
                 -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"
               echo "Discord通知送信完了"
             fi
-            # LINE Push通知（変更があった市の登録ユーザーに通知）
-            if [ -n "$LINE_PUSH_URL" ] && [ -n "$LINE_PUSH_SECRET" ]; then
+            # LINE Push通知は自動実行では送らない。誤検知時の大量配信を防ぐため、手動実行で明示された時だけ許可する。
+            if [ "$SEND_LINE_PUSH" = "true" ] && [ -n "$LINE_PUSH_URL" ] && [ -n "$LINE_PUSH_SECRET" ]; then
               CITIES=$(grep "CHANGED" content-report.txt | awk -F'|' '{print $2}' | sed 's/ //g' | sort -u)
+              CITY_COUNT=$(echo "$CITIES" | sed '/^$/d' | wc -l)
+              if [ "$CITY_COUNT" -gt 10 ]; then
+                echo "LINE Push skipped: changed city count is too high ($CITY_COUNT)"
+                exit 0
+              fi
               for CITY in $CITIES; do
                 curl -s -X POST "$LINE_PUSH_URL" \
                   -H "Authorization: Bearer $LINE_PUSH_SECRET" \
                   -H "Content-Type: application/json" \
-                  -d "{\"message\":\"📢 ${CITY}の補助金情報に更新がありました。\\n\\n最新情報はこちら:\\nhttps://hojotown.jp/\"}"
+                  -d "{\"city_slug\":\"${CITY}\",\"message\":\"📢 ${CITY}の補助金情報に更新がありました。\\n\\n最新情報はこちら:\\nhttps://hojotown.jp/\"}"
                 echo "LINE Push送信: $CITY"
               done
+            else
+              echo "LINE Push skipped: send_line_push is not enabled"
             fi
           fi
 

@@ -302,15 +302,29 @@ export default {
         return new Response('Unauthorized', { status: 401 });
       }
       try {
-        const { message, city_code } = await request.json();
+        const { message, city_code, city_slug, allow_broadcast } = await request.json();
         if (!message) {
           return new Response(JSON.stringify({ error: 'message is required' }), { status: 400 });
         }
         let users;
         if (city_code) {
           users = await env.DB.prepare('SELECT DISTINCT user_id FROM line_user_cities WHERE city_code = ?').bind(city_code).all();
-        } else {
+        } else if (city_slug) {
+          const city = await env.DB.prepare('SELECT code FROM cities WHERE slug = ?').bind(city_slug).first();
+          if (!city?.code) {
+            return new Response(JSON.stringify({ error: 'unknown city_slug' }), {
+              status: 400,
+              headers: { 'Content-Type': 'application/json' }
+            });
+          }
+          users = await env.DB.prepare('SELECT DISTINCT user_id FROM line_user_cities WHERE city_code = ?').bind(city.code).all();
+        } else if (allow_broadcast === true) {
           users = await env.DB.prepare('SELECT DISTINCT user_id FROM line_users').all();
+        } else {
+          return new Response(JSON.stringify({ error: 'city_code or city_slug is required' }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' }
+          });
         }
         const userIds = (users.results || []).map(u => u.user_id);
         let sent = 0;
