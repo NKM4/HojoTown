@@ -356,7 +356,7 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     conversionType: 'カーリース申込',
     priority: 6,
   },
-  // 自動車保険一括見積り → インズウェブ（SBIホールディングス、A8承認済み 2026-04-13）
+  // 自動車保険一括見積り → インズウェブ（SBIホールディングス、2026-05-14 A8非承認メール確認のため無効化）
   {
     id: 'insweb-car-insurance',
     triggerCategories: ['ev'],
@@ -364,11 +364,11 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
     title: '自動車保険、最大20社を一括見積り',
     description: '車の買い替え・EV乗り換え時は保険の見直しチャンス。最大20社の見積りを5分で比較、最安プランがわかります。',
     ctaText: '最大20社の自動車保険を5分で比較',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4B1JDI+8C38Y+2PS+15RZIP',  // インズウェブ固有リンク (2026-04-13承認+差替済)
+    url: '',
     label: 'PR',
     icon: '🛡️',
     conversionType: '無料一括見積り',
-    priority: 5,
+    priority: 0,
   },
 ];
 
