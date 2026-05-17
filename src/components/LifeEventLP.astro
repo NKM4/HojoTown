@@ -169,7 +169,7 @@ for (const [, mod] of Object.entries(subsidyFiles)) {
         <div class="le-ads">
           {ads.map((ad, i) => (
             <a href={ad.url} target="_blank" rel="noopener noreferrer sponsored" class={`le-ad ${i === 0 ? 'le-ad-primary' : ''}`}
-               data-ad-id={ad.id} data-life-event={event} data-position={i+1}>
+               data-ad-id={ad.id} data-source="life_event_lp" data-life-event={event} data-position={i+1}>
               <span class="le-ad-pr">PR</span>
               <div class="le-ad-body">
                 <span class="le-ad-icon">{ad.icon}</span>
@@ -200,20 +200,6 @@ for (const [, mod] of Object.entries(subsidyFiles)) {
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  document.querySelectorAll('.le-ad[data-ad-id]').forEach(el => {
-    el.addEventListener('click', () => {
-      if (typeof gtag === 'function') {
-        gtag('event', 'affiliate_click', {
-          ad_id: el.getAttribute('data-ad-id'),
-          source: 'life_event_lp',
-          position: Number(el.getAttribute('data-position'))
-        });
-      }
-    });
-  });
-</script>
 
 <style is:global>
   .le-hero {

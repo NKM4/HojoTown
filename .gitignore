@@ -50,6 +50,7 @@ nagoya_subsidies.json
 
 # local agent/work scratch
 .work/
+.codex_tmp*
 =
 
 # wrangler local state

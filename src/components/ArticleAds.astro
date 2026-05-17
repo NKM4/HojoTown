@@ -19,6 +19,7 @@ const ads = getMatchingAds(categories);
         rel="noopener noreferrer sponsored"
         class="article-ad-card"
         data-ad-id={ad.id}
+        data-source="article_ad"
         data-position={i + 1}
       >
         <span class="article-ad-pr">PR</span>
@@ -35,20 +36,6 @@ const ads = getMatchingAds(categories);
     ))}
   </div>
 )}
-
-<script>
-  document.querySelectorAll('.article-ad-card[data-ad-id]').forEach((el) => {
-    el.addEventListener('click', () => {
-      if (typeof gtag === 'function') {
-        gtag('event', 'affiliate_click', {
-          ad_id: el.getAttribute('data-ad-id'),
-          source: 'article_ad',
-          position: Number(el.getAttribute('data-position')),
-        });
-      }
-    });
-  });
-</script>
 
 <style is:global>
   .article-ads {

@@ -413,12 +413,16 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
               <h3 className="next-steps-title">補助金活用の次のステップ</h3>
               <p className="next-steps-desc">最大限の補助金を活用するには、複数社の見積もり比較が必須です。</p>
               {displayAds.map((ad, i) => (
-                <a key={ad.id} href={ad.url} target="_blank" rel="noopener noreferrer sponsored" className={`affiliate-card ${i === 0 ? 'affiliate-card-primary' : ''}`}
-                  onClick={() => {
-                    if (typeof window !== 'undefined' && (window as any).gtag) {
-                      (window as any).gtag('event', 'affiliate_click', { ad_id: ad.id, ad_title: ad.title, source: 'shindan_result', position: i + 1 });
-                    }
-                  }}>
+                <a
+                  key={ad.id}
+                  href={ad.url}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className={`affiliate-card ${i === 0 ? 'affiliate-card-primary' : ''}`}
+                  data-ad-id={ad.id}
+                  data-source="shindan_result"
+                  data-position={i + 1}
+                >
                   <span className="affiliate-label">{ad.label}</span>
                   <div className="affiliate-content">
                     <span className="affiliate-icon">{ad.icon}</span>

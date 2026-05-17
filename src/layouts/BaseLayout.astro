@@ -87,6 +87,50 @@ const { title, description = 'あなたの街の"もらえるお金"、30秒で�
     </div>
   </footer>
   <script>
+    const GA_MEASUREMENT_ID = 'G-1HG75RFJ2K';
+
+    function sendAffiliateClick(anchor) {
+      const href = anchor.href || '';
+      let linkDomain = '';
+      try {
+        linkDomain = new URL(href).hostname;
+      } catch (_) {
+        linkDomain = '';
+      }
+
+      const isAffiliateLink = anchor.matches('[data-ad-id]') || linkDomain === 'px.a8.net';
+      if (!isAffiliateLink || anchor.dataset.affiliateTracked === '1') return;
+      anchor.dataset.affiliateTracked = '1';
+
+      const payload = {
+        ad_id: anchor.dataset.adId || 'unknown',
+        source: anchor.dataset.source || anchor.dataset.lifeEvent || 'affiliate_link',
+        position: Number(anchor.dataset.position || 0),
+        link_url: href,
+        link_domain: linkDomain,
+        page_path: window.location.pathname,
+      };
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'affiliate_click', {
+          ...payload,
+          transport_type: 'beacon',
+          send_to: GA_MEASUREMENT_ID,
+        });
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'hojotown_affiliate_click',
+        ...payload,
+      });
+    }
+
+    document.addEventListener('click', function(event) {
+      const anchor = event.target?.closest?.('a[href]');
+      if (anchor) sendAffiliateClick(anchor);
+    }, true);
+
     // ハンバーガーメニュー
     document.getElementById('hamburger')?.addEventListener('click', function() {
       this.classList.toggle('active');
