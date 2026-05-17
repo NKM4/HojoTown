@@ -13,6 +13,10 @@
 /contact/*
   Content-Type: text/html; charset=utf-8
 
+/d9k2m7x/*
+  Content-Type: text/html; charset=utf-8
+  X-Robots-Tag: noindex, nofollow, noarchive
+
 /shindan/*
   Content-Type: text/html; charset=utf-8
 

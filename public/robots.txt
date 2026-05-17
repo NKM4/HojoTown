@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /d9k2m7x/
 
 Sitemap: https://hojotown.jp/sitemap-index.xml

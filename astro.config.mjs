@@ -6,5 +6,10 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hojotown.jp',
-  integrations: [react(), sitemap()]
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/d9k2m7x/'),
+    }),
+  ],
 });
