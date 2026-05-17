@@ -323,6 +323,75 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
     setShowWelcomeBack(false);
   };
 
+  const detectedEvents: LifeEvent[] = [];
+  if (profile.planningReform) detectedEvents.push('reform');
+  if (profile.wantsSolar) detectedEvents.push('energy');
+  if (profile.planningMove) detectedEvents.push('moving');
+  if (profile.planningMarriage) detectedEvents.push('marriage');
+  if (profile.wantsFertility || profile.isPregnant || profile.hasChildren) detectedEvents.push('baby');
+  if (profile.hasElderly) detectedEvents.push('retirement');
+
+  const eventAds = detectedEvents.flatMap(ev =>
+    getAdsByLifeEvent(ev, 2).map(ad => ({ ...ad, _event: ev }))
+  );
+  const seenAds = new Set<string>();
+  const uniqueEventAds = eventAds.filter(ad => {
+    if (seenAds.has(ad.id)) return false;
+    seenAds.add(ad.id);
+    return true;
+  }).sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0)).slice(0, 3);
+  const resultCategories = [...new Set(matchedSubsidies.map(s => s.category))];
+  const fallbackAds = uniqueEventAds.length > 0 ? [] : getMatchingAds(resultCategories);
+  const displayAds = uniqueEventAds.length > 0 ? uniqueEventAds : fallbackAds;
+
+  const renderNextStepsSection = (placement: 'early' | 'late') => {
+    if (displayAds.length === 0) return null;
+    return (
+      <div
+        className={`next-steps-section next-steps-section-${placement}`}
+        data-ab-test="shindan_result_cta_position"
+        data-ab-show={placement === 'early' ? 'b' : 'a'}
+      >
+        <h3 className="next-steps-title">補助金活用の次のステップ</h3>
+        <p className="next-steps-desc">最大限の補助金を活用するには、複数社の見積もり比較が必須です。</p>
+        {displayAds.map((ad, i) => (
+          <a
+            key={`${placement}-${ad.id}`}
+            href={ad.url}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className={`affiliate-card ${i === 0 ? 'affiliate-card-primary' : ''}`}
+            data-ad-id={ad.id}
+            data-source="shindan_result"
+            data-position={i + 1}
+          >
+            <span className="affiliate-label">{ad.label}</span>
+            <div className="affiliate-content">
+              <span className="affiliate-icon">{ad.icon}</span>
+              <div>
+                <h4 className="affiliate-title">{ad.title}</h4>
+                <p className="affiliate-desc">{ad.description}</p>
+                {ad.conversionType && (
+                  <span className="affiliate-badge">{ad.conversionType}</span>
+                )}
+              </div>
+            </div>
+            <span className="affiliate-cta affiliate-cta-btn">{ad.ctaText}</span>
+          </a>
+        ))}
+        {detectedEvents.length > 0 && (
+          <div className="life-event-links">
+            {detectedEvents.slice(0, 3).map(ev => (
+              <a key={`${placement}-${ev}`} href={`/life/${ev}/`} className="life-event-link">
+                {LIFE_EVENT_LABELS[ev]}の補助金をもっと見る →
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   // ───── 結果画面 ─────
   if (showResult) {
     return (
@@ -358,6 +427,8 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
           )}
         </div>
 
+        {renderNextStepsSection('early')}
+
         <div className="result-list">
           {matchedSubsidies.map(s => (
             <div key={s.id} className="result-card">
@@ -379,76 +450,7 @@ export default function ShindanForm({ allSubsidies, cities }: Props) {
           </div>
         )}
 
-        {/* ライフイベント連動「次のステップ」セクション */}
-        {(() => {
-          // プロフィールからライフイベントを判定
-          const detectedEvents: LifeEvent[] = [];
-          if (profile.planningReform) detectedEvents.push('reform');
-          if (profile.wantsSolar) detectedEvents.push('energy');
-          if (profile.planningMove) detectedEvents.push('moving');
-          if (profile.planningMarriage) detectedEvents.push('marriage');
-          if (profile.wantsFertility || profile.isPregnant || profile.hasChildren) detectedEvents.push('baby');
-          if (profile.hasElderly) detectedEvents.push('retirement');
-
-          // ライフイベントからアフィリエイトを取得（最大3件）
-          const eventAds = detectedEvents.flatMap(ev =>
-            getAdsByLifeEvent(ev, 2).map(ad => ({ ...ad, _event: ev }))
-          );
-          // 重複排除してpriority順
-          const seen = new Set<string>();
-          const uniqueAds = eventAds.filter(ad => {
-            if (seen.has(ad.id)) return false;
-            seen.add(ad.id);
-            return true;
-          }).sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0)).slice(0, 3);
-
-          // フォールバック: ライフイベントが検出されなければカテゴリベース
-          const resultCategories = [...new Set(matchedSubsidies.map(s => s.category))];
-          const fallbackAds = uniqueAds.length > 0 ? [] : getMatchingAds(resultCategories);
-          const displayAds = uniqueAds.length > 0 ? uniqueAds : fallbackAds;
-
-          if (displayAds.length === 0) return null;
-          return (
-            <div className="next-steps-section">
-              <h3 className="next-steps-title">補助金活用の次のステップ</h3>
-              <p className="next-steps-desc">最大限の補助金を活用するには、複数社の見積もり比較が必須です。</p>
-              {displayAds.map((ad, i) => (
-                <a
-                  key={ad.id}
-                  href={ad.url}
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  className={`affiliate-card ${i === 0 ? 'affiliate-card-primary' : ''}`}
-                  data-ad-id={ad.id}
-                  data-source="shindan_result"
-                  data-position={i + 1}
-                >
-                  <span className="affiliate-label">{ad.label}</span>
-                  <div className="affiliate-content">
-                    <span className="affiliate-icon">{ad.icon}</span>
-                    <div>
-                      <h4 className="affiliate-title">{ad.title}</h4>
-                      <p className="affiliate-desc">{ad.description}</p>
-                      {ad.conversionType && (
-                        <span className="affiliate-badge">{ad.conversionType}</span>
-                      )}
-                    </div>
-                  </div>
-                  <span className="affiliate-cta affiliate-cta-btn">{ad.ctaText}</span>
-                </a>
-              ))}
-              {detectedEvents.length > 0 && (
-                <div className="life-event-links">
-                  {detectedEvents.slice(0, 3).map(ev => (
-                    <a key={ev} href={`/life/${ev}/`} className="life-event-link">
-                      {LIFE_EVENT_LABELS[ev]}の補助金をもっと見る →
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          );
-        })()}
+        {renderNextStepsSection('late')}
 
         {/* 受付終了した制度（折りたたみ） */}
         {endedSubsidies.length > 0 && (

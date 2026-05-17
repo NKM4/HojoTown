@@ -10,7 +10,7 @@ const ads = getMatchingAds(categories);
 ---
 
 {ads.length > 0 && (
-  <div class="article-ads">
+  <div class="article-ads" data-ab-test="article_cta_copy">
     <p class="article-ads-label">関連サービス</p>
     {ads.map((ad, i) => (
       <a
@@ -21,6 +21,9 @@ const ads = getMatchingAds(categories);
         data-ad-id={ad.id}
         data-source="article_ad"
         data-position={i + 1}
+        data-ab-title-b={`${ad.title.replace('？', '')}を先に確認`}
+        data-ab-desc-b="補助金は申請順や工事前申請で差が出ます。無料見積もり・相談で、使える制度と自己負担額を先に確認できます。"
+        data-ab-cta-b="補助金込みの自己負担を確認する →"
       >
         <span class="article-ad-pr">PR</span>
         <div class="article-ad-body">

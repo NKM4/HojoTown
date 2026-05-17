@@ -17,6 +17,37 @@ const { title, description = 'あなたの街の"もらえるお金"、30秒で�
   <title>{title} | ホジョタウン</title>
   <meta name="description" content={description} />
   {noindex && <meta name="robots" content="noindex, nofollow, noarchive" />}
+  <script>
+    window.__HOJOTOWN_AB__ = window.__HOJOTOWN_AB__ || {};
+    (function() {
+      const tests = {
+        article_cta_copy: ['a', 'b'],
+        shindan_result_cta_position: ['a', 'b'],
+      };
+
+      Object.entries(tests).forEach(([testName, variants]) => {
+        const storageKey = `hojotown_ab_${testName}`;
+        let variant = '';
+        try {
+          variant = localStorage.getItem(storageKey) || '';
+          if (!variants.includes(variant)) {
+            variant = variants[Math.floor(Math.random() * variants.length)];
+            localStorage.setItem(storageKey, variant);
+          }
+        } catch (_) {
+          variant = variants[0];
+        }
+        window.__HOJOTOWN_AB__[testName] = variant;
+        document.documentElement.setAttribute(`data-ab-${testName.replaceAll('_', '-')}`, variant);
+      });
+    })();
+  </script>
+  <style>
+    html[data-ab-shindan-result-cta-position="a"] [data-ab-test="shindan_result_cta_position"][data-ab-show="b"],
+    html[data-ab-shindan-result-cta-position="b"] [data-ab-test="shindan_result_cta_position"][data-ab-show="a"] {
+      display: none !important;
+    }
+  </style>
   <link rel="canonical" href={`https://hojotown.jp${Astro.url.pathname}`} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -93,6 +124,9 @@ const { title, description = 'あなたの街の"もらえるお金"、30秒で�
 
     function sendAffiliateClick(anchor) {
       const href = anchor.href || '';
+      const abScope = anchor.closest?.('[data-ab-test]');
+      const abTest = abScope?.dataset.abTest || '';
+      const abVariant = abScope?.dataset.abVariant || abScope?.dataset.abShow || (abTest ? window.__HOJOTOWN_AB__?.[abTest] : '');
       let linkDomain = '';
       try {
         linkDomain = new URL(href).hostname;
@@ -111,6 +145,8 @@ const { title, description = 'あなたの街の"もらえるお金"、30秒で�
         link_url: href,
         link_domain: linkDomain,
         page_path: window.location.pathname,
+        ab_test: abTest,
+        ab_variant: abVariant,
       };
 
       if (typeof window.gtag === 'function') {
@@ -127,6 +163,38 @@ const { title, description = 'あなたの街の"もらえるお金"、30秒で�
         ...payload,
       });
     }
+
+    function applyArticleAdCopyTest() {
+      const variant = window.__HOJOTOWN_AB__?.article_cta_copy || 'a';
+      document.querySelectorAll('[data-ab-test="article_cta_copy"] .article-ad-card').forEach((card) => {
+        card.dataset.abVariant = variant;
+        if (variant !== 'b') return;
+        const title = card.dataset.abTitleB;
+        const desc = card.dataset.abDescB;
+        const cta = card.dataset.abCtaB;
+        if (title) card.querySelector('.article-ad-title').textContent = title;
+        if (desc) card.querySelector('.article-ad-desc').textContent = desc;
+        if (cta) card.querySelector('.article-ad-cta').textContent = cta;
+      });
+    }
+
+    function sendAbAssignments() {
+      if (typeof window.gtag !== 'function') return;
+      Object.entries(window.__HOJOTOWN_AB__ || {}).forEach(([testName, variant]) => {
+        window.gtag('event', 'ab_test_assigned', {
+          ab_test: testName,
+          ab_variant: variant,
+          page_path: window.location.pathname,
+          transport_type: 'beacon',
+          send_to: GA_MEASUREMENT_ID,
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      applyArticleAdCopyTest();
+      sendAbAssignments();
+    });
 
     document.addEventListener('click', function(event) {
       const anchor = event.target?.closest?.('a[href]');

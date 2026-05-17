@@ -236,6 +236,9 @@ ${tocItems}
 
         <p class="article-lead">${articleType.leadTemplate(cityName)}</p>
 
+        <!-- Early CTA -->
+        <ArticleAds categories={${articleType.adsCategories}} />
+
 ${subsidySections}
 ${guideSections}
         <!-- まとめ -->
@@ -255,7 +258,7 @@ ${guideSections}
 
         <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は${today.getFullYear()}年${today.getMonth() + 1}月時点のものです。最新情報は各制度の公式サイトでご確認ください。
-          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+          
         </div>
       </article>
     </div>

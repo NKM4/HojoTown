@@ -36,6 +36,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
         <p class="article-lead">さいたま市は、国の制度に加えて市独自の子育て支援制度を複数設けています。この記事では、さいたま市で子育て中の方が受けられる主な補助金・助成金を整理して解説します。</p>
 
+        <!-- Early CTA -->
+        <ArticleAds categories={["childcare","birth","medical"]} />
+
         <!-- 1. 児童手当 -->
         <h2 id="jidou">児童手当（国制度）</h2>
         <p>0歳から高校生年代（18歳到達後の最初の3月31日まで）の子どもを養育している方に支給される国の制度です。2024年10月の制度改正により、所得制限が撤廃され、支給期間も高校生年代まで延長されました。</p>
@@ -151,7 +154,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
         <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.city.saitama.lg.jp/003/001/015/index.html" target="_blank" rel="noopener noreferrer">さいたま市公式サイト（子育て・教育）</a>でご確認ください。
-          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+          
         </div>
       </article>
     </div>

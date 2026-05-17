@@ -35,6 +35,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
         <p class="article-lead">川越市では、こどもからひとり親家庭、障害をお持ちの方まで、さまざまな医療費助成制度が用意されています。「自分はどの制度が使えるの？」という方に向けて、対象者・助成内容・申請方法をまとめました。</p>
 
+        <!-- Early CTA -->
+        <ArticleAds categories={["childcare","medical"]} />
+
         <!-- 1. こども医療費 -->
         <h2 id="kodomo">こども医療費支給制度 ― 18歳まで自己負担を助成</h2>
         <p>川越市に住所があり、健康保険に加入している<strong>18歳まで</strong>（18歳に達した日以後の最初の3月31日まで）の子どもが対象です。通院・入院ともに保険診療の自己負担分が助成されます。</p>
@@ -172,7 +175,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
         <div class="disclaimer" style="margin-top:32px;">
           この記事の情報は2026年3月時点のものです。最新情報は<a href="https://www.city.kawagoe.saitama.jp/kenko/iryo/1006606/index.html" target="_blank" rel="noopener noreferrer">川越市公式サイト</a>でご確認ください。
-          <br><a href="/contact/" style="font-size:0.8rem;">情報の誤りを報告する</a>
+          
         </div>
       </article>
     </div>

@@ -225,15 +225,15 @@ export const AFFILIATE_ADS: AffiliateAd[] = [
   // 障害者 → 生活トラブル対応（シェアリングテクノロジー）
   {
     id: 'disability-support',
-    triggerCategories: ['disability'],
+    triggerCategories: [],
     title: '暮らしのお困りごと、すぐに解決',
     description: '水道・鍵・害虫など生活トラブルを24時間対応。お気軽にご相談ください。',
     ctaText: '24時間対応・無料で相談する',
-    url: 'https://px.a8.net/svt/ejp?a8mat=4AZPON+45FTMA+39GM+NUU7L',
+    url: '',
     label: 'PR',
     icon: '💼',
     conversionType: '無料相談',
-    priority: 2,
+    priority: 0,
   },
   // 太陽光・省エネ → 太陽光見積もり（WAVE）※グリエネと併用
   {
