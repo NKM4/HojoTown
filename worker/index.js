@@ -1,3 +1,38 @@
+const CONTACT_RATE_WINDOW_MS = 10 * 60 * 1000;
+const CONTACT_RATE_MAX = 5;
+const contactRateLimits = new Map();
+
+function rateLimitKey(request) {
+  return request.headers.get('cf-connecting-ip')
+    || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    || 'unknown';
+}
+
+function isContactRateLimited(request, nowMs) {
+  const key = rateLimitKey(request);
+  const current = contactRateLimits.get(key) || { count: 0, resetAt: nowMs + CONTACT_RATE_WINDOW_MS };
+  if (current.resetAt <= nowMs) {
+    contactRateLimits.set(key, { count: 1, resetAt: nowMs + CONTACT_RATE_WINDOW_MS });
+    return false;
+  }
+  current.count += 1;
+  contactRateLimits.set(key, current);
+  return current.count > CONTACT_RATE_MAX;
+}
+
+function cleanupContactRateLimits(nowMs) {
+  for (const [key, value] of contactRateLimits) {
+    if (value.resetAt <= nowMs) contactRateLimits.delete(key);
+  }
+}
+
+function jsonResponse(body, init = {}, corsHeaders = {}) {
+  return new Response(JSON.stringify(body), {
+    ...init,
+    headers: { 'Content-Type': 'application/json', ...corsHeaders, ...(init.headers || {}) },
+  });
+}
+
 // Discord Webhook にエラーを通知
 async function notifyError(env, error, context = '') {
   const webhookUrl = env.WEBHOOK_ERROR;
@@ -42,12 +77,39 @@ export default {
     // POST /contact - フォーム送信
     if (request.method === 'POST' && url.pathname === '/contact') {
       try {
+        const contentLength = Number(request.headers.get('content-length') || 0);
+        if (contentLength > 12000) {
+          return jsonResponse({ status: 'error', message: 'Payload too large' }, { status: 413 }, corsHeaders);
+        }
+
         const data = await request.json();
-        const type = data.type || 'contact';
+        if (data.company_website) {
+          return jsonResponse({ status: 'ok' }, {}, corsHeaders);
+        }
+
+        const nowMs = Date.now();
+        cleanupContactRateLimits(nowMs);
+        if (isContactRateLimited(request, nowMs)) {
+          return jsonResponse({ status: 'error', message: 'Too many requests' }, { status: 429 }, corsHeaders);
+        }
+
+        const allowedTypes = new Set(['contact', 'info_error', 'city_request', 'feature_request', 'bug', 'other']);
+        const type = allowedTypes.has(data.type) ? data.type : 'contact';
+        const message = String(data.message || '').trim();
+        const name = String(data.name || '').trim().slice(0, 120);
+        const email = String(data.email || '').trim().slice(0, 254);
+        const city = String(data.city || '').trim().slice(0, 120);
+        if (!message || message.length > 4000) {
+          return jsonResponse({ status: 'error', message: 'Invalid message' }, { status: 400 }, corsHeaders);
+        }
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          return jsonResponse({ status: 'error', message: 'Invalid email' }, { status: 400 }, corsHeaders);
+        }
+
         const now = new Date().toISOString();
         await env.DB.prepare(
           'INSERT INTO contacts (type, name, email, message, city, created_at) VALUES (?, ?, ?, ?, ?, ?)'
-        ).bind(type, data.name || '', data.email || '', data.message || '', data.city || '', now).run();
+        ).bind(type, name, email, message, city, now).run();
 
         // Discord通知
         const webhooks = {
@@ -67,10 +129,10 @@ export default {
             fields: [],
             timestamp: now,
           };
-          if (data.name) embed.fields.push({name:'名前',value:data.name,inline:true});
-          if (data.email) embed.fields.push({name:'メール',value:data.email,inline:true});
-          if (data.city) embed.fields.push({name:'市区町村',value:data.city,inline:true});
-          if (data.message) embed.fields.push({name:'内容',value:data.message.substring(0,1000)});
+          if (name) embed.fields.push({name:'名前',value:name,inline:true});
+          if (email) embed.fields.push({name:'メール',value:email,inline:true});
+          if (city) embed.fields.push({name:'市区町村',value:city,inline:true});
+          if (message) embed.fields.push({name:'内容',value:message.substring(0,1000)});
           await fetch(webhookUrl, {
             method:'POST',
             headers:{'Content-Type':'application/json'},
@@ -78,15 +140,10 @@ export default {
           }).catch(()=>{});
         }
 
-        return new Response(JSON.stringify({ status: 'ok' }), {
-          headers: { 'Content-Type': 'application/json', ...corsHeaders }
-        });
+        return jsonResponse({ status: 'ok' }, {}, corsHeaders);
       } catch (e) {
         await notifyError(env, e, 'POST /contact');
-        return new Response(JSON.stringify({ status: 'error', message: 'Internal server error' }), {
-          status: 500,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders }
-        });
+        return jsonResponse({ status: 'error', message: 'Internal server error' }, { status: 500 }, corsHeaders);
       }
     }
 

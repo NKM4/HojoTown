@@ -42,6 +42,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <textarea id="message" name="message" rows="8" required placeholder="お問い合わせ内容をご記入ください"></textarea>
         </div>
 
+        <div class="form-group contact-trap" aria-hidden="true">
+          <label for="company_website">会社サイト</label>
+          <input
+            type="text"
+            id="company_website"
+            name="company_website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
         <button type="submit" class="submit-btn">送信する</button>
       </form>
 
@@ -64,12 +75,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const name = (document.getElementById('name') as HTMLInputElement).value;
     const email = (document.getElementById('email') as HTMLInputElement).value;
     const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+    const companyWebsite = (document.getElementById('company_website') as HTMLInputElement).value;
 
     try {
       const res = await fetch('https://hojotown-api.taitatu4barisuta.workers.dev/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: category, name, email, message })
+        body: JSON.stringify({ type: category, name, email, message, company_website: companyWebsite })
       });
       const data = await res.json();
       if (data.status === 'ok') {
@@ -171,6 +183,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .form-group textarea {
     resize: vertical;
     min-height: 120px;
+  }
+  .contact-trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 
   .submit-btn {

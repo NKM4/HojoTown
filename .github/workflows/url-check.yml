@@ -99,8 +99,9 @@ jobs:
           if [ "$COUNT" -gt 0 ]; then
             # Discord通知
             if [ -n "$DISCORD_WEBHOOK" ]; then
+              DETAIL=$(node -e "const fs=require('fs'); const p='changed-pages.txt'; const s=fs.existsSync(p) ? fs.readFileSync(p,'utf8').split('\\n\\n').slice(0,5).join('\\n\\n') : ''; process.stdout.write(JSON.stringify((s || 'Artifactに詳細レポートを保存済み').slice(0,3500)));")
               curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
-                -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":\"補助金情報が更新された可能性があります\",\"color\":16776960}]}"
+                -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":${DETAIL},\"color\":16776960}]}"
               echo "Discord通知送信完了"
             fi
             # LINE Push通知は自動実行では送らない。誤検知時の大量配信を防ぐため、手動実行で明示された時だけ許可する。
@@ -122,6 +123,19 @@ jobs:
               echo "LINE Push skipped: send_line_push is not enabled"
             fi
           fi
+
+      - name: Save content change report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: content-change-report
+          path: |
+            content-report.txt
+            content-changes.json
+            changed-pages.txt
+            content-hashes.json
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Save content hashes
         if: always() && hashFiles('content-hashes.json') != ''
