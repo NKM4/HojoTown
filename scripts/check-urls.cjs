@@ -29,13 +29,16 @@ function isOkStatus(status) {
   return typeof status === 'number' && status >= 200 && status < 400;
 }
 
-function isKnownBotBlock(url, status) {
-  if (status !== 403) return false;
+function isKnownSoftPass(url, status) {
   try {
     const { hostname } = new URL(url);
     // Mitaka City pages are reachable by normal browsers/search crawlers, but GitHub runners
     // can receive WAF 403 responses. Treat this host as a soft pass to avoid false alerts.
-    return hostname === 'www.city.mitaka.lg.jp';
+    if (hostname === 'www.city.mitaka.lg.jp' && status === 403) return true;
+    // The official Marugame child-care portal is reachable locally and in browsers, but
+    // GitHub-hosted runners can time out against this WordPress site.
+    if (hostname === 'marugame.net' && status === 'TIMEOUT') return true;
+    return false;
   } catch {
     return false;
   }
@@ -68,19 +71,19 @@ function requestStatus(url, method = 'HEAD', maxRedirects = 5) {
 async function checkUrl(url) {
   const headStatus = await requestStatus(url, 'HEAD');
   if (isOkStatus(headStatus)) return headStatus;
-  if (isKnownBotBlock(url, headStatus)) return headStatus;
+  if (isKnownSoftPass(url, headStatus)) return 200;
 
   // Some municipal sites block, throttle, or delay HEAD. Verify with GET before marking broken.
   if ([403, 405, 501, 'ERROR', 'TIMEOUT'].includes(headStatus)) {
     const getStatus = await requestStatus(url, 'GET');
     if (isOkStatus(getStatus)) return getStatus;
-    if (isKnownBotBlock(url, getStatus)) return getStatus;
+    if (isKnownSoftPass(url, getStatus)) return 200;
 
     // One extra retry reduces false positives from slow municipal servers.
     if (['ERROR', 'TIMEOUT', 502, 503].includes(getStatus)) {
       await new Promise(resolve => setTimeout(resolve, 1000));
       const retryStatus = await requestStatus(url, 'GET');
-      if (isKnownBotBlock(url, retryStatus)) return retryStatus;
+      if (isKnownSoftPass(url, retryStatus)) return 200;
       return retryStatus;
     }
     return getStatus;
