@@ -13,6 +13,7 @@ const WEBHOOK_ACCESS = process.env.WEBHOOK_ACCESS;
 const WEBHOOK_CLICKS = process.env.WEBHOOK_CLICKS;
 const GA4_PROPERTY_ID = '531123324';
 const DEDUPE_FILE = process.env.WEEKLY_REPORT_DEDUPE_FILE || '';
+const AB_TESTS = ['article_cta_copy', 'shindan_result_cta_position'];
 
 if (!WEBHOOK_ACCESS) {
   console.error('WEBHOOK_ACCESS 環境変数が未設定');
@@ -147,6 +148,72 @@ function markSentThisWeek(weekKey) {
   }, null, 2));
 }
 
+function toInt(value) {
+  const n = Number.parseInt(value || '0', 10);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function formatRate(numerator, denominator) {
+  if (!denominator) return '0.0%';
+  return `${((numerator / denominator) * 100).toFixed(1)}%`;
+}
+
+function normalizeAbRows(rows) {
+  const byTest = new Map();
+  for (const row of rows || []) {
+    const testName = row.dimensionValues?.[0]?.value || '';
+    const variant = row.dimensionValues?.[1]?.value || '';
+    const count = toInt(row.metricValues?.[0]?.value);
+    if (!AB_TESTS.includes(testName) || !variant) continue;
+    if (!byTest.has(testName)) byTest.set(testName, {});
+    byTest.get(testName)[variant] = (byTest.get(testName)[variant] || 0) + count;
+  }
+  return Object.fromEntries(byTest.entries());
+}
+
+function buildAbSummary(clickRowsByTest, assignmentRowsByTest) {
+  return AB_TESTS.map((testName) => {
+    const clicks = clickRowsByTest[testName] || {};
+    const assignments = assignmentRowsByTest[testName] || {};
+    const variants = [...new Set([...Object.keys(clicks), ...Object.keys(assignments), 'a', 'b'])].sort();
+    const rows = variants.map((variant) => {
+      const assigned = assignments[variant] || 0;
+      const clicked = clicks[variant] || 0;
+      return { variant, assigned, clicks: clicked, clickRate: formatRate(clicked, assigned) };
+    });
+    const winner = rows.reduce((best, row) => {
+      if (!best) return row;
+      if (row.clicks !== best.clicks) return row.clicks > best.clicks ? row : best;
+      return Number.parseFloat(row.clickRate) > Number.parseFloat(best.clickRate) ? row : best;
+    }, null);
+    return { testName, rows, winner };
+  });
+}
+
+function formatAbFieldValue(summary) {
+  const lines = [];
+  for (const test of summary) {
+    lines.push(`**${test.testName}**`);
+    for (const row of test.rows) {
+      lines.push(`${row.variant}: ${row.clicks} click / ${row.assigned} assigned (${row.clickRate})`);
+    }
+    if (test.winner) {
+      lines.push(`暫定: ${test.winner.variant}`);
+    }
+  }
+  return lines.join('\n').slice(0, 1024) || 'データなし';
+}
+
+async function safeRunReport(client, request, label) {
+  try {
+    const [response] = await client.runReport(request);
+    return response;
+  } catch (e) {
+    console.error(`GA4 ${label} error:`, e.message);
+    return null;
+  }
+}
+
 // GA4 Data API - affiliate_click集計
 async function getGA4AffiliateClicks() {
   const tmpKey = path.join(__dirname, '..', '.ga4-tmp-key.json');
@@ -167,7 +234,7 @@ async function getGA4AffiliateClicks() {
     const client = new BetaAnalyticsDataClient();
 
     // affiliate_click total
-    const [clickResponse] = await client.runReport({
+    const clickResponse = await safeRunReport(client, {
       property: `properties/${GA4_PROPERTY_ID}`,
       dimensions: [{ name: 'eventName' }],
       metrics: [{ name: 'eventCount' }],
@@ -175,11 +242,11 @@ async function getGA4AffiliateClicks() {
       dimensionFilter: {
         filter: { fieldName: 'eventName', stringFilter: { value: 'affiliate_click' } }
       }
-    });
+    }, 'affiliate_click total');
     const clicks = clickResponse.rows?.[0]?.metricValues?.[0]?.value || '0';
 
     // Page views + users
-    const [summaryResponse] = await client.runReport({
+    const summaryResponse = await safeRunReport(client, {
       property: `properties/${GA4_PROPERTY_ID}`,
       metrics: [
         { name: 'screenPageViews' },
@@ -188,8 +255,38 @@ async function getGA4AffiliateClicks() {
         { name: 'sessions' },
       ],
       dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
-    });
+    }, 'summary');
     const summary = summaryResponse.rows?.[0]?.metricValues || [];
+
+    const abClickResponse = await safeRunReport(client, {
+      property: `properties/${GA4_PROPERTY_ID}`,
+      dimensions: [
+        { name: 'customEvent:ab_test' },
+        { name: 'customEvent:ab_variant' },
+      ],
+      metrics: [{ name: 'eventCount' }],
+      dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+      dimensionFilter: {
+        filter: { fieldName: 'eventName', stringFilter: { value: 'affiliate_click' } }
+      },
+    }, 'AB affiliate_click breakdown');
+
+    const abAssignmentResponse = await safeRunReport(client, {
+      property: `properties/${GA4_PROPERTY_ID}`,
+      dimensions: [
+        { name: 'customEvent:ab_test' },
+        { name: 'customEvent:ab_variant' },
+      ],
+      metrics: [{ name: 'eventCount' }],
+      dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+      dimensionFilter: {
+        filter: { fieldName: 'eventName', stringFilter: { value: 'ab_test_assigned' } }
+      },
+    }, 'AB assignment breakdown');
+
+    const abClicksByTest = normalizeAbRows(abClickResponse?.rows || []);
+    const abAssignmentsByTest = normalizeAbRows(abAssignmentResponse?.rows || []);
+    const abSummary = buildAbSummary(abClicksByTest, abAssignmentsByTest);
 
     return {
       affiliateClicks: clicks,
@@ -197,6 +294,8 @@ async function getGA4AffiliateClicks() {
       activeUsers: summary[1]?.value || '?',
       newUsers: summary[2]?.value || '?',
       sessions: summary[3]?.value || '?',
+      abSummary,
+      abBreakdownAvailable: Boolean(abClickResponse && abAssignmentResponse),
     };
   } catch (e) {
     console.error('GA4 API error:', e.message);
@@ -294,6 +393,13 @@ async function main() {
       { name: 'プログラム数', value: `${affiliatePrograms}`, inline: true },
       { name: 'LINE登録ユーザー', value: lineUsers, inline: true },
     ];
+    if (ga4?.abSummary?.length) {
+      clicksFields.push({
+        name: 'ABテスト別クリック (7日)',
+        value: ga4.abBreakdownAvailable ? formatAbFieldValue(ga4.abSummary) : 'GA4カスタムディメンション未反映のため取得不可',
+        inline: false,
+      });
+    }
     const clicksEmbed = {
       title: `A8.net 週次サマリー (${weekOf})`,
       color: 0xc8a84b,

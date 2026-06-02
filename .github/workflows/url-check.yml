@@ -187,6 +187,11 @@ jobs:
             echo "✅ Worker and LINE Token are healthy"
           fi
 
+      - name: Ensure GA4 AB test dimensions
+        env:
+          GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
+        run: node scripts/ensure-ga4-ab-dimensions.cjs
+
       - name: Send weekly report
         env:
           WEBHOOK_ACCESS: ${{ secrets.DISCORD_WEBHOOK_ACCESS }}
