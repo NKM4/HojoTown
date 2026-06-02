@@ -27,6 +27,28 @@ jobs:
         run: |
           set -euo pipefail
 
+          fail() {
+            echo "❌ $1"
+            if [ -n "$DISCORD_WEBHOOK" ]; then
+              curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+                -d "{\"embeds\":[{\"title\":\"❌ LINE Token更新失敗\",\"description\":\"$1\",\"color\":15158332}]}"
+            fi
+            exit 1
+          }
+
+          [ -n "$LINE_CHANNEL_ID" ] || fail "LINE_CHANNEL_ID が未設定です"
+          [ -n "$LINE_CHANNEL_SECRET" ] || fail "LINE_CHANNEL_SECRET が未設定です"
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || fail "CLOUDFLARE_API_TOKEN が未設定です"
+
+          CF_STATUS=$(curl -s -o cf-account.json -w "%{http_code}" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}")
+          CF_SUCCESS=$(jq -r '.success // false' cf-account.json)
+          if [ "$CF_STATUS" != "200" ] || [ "$CF_SUCCESS" != "true" ]; then
+            CF_ERROR=$(jq -r '(.errors // []) | map(.message) | join("; ")' cf-account.json)
+            fail "Cloudflare API token の検証に失敗しました: HTTP ${CF_STATUS} ${CF_ERROR}"
+          fi
+
           # 新しいトークンを発行
           RESPONSE=$(curl -s -X POST "https://api.line.me/v2/oauth/accessToken" \
             -H "Content-Type: application/x-www-form-urlencoded" \
@@ -34,13 +56,7 @@ jobs:
 
           TOKEN=$(echo "$RESPONSE" | jq -r '.access_token // empty')
           if [ -z "$TOKEN" ]; then
-            echo "❌ トークン発行失敗: $RESPONSE"
-            # Discord通知
-            if [ -n "$DISCORD_WEBHOOK" ]; then
-              curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
-                -d '{"embeds":[{"title":"❌ LINE Token更新失敗","description":"手動で確認してください","color":15158332}]}'
-            fi
-            exit 1
+            fail "LINEトークン発行に失敗しました"
           fi
 
           echo "✅ 新しいトークン取得成功"
@@ -49,27 +65,20 @@ jobs:
           BOT_INFO=$(curl -s "https://api.line.me/v2/bot/info" -H "Authorization: Bearer ${TOKEN}")
           BOT_NAME=$(echo "$BOT_INFO" | jq -r '.displayName // empty')
           if [ -z "$BOT_NAME" ]; then
-            echo "❌ 新トークンの検証失敗: $BOT_INFO"
-            exit 1
+            fail "新LINEトークンの検証に失敗しました"
           fi
           echo "✅ Bot確認: $BOT_NAME"
 
           # Cloudflare Worker secretを更新（wrangler CLI使用）
-          if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
-            echo "$TOKEN" | npx wrangler secret put LINE_CHANNEL_TOKEN --name hojotown-api
-            echo "✅ Worker secret更新完了"
-          else
-            echo "❌ CLOUDFLARE_API_TOKEN未設定 - Worker secretを更新できません"
-            exit 1
-          fi
+          echo "$TOKEN" | npx wrangler secret put LINE_CHANNEL_TOKEN --name hojotown-api
+          echo "✅ Worker secret更新完了"
 
           # Workerに反映されたトークンの確認
           HEALTH_STATUS=$(curl -s -o health.json -w "%{http_code}" \
             https://hojotown-api.taitatu4barisuta.workers.dev/health)
           cat health.json
           if [ "$HEALTH_STATUS" != "200" ]; then
-            echo "❌ Worker health failed after token refresh: HTTP $HEALTH_STATUS"
-            exit 1
+            fail "Worker health failed after token refresh: HTTP $HEALTH_STATUS"
           fi
 
           # Discord通知

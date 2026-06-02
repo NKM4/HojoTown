@@ -42,11 +42,17 @@ gmail-cookies.json
 *.png
 !public/*.png
 *.bak
+*.remote
+__pycache__/
+*.py[cod]
 broken-urls.txt
 url-report.txt
 factcheck_result.md
 all_cities_top5.json
 nagoya_subsidies.json
+cleanup_*.py
+inspect_*.py
+verify_state.py
 
 # local agent/work scratch
 .work/

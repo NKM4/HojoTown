@@ -11,7 +11,7 @@
     "amount": "月額10,000〜30,000円（年齢・子の順番により異なる）",
     "maxAmount": 30000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.saga.lg.jp/main/951.html",
+    "officialUrl": "https://www.city.saga.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -27,7 +27,7 @@
     "amount": "通院・入院の自己負担分を助成",
     "maxAmount": 0,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.saga.lg.jp/main/957.html",
+    "officialUrl": "https://www.city.saga.lg.jp/main/13594.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -43,7 +43,7 @@
     "amount": "全部支給：月額45,500円、一部支給：月額10,740〜45,490円",
     "maxAmount": 45500,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.saga.lg.jp/main/953.html",
+    "officialUrl": "https://www.city.saga.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -59,7 +59,7 @@
     "amount": "個人事業主・法人で最大10万円",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.saga.lg.jp/main/68022.html",
+    "officialUrl": "https://www.city.saga.lg.jp/main/89240.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -75,7 +75,7 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.saga.lg.jp/main/35814.html",
+    "officialUrl": "https://www.city.saga.lg.jp/main/96612.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -107,7 +107,7 @@
     "amount": "1級：月額55,350円、2級：月額36,860円",
     "maxAmount": 55350,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.city.saga.lg.jp/main/956.html",
+    "officialUrl": "https://www.city.saga.lg.jp/",
     "status": "active",
     "lastUpdated": "2026-03-27"
   },
@@ -123,7 +123,7 @@
     "amount": "単身60万円、世帯100万円（18歳未満の子ども1人につき100万円加算）",
     "maxAmount": 1000000,
     "deadline": "令和8年3月31日まで",
-    "officialUrl": "https://www.city.saga.lg.jp/main/55553.html",
+    "officialUrl": "https://www.city.saga.lg.jp/kurashi/sumai/1/714.html",
     "status": "active",
     "lastUpdated": "2026-03-27"
   }

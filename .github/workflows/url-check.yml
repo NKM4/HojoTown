@@ -42,14 +42,14 @@ jobs:
           echo "Broken URLs: $COUNT"
           # BROKENリストを別ファイルに抽出
           grep "BROKEN" url-report.txt > broken-urls.txt 2>/dev/null || true
-          # サマリー: ドメイン別集計
+          # サマリー: 市区町村別集計
           if [ "$COUNT" -gt 0 ]; then
             echo "" >> broken-urls.txt
-            echo "--- ドメイン別集計 ---" >> broken-urls.txt
-            awk -F'|' '{print $2}' broken-urls.txt | sed 's/^ //' | sort | uniq -c | sort -rn >> broken-urls.txt 2>/dev/null || true
+            echo "--- 市区町村別集計 ---" >> broken-urls.txt
+            grep "BROKEN" url-report.txt | awk -F'|' '{print $2}' | sed 's/^ //' | sort | uniq -c | sort -rn >> broken-urls.txt 2>/dev/null || true
             if [ -n "$DISCORD_WEBHOOK" ]; then
               # 上位5市を通知に含める
-              TOP5=$(awk -F'|' '{print $2}' broken-urls.txt | sed 's/^ //' | sort | uniq -c | sort -rn | head -5 | awk '{printf "%s(%d件) ", $2, $1}')
+              TOP5=$(grep "BROKEN" url-report.txt | awk -F'|' '{print $2}' | sed 's/^ //' | sort | uniq -c | sort -rn | head -5 | awk '{printf "%s(%d件) ", $2, $1}')
               curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
                 -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"上位: ${TOP5}\\n\\nArtifactにbroken-urls.txtを保存済み\",\"color\":15158332}]}"
               echo "Discord通知送信完了"
