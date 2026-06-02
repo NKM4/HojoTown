@@ -9,6 +9,26 @@ const hashFile = path.join(__dirname, '..', 'content-hashes.json');
 const changesFile = path.join(__dirname, '..', 'content-changes.json');
 const changedPagesFile = path.join(__dirname, '..', 'changed-pages.txt');
 
+function parsePositiveInt(value, fallback) {
+  const parsed = Number.parseInt(value || '', 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+const CHECK_CONCURRENCY = parsePositiveInt(process.env.CONTENT_CHECK_CONCURRENCY, 8);
+
+async function mapLimit(items, limit, worker) {
+  const results = [];
+  let index = 0;
+  const workers = Array.from({ length: Math.max(1, limit) }, async () => {
+    while (index < items.length) {
+      const currentIndex = index++;
+      results[currentIndex] = await worker(items[currentIndex], currentIndex);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
 function fetchPage(url, maxRedirects = 5) {
   return new Promise((resolve) => {
     if (maxRedirects <= 0) return resolve(null);
@@ -96,10 +116,10 @@ async function main() {
   const changed = [];
   const unavailable = [];
   const files = fs.readdirSync(subsidiesDir).filter(f => f.endsWith('.json'));
+  const targets = [];
 
   console.log(`Checking content changes for ${files.length} cities...\n`);
 
-  let checked = 0;
   for (const file of files) {
     const city = file.replace('.json', '');
     const data = JSON.parse(fs.readFileSync(path.join(subsidiesDir, file), 'utf8'));
@@ -109,43 +129,52 @@ async function main() {
     }
 
     for (const url of urls) {
-      checked++;
-      const html = await fetchPage(url);
-      const normalized = normalizeContent(html);
-      const hash = hashContent(normalized);
-      const key = `${city}|${url}`;
-      const title = extractTitle(html, city);
-      const current = {
-        city,
-        url,
-        title,
-        hash,
-        sample: sampleText(normalized),
-        checkedAt: new Date().toISOString(),
-      };
-      newState[key] = current;
+      targets.push({ city, url });
+    }
+  }
 
-      if (!hash) {
-        unavailable.push({ city, url });
-        continue;
-      }
+  console.log(`Checking ${targets.length} URLs with concurrency ${CHECK_CONCURRENCY}...\n`);
 
-      const previous = prevState[key];
-      if (previous?.hash && previous.hash !== hash) {
-        const item = {
-          city,
-          url,
-          title,
-          previousTitle: previous.title || '',
-          previousSample: previous.sample || '',
-          currentSample: current.sample,
-        };
-        changed.push(item);
-        console.log(`CHANGED | ${city} | ${url}`);
-      }
+  let checked = 0;
+  const results = await mapLimit(targets, CHECK_CONCURRENCY, async ({ city, url }) => {
+    const html = await fetchPage(url);
+    const normalized = normalizeContent(html);
+    const hash = hashContent(normalized);
+    const key = `${city}|${url}`;
+    const title = extractTitle(html, city);
+    const current = {
+      city,
+      url,
+      title,
+      hash,
+      sample: sampleText(normalized),
+      checkedAt: new Date().toISOString(),
+    };
+    checked++;
+    if (checked % 100 === 0) console.log(`[${checked}/${targets.length} URLs checked]`);
+    return { key, current, previous: prevState[key] };
+  });
+
+  for (const { key, current, previous } of results) {
+    newState[key] = current;
+
+    if (!current.hash) {
+      unavailable.push({ city: current.city, url: current.url });
+      continue;
     }
 
-    if (checked % 50 === 0) console.log(`[${checked} URLs checked]`);
+    if (previous?.hash && previous.hash !== current.hash) {
+      const item = {
+        city: current.city,
+        url: current.url,
+        title: current.title,
+        previousTitle: previous.title || '',
+        previousSample: previous.sample || '',
+        currentSample: current.sample,
+      };
+      changed.push(item);
+      console.log(`CHANGED | ${current.city} | ${current.url}`);
+    }
   }
 
   fs.writeFileSync(hashFile, JSON.stringify(newState, null, 2));

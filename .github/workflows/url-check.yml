@@ -26,6 +26,7 @@ concurrency:
 jobs:
   check-urls:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v6
 
@@ -70,6 +71,7 @@ jobs:
 
   check-content:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v6
 
@@ -147,6 +149,7 @@ jobs:
   weekly-report:
     if: github.event_name == 'schedule' || inputs.send_weekly_report == true
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
 

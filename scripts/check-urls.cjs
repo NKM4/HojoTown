@@ -5,6 +5,26 @@ const http = require('http');
 
 const subsidiesDir = path.join(__dirname, '..', 'src', 'data', 'subsidies');
 
+function parsePositiveInt(value, fallback) {
+  const parsed = Number.parseInt(value || '', 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+const CHECK_CONCURRENCY = parsePositiveInt(process.env.CHECK_URL_CONCURRENCY, 12);
+
+async function mapLimit(items, limit, worker) {
+  const results = [];
+  let index = 0;
+  const workers = Array.from({ length: Math.max(1, limit) }, async () => {
+    while (index < items.length) {
+      const currentIndex = index++;
+      results[currentIndex] = await worker(items[currentIndex], currentIndex);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
 function isOkStatus(status) {
   return typeof status === 'number' && status >= 200 && status < 400;
 }
@@ -71,9 +91,7 @@ async function checkUrl(url) {
 
 async function main() {
   const files = fs.readdirSync(subsidiesDir).filter(f => f.endsWith('.json'));
-  let total = 0;
-  let broken = 0;
-  let ok = 0;
+  const targets = [];
 
   console.log(`Checking ${files.length} cities...\n`);
 
@@ -87,20 +105,34 @@ async function main() {
     }
 
     for (const url of urls) {
-      total++;
-      const status = await checkUrl(url);
-      if (isOkStatus(status)) {
-        ok++;
-        console.log(`OK | ${city} | ${url} | ${status}`);
-      } else {
-        broken++;
-        console.log(`BROKEN | ${city} | ${url} | ${status}`);
-      }
+      targets.push({ city, url });
+    }
+  }
+
+  console.log(`Checking ${targets.length} URLs with concurrency ${CHECK_CONCURRENCY}...\n`);
+
+  let checked = 0;
+  const results = await mapLimit(targets, CHECK_CONCURRENCY, async ({ city, url }) => {
+    const status = await checkUrl(url);
+    checked++;
+    if (checked % 100 === 0) console.log(`[${checked}/${targets.length} URLs checked]`);
+    return { city, url, status, ok: isOkStatus(status) };
+  });
+
+  let broken = 0;
+  let ok = 0;
+  for (const result of results) {
+    if (result.ok) {
+      ok++;
+      console.log(`OK | ${result.city} | ${result.url} | ${result.status}`);
+    } else {
+      broken++;
+      console.log(`BROKEN | ${result.city} | ${result.url} | ${result.status}`);
     }
   }
 
   console.log(`\n--- Summary ---`);
-  console.log(`Total: ${total}, OK: ${ok}, Broken: ${broken}`);
+  console.log(`Total: ${targets.length}, OK: ${ok}, Broken: ${broken}`);
 
   if (broken > 0) {
     process.exit(1);
