@@ -1,0 +1,40 @@
+name: Current Metrics
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'GA4 start date, e.g. today, yesterday, 7daysAgo'
+        required: false
+        default: '7daysAgo'
+        type: string
+      end_date:
+        description: 'GA4 end date, e.g. today, yesterday'
+        required: false
+        default: 'today'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  current-metrics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Print current metrics
+        env:
+          GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
+          METRICS_START_DATE: ${{ inputs.start_date }}
+          METRICS_END_DATE: ${{ inputs.end_date }}
+        run: node scripts/current-metrics.cjs
