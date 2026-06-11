@@ -459,9 +459,9 @@
     "amount": "住宅取得費用の一部を補助",
     "maxAmount": 0,
     "deadline": "募集期間あり（年度ごと）",
-    "officialUrl": "https://www.city.sendai.jp/jutakutaisaku/kankyo/shien.html",
+    "officialUrl": "https://www.city.sendai.jp/ondanka/kodannetsu/sintikuhozyo.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-06-12"
   },
   {
     "id": "sendai-reform-002",
@@ -475,9 +475,9 @@
     "amount": "断熱改修工事費用の一部を補助",
     "maxAmount": 0,
     "deadline": "募集期間あり（年度ごと）",
-    "officialUrl": "https://www.city.sendai.jp/jutakutaisaku/kankyo/shien.html",
+    "officialUrl": "https://www.city.sendai.jp/ondanka/kodannetsu/kaisyuhozyo.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-06-12"
   },
   {
     "id": "sendai-solar-001",
@@ -491,9 +491,9 @@
     "amount": "機器導入費用の一部を補助",
     "maxAmount": 0,
     "deadline": "募集期間あり（年度ごと）",
-    "officialUrl": "https://www.city.sendai.jp/jutakutaisaku/kankyo/shien.html",
+    "officialUrl": "https://www.city.sendai.jp/ondanka/syoene/shoene_kuucho_kyuto_previiew.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-06-12"
   },
   {
     "id": "sendai-other-001",

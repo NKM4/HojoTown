@@ -5,9 +5,9 @@ const http = require('http');
 const crypto = require('crypto');
 
 const subsidiesDir = path.join(__dirname, '..', 'src', 'data', 'subsidies');
-const hashFile = path.join(__dirname, '..', 'content-hashes.json');
-const changesFile = path.join(__dirname, '..', 'content-changes.json');
-const changedPagesFile = path.join(__dirname, '..', 'changed-pages.txt');
+const hashFile = process.env.CONTENT_HASH_FILE || path.join(__dirname, '..', 'content-hashes.json');
+const changesFile = process.env.CONTENT_CHANGES_FILE || path.join(__dirname, '..', 'content-changes.json');
+const changedPagesFile = process.env.CONTENT_CHANGED_PAGES_FILE || path.join(__dirname, '..', 'changed-pages.txt');
 
 function parsePositiveInt(value, fallback) {
   const parsed = Number.parseInt(value || '', 10);
@@ -98,13 +98,35 @@ function sampleText(text) {
   return text.slice(0, 320);
 }
 
+function contentSignature(text) {
+  if (!text) return null;
+  if (text.length <= 2400) return hashContent(text);
+  const chunks = [
+    text.slice(0, 800),
+    text.slice(Math.max(0, Math.floor(text.length / 2) - 400), Math.floor(text.length / 2) + 400),
+    text.slice(-800),
+  ];
+  return hashContent(chunks.join('\n---chunk---\n'));
+}
+
+function hasMeaningfulChange(previous, current) {
+  if (!previous?.hash || !current.hash) return false;
+  if (previous.signature && current.signature) {
+    return previous.signature !== current.signature;
+  }
+  if ((previous.sample || '') === current.sample) {
+    return false;
+  }
+  return previous.hash !== current.hash;
+}
+
 function readPreviousState() {
   if (!fs.existsSync(hashFile)) return {};
   const raw = JSON.parse(fs.readFileSync(hashFile, 'utf8'));
   const state = {};
   for (const [key, value] of Object.entries(raw)) {
     state[key] = typeof value === 'string'
-      ? { hash: value, title: '', sample: '', checkedAt: '' }
+      ? { hash: value, signature: '', title: '', sample: '', checkedAt: '' }
       : value;
   }
   return state;
@@ -147,6 +169,7 @@ async function main() {
       url,
       title,
       hash,
+      signature: contentSignature(normalized),
       sample: sampleText(normalized),
       checkedAt: new Date().toISOString(),
     };
@@ -163,7 +186,7 @@ async function main() {
       continue;
     }
 
-    if (previous?.hash && previous.hash !== current.hash) {
+    if (hasMeaningfulChange(previous, current)) {
       const item = {
         city: current.city,
         url: current.url,
