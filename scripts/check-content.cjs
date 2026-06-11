@@ -8,6 +8,7 @@ const subsidiesDir = path.join(__dirname, '..', 'src', 'data', 'subsidies');
 const hashFile = process.env.CONTENT_HASH_FILE || path.join(__dirname, '..', 'content-hashes.json');
 const changesFile = process.env.CONTENT_CHANGES_FILE || path.join(__dirname, '..', 'content-changes.json');
 const changedPagesFile = process.env.CONTENT_CHANGED_PAGES_FILE || path.join(__dirname, '..', 'changed-pages.txt');
+const NORMALIZER_VERSION = 2;
 
 function parsePositiveInt(value, fallback) {
   const parsed = Number.parseInt(value || '', 10);
@@ -47,13 +48,33 @@ function fetchPage(url, maxRedirects = 5) {
         const nextUrl = new URL(res.headers.location, currentUrl).toString();
         return resolve(fetchPage(nextUrl, maxRedirects - 1));
       }
-      let body = '';
-      res.on('data', d => body += d);
-      res.on('end', () => resolve(body));
+      const chunks = [];
+      res.on('data', d => chunks.push(d));
+      res.on('end', () => resolve(decodeResponse(Buffer.concat(chunks), res.headers['content-type'] || '')));
     });
     req.on('error', () => resolve(null));
     req.on('timeout', () => { req.destroy(); resolve(null); });
   });
+}
+
+function decodeResponse(buffer, contentType) {
+  const utf8 = buffer.toString('utf8');
+  const charset = (contentType.match(/charset=([^;\s]+)/i)?.[1] || utf8.match(/<meta[^>]+charset=["']?([^"'>\s]+)/i)?.[1] || '').toLowerCase();
+  if (/shift[_-]?jis|windows-31j|cp932/.test(charset)) {
+    try {
+      return new TextDecoder('shift_jis').decode(buffer);
+    } catch {
+      return utf8;
+    }
+  }
+  if (/euc-?jp/.test(charset)) {
+    try {
+      return new TextDecoder('euc-jp').decode(buffer);
+    } catch {
+      return utf8;
+    }
+  }
+  return utf8;
 }
 
 function decodeEntities(text) {
@@ -75,7 +96,10 @@ function normalizeContent(html) {
     .replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
     .replace(/<(header|footer|nav|aside|svg|canvas|form|iframe)[\s\S]*?<\/\1>/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
+    .replace(/\uFFFD/g, '')
     .replace(/\b\d{4}[-/.年]\d{1,2}[-/.月]\d{1,2}日?\b/g, 'DATE')
+    .replace(/令和\d{1,2}年\d{1,2}月\d{1,2}日/g, 'DATE')
+    .replace(/平成\d{1,2}年\d{1,2}月\d{1,2}日/g, 'DATE')
     .replace(/\b\d{1,2}:\d{2}(?::\d{2})?\b/g, 'TIME')
     .replace(/\s+/g, ' ')
     .trim();
@@ -95,7 +119,18 @@ function extractTitle(html, fallback) {
 }
 
 function sampleText(text) {
-  return text.slice(0, 320);
+  return text.slice(0, 1200);
+}
+
+function comparableSample(text) {
+  return (text || '')
+    .replace(/\uFFFD/g, '')
+    .replace(/\b\d{4}[-/.年]\d{1,2}[-/.月]\d{1,2}日?\b/g, 'DATE')
+    .replace(/令和\d{1,2}年\d{1,2}月\d{1,2}日/g, 'DATE')
+    .replace(/平成\d{1,2}年\d{1,2}月\d{1,2}日/g, 'DATE')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 320);
 }
 
 function contentSignature(text) {
@@ -111,13 +146,19 @@ function contentSignature(text) {
 
 function hasMeaningfulChange(previous, current) {
   if (!previous?.hash || !current.hash) return false;
+  if (previous.normalizerVersion !== NORMALIZER_VERSION) return false;
+  if (comparableSample(previous.sample) === comparableSample(current.sample)) {
+    return false;
+  }
   if (previous.signature && current.signature) {
     return previous.signature !== current.signature;
   }
-  if ((previous.sample || '') === current.sample) {
-    return false;
-  }
   return previous.hash !== current.hash;
+}
+
+function isErrorPage(title, text) {
+  const probe = `${title || ''} ${text || ''}`.slice(0, 2000);
+  return /お探しのページ|ページが見つかりません|見つかりませんでした|表示できません|not found|404|403 forbidden/i.test(probe);
 }
 
 function readPreviousState() {
@@ -161,9 +202,10 @@ async function main() {
   const results = await mapLimit(targets, CHECK_CONCURRENCY, async ({ city, url }) => {
     const html = await fetchPage(url);
     const normalized = normalizeContent(html);
-    const hash = hashContent(normalized);
-    const key = `${city}|${url}`;
     const title = extractTitle(html, city);
+    const errorPage = isErrorPage(title, normalized);
+    const hash = errorPage ? null : hashContent(normalized);
+    const key = `${city}|${url}`;
     const current = {
       city,
       url,
@@ -171,6 +213,8 @@ async function main() {
       hash,
       signature: contentSignature(normalized),
       sample: sampleText(normalized),
+      errorPage,
+      normalizerVersion: NORMALIZER_VERSION,
       checkedAt: new Date().toISOString(),
     };
     checked++;
