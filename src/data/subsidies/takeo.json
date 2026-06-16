@@ -75,9 +75,9 @@
     "amount": "工事費の10%（上限10万円）",
     "maxAmount": 100000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.takeo.lg.jp/hojyo/index.html",
+    "officialUrl": "https://www.city.takeo.lg.jp/benri/seikatsu/jutaku/",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-16"
   },
   {
     "id": "takeo-disability-001",
@@ -107,9 +107,9 @@
     "amount": "耐震改修工事費の一部（上限60万円）",
     "maxAmount": 600000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.takeo.lg.jp/hojyo/index.html",
+    "officialUrl": "https://www.city.takeo.lg.jp/benri/seikatsu/jutaku/006514.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-16"
   },
   {
     "id": "takeo-moving-002",

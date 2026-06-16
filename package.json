@@ -25,5 +25,8 @@
   "devDependencies": {
     "@google-analytics/data": "^5.2.1",
     "glob": "^13.0.6"
+  },
+  "overrides": {
+    "esbuild": "0.28.1"
   }
 }
