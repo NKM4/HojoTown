@@ -11,9 +11,9 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate/teate/jidouteate.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate-kyoiku/syussan-kosodate/teate-jose/jidoteate/page000334.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "tsuchiura-childcare-002",
@@ -27,9 +27,9 @@
     "amount": "月額10,120〜44,140円（所得による）",
     "maxAmount": 44140,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate/teate/jidoufuyou.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate-kyoiku/syussan-kosodate/teate-jose/jidofuyoteate/page000335.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "tsuchiura-birth-001",
@@ -43,9 +43,9 @@
     "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
     "maxAmount": 100000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate/ninshin/kosodateouen.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate-kyoiku/syussan-kosodate/teate-jose/page021534.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "tsuchiura-medical-001",
@@ -59,9 +59,9 @@
     "amount": "外来600円/日（月2回まで）、入院300円/日",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate/iryou/kodomo.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kurashi-tetsuzuki/kokuho-nenkin/marufuku/kakushu-marufuku/page016824.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "tsuchiura-medical-002",
@@ -75,9 +75,9 @@
     "amount": "外来600円/日（月2回まで）、入院300円/日",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate/iryou/hitorioya.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kurashi-tetsuzuki/kokuho-nenkin/marufuku/kakushu-marufuku/page016849.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "tsuchiura-moving-001",
@@ -91,9 +91,9 @@
     "amount": "上限50〜70万円",
     "maxAmount": 700000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/kurashi/sumai/machinalka.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kankyo-kotsu-machizukuri/toshikeikaku-machizukuri/page006310.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "tsuchiura-disability-001",
@@ -107,9 +107,9 @@
     "amount": "1級月額53,700円、2級月額35,760円",
     "maxAmount": 53700,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/fukushi/shougai/teate.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kosodate-kyoiku/syussan-kosodate/teate-jose/page019081.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "tsuchiura-disability-002",
@@ -123,8 +123,8 @@
     "amount": "月額15,220円",
     "maxAmount": 15220,
     "deadline": "通年",
-    "officialUrl": "https://www.city.tsuchiura.lg.jp/fukushi/shougai/teate.html",
+    "officialUrl": "https://www.city.tsuchiura.lg.jp/kenko-fukushi-iryo/fukushi/shogaishafukushi/kinsenmendenoshien/josei-teate/page000311.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   }
 ]

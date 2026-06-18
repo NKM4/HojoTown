@@ -139,9 +139,9 @@
     "amount": "車両購入費の一部（上限あり）",
     "maxAmount": 0,
     "deadline": "予算上限に達し次第終了",
-    "officialUrl": "https://www.city.sakai.lg.jp/kurashi/gomi/ondanka/smarthouse/sumarthouse/jidousya_youshiki.html",
+    "officialUrl": "https://www.city.sakai.lg.jp/kurashi/gomi/ondanka/smarthouse/sumarthouse/index.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-06-19"
   },
   {
     "id": "sakai-vacant_house-001",
