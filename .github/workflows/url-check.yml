@@ -97,13 +97,19 @@ jobs:
         run: |
           node scripts/check-content.cjs > content-report.txt 2>&1 || true
           COUNT=$(grep -c "CHANGED" content-report.txt || true)
+          HIGH_COUNT=$(grep -c "importance: high" changed-pages.txt 2>/dev/null || true)
+          MEDIUM_COUNT=$(grep -c "importance: medium" changed-pages.txt 2>/dev/null || true)
+          LOW_COUNT=$(grep -c "importance: low" changed-pages.txt 2>/dev/null || true)
           echo "Changed pages: $COUNT"
+          echo "High importance changes: $HIGH_COUNT"
+          echo "Medium importance changes: $MEDIUM_COUNT"
+          echo "Low importance changes: $LOW_COUNT"
           if [ "$COUNT" -gt 0 ]; then
             # Discord通知
             if [ -n "$DISCORD_WEBHOOK" ]; then
               DETAIL=$(node -e "const fs=require('fs'); const p='changed-pages.txt'; const s=fs.existsSync(p) ? fs.readFileSync(p,'utf8').split('\\n\\n').slice(0,5).join('\\n\\n') : ''; process.stdout.write(JSON.stringify((s || 'Artifactに詳細レポートを保存済み').slice(0,3500)));")
               curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
-                -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":${DETAIL},\"color\":16776960}]}"
+                -d "{\"embeds\":[{\"title\":\"📝 ${COUNT}件の公式ページ内容変更を検知\",\"description\":${DETAIL},\"color\":16776960,\"fields\":[{\"name\":\"重要度\",\"value\":\"high: ${HIGH_COUNT} / medium: ${MEDIUM_COUNT} / low: ${LOW_COUNT}\",\"inline\":false}]}]}"
               echo "Discord通知送信完了"
             fi
             # LINE Push通知は自動実行では送らない。誤検知時の大量配信を防ぐため、手動実行で明示された時だけ許可する。
@@ -161,6 +167,11 @@ jobs:
       - name: Install GA4 dependency
         run: npm ci
 
+      - name: Audit affiliate placement and tracking
+        run: |
+          npm run audit:affiliate
+          npm run audit:affiliate-tracking
+
       - name: Restore weekly report dedupe marker
         uses: actions/cache/restore@v5
         with:
@@ -202,6 +213,7 @@ jobs:
           LINE_PUSH_URL: ${{ secrets.LINE_PUSH_URL }}
           LINE_PUSH_SECRET: ${{ secrets.LINE_PUSH_SECRET }}
           GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
+          A8_METRICS_JSON: ${{ secrets.A8_METRICS_JSON }}
           WEEKLY_REPORT_DEDUPE_FILE: .weekly-report-sent.json
         run: node scripts/weekly-report.cjs
 

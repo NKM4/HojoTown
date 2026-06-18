@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const { readA8Metrics, formatCurrency } = require('./a8-metrics.cjs');
 
 const WEBHOOK_ACCESS = process.env.WEBHOOK_ACCESS;
 const WEBHOOK_CLICKS = process.env.WEBHOOK_CLICKS;
@@ -321,6 +322,7 @@ async function main() {
   const lastModified = getLastModified();
   const affiliatePrograms = countAffiliatePrograms();
   const ga4 = await getGA4AffiliateClicks();
+  const a8 = readA8Metrics();
 
   const now = new Date().toISOString();
   const weekOf = new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -390,9 +392,19 @@ async function main() {
   if (WEBHOOK_CLICKS) {
     const clicksFields = [
       { name: 'アフィリエイトクリック (7日)', value: ga4 ? ga4.affiliateClicks : '取得不可', inline: true },
+      { name: 'A8成果数', value: a8.unavailable ? '未設定' : `${a8.conversions}件`, inline: true },
+      { name: 'A8未確定', value: a8.unavailable ? '未設定' : `${a8.pending}件`, inline: true },
+      { name: 'A8報酬', value: a8.unavailable ? '未設定' : formatCurrency(a8.revenue), inline: true },
       { name: 'プログラム数', value: `${affiliatePrograms}`, inline: true },
       { name: 'LINE登録ユーザー', value: lineUsers, inline: true },
     ];
+    if (a8.unavailable) {
+      clicksFields.push({
+        name: 'A8成果取得',
+        value: 'A8_METRICS_JSON または A8_METRICS_FILE 未設定。例: {"range":"7days","conversions":0,"pending":0,"revenue":0}',
+        inline: false,
+      });
+    }
     if (ga4?.abSummary?.length) {
       clicksFields.push({
         name: 'ABテスト別クリック (7日)',

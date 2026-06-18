@@ -9,6 +9,13 @@ const hashFile = process.env.CONTENT_HASH_FILE || path.join(__dirname, '..', 'co
 const changesFile = process.env.CONTENT_CHANGES_FILE || path.join(__dirname, '..', 'content-changes.json');
 const changedPagesFile = process.env.CONTENT_CHANGED_PAGES_FILE || path.join(__dirname, '..', 'changed-pages.txt');
 const NORMALIZER_VERSION = 2;
+const HIGH_IMPORTANCE_PATTERNS = [
+  /受付|申請|募集|期限|締切|終了|停止|再開|開始|予算|上限|補助額|助成額|対象|所得|要件|令和|年度|先着|抽選/,
+  /\d{1,3}(?:,\d{3})*円|\d+(?:\.\d+)?万円|\d+%/,
+];
+const MEDIUM_IMPORTANCE_PATTERNS = [
+  /更新|変更|改正|手続|必要書類|窓口|問い合わせ|問合せ|電子申請|オンライン|郵送/,
+];
 
 function parsePositiveInt(value, fallback) {
   const parsed = Number.parseInt(value || '', 10);
@@ -156,6 +163,13 @@ function hasMeaningfulChange(previous, current) {
   return previous.hash !== current.hash;
 }
 
+function classifyImportance(previousSample, currentSample) {
+  const combined = `${previousSample || ''}\n${currentSample || ''}`;
+  if (HIGH_IMPORTANCE_PATTERNS.some((pattern) => pattern.test(combined))) return 'high';
+  if (MEDIUM_IMPORTANCE_PATTERNS.some((pattern) => pattern.test(combined))) return 'medium';
+  return 'low';
+}
+
 function isErrorPage(title, text) {
   const probe = `${title || ''} ${text || ''}`.slice(0, 2000);
   return /お探しのページ|ページが見つかりません|見つかりませんでした|表示できません|not found|404|403 forbidden/i.test(probe);
@@ -231,10 +245,12 @@ async function main() {
     }
 
     if (hasMeaningfulChange(previous, current)) {
+      const importance = classifyImportance(previous.sample || '', current.sample);
       const item = {
         city: current.city,
         url: current.url,
         title: current.title,
+        importance,
         previousTitle: previous.title || '',
         previousSample: previous.sample || '',
         currentSample: current.sample,
@@ -249,11 +265,15 @@ async function main() {
     checkedAt: new Date().toISOString(),
     totalUrls: checked,
     changedCount: changed.length,
+    highImportanceChangedCount: changed.filter(c => c.importance === 'high').length,
+    mediumImportanceChangedCount: changed.filter(c => c.importance === 'medium').length,
+    lowImportanceChangedCount: changed.filter(c => c.importance === 'low').length,
     unavailableCount: unavailable.length,
     changed,
     unavailable,
   }, null, 2));
   fs.writeFileSync(changedPagesFile, changed.map(c => [
+    `importance: ${c.importance}`,
     `city: ${c.city}`,
     `title: ${c.title}`,
     `url: ${c.url}`,
@@ -265,13 +285,16 @@ async function main() {
   console.log(`\n--- Summary ---`);
   console.log(`Total URLs: ${checked}`);
   console.log(`Changed: ${changed.length}`);
+  console.log(`High importance changes: ${changed.filter(c => c.importance === 'high').length}`);
+  console.log(`Medium importance changes: ${changed.filter(c => c.importance === 'medium').length}`);
+  console.log(`Low importance changes: ${changed.filter(c => c.importance === 'low').length}`);
   console.log(`Unavailable: ${unavailable.length}`);
   console.log(`Hash file: ${hashFile}`);
   console.log(`Changes file: ${changesFile}`);
 
   if (changed.length > 0) {
     console.log('\nChanged pages:');
-    for (const c of changed) console.log(`  ${c.city}: ${c.title} - ${c.url}`);
+    for (const c of changed) console.log(`  [${c.importance}] ${c.city}: ${c.title} - ${c.url}`);
   }
 
   if (unavailable.length > 0) {

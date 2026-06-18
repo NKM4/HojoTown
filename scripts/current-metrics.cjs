@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { readA8Metrics } = require('./a8-metrics.cjs');
 
 const GA4_PROPERTY_ID = '531123324';
 const tmpKey = path.join(__dirname, '..', '.ga4-tmp-key.json');
@@ -62,7 +63,7 @@ async function main() {
       pageViews: summary[1]?.value || '0',
       sessions: summary[2]?.value || '0',
       affiliateClicks: clickResponse.rows?.[0]?.metricValues?.[0]?.value || '0',
-      affiliateConversions: 'unavailable_in_ga4',
+      affiliateConversions: readA8Metrics(),
       topAffiliateClicks: (clickByAdResponse.rows || []).map((row) => ({
         adId: row.dimensionValues?.[0]?.value || '(not set)',
         clicks: row.metricValues?.[0]?.value || '0',

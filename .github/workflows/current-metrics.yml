@@ -35,6 +35,7 @@ jobs:
       - name: Print current metrics
         env:
           GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
+          A8_METRICS_JSON: ${{ secrets.A8_METRICS_JSON }}
           METRICS_START_DATE: ${{ inputs.start_date }}
           METRICS_END_DATE: ${{ inputs.end_date }}
         run: node scripts/current-metrics.cjs

@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "audit:affiliate": "node scripts/audit-affiliate-placement.cjs",
+    "audit:affiliate-tracking": "node scripts/audit-affiliate-tracking.cjs",
     "preview": "astro preview",
     "astro": "astro"
   },
