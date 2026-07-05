@@ -60,16 +60,16 @@ const { title, description = 'あなたの街の"もらえるお金"、30秒で�
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HG75RFJ2K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    window.gtag = function(){window.dataLayer.push(arguments);}
+    window.gtag('js', new Date());
     // 内部トラフィック判定（自分のIPを除外）
     fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>{
       if(d.ip==='133.203.175.0'){
-        gtag('config','G-1HG75RFJ2K',{traffic_type:'internal'});
+        window.gtag('config','G-1HG75RFJ2K',{traffic_type:'internal'});
       }else{
-        gtag('config','G-1HG75RFJ2K');
+        window.gtag('config','G-1HG75RFJ2K');
       }
-    }).catch(()=>gtag('config','G-1HG75RFJ2K'));
+    }).catch(()=>window.gtag('config','G-1HG75RFJ2K'));
   </script>
   <!-- OGP -->
   <meta property="og:title" content={`${title} | ホジョタウン`} />

@@ -21,6 +21,9 @@ const base = fs.existsSync(files[0]) ? fs.readFileSync(files[0], 'utf8') : '';
 if (!base.includes("window.gtag('event', 'affiliate_click'")) {
   errors.push('BaseLayout: affiliate_click GA4 event is missing');
 }
+if (!base.includes('window.gtag = function()')) {
+  errors.push('BaseLayout: window.gtag global assignment is missing');
+}
 if (!base.includes("event: 'hojotown_affiliate_click'")) {
   errors.push('BaseLayout: dataLayer affiliate event is missing');
 }
