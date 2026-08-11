@@ -21,6 +21,11 @@ const REQUIRED_DIMENSIONS = [
     displayName: 'AB Variant',
     description: 'HojoTown AB test variant',
   },
+  {
+    parameterName: 'ad_id',
+    displayName: 'Affiliate Ad ID',
+    description: 'HojoTown affiliate advertisement identifier',
+  },
 ];
 
 async function main() {

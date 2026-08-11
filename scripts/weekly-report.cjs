@@ -205,6 +205,17 @@ function formatAbFieldValue(summary) {
   return lines.join('\n').slice(0, 1024) || 'データなし';
 }
 
+function normalizeAdRows(rows) {
+  return (rows || []).map((row) => ({
+    adId: row.dimensionValues?.[0]?.value || '(not set)',
+    clicks: toInt(row.metricValues?.[0]?.value),
+  }));
+}
+
+function formatAdFieldValue(rows) {
+  return rows.map((row) => `${row.adId}: ${row.clicks} click`).join('\n').slice(0, 1024) || 'クリックなし';
+}
+
 async function safeRunReport(client, request, label) {
   try {
     const [response] = await client.runReport(request);
@@ -285,6 +296,18 @@ async function getGA4AffiliateClicks() {
       },
     }, 'AB assignment breakdown');
 
+    const adClickResponse = await safeRunReport(client, {
+      property: `properties/${GA4_PROPERTY_ID}`,
+      dimensions: [{ name: 'customEvent:ad_id' }],
+      metrics: [{ name: 'eventCount' }],
+      dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+      dimensionFilter: {
+        filter: { fieldName: 'eventName', stringFilter: { value: 'affiliate_click' } }
+      },
+      orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+      limit: 10,
+    }, 'affiliate ad_id breakdown');
+
     const abClicksByTest = normalizeAbRows(abClickResponse?.rows || []);
     const abAssignmentsByTest = normalizeAbRows(abAssignmentResponse?.rows || []);
     const abSummary = buildAbSummary(abClicksByTest, abAssignmentsByTest);
@@ -297,6 +320,8 @@ async function getGA4AffiliateClicks() {
       sessions: summary[3]?.value || '?',
       abSummary,
       abBreakdownAvailable: Boolean(abClickResponse && abAssignmentResponse),
+      adClicks: normalizeAdRows(adClickResponse?.rows || []),
+      adBreakdownAvailable: Boolean(adClickResponse),
     };
   } catch (e) {
     console.error('GA4 API error:', e.message);
@@ -409,6 +434,13 @@ async function main() {
       clicksFields.push({
         name: 'ABテスト別クリック (7日)',
         value: ga4.abBreakdownAvailable ? formatAbFieldValue(ga4.abSummary) : 'GA4カスタムディメンション未反映のため取得不可',
+        inline: false,
+      });
+    }
+    if (ga4) {
+      clicksFields.push({
+        name: '広告ID別クリック (7日)',
+        value: ga4.adBreakdownAvailable ? formatAdFieldValue(ga4.adClicks) : 'GA4カスタムディメンション未反映のため取得不可',
         inline: false,
       });
     }

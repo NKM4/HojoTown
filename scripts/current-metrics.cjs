@@ -45,6 +45,8 @@ async function main() {
       },
     });
 
+    let adBreakdownAvailable = true;
+    let adBreakdownError = '';
     const [clickByAdResponse] = await client.runReport({
       property: `properties/${GA4_PROPERTY_ID}`,
       dimensions: [{ name: 'customEvent:ad_id' }],
@@ -55,7 +57,11 @@ async function main() {
       },
       orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
       limit: 10,
-    }).catch(() => [{ rows: [] }]);
+    }).catch((error) => {
+      adBreakdownAvailable = false;
+      adBreakdownError = error.message;
+      return [{ rows: [] }];
+    });
 
     const metrics = {
       range: `${dateRange.startDate}..${dateRange.endDate}`,
@@ -64,6 +70,8 @@ async function main() {
       sessions: summary[2]?.value || '0',
       affiliateClicks: clickResponse.rows?.[0]?.metricValues?.[0]?.value || '0',
       affiliateConversions: readA8Metrics(),
+      adBreakdownAvailable,
+      adBreakdownError,
       topAffiliateClicks: (clickByAdResponse.rows || []).map((row) => ({
         adId: row.dimensionValues?.[0]?.value || '(not set)',
         clicks: row.metricValues?.[0]?.value || '0',

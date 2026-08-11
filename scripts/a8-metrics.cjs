@@ -9,6 +9,14 @@ function parseNumber(value, fallback = 0) {
 
 function normalizeMetrics(raw) {
   if (!raw || typeof raw !== 'object') return null;
+  const metricKeys = [
+    'conversions', 'conversionCount', 'approvedCount', 'salesCount',
+    'pending', 'pendingCount', 'unapprovedCount',
+    'revenue', 'reward', 'commission', 'approvedReward', 'clicks',
+  ];
+  if (!metricKeys.some((key) => Object.hasOwn(raw, key))) {
+    throw new Error('A8 metrics JSON does not contain any supported metric keys');
+  }
   const conversions = parseNumber(raw.conversions ?? raw.conversionCount ?? raw.approvedCount ?? raw.salesCount);
   const pending = parseNumber(raw.pending ?? raw.pendingCount ?? raw.unapprovedCount);
   const revenue = parseNumber(raw.revenue ?? raw.reward ?? raw.commission ?? raw.approvedReward);
