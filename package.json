@@ -10,6 +10,7 @@
     "build": "astro build",
     "audit:affiliate": "node scripts/audit-affiliate-placement.cjs",
     "audit:affiliate-tracking": "node scripts/audit-affiliate-tracking.cjs",
+    "metrics:a8:update": "node scripts/update-a8-metrics-secret.cjs",
     "preview": "astro preview",
     "astro": "astro"
   },
