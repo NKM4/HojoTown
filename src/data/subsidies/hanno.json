@@ -11,9 +11,9 @@
     "amount": "月額10,000〜30,000円（年齢・子の数による）",
     "maxAmount": 30000,
     "deadline": "出生・転入日から15日以内に申請",
-    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/kodomoshienbu/kodomoshienka/10140.html",
+    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/kodomoshienbu/kodomoshienka/teatesoumu/10140.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-10-03"
   },
   {
     "id": "hanno-medical-001",
@@ -39,13 +39,13 @@
     "cityName": "飯能市",
     "prefecture": "埼玉県",
     "summary": "ひとり親家庭等に支給。所得制限あり。",
-    "target": "ひとり親家庭等で18歳年度末までの児童を養育する方",
-    "amount": "月額11,010〜46,690円（所得・子の数による）",
-    "maxAmount": 46690,
+    "target": "ひとり親家庭等で18歳年度末までの児童（一定の障害がある場合は20歳未満）を養育する方。所得制限あり",
+    "amount": "第1子は月額11,340〜48,050円、第2子以降は1人につき月額5,680〜11,350円加算（2026年4月分から）",
+    "maxAmount": 48050,
     "deadline": "通年",
-    "officialUrl": "https://www.city.hanno.lg.jp/soshikikarasagasu/kodomoshienbu/kodomoshienka/1472.html",
+    "officialUrl": "https://www.city.hanno.lg.jp/kosodate_kyoiku/kosodate_hoiku_jidofukushi/kakushuteate_kyufukin/5304.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-10-03"
   },
   {
     "id": "hanno-birth-001",

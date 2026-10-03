@@ -33,19 +33,19 @@
   },
   {
     "id": "ashikaga-birth-001",
-    "name": "出産・子育て応援給付金",
+    "name": "妊婦のための支援給付",
     "category": "birth",
     "cityCode": "09202",
     "cityName": "足利市",
     "prefecture": "栃木県",
-    "summary": "妊娠届出をした妊婦・出生届出後の養育者を対象とした出産・子育て応援給付金制度。計10万円（妊娠届出時5万円＋出生後5万円）。",
-    "target": "妊娠届出をした妊婦・出生届出後の養育者",
-    "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
-    "maxAmount": 100000,
-    "deadline": "通年",
-    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000035/000202/000640/p003886.html",
+    "summary": "2025年4月開始の妊婦支援制度。旧・出産子育て応援給付金の申請は2026年3月30日で終了し、現在は妊婦本人に2回に分けて給付。",
+    "target": "申請時に足利市に住民登録がある妊婦本人（医療機関で胎児心拍を確認。流産・死産等も対象）",
+    "amount": "1回目5万円＋2回目は胎児1人につき5万円（単胎の場合は計10万円）",
+    "maxAmount": 0,
+    "deadline": "1回目は胎児心拍確認日から2年、2回目は出産予定日の8週間前から2年（早産・流産等は別の起算日）",
+    "officialUrl": "https://www.city.ashikaga.tochigi.jp/health/000035/000202/000639/p006948.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-10-03"
   },
   {
     "id": "ashikaga-birth-002",

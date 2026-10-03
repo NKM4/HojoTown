@@ -113,18 +113,18 @@
   },
   {
     "id": "hino-helmet-001",
-    "name": "自転車ヘルメット購入費補助",
+    "name": "自転車乗車用ヘルメット購入助成（受付終了）",
     "category": "helmet",
     "cityCode": "13212",
     "cityName": "日野市",
     "prefecture": "東京都",
-    "summary": "安全基準を満たす自転車用ヘルメットの購入費を補助。",
-    "target": "日野市在住者",
-    "amount": "購入費の半額、上限2,000円",
+    "summary": "2024年3月31日で受付終了、同年5月28日に助成金の支払いを完了。安全基準を満たす新品の自転車用ヘルメット購入を支援していた制度。",
+    "target": "申請当時の日野市在住者（年齢制限なし、1人1回）",
+    "amount": "購入費を上限2,000円まで助成（過去の制度）",
     "maxAmount": 2000,
-    "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.hino.lg.jp/kurashi/annzen/kotsu/1024235.html",
-    "status": "active",
-    "lastUpdated": "2026-03-27"
+    "deadline": "2024年3月31日で受付終了",
+    "officialUrl": "https://www.city.hino.lg.jp/kurashi/annzen/kotsu/1031970/1024235.html",
+    "status": "ended",
+    "lastUpdated": "2026-10-03"
   }
 ]
