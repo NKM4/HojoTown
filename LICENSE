@@ -1,8 +1,4 @@
-HojoTown source code license
-
-The MIT License below applies to original software source code authored by the HojoTown maintainers in this repository. This includes application and route logic, components, build and maintenance scripts, bots, workers, functions, and configuration code.
-
-This license does not grant rights to subsidy or municipality datasets (including files under src/data/ and tokorozawa_subsidies.json), articles or other editorial and site copy (including text embedded in source files), the HojoTown name or branding, logos, images and other visual assets, or third-party material. Those items may have separate rights or terms. No trademark rights are granted.
+MIT License
 
 Copyright (c) 2026 NKM4
 

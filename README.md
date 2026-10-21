@@ -44,4 +44,4 @@ npm run audit:affiliate-tracking
 
 誤った制度情報やリンク切れは、対象ページと自治体の公式URLを添えてIssueで知らせてください。コードの修正はPull Requestで受け付けます。手順は[CONTRIBUTING.md](CONTRIBUTING.md)にまとめています。
 
-このリポジトリの**独自のソースコード**は、[LICENSE](LICENSE)に記載した範囲でMITライセンスです。補助金データ、記事・説明文、ロゴ・画像、ブランド、第三者の素材にはこの許諾は及びません。コードと文章が同じファイルにある場合も、文章はライセンス対象外です。再利用時はLICENSEの適用範囲を確認してください。
+このリポジトリの**独自のソースコード**は、[MITライセンス](LICENSE)で提供しています。適用範囲と対象外の素材は[LICENSE-SCOPE.md](LICENSE-SCOPE.md)を確認してください。
