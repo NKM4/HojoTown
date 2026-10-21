@@ -1,43 +1,47 @@
-# Astro Starter Kit: Minimal
+# ホジョタウン
+
+[ホジョタウン](https://hojotown.jp/)は、自治体の補助金・助成金を探し、地域やライフイベントから比較できる日本語のウェブサイトです。このリポジトリには、Astro製のサイト、補助金データ、運用スクリプト、通知用ボットを収録しています。
+
+## 主な機能
+
+- 地域・カテゴリからの補助金検索と自治体比較
+- 家庭の状況に応じた補助金診断
+- 自治体の公式ページへのリンクと、リンク切れ・内容変更の点検
+- サイトの運用指標を確認するためのスクリプト
+
+補助金の条件や期限は変更されます。制度を利用する前に、各項目からリンクしている自治体の公式ページを必ず確認してください。
+
+## ローカルで動かす
+
+Node.js 22.12以上が必要です。
 
 ```sh
-npm create astro@latest -- --template minimal
+npm ci
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+開発サーバーの表示URLは起動時の出力で確認できます。静的サイトのビルドと、広告配置・計測の監査には次のコマンドを使います。
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run build
+npm run audit:affiliate
+npm run audit:affiliate-tracking
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+一部の運用スクリプト、通知ボット、本番デプロイには外部サービスの認証情報が必要です。認証情報はリポジトリに含めず、手元の環境変数または各サービスのSecretとして設定します。閲覧やローカルビルドに本番の認証情報は不要です。
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 構成
 
-Any static assets, like images, can be placed in the `public/` directory.
+| 場所 | 内容 |
+| --- | --- |
+| `src/pages/`, `src/components/`, `src/layouts/` | ページと画面の実装 |
+| `src/data/` | 自治体・補助金などのデータ |
+| `scripts/` | 記事生成、公式URL点検、運用指標など |
+| `bot/`, `worker/`, `functions/`, `gas/` | 通知・API・連携機能 |
+| `.github/workflows/` | 定期点検と手動デプロイの設定 |
 
-## 🧞 Commands
+## 協力とライセンス
 
-All commands are run from the root of the project, from a terminal:
+誤った制度情報やリンク切れは、対象ページと自治体の公式URLを添えてIssueで知らせてください。コードの修正はPull Requestで受け付けます。手順は[CONTRIBUTING.md](CONTRIBUTING.md)にまとめています。
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+このリポジトリの**独自のソースコード**は、[LICENSE](LICENSE)に記載した範囲でMITライセンスです。補助金データ、記事・説明文、ロゴ・画像、ブランド、第三者の素材にはこの許諾は及びません。コードと文章が同じファイルにある場合も、文章はライセンス対象外です。再利用時はLICENSEの適用範囲を確認してください。
