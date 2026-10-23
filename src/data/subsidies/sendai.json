@@ -342,14 +342,14 @@
     "cityCode": "04100",
     "cityName": "仙台市",
     "prefecture": "宮城県",
-    "summary": "70歳以上の市民に市営バス・地下鉄等の割引乗車証を交付。所得に応じた負担金あり。",
+    "summary": "70歳以上の市民に市バス・地下鉄・宮城交通バス等の敬老乗車証を交付。2026年10月から愛子観光バス・タケヤ交通の対象路線でも回数券を利用可能。",
     "target": "仙台市在住の70歳以上の方",
-    "amount": "市営バス・地下鉄等が利用可能（負担金は介護保険料所得段階に応じて異なる）",
+    "amount": "1,000円分のチャージにつき自己負担250円（所得段階により100円）、年間チャージ上限12万円",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.sendai.jp/korekikaku-kikaku/joushasho/ayashijissyoujikken.html",
+    "officialUrl": "https://www.city.sendai.jp/korekikaku-kikaku/kurashi/kenkotofukushi/korenokata/katsudo/sedo/joshasho/index.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-10-03"
   },
   {
     "id": "sendai-elderly-002",

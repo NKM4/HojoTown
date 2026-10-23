@@ -81,19 +81,19 @@
   },
   {
     "id": "iwaki-reform-001",
-    "name": "住宅リフォーム助成事業",
+    "name": "令和8年度 個人住宅優良ストック形成支援事業（受付終了）",
     "category": "reform",
     "cityCode": "07204",
     "cityName": "いわき市",
     "prefecture": "福島県",
-    "summary": "市内業者を利用した住宅リフォーム工事費の一部を助成。",
-    "target": "市内に住宅を所有し居住する方",
-    "amount": "工事費の10%（上限10万円）",
-    "maxAmount": 100000,
-    "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.iwaki.lg.jp/www/contents/1618912363187/index.html",
-    "status": "active",
-    "lastUpdated": "2026-03-27"
+    "summary": "2026年度の申請受付は9月30日で終了。市内業者によるバリアフリー・省エネルギー等の必須工事を含む、税込10万円以上の住宅改良工事を補助。",
+    "target": "いわき市に住民登録がある住宅所有者またはその親族で、その住宅に居住する方。世帯全員の市税滞納がないこと等",
+    "amount": "補助対象工事費の10%（上限15万円）",
+    "maxAmount": 150000,
+    "deadline": "2026年9月30日で受付終了（採択済み工事の完了報告は2027年2月26日まで）",
+    "officialUrl": "https://www.city.iwaki.lg.jp/www/contents/1785896784118/index.html",
+    "status": "ended",
+    "lastUpdated": "2026-10-03"
   },
   {
     "id": "iwaki-solar-001",

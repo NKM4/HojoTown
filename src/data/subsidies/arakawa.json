@@ -17,19 +17,19 @@
   },
   {
     "id": "arakawa-birth-001",
-    "name": "出産・子育て応援給付金",
+    "name": "妊婦支援給付金",
     "category": "birth",
-    "summary": "妊娠届出時に5万円、出生届出後に5万円の計10万円を支給。",
-    "target": "妊婦・出産した方",
-    "amount": "計10万円",
-    "maxAmount": 100000,
-    "deadline": "通年",
-    "officialUrl": "https://www.city.arakawa.tokyo.jp/a033/kosodate/shussankosodate/shussankosodate.html",
+    "summary": "2025年4月から出産・子育て応援ギフトに代わる制度。妊婦への5万円と胎児の数に応じた給付を行い、現金またはカタログギフトを選択。",
+    "target": "申請時に荒川区に住民登録があり、医療機関で胎児心拍が確認された妊婦等（流産・死産等も対象）",
+    "amount": "妊婦1人につき5万円＋胎児1人につき5万円（単胎の場合は計10万円）",
+    "maxAmount": 0,
+    "deadline": "妊娠届出・胎児数の届出後に申請（申請期限は区に確認）",
+    "officialUrl": "https://www.city.arakawa.tokyo.jp/a033/ninshinshussan/joseikyuufu/ninpushien.html",
     "cityCode": "13118",
     "cityName": "荒川区",
     "prefecture": "東京都",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-10-03"
   },
   {
     "id": "arakawa-birth-002",
