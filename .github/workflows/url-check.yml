@@ -39,7 +39,16 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_BROKEN_URL }}
         run: |
           node scripts/check-urls.cjs > url-report.txt 2>&1 || true
-          COUNT=$(grep -c "BROKEN" url-report.txt 2>/dev/null || echo 0)
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if ! grep -Eq '^Total: [0-9]+, OK: [0-9]+, Broken: [0-9]+$' url-report.txt; then
+            echo "::error::URL監視が最後まで実行されませんでした。${RUN_URL}"
+            if [ -n "$DISCORD_WEBHOOK" ]; then
+              curl -fsS --max-time 20 -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+                -d "{\"embeds\":[{\"title\":\"⚠️ URL監視の実行失敗\",\"description\":\"詳細: ${RUN_URL} のurl-check-report\",\"color\":15158332}]}"
+            fi
+            exit 1
+          fi
+          COUNT=$(awk '/^BROKEN \|/ {count++} END {print count+0}' url-report.txt)
           echo "Broken URLs: $COUNT"
           # BROKENリストを別ファイルに抽出
           grep "BROKEN" url-report.txt > broken-urls.txt 2>/dev/null || true
@@ -52,8 +61,7 @@ jobs:
               # 上位5市を通知に含める
               TOP5=$(grep "BROKEN" url-report.txt | awk -F'|' '{print $2}' | sed 's/^ //' | sort | uniq -c | sort -rn | head -5 | awk '{printf "%s(%d件) ", $2, $1}')
               STATUS_COUNTS=$(grep "BROKEN" url-report.txt | awk -F'|' '{gsub(/^ +| +$/, "", $4); count[$4]++} END {for (status in count) printf "%s:%d件 ", status, count[status]}')
-              RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-              curl -s -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
+              curl -fsS --max-time 20 -X POST "$DISCORD_WEBHOOK" -H "Content-Type: application/json" \
                 -d "{\"embeds\":[{\"title\":\"⚠️ ${COUNT}件のURLリンク切れ検出\",\"description\":\"上位: ${TOP5}\\n状態: ${STATUS_COUNTS}\\n詳細: ${RUN_URL} のurl-check-report\",\"color\":15158332}]}"
               echo "Discord通知送信完了"
             fi
