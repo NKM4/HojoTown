@@ -33,19 +33,19 @@
   },
   {
     "id": "funabashi-birth-001",
-    "name": "出産・子育て応援給付金",
+    "name": "妊婦のための支援給付",
     "category": "birth",
     "cityCode": "12204",
     "cityName": "船橋市",
     "prefecture": "千葉県",
-    "summary": "妊娠届出をした妊婦・出生届出後の養育者を対象とした出産・子育て応援給付金制度。計10万円（妊娠届出時5万円＋出生後5万円）。",
-    "target": "妊娠届出をした妊婦・出生届出後の養育者",
-    "amount": "計10万円（妊娠届出時5万円＋出生後5万円）",
+    "summary": "妊婦給付認定後に5万円、胎児の数の届出後に胎児1人につき5万円を支給。",
+    "target": "申請時点で船橋市民の妊婦・出産した方",
+    "amount": "妊婦1人につき5万円＋胎児1人につき5万円",
     "maxAmount": 100000,
-    "deadline": "通年",
-    "officialUrl": "https://www.city.funabashi.lg.jp/kodomo/ninshin/001/p111434.html",
+    "deadline": "1回目は胎児心拍確認日から2年以内。2回目は出産予定日の8週間前から2年以内",
+    "officialUrl": "https://www.city.funabashi.lg.jp/kodomo/ninshin/001/p133633.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "funabashi-medical-001",

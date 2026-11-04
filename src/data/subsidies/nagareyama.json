@@ -70,14 +70,14 @@
     "cityCode": "12220",
     "cityName": "流山市",
     "prefecture": "千葉県",
-    "summary": "ひとり親家庭の親と子を対象としたひとり親家庭等医療費助成制度。医療費自己負担なし。",
+    "summary": "所得などの要件を満たすひとり親家庭の親と子に、保険診療の自己負担分などを助成。",
     "target": "ひとり親家庭の親と子",
     "amount": "医療費自己負担なし",
     "maxAmount": 0,
     "deadline": "通年",
-    "officialUrl": "https://www.city.nagareyama.chiba.jp/life/1001107/1001262/1001263.html",
+    "officialUrl": "https://www.city.nagareyama.chiba.jp/life/1001107/1001240/1001263.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "nagareyama-disability-001",

@@ -40,12 +40,12 @@
     "prefecture": "大阪府",
     "summary": "障がいのある20歳未満の児童を養育する保護者に支給。所得制限あり。物価スライド制で毎年改定。",
     "target": "障がいのある20歳未満の児童を養育する保護者",
-    "amount": "月額37,830〜56,800円（1級: 56,800円、2級: 37,830円）",
-    "maxAmount": 56800,
+    "amount": "月額38,930〜58,450円（1級: 58,450円、2級: 38,930円、2026年4月分から）",
+    "maxAmount": 58450,
     "deadline": "通年",
-    "officialUrl": "https://www.city.osaka.lg.jp/fukushi/page/0000007186.html",
+    "officialUrl": "https://www.city.osaka.lg.jp/fukushi/page/0000302473.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "osaka-childcare-004",
@@ -200,12 +200,12 @@
     "prefecture": "大阪府",
     "summary": "日常生活で常時の介護を必要とする20歳未満の重度障がい児に支給。所得制限あり。物価スライド制で毎年改定。",
     "target": "20歳未満の重度障がい児",
-    "amount": "月額16,100円",
-    "maxAmount": 16100,
+    "amount": "月額16,560円（2026年4月分から）",
+    "maxAmount": 16560,
     "deadline": "通年",
-    "officialUrl": "https://www.city.osaka.lg.jp/fukushi/page/0000007193.html",
+    "officialUrl": "https://www.city.osaka.lg.jp/fukushi/page/0000007154.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "osaka-disability-004",
@@ -267,9 +267,9 @@
     "amount": "加入者死亡等の際に障がい者へ月額20,000円の年金を支給",
     "maxAmount": 20000,
     "deadline": "通年",
-    "officialUrl": "https://www.city.osaka.lg.jp/fukushi/page/0000532950.html",
+    "officialUrl": "https://www.city.osaka.lg.jp/fukushi/category/3020-3-3-1-0-0-0-0-0-0.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "osaka-elderly-001",

@@ -58,10 +58,10 @@
     "target": "令和7年9月分の児童手当受給者等",
     "amount": "対象児童1人あたり20,000円（1回限り）",
     "maxAmount": 20000,
-    "deadline": "申請不要（自動支給）",
-    "officialUrl": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/07ouenteate.html",
-    "status": "active",
-    "lastUpdated": "2026-03-26"
+    "deadline": "申請受付終了（2026年6月30日必着）",
+    "officialUrl": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/",
+    "status": "ended",
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "yokohama-childcare-005",

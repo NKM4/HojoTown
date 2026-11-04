@@ -11,9 +11,9 @@
     "amount": "月額10,000〜30,000円（年齢・子の順番により異なる）",
     "maxAmount": 30000,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=0489",
+    "officialUrl": "https://www.hyugacity.jp/display.php?cont=241217104020",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "hyuga-medical-001",
@@ -22,30 +22,30 @@
     "cityCode": "45204",
     "cityName": "日向市",
     "prefecture": "宮崎県",
-    "summary": "中学3年生までの子どもの医療費を助成。子育て家庭の経済的負担を軽減。",
+    "summary": "中学3年生までの保険診療分の医療費を助成。令和7年10月から対象者の自己負担を無料化。",
     "target": "日向市に住所がある中学3年生までの子ども",
-    "amount": "通院・入院の自己負担分を助成",
+    "amount": "保険診療分の自己負担なし",
     "maxAmount": 0,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=0489",
+    "officialUrl": "https://www.hyugacity.jp/display.php?cont=250827152908",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "hyuga-reform-001",
-    "name": "ひゅうが暮らしづくりリフォーム支援事業補助金",
+    "name": "省エネ等リフォーム補助（令和7年度）",
     "category": "reform",
     "cityCode": "45204",
     "cityName": "日向市",
     "prefecture": "宮崎県",
-    "summary": "住宅リフォーム工事費用の一部を補助。工事費の66%、上限80万円と手厚い支援。",
+    "summary": "令和8年度は省エネ等リフォーム補助の募集なし。",
     "target": "日向市に住所があり、住宅のリフォームを行う方",
-    "amount": "工事費の66%（上限80万円）",
-    "maxAmount": 800000,
-    "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=0489",
-    "status": "active",
-    "lastUpdated": "2026-03-27"
+    "amount": "令和8年度は募集なし",
+    "maxAmount": 0,
+    "deadline": "令和7年度で終了",
+    "officialUrl": "https://www.hyugacity.jp/display.php?cont=240722145722",
+    "status": "ended",
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "hyuga-reform-002",
@@ -54,14 +54,14 @@
     "cityCode": "45204",
     "cityName": "日向市",
     "prefecture": "宮崎県",
-    "summary": "空き家の利活用を促進するためのリフォーム費用の一部を補助。工事費の80%、上限100万円。",
-    "target": "日向市内の空き家を取得・借用してリフォームする方",
-    "amount": "工事費の80%（上限100万円）",
-    "maxAmount": 1000000,
+    "summary": "県外から移住する若年・子育て世帯が住まいとして活用する空き家について、所有権移転登記や家財処分等の費用を補助。",
+    "target": "県外からの移住者（39歳未満の世帯主または18歳未満の世帯員がいる世帯）や対象空き家の所有者",
+    "amount": "対象経費の3分の2（所有権移転登記・環境整備は各上限10万円）",
+    "maxAmount": 200000,
     "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=0489",
+    "officialUrl": "https://www.hyugacity.jp/display.php?cont=161017114834",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "hyuga-childcare-002",
@@ -72,12 +72,12 @@
     "prefecture": "宮崎県",
     "summary": "ひとり親家庭の生活の安定と児童の福祉増進を目的とした手当。",
     "target": "ひとり親家庭で18歳までの児童を養育する方",
-    "amount": "全部支給：月額45,500円、一部支給：月額10,740〜45,490円",
-    "maxAmount": 45500,
+    "amount": "児童1人の全部支給：月額48,050円。一部支給：月額11,340〜48,040円",
+    "maxAmount": 48050,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=0489",
+    "officialUrl": "https://www.hyugacity.jp/display.php?cont=190516100456",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "hyuga-moving-001",
@@ -86,14 +86,14 @@
     "cityCode": "45204",
     "cityName": "日向市",
     "prefecture": "宮崎県",
-    "summary": "東京圏から日向市に移住し、就業・起業等する方に移住支援金を支給。",
+    "summary": "東京圏から日向市へ移住して就業・起業等する方を支援。18歳未満の世帯員を帯同する場合は加算あり。",
     "target": "東京23区在住または通勤者で、日向市に移住し就業・起業する方",
-    "amount": "単身60万円、世帯100万円（子ども加算あり）",
-    "maxAmount": 1000000,
-    "deadline": "令和8年3月31日まで",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=1189",
+    "amount": "単身60万円、世帯100万円、18歳未満の世帯員を帯同する世帯は200万円",
+    "maxAmount": 2000000,
+    "deadline": "令和9年2月26日まで（転入後1年以内）",
+    "officialUrl": "https://www.hyugacity.jp/display.php?cont=230704164206",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "hyuga-disability-001",
@@ -104,27 +104,27 @@
     "prefecture": "宮崎県",
     "summary": "精神または身体に障がいのある20歳未満の児童を養育する方に支給される手当。",
     "target": "精神または身体に障がいがある20歳未満の児童を養育する方",
-    "amount": "1級：月額55,350円、2級：月額36,860円",
-    "maxAmount": 55350,
+    "amount": "1級：月額58,450円、2級：月額38,930円（令和8年4月から）",
+    "maxAmount": 58450,
     "deadline": "随時申請可能",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=0489",
+    "officialUrl": "https://www.pref.miyazaki.lg.jp/shogaifukushi/kurashi/shogaisha/20211008145450.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "hyuga-safety-001",
-    "name": "木造住宅耐震改修補助金",
+    "name": "ひゅうが住まいの耐震化等支援事業（耐震改修）",
     "category": "safety",
     "cityCode": "45204",
     "cityName": "日向市",
     "prefecture": "宮崎県",
-    "summary": "旧耐震基準の木造住宅の耐震改修工事費用の一部を補助。地震に強い住まいづくりを支援。",
+    "summary": "木造住宅の耐震改修工事費を補助。交付決定前の着手は対象外。",
     "target": "昭和56年5月31日以前に着工された木造住宅の所有者",
-    "amount": "耐震改修工事費の一部（上限100万円）",
-    "maxAmount": 1000000,
-    "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.hyugacity.jp/display.php?clist=0489",
+    "amount": "対象経費の5分の4（上限115万円）",
+    "maxAmount": 1150000,
+    "deadline": "令和8年11月30日まで（予算到達時は早期終了）",
+    "officialUrl": "https://www.hyugacity.jp/display.php?cont=240722145722",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   }
 ]

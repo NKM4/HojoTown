@@ -40,12 +40,12 @@
     "prefecture": "宮崎県",
     "summary": "日南市産飫肥杉材を使って住宅の新築・増築・改築を行った場合に補助金を交付。地域林業振興が目的。",
     "target": "日南市産飫肥杉材を使用して住宅の新築・増改築を行う方",
-    "amount": "使用量に応じた補助金（上限あり）",
-    "maxAmount": 300000,
-    "deadline": "予算がなくなり次第終了",
-    "officialUrl": "https://www.city.nichinan.lg.jp/soshikikarasagasu/suisanrinseika/2/2139.html",
+    "amount": "住宅は飫肥杉材の使用量に応じて支給。新築は最大50万円、増改築は最大30万円（移住者の場合）",
+    "maxAmount": 500000,
+    "deadline": "実施要望書を着工の1週間前までに提出",
+    "officialUrl": "https://www.city.nichinan.lg.jp/shigoto_sangyo/sangyoshinko_jigyoshien/2/7196.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "nichinan-childcare-002",

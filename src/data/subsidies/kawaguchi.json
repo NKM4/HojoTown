@@ -282,10 +282,10 @@
     "target": "令和8年1月1日時点で川口市に住民登録があり、世帯内に75歳以上（昭和26年1月1日以前生まれ）の者がいる世帯",
     "amount": "1世帯あたり5,000円",
     "maxAmount": 5000,
-    "deadline": "令和8年6月19日必着",
-    "officialUrl": "https://www.city.kawaguchi.lg.jp/soshiki/01070/040/reiwanananendokawaguchishikoureishasetaishienkyuhukin/50118.html",
-    "status": "active",
-    "lastUpdated": "2026-03-26"
+    "deadline": "受付終了（2026年6月19日必着）",
+    "officialUrl": "https://www.city.kawaguchi.lg.jp/soshiki/01010/030/50059.html",
+    "status": "ended",
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "kawaguchi-koureisha-004",
@@ -538,9 +538,9 @@
     "target": "令和8年1月1日時点で川口市に住民登録があり、世帯全員の令和7年度住民税が非課税の世帯（課税者の扶養のみ世帯を除く）",
     "amount": "1世帯あたり10,000円",
     "maxAmount": 10000,
-    "deadline": "令和8年6月19日必着",
-    "officialUrl": "https://www.city.kawaguchi.lg.jp/soshiki/01070/020/2/50083.html",
-    "status": "active",
-    "lastUpdated": "2026-03-26"
+    "deadline": "受付終了（2026年6月19日必着）",
+    "officialUrl": "https://www.city.kawaguchi.lg.jp/soshiki/01010/030/50059.html",
+    "status": "ended",
+    "lastUpdated": "2026-11-05"
   }
 ]

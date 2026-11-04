@@ -150,14 +150,14 @@
     "cityCode": "40100",
     "cityName": "福岡市",
     "prefecture": "福岡県",
-    "summary": "障がい者の社会参加を支援するため、交通系ICカードポイントやタクシー券、地下鉄無料パス等を交付。所得200万円未満が条件。",
+    "summary": "障がい者の社会参加を支援するため、交通用福祉ICカード、タクシー助成券、地下鉄無料パス、共通利用券から1種類を交付。所得200万円未満が条件。",
     "target": "身体障害者手帳1〜3級、療育手帳A、精神障害者保健福祉手帳1級、被爆者健康手帳等の所持者（所得200万円未満）",
     "amount": "非課税者：年間12,000円、所得200万円未満：年間8,000円（交付時期により減額）",
     "maxAmount": 12000,
-    "deadline": "随時申請可能（有効期限：令和8年9月30日）",
-    "officialUrl": "https://www.city.fukuoka.lg.jp/fukushi/syougaisyashien/health/fukushijousyaken_2025_1.html",
+    "deadline": "2027年9月30日まで（申請月により交付額が変動）",
+    "officialUrl": "https://www.city.fukuoka.lg.jp/fukushi/syougaisyashien/health/fukushijousyaken_2026_1.html",
     "status": "active",
-    "lastUpdated": "2026-03-26"
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "fukuoka-disability-003",

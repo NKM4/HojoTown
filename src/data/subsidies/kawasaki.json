@@ -58,10 +58,10 @@
     "target": "令和7年9月30日時点で児童手当支給対象児童（0歳〜高校生年代）を養育する父母等",
     "amount": "児童1人あたり20,000円",
     "maxAmount": 20000,
-    "deadline": "公務員世帯等は令和8年3月31日まで申請",
-    "officialUrl": "https://www.city.kawasaki.jp/450/page/0000182550.html",
-    "status": "active",
-    "lastUpdated": "2026-03-27"
+    "deadline": "申請受付終了（2026年6月30日必着）",
+    "officialUrl": "https://www.city.kawasaki.jp/templates/prs/450/0000183783.html",
+    "status": "ended",
+    "lastUpdated": "2026-11-05"
   },
   {
     "id": "kawasaki-childcare-005",

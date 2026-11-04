@@ -120,11 +120,11 @@
     "prefecture": "東京都",
     "summary": "安全基準を満たす自転車用ヘルメットの購入費を補助。",
     "target": "日野市在住者",
-    "amount": "購入費の半額、上限2,000円",
+    "amount": "購入費の実費、上限2,000円",
     "maxAmount": 2000,
-    "deadline": "予算に達し次第終了",
-    "officialUrl": "https://www.city.hino.lg.jp/kurashi/annzen/kotsu/1024235.html",
-    "status": "active",
-    "lastUpdated": "2026-03-27"
+    "deadline": "受付終了（2024年3月31日）",
+    "officialUrl": "https://www.city.hino.lg.jp/kurashi/annzen/kotsu/1031970/1024235.html",
+    "status": "ended",
+    "lastUpdated": "2026-11-05"
   }
 ]
