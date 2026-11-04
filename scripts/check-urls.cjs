@@ -73,23 +73,19 @@ async function checkUrl(url) {
   if (isOkStatus(headStatus)) return headStatus;
   if (isKnownSoftPass(url, headStatus)) return 200;
 
-  // Some municipal sites block, throttle, or delay HEAD. Verify with GET before marking broken.
-  if ([403, 405, 501, 'ERROR', 'TIMEOUT'].includes(headStatus)) {
-    const getStatus = await requestStatus(url, 'GET');
-    if (isOkStatus(getStatus)) return getStatus;
-    if (isKnownSoftPass(url, getStatus)) return 200;
+  // Municipal sites can return an error to HEAD while serving the page with GET.
+  const getStatus = await requestStatus(url, 'GET');
+  if (isOkStatus(getStatus)) return getStatus;
+  if (isKnownSoftPass(url, getStatus)) return 200;
 
-    // One extra retry reduces false positives from slow municipal servers.
-    if (['ERROR', 'TIMEOUT', 502, 503].includes(getStatus)) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      const retryStatus = await requestStatus(url, 'GET');
-      if (isKnownSoftPass(url, retryStatus)) return 200;
-      return retryStatus;
-    }
-    return getStatus;
+  // One extra retry reduces false positives from slow municipal servers.
+  if (['ERROR', 'TIMEOUT', 502, 503].includes(getStatus)) {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const retryStatus = await requestStatus(url, 'GET');
+    if (isKnownSoftPass(url, retryStatus)) return 200;
+    return retryStatus;
   }
-
-  return headStatus;
+  return getStatus;
 }
 
 async function main() {
@@ -142,4 +138,8 @@ async function main() {
   }
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+if (require.main === module) {
+  main().catch(e => { console.error(e); process.exit(1); });
+}
+
+module.exports = { checkUrl };
