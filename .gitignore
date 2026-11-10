@@ -29,6 +29,7 @@ pnpm-debug.log*
 ga4-service-account-key.json
 bot/gmail-token.json
 bot/gmail-last-check.json
+bot/mac-mail-notify-state.json
 gmail-cookies.json
 **/current_jwt.txt
 
