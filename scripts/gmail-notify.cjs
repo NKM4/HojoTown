@@ -8,6 +8,7 @@
  *   3. 認証情報 → OAuth 2.0クライアントID (Desktop App) 作成 → JSONダウンロード
  *   4. bot/gmail-credentials.json に保存
  *   5. node scripts/gmail-notify.cjs --auth  (ブラウザが開くので認証)
+ *      指定済みのChromeプロフィールで本人が開く場合は --no-browser を追加
  *   6. bot/gmail-token.json が生成される
  *
  * 定期実行: node scripts/gmail-notify.cjs
@@ -84,7 +85,13 @@ function sendDiscord(embeds) {
     const req = https.request({
       hostname: url.hostname, path: url.pathname, method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data) }
-    }, res => { let b = ''; res.on('data', d => b += d); res.on('end', () => resolve(b)); });
+    }, res => { let b = ''; res.on('data', d => b += d); res.on('end', () => {
+      if (res.statusCode < 200 || res.statusCode >= 300) {
+        reject(new Error(`Discord webhook HTTP ${res.statusCode}`));
+        return;
+      }
+      resolve(b);
+    }); });
     req.on('error', reject);
     req.write(data);
     req.end();
@@ -157,9 +164,9 @@ async function authorize() {
 
     server.listen(port, () => {
       console.log(`コールバック待機中 (port ${port})...`);
-      // ブラウザを開く
+      // 既定ではブラウザを開く
       const { exec } = require('child_process');
-      exec(`start "" "${authUrl}"`);
+      if (!process.argv.includes('--no-browser')) exec(`start "" "${authUrl}"`);
     });
   });
 }
