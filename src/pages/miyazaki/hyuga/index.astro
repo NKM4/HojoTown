@@ -54,6 +54,9 @@ const categoriesUsed = Object.keys(byCategory) as Category[];
 
   <section class="section">
     <div class="container">
+      <div class="disclaimer" style="margin-bottom: 24px;">
+        日向市公式サイトが臨時ページを表示し、制度の詳細を確認できない場合は、日向市役所（0982-52-2111・代表）へお問い合わせください。
+      </div>
       {categoriesUsed.map((cat) => (
         <div id={cat} style="margin-bottom: 36px;">
           <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green-mid); color: var(--green-deep);">
