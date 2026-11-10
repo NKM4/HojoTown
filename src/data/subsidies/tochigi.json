@@ -22,14 +22,14 @@
     "cityCode": "09203",
     "cityName": "栃木市",
     "prefecture": "栃木県",
-    "summary": "ひとり親家庭等の児童を養育する方を対象とした児童扶養手当制度。月額10,120〜44,140円（所得による）。",
+    "summary": "ひとり親家庭等の児童を養育する方を対象とした児童扶養手当制度。児童1人の場合、月額11,340〜48,050円（所得による）。",
     "target": "ひとり親家庭等の児童を養育する方",
-    "amount": "月額10,120〜44,140円（所得による）",
-    "maxAmount": 44140,
+    "amount": "児童1人の場合、月額11,340〜48,050円（所得による）",
+    "maxAmount": 48050,
     "deadline": "通年",
     "officialUrl": "https://www.city.tochigi.lg.jp/site/kosodatekyouiku/979.html",
     "status": "active",
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-11-11"
   },
   {
     "id": "tochigi-birth-001",
